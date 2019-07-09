@@ -1,0 +1,53 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+1052500,"Diamond River near Wentworth Location, NH",-71.0575,44.8775,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01052500
+1053500,"Androscoggin River at Errol, NH",-71.1286111,44.7825,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01053500
+1053600,Androscoggin River below Bog Brook at Cambridge NH,-71.18138889,44.6661111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01053600
+1054000,"Androscoggin River near Gorham, NH",-71.19027778,44.4358333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01054000
+1054114,"Peabody River at Gorham, New Hampshire",-71.1706556,44.38131944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01054114
+10642505,"SACO RIVER AT RIVER STREET, AT BARTLETT, NH",-71.2855556,44.08388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=010642505
+1064500,"Saco River near Conway, NH",-71.0905556,43.9908333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01064500
+1064801,"BEARCAMP RIVER AT SOUTH TAMWORTH, NH",-71.2878488,43.83007396,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01064801
+1072800,"COCHECO RIVER NEAR ROCHESTER, NH.",-70.9736739,43.26841527,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01072800
+1072870,"ISINGLASS R AT ROCHESTER NECK RD, NR DOVER, NH",-70.9564507,43.23480487,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01072870
+1073000,"OYSTER RIVER NEAR DURHAM, NH",-70.9650603,43.1486955,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01073000
+1073319,"LAMPREY RIVER AT LANGFORD ROAD, AT RAYMOND, NH",-71.2016667,43.04138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01073319
+1073500,"LAMPREY RIVER NEAR NEWMARKET, NH",-70.952559,43.10258558,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01073500
+10735562,"EXETER RIVER AT ODELL ROAD, NEAR SANDOWN, NH",-71.16478279,42.94897557,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=010735562
+1073587,"EXETER RIVER AT HAIGH ROAD, NEAR BRENTWOOD, NH",-71.038392,42.9845316,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01073587
+1073785,"WINNICUT RIVER AT GREENLAND, NR PORTSMOUTH, NH",-70.8475,43.0358333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01073785
+1074520,"EAST BRANCH PEMIGEWASSET RIVER AT LINCOLN, NH",-71.6598029,44.0475669,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01074520
+1075000,"PEMIGEWASSET RIVER AT WOODSTOCK, NH",-71.6795244,43.9761792,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01075000
+1076000,"BAKER RIVER NEAR RUMNEY, NH",-71.8453594,43.79562647,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01076000
+1076500,"PEMIGEWASSET RIVER AT PLYMOUTH, NH",-71.6856337,43.7592388,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01076500
+1077400,"COCKERMOUTH RIVER BELOW HARDY BROOK, AT GROTON, NH",-71.8333333,43.70388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01077400
+1078000,"SMITH RIVER NEAR BRISTOL, NH",-71.747857,43.56646307,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01078000
+1081000,"WINNIPESAUKEE RIVER AT TILTON, NH",-71.5875752,43.44174376,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01081000
+1081500,"MERRIMACK RIVER AT FRANKLIN JUNCTION, NH",-71.6528543,43.42285456,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01081500
+1082000,"CONTOOCOOK RIVER AT PETERBOROUGH, NH",-71.95924609,42.8625837,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01082000
+1085000,"CONTOOCOOK RIVER NEAR HENNIKER, NH",-71.85730149,43.1520237,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01085000
+1085500,"CONTOOCOOK R BL HOPKINTON DAM AT W HOPKINTON, NH",-71.7472995,43.1928569,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01085500
+1086000,"WARNER RIVER AT DAVISVILLE, NH",-71.7322996,43.25091159,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01086000
+1089100,"SOUCOOK RIVER, AT PEMBROKE ROAD, NEAR CONCORD, NH",-71.4803481,43.21369248,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01089100
+1089500,"SUNCOOK RIVER AT NORTH CHICHESTER, NH",-71.36951248,43.25674759,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01089500
+1089925,"SUNCOOK RIVER AT NH 28, NEAR SUNCOOK, NH",-71.4059011,43.15980438,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01089925
+1091000,"SOUTH BRANCH PISCATAQUOG RIVER NEAR GOFFSTOWN, NH",-71.64146129,43.01480519,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01091000
+1091500,"PISCATAQUOG RIVER NEAR GOFFSTOWN, NH",-71.5506252,43.01675,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01091500
+1092000,"MERRIMACK R NR GOFFS FALLS, BELOW MANCHESTER, NH",-71.4634002,42.9481405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01092000
+1093852,"SOUHEGAN RIVER (SITE WLR-1) NEAR MILFORD, NH",-71.7067399,42.8425858,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01093852
+1094000,"SOUHEGAN RIVER AT MERRIMACK, NH",-71.5061785,42.8575865,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01094000
+10965852,"BEAVER BROOK AT NORTH PELHAM, NH",-71.35367448,42.78286636,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=010965852
+1100505,"SPICKET RIVER AT NORTH SALEM, NH",-71.2150607,42.8492547,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01100505
+1129200,"CONNECTICUT R BELOW INDIAN STREAM NR PITTSBURG, NH",-71.4439704,45.04032368,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01129200
+1129500,"CONNECTICUT RIVER AT NORTH STRATFORD, NH",-71.63120018,44.74977166,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01129500
+1130000,"UPPER AMMONOOSUC RIVER NEAR GROVETON, NH",-71.4689721,44.62505316,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01130000
+1131500,"CONNECTICUT RIVER NEAR DALTON, NH",-71.7206438,44.4100591,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01131500
+1137500,"AMMONOOSUC RIVER AT BETHLEHEM JUNCTION, NH",-71.6303617,44.2686741,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01137500
+1144500,"CONNECTICUT RIVER AT WEST LEBANON, NH",-72.3123134,43.64618187,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01144500
+1152500,"SUGAR RIVER AT WEST CLAREMONT, NH",-72.36203409,43.38757327,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01152500
+1154500,"CONNECTICUT RIVER AT NORTH WALPOLE, NH",-72.4367549,43.12618905,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01154500
+1154950,"COLD RIVER AT HIGH STREET, AT ALSTEAD, NH",-72.3616667,43.14944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01154950
+1157000,"ASHUELOT RIVER NEAR GILSUM, NH",-72.2700858,43.03924586,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01157000
+1158000,"ASHUELOT RIVER BELOW SURRY MT DAM, NEAR KEENE, NH",-72.31119719,42.9948023,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01158000
+1158110,"ASHUELOT RIVER ABOVE THE BRANCH, AT KEENE, NH",-72.279252,42.9192478,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01158110
+1160350,"ASHUELOT RIVER AT WEST SWANZEY, NH",-72.3281415,42.87147076,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01160350
+1161000,"ASHUELOT RIVER AT HINSDALE, NH",-72.4861996,42.78591586,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01161000

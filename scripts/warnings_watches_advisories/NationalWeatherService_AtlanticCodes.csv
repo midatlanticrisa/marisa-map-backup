@@ -1,0 +1,58 @@
+code,name,atlantic
+ANZ330,Long Island Sound East of New Haven CT/Port Jefferson NY,AN
+ANZ335,Long Island Sound West of New Haven CT/Port Jefferson NY,AN
+ANZ338,New York Harbor,AN
+ANZ340,Peconic and Gardiners Bays,AN
+ANZ345,South Shore Bays from Jones Inlet through Shinnecock Bay,AN
+ANZ350,Moriches Inlet NY to Montauk Point NY out 20 nm,AN
+ANZ353,Fire Island Inlet NY to Moriches Inlet NY out 20 nm,AN
+ANZ355,Sandy Hook NJ to Fire Island Inlet NY out 20 nm,AN
+ANZ370,Waters from Moriches Inlet NY to Montauk Point NY from 20 to 40 NM,AN
+ANZ373,Waters from Fire Island Inlet NY to Moriches Inlet NY from 20 to 40 NM,AN
+ANZ375,Waters from Sandy Hook NJ to Fire Island Inlet out 20 to 40 nm,AN
+ANZ430,Delaware Bay waters north of East Point NJ to Slaughter Beach DE,AN
+ANZ431,Delaware Bay waters south of East Point NJ to Slaughter Beach DE,AN
+ANZ450,Coastal waters from Sandy Hook to Manasquan Inlet NJ out 20 nm,AN
+ANZ451,Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm,AN
+ANZ452,Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm,AN
+ANZ453,Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm,AN
+ANZ454,Coastal waters from Cape May NJ to Cape Henlopen DE out 20 nm,AN
+ANZ455,Coastal waters from Cape Henlopen to Fenwick Island DE out 20 nm,AN
+ANZ470,Waters from Sandy Hook NJ to Manasquan Inlet NJ out 20 to 40 nm,AN
+ANZ471,Waters from Manasquan Inlet NJ to Little Egg Inlet NJ out 20 to 40 nm,AN
+ANZ472,Waters from Little Egg Inlet NJ to Great Egg Inlet NJ out 20 to 40 nm from 20 to 40 NM,AN
+ANZ473,Waters from Great Egg Inlet NJ to Cape May NJ out 20 to 40 nm,AN
+ANZ475,Waters from Cape May NJ to Fenwick Island DE out 20 to 40 nm,AN
+ANZ530,Chesapeake Bay north of Pooles Island MD,AN
+ANZ531,Chesapeake Bay from Pooles Island to Sandy Point MD,AN
+ANZ532,Chesapeake Bay from Sandy Point to North Beach MD,AN
+ANZ533,Chesapeake Bay from North Beach to Drum Point MD,AN
+ANZ534,Chesapeake Bay from Drum Point MD to Smith Point VA,AN
+ANZ535,Tidal Potomac from Key Bridge to Indian Head MD,AN
+ANZ536,Tidal Potomac from Indian Head to Cobb Island MD,AN
+ANZ537,Tidal Potomac from Cobb Island MD to Smith Point VA,AN
+ANZ538,Patapsco River including Baltimore Harbor,AN
+ANZ539,Chester River to Queenstown MD,AN
+ANZ540,Eastern Bay,AN
+ANZ541,Choptank River to Cambridge MD and the Little Choptank River,AN
+ANZ542,Patuxent River to Broomes Island MD,AN
+ANZ543,Tangier Sound and the inland waters surrounding Bloodsworth Island,AN
+ANZ630,Chesapeake Bay from Smith Point to Windmill Point VA,AN
+ANZ631,Chesapeake Bay from Windmill Point to New Point Comfort VA,AN
+ANZ632,Chesapeake Bay from New Point Comfort to Little Creek VA,AN
+ANZ633,Currituck Sound,AN
+ANZ634,Chesapeake Bay from Little Creek VA to Cape Henry VA including the Chesapeake Bay Bridge Tunnel,AN
+ANZ635,Rappahannock River from Urbanna to Windmill Point,AN
+ANZ636,York River,AN
+ANZ637,James River from Jamestown to the James River Bridge,AN
+ANZ638,James River from James River Bridge to Hampton Roads Bridge-Tunnel,AN
+ANZ650,Coastal waters from Fenwick Island DE to Chincoteague VA out 20 nm,AN
+ANZ652,Coastal waters from Chincoteague to Parramore Island VA out 20 nm,AN
+ANZ654,Coastal waters from Parramore Island to Cape Charles Light VA out 20 nm,AN
+ANZ656,Coastal Waters from Cape Charles Light to Virginia-North Carolina border out to 20 nm,AN
+ANZ658,Coastal waters from NC VA border to Currituck Beach Light NC out 20 nm,AN
+ANZ670,Waters from Fenwick Island DE to Chintoteague VA from 20 to 40 nm,AN
+ANZ672,Waters from Chincoteague VA to Parramore Island VA from 20 to 40 nm,AN
+ANZ674,Waters from Parramore Island VA to Cape Charles Light VA from 20 to 40 nm,AN
+ANZ676,Waters from Cape Charles Light to Virginia - North Caroline Border from 20 to 40 nm,AN
+ANZ678,Waters from NC VA border to Currituck Beach Light NC from 20 to 40 nm,AN

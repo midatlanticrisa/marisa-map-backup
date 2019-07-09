@@ -1,0 +1,213 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+10068500,"BEAR RIVER AT PESCADERO, ID",-111.356875,42.4015929,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10068500
+12305000,"KOOTENAI RIVER AT LEONIA, ID",-116.0463889,48.6175,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12305000
+12306500,MOYIE RIVER AT EASTPORT ID,-116.1797222,48.99916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12306500
+12308000,KOOTENAI RIVER BEL MOYIE RIVER NR BONNERS FERRY ID,-116.1966667,48.70055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12308000
+12308500,"KOOTENAI R AT CROSSPORT NR BONNERS FERRY, ID",-116.2425,48.70166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12308500
+12309500,KOOTENAI RIVER AT BONNERS FERRY ID,-116.3125,48.69805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12309500
+12310100,KOOTENAI RIVER @ TRIBAL HATCHERY NR BONNERS FERRY,-116.3697222,48.70527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12310100
+12314000,KOOTENAI R AT KLOCKMANN RANCH NR BONNERS FERRY ID,-116.381871,48.79382868,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12314000
+12318500,KOOTENAI RIVER NR COPELAND ID,-116.4019444,48.905,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12318500
+12321500,BOUNDARY CREEK NR PORTHILL ID,-116.5691667,48.9972222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12321500
+12322000,KOOTENAI RIVER AT PORTHILL ID,-116.5075,48.99638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12322000
+12391950,CLARK FORK RIVER BELOW CABINET GORGE DAM ID,-116.0727778,48.08805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12391950
+12392155,LIGHTNING CREEK AT CLARK FORK ID,-116.1816667,48.15166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12392155
+12392300,PACK RIVER NR COLBURN ID,-116.5019444,48.42,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12392300
+12393000,PRIEST LAKE AT OUTLET NR COOLIN ID,-116.8869444,48.5075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12393000
+12393501,"PRIEST R OUTFLOW NR COOLIN, ID",-116.9085833,48.4880333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12393501
+12395000,PRIEST RIVER NR PRIEST RIVER ID,-116.9141667,48.2197222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12395000
+12411000,NF COEUR D ALENE R AB SHOSHONE CK NR PRICHARD ID,-115.9791667,47.7061111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12411000
+12413000,NF COEUR D ALENE RIVER AT ENAVILLE ID,-116.2528,47.5722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413000
+12413125,"CANYON CREEK AB MOUTH AT WALLACE, ID",-115.9147222,47.4725,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413125
+12413130,"NINEMILE CREEK AB MOUTH AT WALLACE, ID",-115.9227,47.4749,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413130
+12413131,SF COEUR D ALENE R ABV PLACER CR AT WALLACE ID,-115.9284444,47.47518056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413131
+12413210,SF COEUR D ALENE AT ELIZABETH PARK NR KELLOGG ID,-116.0925,47.53138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413210
+12413355,SF COEUR D ALENE RIVER ABV PINE CR NR PINEHURST ID,-116.2197222,47.5483333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413355
+12413370,EF PINE CREEK ABV NABOB CR NEAR PINEHURST ID,-116.2216667,47.47666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413370
+12413470,SF COEUR D ALENE RIVER NR PINEHURST ID,-116.2363889,47.5519444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413470
+12413500,COEUR D ALENE RIVER NR CATALDO ID,-116.3231,47.5547,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413500
+12413860,COEUR D ALENE RIVER NR HARRISON ID,-116.7330556,47.4786111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413860
+12413875,"ST JOE RIVER AT RED IVES RANGER STATION, ID",-115.3533333,47.05638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12413875
+12414500,"ST JOE RIVER AT CALDER, ID",-116.1888889,47.2744444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12414500
+12414900,"ST MARIES RIVER NR SANTA, ID",-116.4933333,47.1761111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12414900
+12415070,"ST JOE RIVER AT SAINT MARIES, ID",-116.5547222,47.3169444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12415070
+12415135,ST JOE RIVER AT RAMSDELL NR ST MARIES ID,-116.6755556,47.3522222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12415135
+12415500,COEUR D ALENE LAKE AT COEUR D ALENE ID,-116.7705556,47.6661111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12415500
+12417650,SPOKANE RIVER BLW BLACKWELL NR COEUR D ALENE ID,-116.8152778,47.6947222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12417650
+12419000,SPOKANE RIVER NR POST FALLS ID,-116.9777778,47.70305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=12419000
+13032500,SNAKE RIVER NR IRWIN ID,-111.2188889,43.3508333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13032500
+13037500,SNAKE RIVER NR HEISE ID,-111.66,43.6125,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13037500
+13038000,DRY BED NR RIRIE ID,-111.716111,43.63888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13038000
+13038500,SNAKE RIVER AT LORENZO ID,-111.8780556,43.73527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13038500
+13039000,HENRYS LAKE NR LAKE ID,-111.353611,44.5972222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13039000
+13039500,HENRYS FORK NR LAKE ID,-111.3497222,44.5944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13039500
+13042500,HENRYS FORK NR ISLAND PARK ID,-111.3947222,44.41666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13042500
+13046000,HENRYS FORK NR ASHTON ID,-111.5105556,44.0697222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13046000
+13046995,FALL RIVER AB YELLOWSTONE CANAL NR SQUIRREL ID,-111.1519444,44.06194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13046995
+13047500,FALL RIVER NR SQUIRREL ID,-111.2413889,44.0686111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13047500
+13047600,FALL RIVER NR ASHTON ID,-111.358611,44.0561111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13047600
+13049500,FALL RIVER NR CHESTER ID,-111.5666667,44.0183333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13049500
+13050500,HENRYS FORK AT ST ANTHONY ID,-111.6725,43.96694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13050500
+13052200,TETON RIVER AB SOUTH LEIGH CREEK NR DRIGGS ID,-111.2091667,43.78194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13052200
+13055000,TETON RIVER NR ST ANTHONY ID,-111.6138889,43.9272222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13055000
+13055250,NF TETON RIVER NR SUGAR CITY ID,-111.7577778,43.8875,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13055250
+13055340,SF TETON RIVER NEAR REXBURG ID,-111.7777778,43.835,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13055340
+13056500,HENRYS FORK NR REXBURG ID,-111.905,43.8258333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13056500
+13057000,SNAKE RIVER NR MENAN ID,-111.9791667,43.75277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13057000
+13057132,GREAT WESTERN SPILLBACK NR IDAHO FALLS ID,-112.0619444,43.6008333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13057132
+13057155,SNAKE RIVER AB EAGLE ROCK NR IDAHO FALLS ID,-112.058611,43.6047222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13057155
+13057300,"GRAYS LAKE DIV TO BLACKFOOT R BASIN NR WAYAN, ID",-111.493611,43.00555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13057300
+13057500,GRAYS LAKE OUTLET NR HERMAN ID,-111.495,43.1347222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13057500
+13057940,WILLOW CREEK BL TEX CREEK NR RIRIE ID,-111.7283333,43.44194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13057940
+13058000,WILLOW CREEK NR RIRIE ID,-111.746111,43.5833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13058000
+13058510,SAND CREEK NEAR UCON ID,-111.895,43.57416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13058510
+13058520,WILLOW CREEK FLOODWAY CHANNEL NR UCON ID,-111.9130556,43.57638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13058520
+13058529,WILLOW CR FLOODWAY CHANNEL AT MOUTH NR ID FALLS ID,-112.0480556,43.5747222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13058529
+13058530,WILLOW CREEK BLW FLOODWAY CHANNEL NR UCON ID,-111.9119444,43.5758333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13058530
+13060000,SNAKE RIVER NR SHELLEY ID,-112.135,43.41305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13060000
+13062500,SNAKE RIVER AT BLACKFOOT ID,-112.3691667,43.1975,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13062500
+13063000,BLACKFOOT RIVER AB RESERVOIR NR HENRY ID,-111.5066667,42.81527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13063000
+13066000,BLACKFOOT RIVER NR SHELLEY ID,-112.0477778,43.26277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13066000
+13068300,BLACKFOOT RIVER BELOW NORTH CANAL AT BLACKFOOT ID,-112.3347222,43.1683333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13068300
+13068495,BLACKFOOT RIVER BYPASS NR BLACKFOOT ID,-112.3877778,43.1708333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13068495
+13068500,BLACKFOOT RIVER NR BLACKFOOT ID,-112.4766667,43.13055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13068500
+13069500,SNAKE RIVER NR BLACKFOOT ID,-112.5188889,43.12527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13069500
+13073000,PORTNEUF RIVER AT TOPAZ ID,-112.0880556,42.6247222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13073000
+13075000,MARSH CREEK NR MCCAMMON ID,-112.2255556,42.63,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13075000
+13075500,PORTNEUF RIVER AT POCATELLO ID,-112.4680556,42.87166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13075500
+13075910,PORTNEUF RIVER NR TYHEE ID,-112.5444444,42.9447222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13075910
+13075983,SPRING CREEK AT SHEEPSKIN RD NR FORT HALL ID,-112.55,43.0425,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13075983
+13077000,SNAKE RIVER AT NEELEY ID,-112.8794444,42.7675,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13077000
+13078000,RAFT RIVER AB ONEMILE CREEK NR MALTA ID,-113.4513889,42.0636111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13078000
+13081500,SNAKE R NR MINIDOKA ID (AT HOWELLS FERRY),-113.5002778,42.67277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13081500
+13082500,GOOSE CREEK AB TRAPPER CREEK NR OAKLEY ID,-113.9355556,42.1261111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13082500
+13083000,TRAPPER CREEK NR OAKLEY ID,-113.983611,42.1658333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13083000
+13087900,MILNER LAKE AT MILNER DAM ID,-114.0133333,42.52305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13087900
+13087995,SNAKE RIVER GAGING STATION AT MILNER ID,-114.0183333,42.52805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13087995
+13089500,DEVILS WASHBOWL SPRING NR KIMBERLY 10S 18E 04AAD1S,-114.3469444,42.5897222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13089500
+13090500,SNAKE RIVER NR TWIN FALLS ID,-114.4763889,42.6061111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13090500
+13092747,ROCK CREEK AB HWY 30/93 XING AT TWIN FALLS ID,-114.4947222,42.5625,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13092747
+13094000,SNAKE RIVER NR BUHL ID,-114.7122222,42.6658333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13094000
+13095175,BRIGGS SPRING AT HEAD NEAR BUHL ID,-114.8091667,42.67388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13095175
+13095500,BOX CANYON SPRINGS NR WENDELL ID,-114.8102778,42.7075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13095500
+13106500,SALMON RIVER CANAL CO RES NR ROGERSON ID,-114.7333333,42.2122222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13106500
+13108150,SALMON FALLS CREEK NR HAGERMAN ID,-114.8552778,42.69638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13108150
+13112000,CAMAS CREEK AT CAMAS ID,-112.221111,44.00277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13112000
+13113000,BEAVER CREEK AT SPENCER ID,-112.18,44.35527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13113000
+13115000,MUD LAKE NR TERRETON ID,-112.3580556,43.89138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13115000
+13116500,MEDICINE LODGE CREEK NR SMALL ID,-112.4102778,44.25916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13116500
+13118700,LITTLE LOST RIVER BL WET CREEK NR HOWE ID,-113.2452778,44.1386111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13118700
+13118975,LITTLE LOST RIVER AB FLOOD DIVERSION NR HOWE ID,-113.0970083,43.884825,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13118975
+13119000,"LITTLE LOST RIVER NR HOWE, ID",-113.0877778,43.87027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13119000
+13120000,NF BIG LOST RIVER AT WILD HORSE NR CHILLY ID,-114.1138889,43.93277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13120000
+13120500,BIG LOST RIVER AT HOWELL RANCH NR CHILLY ID,-114.021111,43.9983333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13120500
+13126000,MACKAY RES NR MACKAY ID,-113.675,43.95138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13126000
+13127000,BIG LOST RIVER BL MACKAY RES NR MACKAY ID,-113.6483333,43.93916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13127000
+13131000,"ANTELOPE CREEK NR DARLINGTON, ID",-113.5147222,43.7336111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13131000
+13132500,BIG LOST RIVER NR ARCO ID,-113.2708333,43.58194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13132500
+13132513,INL DIVERSION AT HEAD NEAR ARCO ID,-113.0838889,43.5136111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13132513
+13132520,BIG LOST RIVER BL INL DIV NEAR ARCO ID,-113.0819444,43.5158333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13132520
+13132535,BIG LOST R AT LINCOLN BLVD BRIDGE NR ATOMIC CITY,-112.9433333,43.57388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13132535
+13132565,BIG LOST RIVER AB BIG LOST RIVER SINKS NR HOWE ID,-112.875,43.7233333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13132565
+13135500,BIG WOOD RIVER NR KETCHUM ID,-114.4250547,43.78629677,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13135500
+13135520,NF BIG WOOD RIVER NR SAWTOOTH NRA HQ NR KETCHUM ID,-114.4191667,43.7861111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13135520
+13137000,WARM SPRINGS CREEK NEAR KETCHUM ID,-114.3847222,43.6897222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13137000
+13137300,"TRAIL CREEK NR SUN VALLEY, ID",-114.3243806,43.72319444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13137300
+13137500,TRAIL CREEK AT KETCHUM ID,-114.362261,43.67421667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13137500
+13138000,EAST FORK BIG WOOD RIVER AT GIMLET ID,-114.3302778,43.60305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13138000
+13139510,BIG WOOD RIVER AT HAILEY ID TOTAL FLOW,-114.3216667,43.5172222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13139510
+13140335,"BIG WOOD R AT S BROADFORD BRIDGE NR BELLEVUE, ID",-114.2677389,43.4679833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13140335
+13140800,BIG WOOD RIVER AT STANTON CROSSING NR BELLEVUE ID,-114.3191667,43.32916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13140800
+13141500,CAMAS CREEK NR BLAINE ID,-114.5419444,43.33277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13141500
+13142500,BIG WOOD RIVER BL MAGIC DAM NR RICHFIELD ID,-114.3566667,43.24805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13142500
+13147900,LITTLE WOOD RIVER AB HIGH FIVE CREEK NR CAREY ID,-114.0572222,43.49305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13147900
+13148500,LITTLE WOOD RIVER NR CAREY ID,-113.9997222,43.39,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13148500
+13150430,SILVER CREEK AT SPORTSMAN ACCESS NR PICABO ID,-114.10835,43.3233611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13150430
+13152500,MALAD RIVER NR GOODING ID,-114.8030556,42.88638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13152500
+13154500,SNAKE RIVER AT KING HILL ID,-115.2025,43.0022222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13154500
+13159800,CANYON CR AT OREGON TRAIL XING NR MOUNTAIN HOME ID,-115.7025,43.2611111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13159800
+131610556,MCCALLEY DAM OUTFLOW AT MOUNTAIN HOME AFB ID,-115.8944444,43.05027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=131610556
+13168500,BRUNEAU RIVER NR HOT SPRING ID,-115.7202778,42.7711111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13168500
+13171500,CJ STRIKE RES NR GRAND VIEW ID,-115.975,42.9436111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13171500
+13172500,SNAKE RIVER NR MURPHY ID,-116.3906389,43.25481389,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13172500
+13176400,"EF OWYHEE RIVER AT CRUTCHER CROSSING, ID",-116.8684417,42.26136944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13176400
+13185000,BOISE RIVER NR TWIN SPRINGS ID,-115.7252778,43.66805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13185000
+13186000,SF BOISE RIVER NR FEATHERVILLE ID,-115.3080556,43.4958333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13186000
+13190500,SF BOISE RIVER AT ANDERSON RANCH DAM ID,-115.4775,43.3436111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13190500
+13192200,SF BOISE RIVER AT NEAL BRIDGE NR ARROWROCK DAM ID,-115.7219444,43.55055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13192200
+13200000,MORES CREEK AB ROBIE CREEK NR ARROWROCK DAM ID,-115.9897222,43.64805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13200000
+13201500,LUCKY PEAK LAKE NR BOISE ID,-116.0552778,43.52555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13201500
+13204640,COTTONWOOD CREEK BEL FIVEMILE CR NR BOISE ID,-116.1108333,43.6286111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13204640
+13206000,BOISE RIVER AT GLENWOOD BRIDGE NR BOISE ID,-116.2791667,43.66055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13206000
+13206305,BOISE RIVER SOUTH CHANNEL AT EAGLE ID,-116.353611,43.67527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13206305
+13206400,"EAGLE DRAIN AT EAGLE, ID",-116.3563889,43.69166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13206400
+13210810,"FIFTEENMILE CREEK NR MIDLAND BLVD NR MIDDLETON, ID",-116.585411,43.67405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13210810
+13210824,N MIDDLETON DRAIN (MILL SLOUGH) AT MIDDLETON ID,-116.6181917,43.70655,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13210824
+13210831,SOUTH MIDDLETON DRAIN AT MIDDLETON ID,-116.6181917,43.70210556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13210831
+13210980,MASON CREEK AT CALDWELL ID,-116.6631917,43.68321667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13210980
+13210986,W HARTLEY GULCH NR CALDWELL ID,-116.6856944,43.69960556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13210986
+132109867,"EAST HARTLEY ABV BACKWATER NR CALDWELL, ID",-116.6731778,43.70030556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=132109867
+13211205,"BOISE RIVER AT CALDWELL, ID",-116.7011306,43.67735278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13211205
+13211210,"BOISE RIVER ABV INDIAN CREEK AT CALDWELL, ID",-116.7054944,43.67776944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13211210
+13212549,"CONWAY GULCH BELOW 1ST ST AT NOTUS, ID",-116.7997222,43.72803056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13212549
+13212890,DIXIE DRAIN NR WILDER ID,-116.8893167,43.73071667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13212890
+13213000,BOISE RIVER NR PARMA ID,-116.9727778,43.78166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13213000
+13213072,SAND RUN GULCH NR PARMA ID,-116.975711,43.79960556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13213072
+13235000,"SOUTH FORK PAYETTE RIVER AT LOWMAN, ID",-115.6222222,44.08527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13235000
+13236500,DEADWOOD RIVER BL DEADWOOD RES NR LOWMAN ID,-115.6419444,44.29194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13236500
+13237920,MIDDLE FORK PAYETTE RIVER NR CROUCH ID,-115.9822222,44.1086111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13237920
+13238500,PAYETTE LAKE AT MCCALL ID,-116.1191667,44.9122222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13238500
+13239000,NF PAYETTE RIVER AT MCCALL ID,-116.1191667,44.9072222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13239000
+13240000,LAKE FORK PAYETTE RIVER AB JUMBO CR NR MCCALL ID,-115.9972222,44.9136111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13240000
+13246000,NF PAYETTE RIVER NR BANKS ID,-116.1072222,44.11416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13246000
+13247500,PAYETTE RIVER NR HORSESHOE BEND ID,-116.1966667,43.9433333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13247500
+13249500,PAYETTE RIVER NR EMMETT ID,-116.4427778,43.93055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13249500
+13250000,PAYETTE RIVER NR LETHA ID,-116.6277778,43.8961111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13250000
+13251000,PAYETTE RIVER NR PAYETTE ID,-116.9252778,44.0422222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13251000
+13258500,WEISER RIVER NR CAMBRIDGE ID,-116.6433333,44.5794444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13258500
+13265500,CRANE CREEK AT MOUTH NR WEISER ID,-116.7822222,44.29138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13265500
+13266000,WEISER RIVER NR WEISER ID,-116.7722222,44.27,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13266000
+13269000,SNAKE RIVER AT WEISER ID,-116.9808333,44.24555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13269000
+13290450,SNAKE RIVER AT HELLS CANYON DAM ID-OR STATE LINE,-116.6982,45.25126937,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13290450
+13295000,VALLEY CREEK AT STANLEY ID,-114.931111,44.2225,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13295000
+13296000,YANKEE FORK SALMON RIVER NR CLAYTON ID,-114.7338889,44.27888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13296000
+13296500,SALMON RIVER BL YANKEE FORK NR CLAYTON ID,-114.7327778,44.2683333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13296500
+13297330,THOMPSON CREEK NR CLAYTON ID,-114.5166667,44.27027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13297330
+13297355,SQUAW CREEK BL BRUNO CREEK NR CLAYTON ID,-114.4716667,44.2908333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13297355
+13302005,PAHSIMEROI RIVER AT ELLIS ID,-114.0469444,44.69166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13302005
+13302500,SALMON RIVER AT SALMON ID,-113.8952778,45.1836111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13302500
+13305000,LEMHI RIVER NR LEMHI ID,-113.6391667,44.94,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13305000
+13305310,"LEMHI RIVER BELOW L5 DIVERSION NEAR SALMON, ID",-113.7988889,45.13277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13305310
+13306336,"BLACKBIRD CREEK NEAR COBALT, ID",-114.2980556,45.09138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13306336
+13306370,"PANTHER CREEK AT COBALT, ID",-114.2366667,45.0897222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13306370
+13306385,"NAPIAS CREEK BELOW ARNETT CREEK NEAR LEESBURG, ID",-114.1338889,45.20555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13306385
+13307000,SALMON RIVER NR SHOUP ID,-114.44,45.3225,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13307000
+13309220,MF SALMON RIVER AT MF LODGE NR YELLOW PINE ID,-115.0143472,44.7215194,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13309220
+13310199,"MF SALMON RIVER AT MOUTH NR SHOUP, ID",-114.5963889,45.2936111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13310199
+13310700,SF SALMON RIVER NR KRASSEL RANGER STATION ID,-115.725,44.9869444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13310700
+13311000,"EF OF SF SALMON RIVER AT STIBNITE, ID",-115.3295,44.9057222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13311000
+13311250,"EFSF SALMON R ABV SUGAR CRK NR STIBNITE, ID",-115.3366944,44.93477778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13311250
+13311450,"SUGAR CREEK NR STIBNITE, ID",-115.3372222,44.9363611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13311450
+13313000,JOHNSON CREEK AT YELLOW PINE ID,-115.5,44.96166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13313000
+13316500,LITTLE SALMON RIVER AT RIGGINS ID,-116.3252778,45.41305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13316500
+13317000,SALMON RIVER AT WHITE BIRD ID,-116.3238889,45.75027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13317000
+13317660,"SNAKE RIVER BL MCDUFF RAPIDS AT CHINA GARDENS, ID",-116.9169444,46.00305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13317660
+13336500,SELWAY RIVER NR LOWELL ID,-115.5138889,46.08666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13336500
+13337000,LOCHSA RIVER NR LOWELL ID,-115.5872222,46.1508333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13337000
+13337099,CLEAR CK AT KOOSKIA NATIONAL FISH HATCHERY,-115.9481306,46.13005278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13337099
+13338500,SF CLEARWATER RIVER AT STITES ID,-115.9766667,46.08638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13338500
+13339500,LOLO CREEK NR GREER ID,-116.1625,46.37166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13339500
+13340000,CLEARWATER RIVER AT OROFINO ID,-116.2575,46.4783333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13340000
+13340600,NF CLEARWATER RIVER NR CANYON RANGER STATION ID,-115.621111,46.84055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13340600
+13341000,"NORTH FORK CLEARWATER RIVER AT AHSAHKA, ID",-116.3204192,46.5043462,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13341000
+13341050,CLEARWATER RIVER NR PECK ID,-116.3925,46.50027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13341050
+13341140,BIG CANYON CREEK NR PECK ID,-116.4183028,46.4679333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13341140
+13341570,POTLATCH RIVER BEL LITTLE POTLATCH CR NR SPALDING,-116.7619444,46.4986111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13341570
+13342295,WEBB CREEK NEAR SWEETWATER ID,-116.8322222,46.32666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13342295
+13342340,SWEETWATER CREEK AT MOUTH AT SWEETWATER ID,-116.7955556,46.36916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13342340
+13342450,"LAPWAI CREEK NR LAPWAI, ID",-116.806111,46.42638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13342450
+13342500,CLEARWATER RIVER AT SPALDING ID,-116.8275,46.4483333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13342500
+13343000,"CLEARWATER RIVER NEAR LEWISTON, ID",-116.9677778,46.43416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13343000
+13345000,"PALOUSE RIVER NR POTLATCH, ID",-116.951111,46.91527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13345000
+13346800,PARADISE CR AT UNIVERSITY OF IDAHO AT MOSCOW ID,-117.0241667,46.7319444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=13346800
+4357331144813,SALMON RIVER AT BUSTERBACK DIVERSION NR OBSIDIAN,-114.803611,43.95916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=4357331144813

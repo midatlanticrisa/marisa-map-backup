@@ -1,0 +1,579 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+2231000,"ST. MARYS RIVER NEAR MACCLENNY, FL",-82.0815013,30.35884726,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02231000
+2231291,"NASSAU RIVER NEAR TISONIA, FL",-81.5898179,30.5507931,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02231291
+22313219,"S-253 WEIR UPSTREAM NEAR FORT DRUM, FL",-80.6790194,27.5909972,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022313219
+2231322,"S-253 WEIR NEAR FORT DRUM, FL",-80.6781444,27.59294167,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02231322
+2231342,"FT DRUM CREEK AT SUNSHINE ST PKY NEAR FT DRUM, FL",-80.7961709,27.5686473,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02231342
+2231396,"BLUE CYPRESS CREEK NEAR FELLSMERE, FL",-80.80505949,27.72808533,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02231396
+2231600,"JANE GREEN CREEK NEAR DEER PARK, FL",-80.8881155,28.074462,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02231600
+2232000,"ST. JOHNS RIVER NEAR MELBOURNE, FL",-80.752001,28.08473879,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02232000
+2232155,"PENNYWASH CREEK NEAR DEER PARK, FL",-80.8953373,28.18195808,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02232155
+2232200,"WOLF CREEK NEAR DEER PARK, FL",-80.91089309,28.2130681,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02232200
+2232400,"ST. JOHNS RIVER NEAR COCOA, FL",-80.8725578,28.36972837,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02232400
+2232415,"TAYLOR CREEK NEAR COCOA, FL",-80.9283928,28.3525071,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02232415
+2232500,"ST. JOHNS RIVER NEAR CHRISTMAS, FL",-80.943392,28.54305529,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02232500
+2233200,"LITTLE ECONLOCKHATCHEE RIVER NEAR UNION PARK, FL",-81.243956,28.5250021,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02233200
+2233475,"LT ECONLOCKHATCHEE R AT STATE HWY434 NR OVIEDO, FL",-81.20784299,28.6199987,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02233475
+2233484,"ECONLOCKHATCHEE RIVER NEAR OVIEDO, FL",-81.169786,28.65555285,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02233484
+2233500,"ECONLOCKHATCHEE RIVER NEAR CHULUOTA, FL",-81.1141667,28.67777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02233500
+2234000,"ST. JOHNS RIVER ABOVE LAKE HARNEY NEAR GENEVA, FL",-81.0353374,28.7141611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234000
+2234308,"HOWELL CREEK NEAR ALTAMONTE SPRINGS, FL",-81.32312349,28.6324987,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234308
+2234324,"HOWELL CREEK NEAR SLAVIA, FL",-81.2645109,28.64777587,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234324
+2234344,"HOWELL CREEK AT STATE HWY 434 NEAR OVIEDO, FL",-81.2475656,28.68999664,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234344
+2234384,"SOLDIER CREEK NEAR LONGWOOD, FL",-81.308678,28.71888466,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234384
+2234400,"GEE CREEK NEAR LONGWOOD, FL",-81.2906221,28.7041629,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234400
+2234435,"LAKE JESUP OUTLET NEAR SANFORD, FL",-81.18117379,28.78415969,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234435
+2234500,"ST. JOHNS RIVER NEAR SANFORD, FL",-81.3242323,28.83804694,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234500
+2234990,"LITTLE WEKIVA RIVER NEAR ALTAMONTE SPRINGS, FL",-81.3970138,28.6872192,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234990
+2234991,"SANLANDO SPRINGS NR LONGWOOD, FL",-81.3956248,28.6888858,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02234991
+2235000,"WEKIVA RIVER NEAR SANFORD, FL",-81.41923539,28.81527009,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02235000
+2235200,"BLACKWATER CREEK NEAR CASSIA, FL",-81.4897222,28.87444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02235200
+2235500,"BLUE SPRINGS NEAR ORANGE CITY, FL",-81.3397866,28.944154,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02235500
+2236000,"ST. JOHNS RIVER NEAR DE LAND, FL",-81.3825651,29.00831827,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236000
+2236125,"ST. JOHNS RIVER AT ASTOR, FL",-81.5220157,29.16692445,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236125
+2236160,"SILVER GLEN SPRINGS NEAR ASTOR, FL",-81.6425767,29.24469863,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236160
+2236350,"GREEN SWAMP RUN NEAR EVA, FL",-81.6853534,28.3111212,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236350
+2236500,"BIG CREEK NEAR CLERMONT, FL",-81.74007599,28.44778229,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236500
+2236605,"LITTLE CREEK AT GREEN SWAMP ROAD NEAR CLERMONT, FL",-81.7814655,28.4486152,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236605
+2236900,"PALATLAKAHA R AT CHERRY LK OUT NEAR GROVELAND, FL",-81.8222998,28.59277586,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236900
+2236901,"PALATLAKAHA R BL SPWY AT CH LK OUT NR GROVELAND,FL",-81.8225775,28.59249809,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02236901
+2237000,"PALATLAKAHA RIVER NEAR MASCOTTE, FL",-81.8645229,28.6158301,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237000
+2237001,"PALATLAKAHA RIVER BELOW SPWY, NEAR MASCOTTE, FL",-81.8659118,28.61610787,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237001
+2237010,"PALATLAKAHA R AT STRUCTURE M-6 NR MASCOTTE, FL",-81.87230109,28.643329,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237010
+2237011,"PALATLAKAHA R BELOW STRUCTURE M-6 NR MASCOTTE, FL",-81.87230109,28.6441623,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237011
+2237050,"PALATLAKAHA RIVER AT S M-5 NEAR OKAHUMPKA, FL",-81.8845239,28.67888315,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237050
+2237051,"PALATLAKAHA R BELOW STRUCTURE M-5 NR OKAHUMPKA, FL",-81.88452388,28.67943868,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237051
+2237206,"PALATLAKAHA R AT STRUCTURE M-4 NR OKAHUMPKA, FL",-81.8842464,28.71499294,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237206
+2237207,"PALATLAKAHA R BELOW STRUCTURE M-4 NR OKAHUMPKA, FL",-81.8839687,28.71582624,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237207
+2237293,"PALATLAKAHA R AT STRUCTURE M-1, NR OKAHUMPKA, FL",-81.8725798,28.7444364,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237293
+2237698,"APOPKA FLOW-WAY FEEDER CANAL NEAR ASTATULA, FL",-81.705909,28.66638527,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237698
+2237700,"APOPKA-BEAUCLAIR CANAL NEAR ASTATULA, FL",-81.6847976,28.72249444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237700
+2237701,"APOPKA-BEAUCLAIR CANAL BL DAM NEAR ASTATULA, FL",-81.6847976,28.72304997,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237701
+2237734,"WOLF BRANCH AT FCRR NEAR MOUNT DORA, FL",-81.60785149,28.79665898,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02237734
+2238000,"HAYNES CREEK AT LISBON, FL",-81.7836894,28.87082178,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02238000
+2238001,"HAYNES CREEK BELOW BURRELL DAM AT LISBON, FL",-81.7844444,28.8711111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02238001
+2238499,"OCKLAWAHA R AB MOSS BLUFF DAM AT MOSS BLUFF,FL",-81.8808333,29.0811111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02238499
+2238500,"OCKLAWAHA RIVER AT MOSS BLUFF, FL",-81.8808333,29.0811111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02238500
+2239000,"OCKLAWAHA RIVER NR OCALA,FLA.",-81.9923091,29.18331078,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02239000
+2239501,"SILVER RIVER NEAR OCALA, FL",-82.0412,29.2149764,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02239501
+2239600,TRIBUTARY TO SILVER RIVER AT SH 40 NEAR OCALA FL,-82.0425889,29.21942074,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02239600
+2240000,"OCKLAWAHA RIVER NEAR CONNER, FL",-81.9859203,29.21469888,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02240000
+2240500,"OCKLAWAHA RIVER AT EUREKA, FL",-81.9019444,29.37166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02240500
+2243000,"ORANGE CREEK AT ORANGE SPRINGS, FL",-81.9461999,29.50969267,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02243000
+2243959,"OCKLAWAHA R AB RODMAN DAM NR ORANGE SPRINGS,FLA.",-81.80480679,29.50858114,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02243959
+2243960,"OCKLAWAHA R AT RODMAN DAM NEAR ORANGE SPRINGS, FL",-81.8041667,29.50833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02243960
+2244040,"ST. JOHNS R AT BUFFALO BLUFF NEAR SATSUMA, FL",-81.683138,29.5963582,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02244040
+2244333,HAW CREEK AB RUSSELLS LANDING NR ST JOHNS PARK FL,-81.3711787,29.39469798,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02244333
+2244440,"DUNNS CREEK NEAR SATSUMA, FL",-81.626191,29.57774783,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02244440
+2245260,"DEEP CREEK AT SPUDS, FL",-81.4843667,29.72338056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02245260
+2245290,ST JOHNS RIVER AT RACY PT NEAR HASTINGS FL,-81.55,29.8,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02245290
+2245340,"ST JOHNS R BLW SHANDS BRIDGE NR GRN COVE SPRG, FL",-81.6151361,30.0059222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02245340
+2245500,"SOUTH FORK BLACK CREEK NEAR PENNEY FARMS, FL",-81.8520426,29.9794075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02245500
+2246000,"NORTH FORK BLACK CREEK NEAR MIDDLEBURG, FL",-81.9064915,30.1132953,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246000
+2246010,"NORTH FORK BLACK CREEK AT MIDDLEBURG, FL",-81.86371139,30.07607343,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246010
+2246160,"JULINGTON CRK AT OLD ST AUGUST RD NR BAYARD, FL",-81.5559,30.14333056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246160
+22462002,"DURBIN CREEK NEAR FRUIT COVE, FL",-81.54638889,30.11916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022462002
+2246318,"ORTEGA RIVER AT KIRWIN ROAD NEAR JACKSONVILLE,FL",-81.7684315,30.19635087,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246318
+2246459,"CEDAR RIVER AT SAN JUAN AVENUE AT JACKSONVILLE, FL",-81.7403761,30.28218375,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246459
+2246500,"ST. JOHNS RIVER AT JACKSONVILLE, FL",-81.6653735,30.3224616,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246500
+2246515,"POTTSBURG CREEK NR SOUTH JACKSONVILLE, FLA.",-81.5900917,30.2644071,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246515
+2246518,"POTTSBURG CRK AT US90 NR S. JACKSONVILLE, FL",-81.57,30.28696944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246518
+2246621,TROUT R NR JACKSONVILLE FLA,-81.69648758,30.41746058,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246621
+2246751,"BROWARD RIVER BL BISCAYNE BLVD NR JACKSONVILLE, FL",-81.6682,30.44333889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246751
+2246804,"DUNN CREEK AT DUNN CREEK RD NR EASTPORT, FL",-81.59688889,30.45494167,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246804
+2246825,"CLAPBOARD CREEK NR JACKSONVILLE, FL",-81.5182611,30.44838056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02246825
+2247222,"PELLICER CREEK NEAR ESPANOLA, FL",-81.2595108,29.66941676,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02247222
+2247510,"TOMOKA RIVER NEAR HOLLY HILL, FL",-81.1086687,29.21748099,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02247510
+2248000,"SPRUCE CREEK NEAR SAMSULA, FL",-81.0464455,29.05081845,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02248000
+2248380,"HAULOVER CANAL NEAR MIMS,FL",-80.754773,28.73638079,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02248380
+2249007,EAU GALLIE RIV AT HEATHER GLEN CIR AT MELBOURNE FL,-80.6467205,28.12695888,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02249007
+2249500,"CRANE CREEK AT MELBOURNE, FL",-80.6294983,28.07946057,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02249500
+2250030,"TURKEY CREEK AT PALM BAY, FL",-80.59588719,28.01724054,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02250030
+2251000,"SOUTH PRONG ST SEBASTIAN RIVER NEAR SEBASTIAN,FL",-80.5058868,27.76947258,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02251000
+2251500,"NORTH PRONG SAINT SEBASTIAN RIVER NEAR MICCO, FL",-80.52422,27.85613569,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02251500
+2251767,"FELLSMERE CANAL NEAR MICCO, FL",-80.5342203,27.83058119,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02251767
+2251800,"INDIAN RIVER AT WABASSO, FL",-80.4275516,27.75447297,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02251800
+2252500,"NORTH CANAL NEAR VERO BEACH, FL",-80.42005169,27.69308613,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02252500
+2253000,"MAIN CANAL AT VERO BEACH, FL",-80.405607,27.64780983,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02253000
+2253500,"SOUTH CANAL NEAR VERO BEACH, FL",-80.386579,27.6044779,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02253500
+2255600,"FISHEATING CREEK NEAR LAKE PLACID,FL",-81.4614637,27.20921499,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02255600
+2256500,"FISHEATING CREEK AT PALMDALE, FL",-81.3147949,26.9325585,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02256500
+2257000,"FISHEATING CREEK AT LAKEPORT, FL",-81.11784588,26.96255665,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02257000
+2257750,"HARNEY POND CANAL 2.4 MILES BL S70 NR LAKEPORT, FL",-81.1327222,27.09083333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02257750
+2257790,"HARNEY POND CANAL ABOVE S-71 NR LAKEPORT, FL",-81.0714972,27.0389222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02257790
+2258800,"INDIAN PRAIRIE CANAL AB PUMP STA NR OKEECHOBEE, FL",-81.0699806,27.15438056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02258800
+2259100,"INDIAN PRAIRIE CANAL ABOVE S-72 NR OKEECHOBEE, FL",-81.0091722,27.0964472,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02259100
+2262900,"BOGGY CREEK NEAR TAFT, FL",-81.3106247,28.37139699,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02262900
+2263800,"SHINGLE CREEK AT AIRPORT NEAR KISSIMMEE, FL",-81.450905,28.3041775,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02263800
+2263869,"SOUTH LAKE OUTLET AT S-15, NEAR VINELAND, FL",-81.5378509,28.41278456,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02263869
+2263870,"SOUTH LAKE OUTLET BELOW S-15 NEAR VINELAND, FLA.",-81.5378509,28.41278456,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02263870
+2264000,"CYPRESS CREEK AT VINELAND, FL",-81.5195173,28.39056323,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264000
+2264003,"CYPRESS CREEK CANAL AT S-103A NEAR VINELAND, FL",-81.5250729,28.38945214,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264003
+2264004,LATERAL 103 BELOW S-103A NR VINELAND,-81.52535068,28.38917437,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264004
+2264030,LK BUENA VIS TR AT HOTEL PL BLVD AT LK BUENA VISTA,-81.5069722,28.3805,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264030
+2264051,"BLACK LK OUTLET AT S-101A, AT LAKE BUENA VISTA, FL",-81.515,28.37444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264051
+2264060,"LATERAL 101 AT S-101, NEAR LAKE BUENA VISTA, FL",-81.5289619,28.37111947,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264060
+2264061,"LATERAL 101 BELOW S-101 NR BUENA VISTA,FL",-81.5289619,28.3708417,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264061
+2264100,"BONNET CREEK NEAR VINELAND, FL",-81.5206284,28.32528785,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264100
+2264140,"BONNET CREEK NEAR KISSIMMEE, FL",-81.5245174,28.30806625,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264140
+2264141,"BONNET CREEK BELOW CULVERTS NEAR KISSIMMEE, FL",-81.5245174,28.30806625,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264141
+2264495,"SHINGLE CREEK AT CAMPBELL, FL",-81.4478495,28.26723444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02264495
+2266025,"REEDY CREEK AT S-46 NEAR VINELAND, FL",-81.61146309,28.4052845,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266025
+2266026,10B REEDY CREEK BELOW S-46 NR VINELAND FLA,-81.61146309,28.40417345,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266026
+2266200,"WHITTENHORSE CREEK NEAR VINELAND, FL",-81.6164632,28.38500749,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266200
+2266205,"WHITTENHORSE CREEK AT S-411, NEAR VINELAND, FL",-81.6109075,28.39306276,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266205
+2266206,"WHITTENHORSE BELOW S-411 NR VINELAND,FL",-81.6106298,28.39306277,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266206
+2266291,"LATERAL 405 AT S-405A, NEAR DOCTOR PHILLIPS, FL",-81.6052778,28.42694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266291
+2266292,"LATERAL 405 BL S405A NR DR PHILLIPS, FL",-81.6086852,28.42639484,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266292
+2266293,"10B LATERAL 405 AB S-405 NEAR VINELAND, FLA",-81.5844349,28.39472948,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266293
+2266294,10B LATERAL 405 BL S-405 NEAR VINELAND FLA,-81.5843794,28.3945628,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266294
+2266295,"LATERAL 410 AT S-410 NEAR VINELAND, FL",-81.5984074,28.36639716,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266295
+2266296,"LATERAL 410 BL S-410 NR VINELAND, FL",-81.59868518,28.36639716,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266296
+2266300,"REEDY CREEK NEAR VINELAND, FL",-81.579796,28.33278738,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266300
+2266480,"DAVENPORT CREEK NEAR LOUGHMAN, FL",-81.5909074,28.271123,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266480
+2266495,"REEDY CREEK AT S-40, NEAR LOUGHMAN, FL",-81.5439622,28.27584517,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266495
+2266496,"REEDY CREEK BELOW S-40, NEAR LOUGHMAN, FL",-81.54368439,28.27584517,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266496
+2266500,"REEDY CREEK NEAR LOUGHMAN, FL",-81.536462,28.2636234,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266500
+2266550,"REEDY CREEK AT STATE HWY 531 NEAR POINSIANNA, FL",-81.4409055,28.15001585,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02266550
+2268390,TIGER CREEK NEAR BABSON PARK FL,-81.4436846,27.81141547,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02268390
+2269520,LIVINGSTON CREEK NEAR FROSTPROOF FL,-81.4464626,27.708641,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02269520
+2270000,CARTER CREEK NEAR SEBRING FL,-81.3875724,27.53225706,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02270000
+2270500,"ARBUCKLE CREEK NEAR DE SOTO CITY, FL",-81.2972928,27.4425375,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02270500
+2271500,JOSEPHINE CREEK NEAR DE SOTO CITY FL,-81.3934062,27.3742078,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02271500
+2272650,"FISH SLOUGH NEAR BASINGER, FL",-80.9220072,27.46531709,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02272650
+2272676,"CYPRESS SLOUGH NEAR BASINGER, FL",-80.97589739,27.38031945,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02272676
+2273230,"C-41 CANAL NEAR BRIGHTON, FL",-81.201458,27.21393588,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02273230
+2273630,"POPASH SLOUGH NEAR OKEECHOBEE, FL",-80.8964511,27.24393485,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02273630
+2274005,"OTTER CREEK NEAR OKEECHOBEE, FL",-80.8453388,27.37754217,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02274005
+2274010,"TAYLOR CREEK NEAR OKEECHOBEE, FL",-80.8725617,27.3653202,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02274010
+2274325,"TAYLOR CREEK AT GRASSY ISLAND NR OKEECHOBEE, FL",-80.8383333,27.31638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02274325
+2274490,"WILLIAMSON DITCH NEAR OKEECHOBEE, FL",-80.8189493,27.3047665,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02274490
+2274505,"WOLFF CREEK NR OKEECHOBEE,FL",-80.8239494,27.28087828,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02274505
+2275197,"MOSQUITO CREEK NEAR OKEECHOBEE, FL",-80.780615,27.2372685,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02275197
+2276877,"ST. LUCIE CANAL BLW S-308, NR PORT MAYACA (AUX) FL",-80.6153891,26.985777,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02276877
+2276998,ST LUCIE CANAL ABV S-80 NR STUART FL,-80.28725,27.10866667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02276998
+2277100,"ST LUCIE RIVER AT SPEEDY POINT, STUART FL",-80.2586592,27.20227,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02277100
+2277110,ST LUCIE ESTUARY AT A1A (STEELE PT)STUART FL,-80.206713,27.19977036,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02277110
+2277600,"LOXAHATCHEE RIVER NEAR JUPITER,FL",-80.1750444,26.93922405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02277600
+2277602,LOXAHATCHEE RIVER DWS LAINHART DAM NR JUPITER FL,-80.17488889,26.93927778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02277602
+2280500,HILLSBORO CANAL BELOW S351 NR SOUTH BAY FLA,-80.712281,26.70034336,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02280500
+2281200,HILLSBORO CANAL AT S-6 NEAR SHAWANO,-80.4458857,26.4720184,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02281200
+2283500,N NEW RIVER CANAL BELOW S351 NR SOUTH  BAY FLA,-80.7136699,26.6975657,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02283500
+2286328,"C-8 CANAL AT NE 135 ST AT NORTH MIAMI, FL",-80.1949722,25.9002222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02286328
+2286400,"MIAMI CANAL AT S-354 AND S-3 AT LAKE HARBOR, FLA",-80.8067278,26.69534407,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02286400
+2287497,N.W. WELLFIELD CANAL NR DADE BROWARD LEVEE NR PENN,-80.42005379,25.8914843,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02287497
+2288800,"TAMIAMI CANAL OUTLETS, MONROE TO CARNESTOWN, FLA",-81.2616343,25.88772088,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02288800
+2288900,"TAMIAMI CANAL OUTLETS, 40-MILE BEND TO MONROE, FL",-80.9803467,25.85176527,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02288900
+2289019,"TAMIAMI CANAL AT S-12-B  NR MIAMI, FL",-80.7694722,25.76183333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289019
+2289035,"THREE MILE CANAL BELOW G409 NEAR CLEWISTON, FL",-80.8816111,26.32719444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289035
+2289041,"TAMIAMI CANAL BELOW S-12-C, NEARMIAMI, FLA",-80.7258958,25.76148997,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289041
+2289060,"TAMIAMI CANAL OUTLETS L-30 TO L-67A NR MIAMI, FL",-80.56089139,25.76148959,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289060
+2289080,"TAMIAMI CANAL WEST END 1 MILE BRIDGE NR MIAMI, FL",-80.5366667,25.76138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289080
+2289085,"TAMIAMI CANAL EAST END 1 MILE BRIDGE NR MIAMI, FL",-80.5166667,25.76138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289085
+2289500,"TAMIAMI CANAL NEAR CORAL GABLES, FL",-80.32810739,25.76232213,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02289500
+22907085,"BLACK CREEK CANAL WEST OF U.S. 1 NR  GOULDS, FL",-80.37875,25.57091667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022907085
+2290709,10B BLACK CR CANAL AT OLD CUTLER RD NR GOU,-80.3595556,25.5598611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290709
+22907647,LEVEE 31 NORTH EXTENSION 1 MILE NR WEST MIAMI FL,-80.49763889,25.74633333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022907647
+2290765,LEVEE 31 NORTH EXTENSION AT 3 MILE NR WEST MIAMI F,-80.4965556,25.71758333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290765
+2290766,LEVEE 31 NORTH EXTENSION AT 4 MILE NR WEST MIAMI F,-80.4959722,25.70216667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290766
+2290767,LEVEE 31 NORTH EXTENSION AT 5 MILE NR WEST MIAMI F,-80.497001,25.68621447,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290767
+2290768,LEVEE 31 NORTH EXTENSION AT 7 MILE NR WEST MIAMI F,-80.4981667,25.66338889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290768
+2290769,"CANAL 111 AT S-18-C NEAR FLORIDA CITY, FL",-80.525059,25.33067204,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290769
+22908205,"NORTH RIVER UPSTREAM OF CUTOFF NEAR FLAMINGO, FL",-80.9131256,25.33900677,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022908205
+22908295,"BOTTLE CREEK AT ROOKERY BRANCH NEAR HOMESTEAD, FL",-80.8545278,25.46797778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022908295
+2290878,"BROAD RIVER NEAR THE CUTOFF, FL",-81.0769444,25.50138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290878
+2290888,"CHATHAM RIVER NEAR THE WATSON PLACE, FL",-81.2497222,25.70916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290888
+2290918,"LOSTMANS RIVER BELOW SECOND BAY, FL",-81.1647222,25.55555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290918
+2290928,"BARRON RIVER AT EVERGLADES CITY, FL",-81.3825,25.8697222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290928
+2290930,"TURNER RIVER NR CHOKOLOSKEE ISLAND, FL",-81.3416667,25.8286111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02290930
+2291001,"BARRON RIVER BELOW SR29-3 AT COPELAND, FL",-81.3551944,25.95794444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291001
+2291500,"IMPERIAL RIVER NEAR BONITA SPRINGS, FL",-81.74938889,26.33583333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291500
+2291524,"SPRING CREEK HEADWATER NEAR BONITA SPRINGS, FL",-81.7903611,26.36233333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291524
+2291580,"NORTH BRANCH ESTERO RIVER AT ESTERO, FL",-81.7959722,26.44294444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291580
+2291597,"SOUTH BRANCH ESTERO RIVER AT ESTERO, FL",-81.7934444,26.42875,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291597
+2291669,"SIXMILE CYPRESS CREEK NEAR FORT MYERS,  FL",-81.8544167,26.52202778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291669
+2291673,"TENMILE CANAL AT CONTROL NEAR ESTERO, FL",-81.8544167,26.50688889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291673
+2291710,"BRIARCLIFF DITCH AT MOUTH NEAR ESTERO,FL",-81.8527778,26.50641667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02291710
+2292010,CALOOSAHATCHEE CANAL DWS OF S-77 AT MOORE HAVEN FL,-81.08888889,26.83333333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02292010
+2292490,GOODNO CANAL BELOW S-78 NEAR LABELLE FL,-81.30495,26.78790556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02292490
+2292740,JACKS BRANCH AT CR 78 NR FT DENAUD FL,-81.5132333,26.74742778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02292740
+2292780,"TOWNSEND CANAL NEAR ALVA,FL",-81.5580361,26.70775278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02292780
+2292900,"CALOOSAHATCHEE RIVER AT S-79, NR.OLGA, FLA",-81.69313699,26.72173487,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02292900
+22929176,"TELEGRAPH CREEK AT STATE HIGHWAY AT OLGA, FL",-81.7034528,26.72735833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=022929176
+2293055,"ORANGE RIVER NEAR BUCKINGHAM, FL",-81.7594444,26.69194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02293055
+2293090,"Popash Creek at Leetana Rd. nr North Fort Myers,FL",-81.8086667,26.71571667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02293090
+2293202,CALOOSAHATCHEE RIVER AT FORT MYERS FL,-81.8689416,26.65106089,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02293202
+2293230,"WHISKEY CREEK AT FT. MYERS, FL",-81.89188889,26.57488889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02293230
+2293262,GATOR SLOUGH WEST OF US-41 NEAR FT. MYERS FL,-81.9209444,26.74202778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02293262
+2293987,PEACE CREEK DRAINAGE CANAL NEAR WAHNETA FL,-81.7267463,27.92474686,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02293987
+2294161,PEACE CREEK NEAR BARTOW FL,-81.7955556,27.92444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294161
+2294217,SADDLE CREEK AT ST.HWY 542 NEAR LAKELAND FL,-81.876192,28.04418733,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294217
+2294261,LAKE PARKER OUTLET AT COMBEE SETTLEMENT FL,-81.90215,28.0573472,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294261
+2294290,SADDLE CREEK AT STATE HWY 570 NEAR EATON PARK FL,-81.8520254,28.0044668,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294290
+2294330,LAKE LENA RUN NEAR AUBURNDALE FL,-81.8120249,28.00002249,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294330
+2294405,"BANANA-HANCOCK CANAL NR HIGHLAND CITY, FL",-81.8934151,27.98280097,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294405
+2294650,PEACE RIVER AT BARTOW FL,-81.8173036,27.90224784,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294650
+2294655,PEACE RIVER NEAR BARTOW FL,-81.8044444,27.88305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294655
+2294705,PEACE RV DISTRIBUTARY AT DOVER SINK NR BARTOW FL,-81.8016667,27.87277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294705
+2294747,SIXMILE CREEK AT BARTOW FL,-81.8094778,27.8634972,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294747
+2294759,PHOSPHATE MINE OUTFALL CS-8 NEAR BARTOW FL,-81.80388889,27.8436111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294759
+2294760,BARBER BRANCH NEAR HOMELAND FL,-81.8122222,27.83833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294760
+2294775,PEACE RIVER AT CLEAR SPRINGS NEAR BARTOW FL,-81.8075,27.86333333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294775
+2294781,PEACE RIVER NEAR HOMELAND FL,-81.7995263,27.8211393,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294781
+2294898,PEACE RIVER AT FORT MEADE FL,-81.7820266,27.7514193,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02294898
+2295013,BOWLEGS CREEK NEAR FORT MEADE FL,-81.6953579,27.70003166,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295013
+2295163,WHIDDEN CREEK NEAR FORT MEADE FL,-81.8075826,27.707254,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295163
+2295194,PEACE RIVER AT BOWLING GREEN FL,-81.8023047,27.6461448,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295194
+2295420,PAYNE CREEK NEAR BOWLING GREEN FL,-81.8256384,27.62059006,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295420
+2295440,PEACE RIVER AT STATE HWY 664A NEAR WAUCHULA FL,-81.8047222,27.57555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295440
+2295520,LITTLE CHARLIE CREEK NEAR BOWLING GREEN FL,-81.72775,27.62708333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295520
+2295580,LITTLE CHARLIE CREEK NEAR MOUTH NEAR WAUCHULA FL,-81.7968333,27.57905556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295580
+2295637,PEACE RIVER AT ZOLFO SPRINGS FL,-81.8009157,27.5044825,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02295637
+2296260,CHARLIE CREEK NEAR CREWSVILLE FL,-81.6784128,27.45948376,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02296260
+2296500,CHARLIE CREEK NEAR GARDNER FL,-81.7964708,27.37504297,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02296500
+2296750,PEACE RIVER AT ARCADIA FL,-81.8761946,27.22088245,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02296750
+2297100,JOSHUA CREEK AT NOCATEE FL,-81.8795282,27.16671794,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297100
+2297155,HORSE CREEK NEAR MYAKKA HEAD FL,-82.0234197,27.4872613,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297155
+2297310,HORSE CREEK NEAR ARCADIA FL,-81.9884193,27.19949477,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297310
+2297345,PEACE RIVER AT PLATT FL,-81.9994444,27.08666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297345
+2297350,PEACE RIVER NR PEACE RIVER HEIGHTS NR FT. OGDEN FL,-82.00730919,27.07755529,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297350
+2297600,SHELL CREEK AT CIRCLE K GROVES NEAR FT OGDEN FL,-81.8266361,26.96734444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297600
+2297635,SHELL CREEK ON CR 764 NEAR PUNTA GORDA FL,-81.8875,26.975,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02297635
+2298110,PRAIRIE CREEK UPSTREAM OF SR 31 NEAR FT OGDEN FL,-81.7431667,27.04155556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298110
+2298123,PRAIRIE CREEK NEAR FORT OGDEN FL,-81.7845267,27.05199986,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298123
+2298170,PRAIRIE CREEK ON CR 764 NEAR PUNTA GORDA FL,-81.8947222,26.99027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298170
+2298202,SHELL CREEK NEAR PUNTA GORDA FL,-81.9356414,26.98478094,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298202
+2298488,MYAKKA RIVER UPST FROM YOUNGS CK NR MYAKKA CITY FL,-82.1386997,27.4292084,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298488
+2298492,LONG CREEK NEAR MYAKKA CITY FL,-82.1264772,27.4094869,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298492
+2298494,FLATFORD SWAMP NR MYAKKA RIVER NR MYAKKA CITY FL,-82.14231089,27.393932,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298494
+2298495,MAPLE CREEK NEAR MYAKKA CITY FL,-82.1298107,27.38448789,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298495
+2298527,OGLEBY CK DNSTR FROM BOGGY CK NEAR MYAKKA CITY FL,-82.181756,27.40365397,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298527
+2298530,COKER CREEK NEAR MYAKKA CITY FL,-82.1750893,27.4097648,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298530
+2298554,MYAKKA RIVER NEAR MYAKKA CITY FL,-82.1492555,27.3661553,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298554
+2298608,MYAKKA RIVER AT MYAKKA CITY FL,-82.1567556,27.3436562,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298608
+2298760,HOWARD CREEK NEAR SARASOTA FL,-82.3400929,27.28838098,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298760
+2298830,MYAKKA RIVER NEAR SARASOTA FL,-82.3137035,27.240605,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298830
+2298880,MYAKKA RIVER AT CONTROL NEAR LAUREL FL,-82.3556494,27.1856073,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02298880
+2299230,MYAKKA RIVER AT NORTH PORT CHARLOTTE FL,-82.2930655,27.04519625,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299230
+2299260,WARM MINERAL SPRINGS NEAR WOODMERE FL,-82.2606667,27.06033333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299260
+2299410,BIG SLOUGH CANAL NEAR MYAKKA CITY FL,-82.1442558,27.1933843,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299410
+2299450,BIG SLOUGH AT TROPICAIRE BLVD NEAR NORTH PORT FL,-82.2048417,27.11163889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299450
+2299472,BIG SLOUGH AT WEST PRICE BLVD NEAR NORTH PORT FL,-82.2203333,27.06933333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299472
+2299482,COCOPLUM WATERWAY AT NORTH PORT FL,-82.2353333,27.0456111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299482
+2299484,BIG SLOUGH AT WCS-101 AT NORTH PORT FL,-82.2378698,27.04700165,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299484
+2299727,SHAKETT CREEK NEAR NOKOMIS FL,-82.4300958,27.14394246,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299727
+2299730,DONNA BAY AT HIGHWAY 41 AT NOKOMIS FL,-82.451425,27.11850278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299730
+2299734,CURRY CREEK AT HIGHWAY 41 AT NOKOMIS FL,-82.4474111,27.11271944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299734
+2299735,VENICE INLET AT CROW'S NEST MARINA AT VENICE FL,-82.4655556,27.1122222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299735
+2299861,WALKER CREEK NEAR SARASOTA FL,-82.5442639,27.3678222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299861
+2299950,MANATEE RIVER NEAR MYAKKA HEAD FL,-82.211201,27.47365137,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02299950
+23000095,MANATEE RIVER AT RYE FL,-82.3670375,27.51364999,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=023000095
+2300017,GAMBLE CREEK AT COUNTY ROAD 675 NEAR PARRISH FL,-82.39738889,27.57577778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300017
+2300018,GAMBLE CREEK NEAR PARRISH FL,-82.3895379,27.55337054,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300018
+2300033,BRADEN RIV AT LAKEWOOD RANCH NR LORRAINE FL,-82.4261111,27.42055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300033
+2300042,WARD LAKE NEAR BRADENTON FL,-82.4875958,27.44143074,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300042
+2300075,FROG CREEK AT BUFFALO ROAD NEAR RUBONIA FL,-82.51338889,27.57991667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300075
+2300082,FROG CREEK NEAR RUBONIA FL,-82.5397222,27.58805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300082
+2300100,LITTLE MANATEE RIVER NEAR FT. LONESOME FL,-82.1978672,27.70475366,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300100
+2300210,SOUTH FORK LITTLE MANATEE RIVER NEAR PARRISH FL,-82.2112009,27.60197978,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300210
+2300300,SOUTH FORK LITTLE MANATEE RIVER NEAR WIMAUMA FL,-82.294258,27.6494778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300300
+2300500,LITTLE MANATEE RIVER NEAR WIMAUMA FL,-82.3525925,27.67114344,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300500
+2300700,BULLFROG CREEK NEAR WIMAUMA FL,-82.3520369,27.79197208,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300700
+2300703,BULLFROG CREEK NEAR RIVERVIEW FL,-82.3462035,27.83502623,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300703
+2300882,NORTH PRONG ALAFIA RIVER NEAR NICHOLS FL,-82.01175129,27.89030394,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300882
+2300995,THIRTYMILE CREEK NEAR NICHOLS FL,-82.0486968,27.8800263,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02300995
+2301000,NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL,-82.10008689,27.8839148,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301000
+2301150,SOUTH PRONG ALAFIA RIVER NEAR FT LONESOME FL,-82.0742778,27.72930556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301150
+2301300,SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL,-82.1175877,27.79669525,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301300
+2301500,ALAFIA RIVER AT LITHIA FL,-82.2112008,27.872248,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301500
+2301638,ALAFIA RIVER AT BELL SHOALS NEAR RIVERVIEW FL,-82.2737021,27.85891477,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301638
+2301718,ALAFIA RIVER AT RIVERVIEW FL,-82.3198141,27.86780308,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301718
+2301721,ALAFIA RIVER AT GIBSONTON FL,-82.3842598,27.85974739,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301721
+2301738,ARCHIE CREEK AT 78TH STREET NEAR TAMPA FL,-82.3706484,27.88002457,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301738
+2301740,NORTH ARCHIE CREEK AT PROGRESS BLVD. NEAR TAMPA FL,-82.3498147,27.8966908,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301740
+2301745,DELANEY CREEK POPOFF CANAL NEAR TAMPA FL,-82.3770375,27.902246,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301745
+2301750,DELANEY CREEK NEAR TAMPA FL,-82.3642595,27.9258564,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301750
+2301793,EAST LAKE OUTFALL AT E. CHELSEA ST. NEAR TAMPA FL,-82.37175969,27.985021,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301793
+2301900,"FOX BRANCH NEAR SOCRUM, FL",-82.0125,28.18194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301900
+2301990,HILLSBOROUGH R AB CRYSTAL SPR NEAR ZEPHYRHILLS FL,-82.1841667,28.18555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02301990
+2302000,CRYSTAL SPRINGS NEAR ZEPHYRHILLS FL,-82.1852778,28.18194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02302000
+2302010,HILLSBOROUGH R BL CRYSTAL SPR NEAR ZEPHYRHILLS FL,-82.1891667,28.1786111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02302010
+2302500,BLACKWATER CREEK NEAR KNIGHTS FL,-82.15,28.1397222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02302500
+2303000,HILLSBOROUGH RIVER NEAR ZEPHYRHILLS FL,-82.23175318,28.15029044,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303000
+2303205,BAKER CREEK AT MCINTOSH ROAD NEAR ANTIOCH FL,-82.2453678,28.02835317,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303205
+2303330,HILLSBOROUGH R AT MORRIS BR NEAR THONOTOSASSA FL,-82.31138889,28.0986111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303330
+2303348,TROUT CREEK AT WESLEY CHAPEL FL,-82.3622222,28.17133333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303348
+2303350,TROUT CREEK NEAR SULPHUR SPRINGS FL,-82.3619444,28.1347222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303350
+2303400,CYPRESS CREEK NEAR SAN ANTONIO FL,-82.3836111,28.32388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303400
+2303410,CYPRESS CREEK TRIBUTARY NR WESLEY CHAPEL FL,-82.3861111,28.2593611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303410
+2303420,CYPRESS CREEK AT WORTHINGTON GARDENS FL,-82.4022222,28.1872222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303420
+2303424,CYPRESS CR AT COUNTY LINE RD AT WESLEY CHAPEL FL,-82.3886111,28.17130556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303424
+2303800,CYPRESS CREEK NEAR SULPHUR SPRINGS FL,-82.4091667,28.08888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02303800
+2304000,HILLSBOROUGH R AT FOWLER AV NEAR TEMPLE TERRACE FL,-82.3637032,28.05446224,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02304000
+2304500,HILLSBOROUGH RIVER NEAR TAMPA FL,-82.4275939,28.02390784,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02304500
+2305851,CURIOSITY CREEK AT 122ND AVE NEAR SULPHUR SPGS. FL,-82.4612055,28.05862836,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02305851
+2306000,SULPHUR SPRINGS AT SULPHUR SPRINGS FL,-82.451761,28.02113004,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306000
+23060003,SULPHUR SPRINGS RUN AT SULPHUR SPRINGS FL,-82.45231658,28.02113003,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=023060003
+23060013,HILLSBOROUGH R. AT I-275 BRIDGE AT SULPHUR SPGS FL,-82.4548166,28.0202967,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=023060013
+2306028,HILLSBOROUGH RIVER AT PLATT STREET AT TAMPA FL,-82.4587057,27.94196627,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306028
+2306500,SWEETWATER CREEK NEAR SULPHUR SPRINGS FL,-82.5117623,28.04307328,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306500
+2306647,SWEETWATER CREEK NEAR TAMPA FL,-82.5450963,28.01390775,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306647
+23066535,HENRY STREET CANAL AT BENJAMIN ROAD NEAR TAMPA FL,-82.5417667,28.0000972,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=023066535
+2306774,ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL,-82.5658333,28.06583333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306774
+2306904,BRUSHY CREEK NEAR SULPHUR SPRINGS,-82.525,28.0838611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306904
+2306950,BRUSHY CREEK NEAR CITRUS PARK FL,-82.5553744,28.06501684,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02306950
+2307000,ROCKY CREEK NEAR SULPHUR SPRINGS FL,-82.5759304,28.03696237,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307000
+2307032,DOUBLE BRANCH AT COUNTRY WAY BLVD NEAR OLDSMAR FL,-82.6267649,28.0508507,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307032
+2307200,BROOKER CREEK AT VAN DYKE RD NEAR CITRUS PARK FL,-82.5703748,28.12890323,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307200
+2307323,BROOKER CREEK NEAR LAKE FERN FL,-82.6398209,28.14084726,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307323
+2307359,BROOKER CREEK NEAR TARPON SPRINGS FL,-82.6871441,28.09643229,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307359
+2307362,BROOKER CREEK AT TARPON WOODS BLVD NR OLDSMAR FL,-82.6937554,28.08682987,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307362
+2307445,SOUTH BRANCH BROOKER CREEK NEAR OLDSMAR FL,-82.6977778,28.07705556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307445
+2307498,"LAKE TARPON CANAL AT S-551, NEAR OLDSMAR FL",-82.7109336,28.05362833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307498
+2307668,ALLIGATOR CREEK BELOW BELCHER RD AT CLEARWATER FL,-82.7423232,27.9797421,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307668
+2307669,ALLIGATOR CREEK AT HIGHWAY 19 AT CLEARWATER FL,-82.7294444,27.97319444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307669
+2307674,ALLIGATOR CREEK AT KAPOK PARK AT CLEARWATER FL,-82.7131558,27.97550618,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307674
+2307780,LONG BRANCH NEAR PINELLAS PARK FL,-82.7248228,27.91585545,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02307780
+2308861,CROSS BAYOU CNL AT CEDAR BRK DR AT PINELLAS PK FL,-82.7267672,27.8733569,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02308861
+2308865,ROOSEVELT CANAL AT STR 23-8 NR PINELLAS PARK FL,-82.6759327,27.90780025,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02308865
+2308866,ROOSEVELT CANAL BELOW STR 23-8 NR PINELLAS PARK FL,-82.6759327,27.90780025,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02308866
+2308870,PINEBROOK CN AT BRYAN DAIRY RD AT PINELLAS PARK FL,-82.7370453,27.8722458,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02308870
+2308889,SEMINOLE LAKE OUTLET NEAR LARGO FL,-82.7803798,27.83919117,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02308889
+2308950,ST JOE CREEK AT 62ND ST NR PINELLAS PARK FL,-82.7203611,27.81023889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02308950
+2309110,MCKAY CREEK NEAR LARGO FL,-82.8167697,27.90752187,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309110
+2309200,RATTLESNAKE CREEK AT BELLEAIR FL,-82.804,27.94240833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309200
+2309415,CURLEW CREEK AT EVANS ROAD NEAR DUNEDIN FL,-82.7406565,28.02335166,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309415
+2309421,CURLEW CREEK AT BELCHER ROAD NEAR OZONA FL,-82.7475,28.04,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309421
+2309425,CURLEW CREEK AT COUNTY ROAD 1 NEAR OZONA FL,-82.7587125,28.0469618,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309425
+2309447,BEE BRANCH NEAR PALM HARBOR FL,-82.7636611,28.07112778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309447
+2309740,ANCLOTE RIVER NEAR ODESSA FL,-82.595306,28.22953268,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309740
+2309848,SOUTH BRANCH ANCLOTE RIVER NEAR ODESSA FL,-82.5533611,28.18544444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02309848
+2310000,ANCLOTE RIVER NEAR ELFERS FL,-82.6664882,28.21417784,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310000
+2310075,ANCLOTE RIVER NEAR HOLIDAY FL,-82.7193056,28.1744722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310075
+2310280,PITHLACHASCOTEE RIVER NEAR FIVAY JUNCTION FL,-82.5367636,28.329172,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310280
+2310286,FIVEMILE CR BL SUNCOAST PKWY NR FIVAY JUNCTION FL,-82.5537222,28.29413889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310286
+2310288,PITHLACHASCOTEE R BL SUNCOAST PKWY NR FIVAY JCT FL,-82.5728333,28.29488889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310288
+2310300,PITHLACHASCOTEE RIVER NEAR NEW PORT RICHEY FL,-82.6429044,28.25731495,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310300
+2310308,PITHLACHASCOTEE R AT MAIN ST AT NEW PORT RICHEY FL,-82.7226006,28.2502877,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310308
+2310322,LAKE WORRELL OUTFALL NR NEW PORT RICHEY EAST FL,-82.6677778,28.28055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310322
+2310360,BEAR CREEK AT MAJESTIC BLVD NR BAYONET POINT FL,-82.6847222,28.33428056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310360
+2310368,BEAR CREEK NEAR BAYONET POINT FL,-82.6987778,28.33877778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310368
+2310500,WEEKI WACHEE SPRINGS NEAR BROOKSVILLE FL,-82.5734324,28.51694015,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310500
+2310525,WEEKI WACHEE RIVER NEAR BROOKSVILLE FL,-82.5823215,28.51888454,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310525
+2310650,CHASSAHOWITZKA RIVER NEAR HOMOSASSA FL,-82.5767656,28.71526419,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310650
+2310663,CHASSAHOWITZKA RIVER NEAR CHASSAHOWITZKA FL,-82.6062107,28.71526404,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310663
+2310673,CHASSAHOWITZKA R AT DOG ISL NR CHASSAHOWITZKA FL,-82.6247222,28.70263889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310673
+2310674,CHASSAHOWITZKA R AT MOUTH NR CHASSAHOWITZKA FL,-82.6389891,28.69470935,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310674
+2310675,HIDDEN RIVER NEAR HOMOSASSA FL,-82.5887105,28.76665075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310675
+2310678,HOMOSASSA SPRINGS AT HOMOSASSA SPRINGS FL,-82.58871089,28.79970509,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310678
+2310688,SE FORK HOMOSASSA SPRING AT HOMOSASSA SPRINGS FL,-82.589822,28.79748294,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310688
+2310689,HALLS RIVER AT HOMOSASSA SPRINGS FL,-82.60563889,28.8131111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310689
+2310690,HALLS RIVER NEAR HOMOSASSA FL,-82.6026,28.80137159,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310690
+2310700,HOMOSASSA R AT HOMOSASSA FL,-82.6178779,28.78526096,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310700
+2310712,HOMOSASSA RIVER AT SHELL ISLAND NEAR HOMOSASSA FL,-82.695657,28.7716498,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310712
+2310740,SARAGASSA CANAL AT CRYSTAL RIVER FL,-82.5956566,28.890535,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310740
+2310742,CRYSTAL RIVER AT MOUTH OF KINGS BAY FL,-82.6055556,28.8933611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310742
+2310743,HUNTER SPR RUN AT BEACH LANE AT CRYSTAL RIVER FL,-82.5931566,28.89470155,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310743
+2310747,CRYSTAL RIVER AT BAGLEY COVE NEAR CRYSTAL RIVER FL,-82.62388889,28.90638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310747
+2310752,SALT RIVER NEAR CRYSTAL RIVER FL,-82.6458056,28.90155556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310752
+2310947,"WITHLACOOCHEE RIVER NEAR CUMPRESSCO, FL",-82.05591468,28.31195156,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02310947
+2311000,"WITHLACOOCHEE-HILLSBOROUGH OVFLO NEAR RICHLAND, FL",-82.0978598,28.27139707,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02311000
+2311500,"WITHLACOOCHEE RIVER NEAR DADE CITY, FL",-82.12591619,28.3525042,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02311500
+2312000,"WITHLACOOCHEE RIVER AT TRILBY, FL",-82.17758499,28.4799981,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312000
+2312180,"LITTLE WITHLACOOCHEE RIVER NEAR TARRYTOWN, FL",-82.0548037,28.5216647,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312180
+2312200,"LITTLE WITHLACOOCHEE RIVER AT RERDELL, FL",-82.155363,28.57277286,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312200
+2312300,WITHLACOOCHEE RIVER AT RITAL FL,-82.209253,28.5211073,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312300
+2312500,"WITHLACOOCHEE RIVER AT CROOM, FL",-82.222032,28.5927714,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312500
+2312558,"WITHLACOOCHEE RIVER AT NOBLETON, FL",-82.25703368,28.644436,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312558
+2312598,"WITHLACOOCHEE RIVER NR PINEOLA, FL",-82.2423118,28.7241557,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312598
+2312600,"WITHLACOOCHEE RIVER NEAR FLORAL CITY, FL",-82.2200892,28.74359973,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312600
+2312640,"JUMPER CREEK CANAL NEAR BUSHNELL, FL",-82.1039741,28.6972136,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312640
+2312645,"JUMPER CREEK CANAL NEAR WAHOO, FL",-82.1570313,28.70443503,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312645
+2312667,"SHADY BROOK NEAR SUMTERVILLE, FL",-82.0636961,28.77026704,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312667
+2312675,"LITTLE JONES CREEK NEAR RUTLAND, FL.",-82.1302778,28.8425,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312675
+2312700,"OUTLET RIVER AT PANACOOCHEE RETREATS, FL",-82.1528658,28.8002651,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312700
+2312720,"WITHLACOOCHEE RIVER AT WYSONG DAM, AT CARLSON, FL",-82.1831448,28.82331955,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312720
+2312722,"WITHLACOOCHEE RIVER NR RUTLAND, FL",-82.2209241,28.85192929,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312722
+2312762,"WITHLACOOCHEE RIVER NEAR INVERNESS, FL",-82.2800934,28.91220435,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312762
+2312764,"GUM SPRINGS NEAR HOLDER, FL",-82.25,28.9511111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02312764
+2313000,"WITHLACOOCHEE RIVER NEAR HOLDER, FL",-82.3495406,28.98886759,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313000
+2313098,"RAINBOW RIVER NEAR DUNNELLON, FL",-82.4266111,29.07130556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313098
+2313100,"RAINBOW RIVER AT DUNNELLON, FL",-82.44759948,29.04942056,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313100
+2313200,"WITHLACOOCHEE RIVER AT DUNNELLON, FL",-82.4645443,29.0460871,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313200
+2313230,"WITHLACOOCHEE R AT INGLIS DAM NEAR DUNNELLON, FL",-82.6167699,29.00997485,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313230
+2313231,"WITHLACOOCHEE R BL INGLIS DAM NR DUNNELLON, FLA.",-82.6167699,29.00997485,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313231
+2313250,WITHLACOOCHEE R BYPASS CHANNEL NR INGLIS FLA,-82.6378818,29.02108538,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313250
+2313272,WITHLACOOCHEE R AT CHAMBERS IS NEAR YANKEETOWN FL,-82.7657876,29.00110935,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313272
+2313700,"WACCASASSA RIVER NR GULF HAMMOCK, FLA.",-82.769001,29.20413378,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02313700
+2315500,"SUWANNEE RIVER AT WHITE SPRINGS, FLA.",-82.7381826,30.3257812,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02315500
+2315550,SUWANNEE RIVER AT SUWANNEE SPRINGS FLA,-82.9331875,30.3929988,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02315550
+2317620,ALAPAHA RIVER NEAR JENNINGS FLA,-83.073195,30.59826888,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02317620
+2319000,"WITHLACOOCHEE RIVER NEAR PINETTA, FLA.",-83.2595906,30.59548716,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319000
+2319302,"MADISON BLUE SPRING NR BLUE SPRINGS, FL",-83.2443097,30.48049106,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319302
+2319394,"WITHLACOOCHEE RIVER NR LEE, FLA",-83.18013979,30.41049435,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319394
+2319500,"SUWANNEE RIVER AT ELLAVILLE, FLA",-83.1718058,30.38466196,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319500
+2319520,"FALMOUTH SPRING AT FALMOUTH, FL",-83.1351374,30.36132999,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319520
+2319800,"SUWANNEE RIVER AT DOWLING PARK, FLORIDA",-83.24958439,30.2449425,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319800
+2319950,"BLUE SPRINGS NEAR DELL,FL",-83.2259712,30.126055,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02319950
+2320000,"SUWANNEE RIVER AT LURAVILLE, FLA.",-83.1715247,30.09994513,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02320000
+2320500,"SUWANNEE RIVER AT BRANFORD, FLA.",-82.9276278,29.955785,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02320500
+2320700,"SANTA FE RIVER NEAR GRAHAM, FLA.",-82.2195493,29.84635394,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02320700
+2321000,NEW RIVER NR LAKE BUTLER FLA,-82.2739992,29.9982954,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02321000
+2321500,"SANTA FE RIVER AT WORTHINGTON SPRINGS, FLA.",-82.4262246,29.9219073,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02321500
+2321898,SANTA FE RIVER AT O'LENO STATE PARK FLA,-82.5596472,29.92656389,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02321898
+2321958,"SANTA FE RIVER AT RIVER RISE NR HIGH SPRINGS, FL",-82.59122849,29.8735723,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02321958
+2322400,GINNIE SPRING NR HIGH SPRINGS FLA,-82.7001197,29.8360705,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02322400
+2322500,"SANTA FE RIVER NEAR FORT WHITE, FLA.",-82.7151204,29.84884769,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02322500
+2322688,"BLUE HOLE SPRING NR HILDRETH, FL",-82.758457,29.9799552,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02322688
+2322700,"ICHETUCKNEE R @ HWY27 NR HILDRETH, FL",-82.7859573,29.95273288,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02322700
+2322800,SANTA FE RIVER NR HILDRETH FLA,-82.8604033,29.91162076,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02322800
+2323000,"SUWANNEE RIVER NEAR BELL, FLORIDA",-82.924293,29.79134359,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02323000
+2323500,"SUWANNEE RIVER NEAR WILCOX, FLA.",-82.9365131,29.58968017,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02323500
+2323502,FANNING SPRINGS NR WILCOX FLA,-82.9331797,29.5891247,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02323502
+2323566,MANATEE SPRING NR CHIEFLAND FLA,-82.976791,29.4896808,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02323566
+2324000,"STEINHATCHEE RIVER NEAR CROSS CITY, FLA.",-83.3215262,29.78661294,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02324000
+2324400,"FENHOLLOWAY RIVER NEAR FOLEY, FLA.",-83.4718112,30.09827057,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02324400
+2324500,"FENHOLLOWAY RIVER AT FOLEY, FLA.",-83.5579246,30.06549165,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02324500
+2325000,"FENHOLLOWAY RIVER NEAR PERRY, FLA",-83.6623725,30.0713236,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02325000
+2326000,"ECONFINA RIVER NEAR PERRY, FLA.",-83.8237679,30.17076448,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02326000
+2326500,"AUCILLA RIVER AT LAMONT, FLA.",-83.80682559,30.36992847,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02326500
+2326526,WACISSA RIVER NR WACISSA FLA,-83.9796085,30.3013159,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02326526
+2326550,"AUCILLA RIVER NR MOUTH NEAR NUTALL RISE, FL",-83.9797728,30.11234694,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02326550
+2326900,"ST. MARKS RIVER NEAR NEWPORT, FLA.",-84.1482508,30.2714311,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02326900
+2327000,"WAKULLA SPRING NR CRAWFORDVILLE, FL",-84.30128689,30.23492447,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02327000
+2327022,"WAKULLA RIVER NEAR CRAWFORDVILLE, FL",-84.261563,30.2138141,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02327022
+2327031,"SPRING CREEK NEAR SPRING CREEK, FL",-84.3273972,30.07270485,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02327031
+2327100,"SOPCHOPPY RIVER NR SOPCHOPPY, FLA.",-84.4943482,30.12936856,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02327100
+2328522,"OCHLOCKONEE RIVER NR CONCORD, FLA.",-84.3051807,30.6690846,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02328522
+2329000,"OCHLOCKONEE RIVER NR HAVANA, FLA.",-84.3840715,30.55408644,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02329000
+2329500,"LITTLE RIVER NR QUINCY, FLA.",-84.4965763,30.58741806,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02329500
+2329600,"LITTLE RIVER NR MIDWAY, FLA.",-84.5235206,30.5124192,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02329600
+2330000,"OCHLOCKONEE RIVER NR BLOXHAM, FLA.",-84.6549109,30.38325266,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02330000
+2330100,"TELOGIA CREEK NR BRISTOL, FLA.",-84.92769349,30.426585,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02330100
+2330150,"OCHLOCKONEE RIVER NR SMITH CREEK, FLA.",-84.6679637,30.17658934,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02330150
+2330400,"NEW RIVER NEAR SUMATRA, FLA",-84.843799,30.03881356,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02330400
+2357500,"LAKE SEMINOLE NEAR CHATTAHOOCHEE, FL",-84.8624207,30.70935834,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02357500
+2357700,"APALACHICOLA RIVER BL WOODRUFF DAM, NR SNEADS, FL",-84.8632556,30.70405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02357700
+2358000,APALACHICOLA RIVER AT CHATTAHOOCHEE FLA,-84.8590871,30.7010251,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02358000
+2358700,"APALACHICOLA RIVER NR BLOUNTSTOWN,FLORIDA",-85.0313059,30.42519625,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02358700
+2358754,"APALACHICOLA R.AB CHIPOLA CUTOFF NR WEWAHITCHKA,FL",-85.1420111,30.1322611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02358754
+2358789,CHIPOLA RIVER AT MARIANNA FL,-85.2163178,30.77297064,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02358789
+2358795,"JACKSON BLUE SPRING NR MARIANNA, FL",-85.1407611,30.79046943,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02358795
+2359000,"CHIPOLA RIVER NR ALTHA, FLA.",-85.1651996,30.53408319,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02359000
+2359170,"APALACHICOLA RIVER NR SUMATRA,FLA.",-85.0154686,29.94937094,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02359170
+2359500,"ECONFINA CREEK NEAR BENNETT, FLA.",-85.5565932,30.3846406,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02359500
+2365200,"CHOCTAWHATCHEE RIVER NR PITTMAN, FLA.",-85.84299,30.94990438,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02365200
+2365470,"WRIGHTS CREEK AT SH 177-A NR BONIFAY,FL",-85.7621545,30.8571301,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02365470
+2365500,"CHOCTAWHATCHEE RIVER AT CARYVILLE, FLA.",-85.827711,30.77574389,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02365500
+2365769,"BRUCE CREEK AT SH 81 NR REDBAY, FL",-85.9424358,30.6246363,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02365769
+2366000,"HOLMES CREEK AT VERNON, FLA.",-85.7121531,30.62685899,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02366000
+2366500,"CHOCTAWHATCHEE RIVER NR BRUCE, FLA.",-85.89826819,30.4510296,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02366500
+2366996,"ALAQUA CREEK NEAR PLEASANT RIDGE, FL",-86.1866092,30.66908,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02366996
+2367310,"JUNIPER CREEK AT STATE HWY 85 NR NICEVILLE, FLA.",-86.5193954,30.5574179,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02367310
+2367900,"YELLOW RIVER NR OAK GROVE, FLA.",-86.5593967,30.92518288,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02367900
+2368000,"YELLOW RIVER AT MILLIGAN, FLA.",-86.6291207,30.7529664,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02368000
+2368500,"SHOAL RIVER NR MOSSY HEAD, FLA.",-86.3068906,30.7960205,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02368500
+2369000,"SHOAL RIVER NR CRESTVIEW, FLA.",-86.570786,30.69741268,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02369000
+2369600,"YELLOW RIVER NR MILTON, FLA.",-86.9235732,30.569639,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02369600
+2370000,"BLACKWATER RIVER NR BAKER, FLA.",-86.7346786,30.8335197,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02370000
+2370500,"BIG COLDWATER CREEK NR MILTON, FLA.",-86.972186,30.70852375,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02370500
+2375500,"ESCAMBIA RIVER NEAR CENTURY, FL",-87.2341395,30.96518304,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02375500
+2376033,"ESCAMBIA RIVER NR MOLINO, FLA.",-87.2669179,30.6701917,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02376033
+2376100,"BAYOU MARCUS CREEK NR PENSACOLA,FLA",-87.2905288,30.44825279,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02376100
+2376115,"ELEVENMILE CREEK NEAR PENSACOLA, FL.",-87.3358086,30.49825159,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02376115
+2376293,"BRUSHY CREEK NEAR BRATT, FL",-87.5280384,30.97851588,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02376293
+2376500,"PERDIDO RIVER AT BARRINEAU PARK, FL",-87.440258,30.69046866,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=02376500
+250802081035500,"EAST SIDE CREEK NEAR LAKE INGRAHAM, FL",-81.0643806,25.13696944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=250802081035500
+251003080435500,"MCCORMICK CREEK AT MOUTH NEAR KEY LARGO, FL",-80.7333764,25.16859547,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251003080435500
+251032080473400,"ALLIGATOR CREEK NEAR GARFIELD BIGHT, FL",-80.7927778,25.17555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251032080473400
+251033080440800,"OYSTER CREEK NEAR FLAMINGO, FL",-80.7355833,25.17588889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251033080440800
+251115081075800,"RAULERSON BROTHERS CANAL AT CAPE SABLE, FL",-81.1327778,25.18765278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251115081075800
+251127080382100,"TAYLOR RIVER AT MOUTH NEAR HOMESTEAD, FL",-80.6388378,25.1909944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251127080382100
+251209080350100,"MUD CREEK AT MOUTH NR HOMESTEAD, FL",-80.5838946,25.2037021,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251209080350100
+251241080385300,"UPSTREAM TAYLOR RIVER NEAR HOMESTEAD, FL",-80.6476667,25.2102972,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251241080385300
+251253080320100,"TROUT CREEK AT MOUTH NEAR KEY LARGO, FL",-80.5332849,25.21530426,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251253080320100
+251341080291200,"STILLWATER CREEK NEAR HOMESTEAD, FL",-80.485728,25.22869797,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251341080291200
+251355080312800,"JOE BAY 2E, NEAR KEY LARGO, FL",-80.5248667,25.232625,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251355080312800
+251433080265000,"WEST HIGHWAY CREEK NEAR HOMESTEAD, FL",-80.4475722,25.24210833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251433080265000
+251549080251200,"MANATEE BAY CREEK NEAR HOMESTEAD, FL",-80.4201833,25.2642111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251549080251200
+251716080342100,"EVERGLADES 5A IN C-111 BASIN NR HOMESTEAD, FL",-80.5725528,25.28610833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251716080342100
+251946080254800,"EVERGLADES 1 IN C-111 BASIN NR HOMESTEAD, FL",-80.4351667,25.33033333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=251946080254800
+252036080324300,"EVERGLADES 4 IN C-111 BASIN NR HOMESTEAD, FL",-80.54666389,25.33876944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=252036080324300
+252230081021300,"SHARK RIVER BELOW GUNBOAT ISLAND NR FLAMINGO, FL",-81.036493,25.3753255,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=252230081021300
+252551081050900,HARNEY RIVER NEAR FLAMINGO FL,-81.0859583,25.43055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=252551081050900
+253044080555900,EDEN 3 IN EVERGLADES NATIONAL PARK,-80.9331528,25.512125,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=253044080555900
+253047080555600,UPSTREAM BROAD RIVER NEAR EVERGLADES CITY FL,-80.9322222,25.50129167,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=253047080555600
+253828080391100,N.E. SHARK RIVER SLOUGH NO. 4 NORTH OF GROSSMAN,-80.6527667,25.6401611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=253828080391100
+254130080380500,"NORTHEAST SHARK RVR SLOUGH NO1 NR COOPERTOWN, FL",-80.6349167,25.69165,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254130080380500
+254157080213800,"SNAPPER CREEK NO.5 ABV WATER PIPE NR S. MIAMI, FL",-80.3606111,25.69905556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254157080213800
+254315080331500,"NORTHEAST SHARK RVR SLOUGH NO2 NR COOPERTOWN, FL",-80.5573583,25.71970278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254315080331500
+254540080325700,"TAMIAMI CANAL AT S-355B NEAR MIAMI, FL",-80.5532245,25.76207288,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254540080325700
+254540080361500,"TAMIAMI CANAL AT S-355A NEAR MIAMI, FL",-80.5908644,25.76207297,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254540080361500
+254543080405401,"TAMIAMI CANAL AT S-12-D NEAR MIAMI, FL",-80.6814501,25.76232317,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254543080405401
+254543080491101,"TAMIAMI CANAL AT S-12-A, NR MIAMI, FL",-80.8195095,25.7623236,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254543080491101
+254707080370201,EDEN 10 IN WATER CONSERVATION AREA 3-B,-80.6172222,25.78527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254707080370201
+254754080344300,SHARK RIVER SLOUGH NO.1 IN CONS.3B NR COOPERTOWN,-80.5788611,25.79755556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254754080344300
+254759080483201,W-2 IN WATER CONSERVATION AREA 3-A,-80.80888889,25.7997222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254759080483201
+254848080432001,"SITE 65 IN CONSERVATION AREA 3A NR COOPERTOWN, FL",-80.7201222,25.8142722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=254848080432001
+255014080355801,TI-9 IN WATER CONSERVATION AREA 3-B,-80.5993333,25.83769444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255014080355801
+255026080231300,"SNAPPER CREEK CNL EXT AT NW74 ST NR HIALEAH, FL",-80.3867198,25.84093055,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255026080231300
+255154080371300,"L-67A CANAL AT S-152 NR COOPERTOWN, FL",-80.6205667,25.86515,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255154080371300
+255154080371303,"WETLAND BELOW S-152 IN WCA-3 NR COOPERTOWN, FL",-80.6202,25.86485,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255154080371303
+255200080405001,EDEN 8 IN WATER CONSERVATION AREA 3-A,-80.6805556,25.86666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255200080405001
+255250080335001,"SITE 71 IN CONSERVATION AREA 3B NR COOPERTOWN, FL.",-80.5562796,25.88481823,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255250080335001
+255300080370001,"SITE 69 IN CONSERVATION AREA 3BNR COOPERTOWN, FL",-80.58876389,25.90660833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255300080370001
+255327081275900,"EAST RIVER NEAR EVERGLADES CITY, FL",-81.4555,25.89538889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255327081275900
+255432081303900,FAKA-UNION RIVER NEAR THE MOUTH,-81.5109167,25.90880556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255432081303900
+255534081324000,"PUMPKIN RIVER NEAR GOODLAND, FL",-81.5443056,25.926,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255534081324000
+255634080450001,W-11 IN WATER CONSERVATION AREA 3-A,-80.75,25.94277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255634080450001
+255708080295501,EDEN 7 IN WATER CONSERVATION AREA 3-B,-80.4986111,25.9522222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255708080295501
+255828080401301,SITE 64 IN CONSERVATION AREA 3A NR COOPERTOWN FL.,-80.6696111,25.97513889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=255828080401301
+260007080464401,W-18 IN WATER CONSERVATION AREA 3-A,-80.77888889,26.00194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260007080464401
+260037080303401,"SITE 76 IN CONSERVATION AREA 3B NR ANDYTOWN, FL",-80.48236389,26.0076472,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260037080303401
+260042080351701,EDEN 12 IN WATER CONSERVATION AREA 3-A,-80.5880556,26.01166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260042080351701
+260355080541401,EDEN 6 IN BIG CYPRESS NATIONAL PRESERVE,-80.90388889,26.06527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260355080541401
+260410080452701,EDEN 14 IN WATER CONSERVATION AREA 3-A,-80.7575,26.06944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260410080452701
+260536080302501,EDEN 4 IN WATER CONSERVATION AREA 3-A,-80.5069444,26.09333333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260536080302501
+260725080451001,EDEN 5 IN WATER CONSERVATION AREA 3-A,-80.7527778,26.1236111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260725080451001
+260754081483000,"NOAA TIDE GAGE NO. 8725110 AT NAPLES, FL",-81.8083333,26.13166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260754081483000
+260810080222001,"SITE 99 NR L-35A IN CONS AREA 2B NR SUNRISE, FL",-80.3670833,26.13644444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=260810080222001
+261023080443001,"SITE 62 IN CONSERVATION AREA 3A NR ANDYTOWN, FL",-80.75075,26.17421944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261023080443001
+261035080221701,EDEN 13 IN WATER CONSERVATION AREA 2-B,-80.37138889,26.17638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261035080221701
+261117080315201,SITE 63 IN CONSERVATION AREA NO. 3A NR ANDYTOWN FL,-80.531,26.1884722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261117080315201
+261150080270001,"N. NEW RIVER CANAL AT S-11-A NR ANDYTOWN, FL",-80.44783128,26.17814028,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261150080270001
+261200080275001,"N. NEW RIVER CANAL AT S-11-B NR ANDYTOWN, FL",-80.45338689,26.2025838,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261200080275001
+261300080280001,"N. NEW RIVER CANAL AT S-11-C NR ANDYTOWN, FL",-80.4600536,26.2289717,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261300080280001
+261319080353201,EDEN 9 IN WATER CONSERVATION AREA 3-A,-80.5922222,26.22194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261319080353201
+261533080571600,L-28 INTERCEPTOR CANAL BLW S-190 NEAR CLEWISTON FL,-80.954233,26.25952746,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261533080571600
+261543080495000,"L-28 CANAL ABOVE S-140 NEAR CLEWISTON, FL",-80.83034079,26.26230464,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261543080495000
+261710080190001,SITE 19 IN CONSERVATION AREA 2A NR CORAL SPRINGS,-80.30663889,26.2814722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261710080190001
+261808081042800,WEST FEEDER CANAL ABV WEST WEIR NR  CLEWISTON FL,-81.0744444,26.30233333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=261808081042800
+262038080584600,"NORTH FEEDER CANAL BLW PC17A NR CLEWISTON, FL",-80.9793333,26.34375,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262038080584600
+262100080190001,"HILLSBORO CA AT S-10-A NR DEERFIELD BCH., FL",-80.3125,26.36,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262100080190001
+262200080210001,"HILLSBORO CA AT S-10-C NR DEERFIELD BCH., FL",-80.3509167,26.37125,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262200080210001
+262240080258001,"SITE 17 NR L-38, CONS AREA 2A NR CORAL SPRINGS, FL",-80.4108855,26.28674729,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262240080258001
+262258080273501,EDEN 11 IN WATER CONSERVATION AREA 2-A,-80.4552778,26.37638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262258080273501
+262300080220001,"HILLSBORO CANAL AT S-10-D NR DEERFIELD BCH., FL",-80.3803288,26.3875769,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262300080220001
+262528080202700,SOUTH LOXAHATCHEE CONSERVATION AREA NO. 1,-80.3378611,26.42138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262528080202700
+262750080175001,SITE 9 IN CONSERVATION AREA NO.1 IN BOYNTON BCH FL,-80.2909167,26.45960833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=262750080175001
+263000080120001,SITE 8C NR L-40 IN CONS AREA NO.1 NR BOYNTON BCH.,-80.2221111,26.49927778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=263000080120001
+263050080145001,"SITE 8T IN CONS AREA NO.1 NR BOYNTON BCH, FL",-80.2344278,26.49966944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=263050080145001
+263180080205001,"SITE 7 IN CONS AREA NO. 1 NR SHAWANO, FL",-80.3361028,26.5225472,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=263180080205001
+263537080211400,NORTH LOXAHATCHEE CONSERVATION AREA NO. 1,-80.3538611,26.59377778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=263537080211400
+264514080550700,INDUSTRIAL CANAL AT CLEWISTON,-80.9179804,26.76075867,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=264514080550700
+265501080364900,"LEVEE 8 CANAL NEAR CANAL POINT, FL",-80.6133892,26.9172793,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=265501080364900
+265906080093500,"LOXAHATCHEE RIVER AT MILE 9.1 NEAR JUPITER, FL",-80.1600439,26.98533377,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=265906080093500
+265929080091800,"LOX RIVER AT OUTLET OF KITCHINGS CREEK, FL",-80.154766,26.99172249,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=265929080091800
+273818082334800,"NOAA TIDE GAGE NO. 8726384 AT PORT MANATEE, FL",-82.5633333,27.63833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=273818082334800
+275130082331200,"NOAA TIDE GAGE NO. 8726607 AT OLD PORT TAMPA, FL",-82.5533333,27.85833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=275130082331200
+275226081481900,GATOR SINK NEAR BARTOW FL,-81.8052778,27.87388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=275226081481900
+275842082495400,"NOAA TIDE GAGE NO. 8726724 AT CLEARWATER BEACH, FL",-82.8316667,27.97833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=275842082495400
+280311082282601,LAKE ECKLES NEAR CARROLLWOOD FL,-82.4740111,28.053175,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=280311082282601
+285531082412600,CRYSTAL RV AT MOUTH NR SHELL ISL NR CRYSTAL RV FL,-82.69063889,28.92527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=285531082412600
+290800083014800,"NOAA TIDE GAGE NO. 8727520 AT CEDAR KEY, FL",-83.03,29.13333333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=290800083014800
+294330084584800,"NOAA TIDE GAGE NO. 8728690 AT APALACHICOLA, FL",-84.98,29.725,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=294330084584800
+301116085443000,"ST ANDREWS BAY NEAR PANAMA CITY, FL",-85.7416667,30.18783333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=301116085443000
+301124081395901,"ST.JOHNS RIVER BUCKMAN BRIDGE AT JACKSONVILLE,FL",-81.6662048,30.1902405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=301124081395901
+302309081333001,"ST JOHNS R DAMES POINT BRIDGE AT JACKSONVILLE, FL",-81.55814749,30.3860727,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=302309081333001
+302354081254200,"NOAA TIDE GAGE NO. 8720218 AT MAYPORT, FL",-81.4283333,30.39833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=302354081254200
+302418087124200,"NOAA TIDE GAGE NO. 8729840 AT PENSACOLA, FL",-87.2116667,30.405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=302418087124200

@@ -1,0 +1,305 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+1302020,BRONX RIVER AT NY BOTANICAL GARDEN AT BRONX NY,-73.87438889,40.86230556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01302020
+1303500,COLD SPRING BROOK AT COLD SPRING HARBOR NY,-73.4633333,40.8572222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01303500
+1304000,NISSEQUOGUE RIVER NEAR SMITHTOWN NY,-73.2241667,40.84944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01304000
+1304500,PECONIC RIVER AT RIVERHEAD NY,-72.6866667,40.9136111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01304500
+1306460,CONNETQUOT BK NR CENTRAL ISLIP NY,-73.1586111,40.77194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01306460
+1308500,CARLLS RIVER AT BABYLON NY,-73.3283333,40.7086111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01308500
+1309500,MASSAPEQUA CREEK AT MASSAPEQUA NY,-73.4547222,40.68888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01309500
+1311500,VALLEY STREAM AT VALLEY STREAM NY,-73.7044444,40.6636111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01311500
+1311875,ROCKAWAY INLET NEAR FLOYD BENNETT FIELD NY,-73.885136,40.57371636,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01311875
+1312000,HUDSON RIVER NEAR NEWCOMB NY,-74.1316667,43.96666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01312000
+1315000,INDIAN RIVER NEAR INDIAN LAKE NY,-74.2672222,43.75638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01315000
+1315170,DURGIN BROOK AT BOREAS RIVER NY,-73.9536111,43.9398333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01315170
+1315500,HUDSON RIVER AT NORTH CREEK NY,-73.9833333,43.7008333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01315500
+1317000,SCHROON RIVER AT RIVERBANK NY,-73.7375,43.60944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01317000
+1318500,HUDSON RIVER AT HADLEY NY,-73.8441667,43.31888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01318500
+1321000,SACANDAGA RIVER NEAR HOPE NY,-74.27027778,43.35277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01321000
+1325000,SACANDAGA RIVER AT STEWARTS BRIDGE NR HADLEY NY,-73.8672222,43.31138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01325000
+1327500,GLENS FALLS FEEDER AT DUNHAM BASIN NY,-73.5465031,43.30423926,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01327500
+1327750,HUDSON RIVER AT FORT EDWARD NY,-73.5958333,43.26944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01327750
+1328770,HUDSON RIVER AT THOMSON NY,-73.5849167,43.12538889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01328770
+1329490,BATTEN KILL BELOW MILL AT BATTENVILLE NY,-73.4216667,43.1086111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01329490
+1330000,GLOWEGEE CREEK AT WEST MILTON NY,-73.9272222,43.03055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01330000
+1334500,HOOSIC RIVER NEAR EAGLE BRIDGE NY,-73.3769444,42.9386111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01334500
+1335754,HUDSON RIVER ABOVE LOCK 1 NEAR WATERFORD NY,-73.6661111,42.82916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01335754
+1335755,HUDSON RIVER AT LOCK 1 NEAR WATERFORD NY,-73.6620622,42.8239664,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01335755
+1336000,MOHAWK RIVER BELOW DELTA DAM NEAR ROME NY,-75.43638889,43.26444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01336000
+1338000,ORISKANY CREEK NEAR ORISKANY NY,-75.3378056,43.14277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01338000
+1339060,SAUQUOIT CREEK AT WHITESBORO NY,-75.294,43.11144444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01339060
+1342602,MOHAWK RIVER NEAR UTICA NY,-75.1579167,43.09369444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01342602
+1342682,MOYER CREEK NEAR FRANKFORT NY,-75.1043056,43.02694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01342682
+1342730,STEELE CREEK AT ILION NY,-75.0416667,43.0065833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01342730
+1342743,FULMER CREEK NEAR MOHAWK NY,-74.9904444,42.9852222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01342743
+1343060,WEST CANADA CREEK NEAR WILMURT NY,-74.95777778,43.3661111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01343060
+1343403,BLACK CREEK NEAR GRAY NY,-74.9591944,43.28277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01343403
+1346000,WEST CANADA CREEK AT KAST BRIDGE NY,-74.9883333,43.06888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01346000
+1347000,MOHAWK RIVER NEAR LITTLE FALLS NY,-74.7794444,43.0147222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01347000
+1348000,EAST CANADA CREEK AT EAST CREEK NY,-74.7408333,43.01666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01348000
+1349000,OTSQUAGO CREEK AT FORT PLAIN NY,-74.63288889,42.92925,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349000
+1349150,CANAJOHARIE CREEK NEAR CANAJOHARIE NY,-74.6028611,42.87627778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349150
+1349527,MOHAWK R ABOVE STATE HIGHWAY 30A AT FONDA NY,-74.3720795,42.95035136,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349527
+1349700,EAST KILL NEAR JEWETT CENTER NY,-74.30277778,42.24916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349700
+1349705,SCHOHARIE CREEK NEAR LEXINGTON NY,-74.34027778,42.23694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349705
+1349711,WEST KILL BELOW HUNTER BROOK NEAR SPRUCETON NY,-74.2769444,42.185,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349711
+1349810,WEST KILL NEAR WEST KILL NY,-74.3930556,42.23027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349810
+1349950,BATAVIA KILL AT RED FALLS NEAR PRATTSVILLE NY,-74.39,42.3083333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01349950
+1350000,SCHOHARIE CREEK AT PRATTSVILLE NY,-74.4366667,42.31944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350000
+1350035,BEAR KILL NEAR PRATTSVILLE NY,-74.4516667,42.33805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350035
+1350080,MANOR KILL AT WEST CONESVILLE NEAR GILBOA NY,-74.4130556,42.37694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350080
+1350101,SCHOHARIE CREEK AT GILBOA NY,-74.4505556,42.3972222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350101
+1350120,PLATTER KILL AT GILBOA NY,-74.4472222,42.4061111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350120
+1350140,MINE KILL NEAR NORTH BLENHEIM NY,-74.4730556,42.42888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350140
+1350180,SCHOHARIE CREEK AT NORTH BLENHEIM NY,-74.4622222,42.4658333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350180
+1350212,SCHOHARIE CREEK NEAR NORTH BLENHEIM NY,-74.44113889,42.47263889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350212
+1350355,SCHOHARIE CREEK AT BREAKABEEN NY,-74.4105556,42.53694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350355
+1350480,LITTLE SCHOHARIE CREEK NEAR MIDDLEBURGH NY,-74.3066111,42.5798611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350480
+1350500,SCHOHARIE CREEK AT MIDDLEBURGH NY,-74.3361111,42.59944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350500
+1350750,SCHOHARIE CREEK AT SCHOHARIE NY,-74.326,42.66544444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01350750
+1351200,FOX CREEK NEAR SCHOHARIE NY,-74.25388889,42.67305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01351200
+1351298,COBLESKILL CREEK AT S GRAND ST AT COBLESKILL NY,-74.4819167,42.67255556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01351298
+1351450,SCHOHARIE CREEK AT ESPERANCE NY,-74.25477778,42.7605833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01351450
+1351500,SCHOHARIE CREEK AT BURTONSVILLE NY,-74.26277778,42.8,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01351500
+1354083,MOHAWK RIVER AT AMSTERDAM NY,-74.1918611,42.934,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01354083
+1354330,MOHAWK RIVER AT LOCK 8 NEAR SCHENECTADY NY,-73.9903722,42.8281583,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01354330
+1354500,MOHAWK RIVER AT FREEMAN'S BRIDGE AT SCHENECTADY NY,-73.93075,42.83052778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01354500
+1355475,MOHAWK RIVER AT REXFORD NY,-73.88725,42.8511111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01355475
+1356000,MOHAWK RIVER AT VISCHER FERRY DAM NY,-73.8476667,42.80419444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01356000
+1357500,MOHAWK RIVER AT COHOES NY,-73.70777778,42.78538889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01357500
+1358000,HUDSON RIVER AT GREEN ISLAND NY,-73.68888889,42.7522222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01358000
+1359135,PATROON CREEK AT ALBANY NY,-73.7448611,42.66344444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01359135
+1359525,NORMANS KILL AT KARLSFELD NY,-73.846,42.64791667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01359525
+1359528,NORMANS KILL AT ALBANY NY,-73.80427778,42.63363889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01359528
+1360640,VALATIE KILL NEAR NASSAU NY,-73.59138889,42.55194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01360640
+1361000,KINDERHOOK CREEK AT ROSSMAN NY,-73.7444444,42.33105556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01361000
+136219503,ESOPUS CREEK BELOW LOST CLOVE RD AT BIG INDIAN NY,-74.4490833,42.09788889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0136219503
+13621955,BIRCH CREEK AT BIG INDIAN NY,-74.4519444,42.10888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=013621955
+1362200,ESOPUS CREEK AT ALLABEN NY,-74.38027778,42.11694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362200
+1362230,DIVERSION FROM SCHOHARIE RESERVOIR NY,-74.3637599,42.11453416,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362230
+136230002,WOODLAND CREEK ABOVE MOUTH AT PHOENICIA NY,-74.3345833,42.0797222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0136230002
+1362322,MYRTLE BROOK AT STATE HWY 214 AT EDGEWOOD NY,-74.23152778,42.1336111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362322
+1362336,STONY CLOVE CR AT JANSSEN RD AT LANESVILLE NY,-74.26325,42.12794444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362336
+1362342,HOLLOW TREE BROOK AT LANESVILLE NY,-74.265,42.1422222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362342
+1362357,WARNER CREEK NEAR CHICHESTER NY,-74.2946111,42.09938889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362357
+1362368,OX CLOVE NEAR MOUTH AT CHICHESTER NY,-74.3095556,42.10477778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362368
+1362370,STONY CLOVE CREEK BLW OX CLOVE AT CHICHESTER NY,-74.31088889,42.10202778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362370
+1362487,BEAVER KILL AT MOUNT TREMPER NY,-74.2768136,42.046758,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362487
+1362497,LITTLE BEAVER KILL AT BEECHFORD NEAR MT TREMPER NY,-74.26638889,42.01944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362497
+1362500,ESOPUS CREEK AT COLDBROOK NY,-74.2705556,42.01416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01362500
+1363382,BUSH KILL BLW MALTBY HOLLOW BK AT WEST SHOKAN NY,-74.2930556,41.96555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01363382
+1363556,ESOPUS CREEK NEAR LOMONTVILLE NY,-74.1453611,41.8793333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01363556
+1364500,ESOPUS CREEK AT MOUNT MARION NY,-73.9719444,42.03777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01364500
+1365000,RONDOUT CREEK NEAR LOWES CORNERS NY,-74.4872222,41.86638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01365000
+1365100,CANNONSVILLE RES DIV CHANNEL NR GRAHAMSVILLE NY,-74.51302778,41.8521111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01365100
+1365500,CHESTNUT CREEK AT GRAHAMSVILLE NY,-74.5394444,41.845,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01365500
+1365550,CHESTNUT CREEK AT MOUTH AT GRAHAMSVILLE NY,-74.5318333,41.8490833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01365550
+1367500,RONDOUT CREEK AT ROSENDALE NY,-74.0861111,41.84305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01367500
+1368050,WALLKILL RIVER AT OIL CITY ROAD NEAR UNIONVILLE NY,-74.5343333,41.2878333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01368050
+1370520,WALLKILL RIVER AT PHILLIPSBURG NY,-74.3657097,41.4389827,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01370520
+1371500,WALLKILL RIVER AT GARDINER NY,-74.16527778,41.6861111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01371500
+1372058,HUDSON RIVER BELOW POUGHKEEPSIE NY,-73.9445821,41.65092687,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01372058
+1372500,WAPPINGER CREEK NEAR WAPPINGERS FALLS NY,-73.8725,41.65305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01372500
+137449480,EAST BRANCH CROTON RIVER NEAR PUTNAM LAKE NY,-73.5560833,41.44725,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0137449480
+1374505,EAST BRANCH CROTON RIVER AT BREWSTER NY,-73.6069444,41.39444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374505
+1374531,EAST BRANCH CROTON RIVER NEAR CROTON FALLS NY,-73.63875,41.37377778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374531
+1374559,WEST BRANCH CROTON RIVER AT RICHARDSVILLE NY,-73.76,41.47055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374559
+1374581,W BR CROTON RIVER BELOW DAM NEAR KENT CLIFFS NY,-73.73638889,41.4497222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374581
+1374598,HORSE POUND BROOK NEAR LAKE CARMEL NY,-73.6894722,41.4758611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374598
+137462010,WEST BRANCH CROTON RIVER NEAR CARMEL NY,-73.69375,41.41180556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0137462010
+1374701,WEST BRANCH CROTON RIVER NEAR CROTON FALLS NY,-73.6679722,41.358,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374701
+1374781,TITICUS RIVER BELOW JUNE ROAD AT SALEM CENTER NY,-73.5914722,41.3273611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374781
+1374821,TITICUS RIVER AT PURDYS STATION NY,-73.6558333,41.32719444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374821
+1374890,CROSS RIVER NEAR CROSS RIVER NY,-73.6018611,41.2602222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374890
+1374901,CROSS RIVER AT KATONAH NY,-73.6655556,41.2661111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374901
+1374930,MUSCOOT RIVER AT BALDWIN PLACE NY,-73.7686944,41.33813889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374930
+1374941,MUSCOOT RIVER BELOW DAM AT AMAWALK NY,-73.75363889,41.2876111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01374941
+1375000,CROTON R AT NEW CROTON DAM NR CROTON-ON-HUDSON NY,-73.85888889,41.22502778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01375000
+1376800,HACKENSACK RIVER AT WEST NYACK NY,-73.96388889,41.09555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01376800
+1387400,RAMAPO RIVER AT RAMAPO NY,-74.1686111,41.14027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01387400
+1387420,RAMAPO RIVER AT SUFFERN NY,-74.16027778,41.1183333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01387420
+1387450,Mahwah River near Suffern NY,-74.1161111,41.1411111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01387450
+1413088,EAST BRANCH DELAWARE RIVER AT ROXBURY NY,-74.5591944,42.29380556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01413088
+1413398,BUSH KILL NEAR ARKVILLE NY,-74.60138889,42.1508333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01413398
+1413408,DRY BROOK AT ARKVILLE,-74.6233333,42.14666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01413408
+1413500,EAST BRANCH DELAWARE RIVER AT MARGARETVILLE NY,-74.6536111,42.1447222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01413500
+1414000,PLATTE KILL AT DUNRAVEN NY,-74.6955556,42.13305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01414000
+1414500,MILL BROOK NEAR DUNRAVEN NY,-74.7305556,42.1061111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01414500
+1415000,TREMPER KILL NEAR ANDES NY,-74.8186111,42.12,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01415000
+1417000,EAST BRANCH DELAWARE RIVER AT DOWNSVILLE NY,-74.97638889,42.075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01417000
+1417500,EAST BRANCH DELAWARE RIVER AT HARVARD NY,-75.11927778,42.0245833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01417500
+1419500,WILLOWEMOC CREEK NR LIVINGSTON MANOR NY,-74.81277778,41.9033333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01419500
+1420500,BEAVER KILL AT COOKS FALLS NY,-74.9796667,41.94641667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01420500
+1421000,EAST BRANCH DELAWARE RIVER AT FISHS EDDY NY,-75.1751944,41.97355556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01421000
+1421610,WEST BRANCH DELAWARE RIVER AT HOBART NY,-74.66888889,42.37138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01421610
+1421618,TOWN BROOK SOUTHEAST OF HOBART NY,-74.6622222,42.3611111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01421618
+1421900,WEST BRANCH DELAWARE RIVER UPSTREAM FROM DELHI NY,-74.9072222,42.28027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01421900
+1422500,LITTLE DELAWARE RIVER NEAR DELHI NY,-74.9016667,42.2522222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01422500
+1422747,EAST BROOK EAST OF WALTON NY,-75.1219167,42.17266667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01422747
+1422779,WEST BROOK AT AUSTIN LINCOLN PARK AT WALTON NY,-75.1289167,42.17738889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01422779
+1423000,WEST BRANCH DELAWARE RIVER AT WALTON NY,-75.14002778,42.1661111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01423000
+142400103,TROUT CREEK NEAR TROUT CREEK NY,-75.2794444,42.1735833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0142400103
+1425000,WEST BRANCH DELAWARE RIVER AT STILESVILLE NY,-75.3958056,42.07491667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01425000
+1426500,WEST BRANCH DELAWARE RIVER AT HALE EDDY NY,-75.38352778,42.00302778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01426500
+1427207,DELAWARE RIVER AT LORDVILLE NY,-75.21375,41.86727778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01427207
+1427500,CALLICOON CREEK AT CALLICOON NY,-75.04838889,41.76055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01427500
+1427510,DELAWARE RIVER AT CALLICOON NY,-75.0574167,41.75675,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01427510
+1428000,TENMILE RIVER AT TUSTEN NY,-75.0144444,41.56388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01428000
+1428500,DELAWARE R ABOVE LACKAWAXEN R NEAR BARRYVILLE NY,-74.9860556,41.50875,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01428500
+1432805,DELAWARE RIVER AT POND EDDY NY,-74.8193318,41.4389808,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01432805
+1432160,DELAWARE RIVER AT BARRYVILLE NY,-74.91238898,41.47536824,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01432160
+1432900,MONGAUP RIVER AT MONGAUP VALLEY NY,-74.7805556,41.66805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01432900
+1433500,MONGAUP RIVER NEAR MONGAUP NY,-74.75877778,41.4612222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01433500
+1434000,DELAWARE RIVER AT PORT JERVIS NY,-74.6975,41.37055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01434000
+1434017,EAST BRANCH NEVERSINK RIVER NEAR CLARYVILLE NY,-74.54027778,41.92527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01434017
+1434025,BISCUIT BK ABOVE PIGEON BK AT FROST VALLEY NY,-74.5002222,41.9960833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01434025
+1434498,WEST BRANCH NEVERSINK RIVER AT CLARYVILLE NY,-74.5747222,41.92027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01434498
+1435000,NEVERSINK RIVER NEAR CLARYVILLE NY,-74.59,41.89,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01435000
+1436000,NEVERSINK RIVER AT NEVERSINK NY,-74.6355556,41.82,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01436000
+1436690,NEVERSINK RIVER AT BRIDGEVILLE NY,-74.61688889,41.63805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01436690
+1437500,NEVERSINK RIVER AT GODEFFROY NY,-74.6019444,41.4411111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01437500
+1500000,OULEOUT CREEK AT EAST SIDNEY NY,-75.235,42.3333333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01500000
+1500500,SUSQUEHANNA RIVER AT UNADILLA NY,-75.3166667,42.32138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01500500
+1502500,UNADILLA RIVER AT ROCKDALE NY,-75.4061111,42.37777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01502500
+1502632,SUSQUEHANNA RIVER AT BAINBRIDGE NY,-75.47638889,42.29138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01502632
+1502731,SUSQUEHANNA RIVER AT WINDSOR NY,-75.63777778,42.0747222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01502731
+1503000,SUSQUEHANNA RIVER AT CONKLIN NY,-75.8030556,42.03527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01503000
+1503500,SUSQUEHANNA RIVER AT BINGHAMTON NY,-75.9147222,42.0925,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01503500
+1505000,CHENANGO RIVER AT SHERBURNE NY,-75.5105556,42.6786111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01505000
+1505810,CHENANGO RIVER AT OXFORD NY,-75.59638889,42.44166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01505810
+1507000,CHENANGO RIVER AT GREENE NY,-75.77138889,42.32444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01507000
+1509000,TIOUGHNIOGA RIVER AT CORTLAND NY,-76.1594444,42.60277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01509000
+1509520,TIOUGHNIOGA RIVER AT LISLE NY,-75.9991667,42.34944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01509520
+1510000,OTSELIC RIVER AT CINCINNATUS NY,-75.8997222,42.5411111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01510000
+1511500,TIOUGHNIOGA RIVER AT ITASKA NY,-75.90888889,42.29805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01511500
+1512500,CHENANGO RIVER NEAR CHENANGO FORKS NY,-75.8483333,42.21805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01512500
+1513500,SUSQUEHANNA RIVER AT VESTAL NY,-76.0561111,42.0908333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01513500
+1513831,SUSQUEHANNA RIVER AT OWEGO NY,-76.26638889,42.0972222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01513831
+1514000,OWEGO CREEK NEAR OWEGO NY,-76.2705556,42.12916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01514000
+1515000,SUSQUEHANNA RIVER NEAR WAVERLY NY,-76.5011111,41.9847222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01515000
+1520500,TIOGA RIVER AT LINDLEY NY,-77.1322222,42.0286111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01520500
+1521500,CANISTEO RIVER AT ARKPORT NY,-77.71138889,42.3958333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01521500
+1523500,CANACADEA CREEK NEAR HORNELL NY,-77.6830556,42.3347222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01523500
+1524500,CANISTEO RIVER BELOW CANACADEA CREEK AT HORNELL NY,-77.6511111,42.31388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01524500
+1525500,CANISTEO RIVER AT WEST CAMERON NY,-77.41777778,42.2222222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01525500
+1525981,TUSCARORA CREEK ABOVE SOUTH ADDISON NY,-77.29888889,42.0722222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01525981
+1526500,TIOGA RIVER NEAR ERWINS NY,-77.1291667,42.1211111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01526500
+1527500,COHOCTON RIVER AT AVOCA NY,-77.4175,42.39777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01527500
+1528320,COHOCTON RIVER AT BATH NY,-77.34388889,42.3433333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01528320
+1529500,COHOCTON RIVER NEAR CAMPBELL NY,-77.2166667,42.2525,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01529500
+1529950,CHEMUNG RIVER AT CORNING NY,-77.0575,42.14638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01529950
+1530332,CHEMUNG RIVER AT ELMIRA NY,-76.8011111,42.08638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01530332
+1531000,CHEMUNG RIVER AT CHEMUNG NY,-76.6347222,42.0022222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01531000
+3010820,ALLEGHENY RIVER AT OLEAN NY,-78.4511111,42.07305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=03010820
+3011020,ALLEGHENY RIVER AT SALAMANCA NY,-78.7152778,42.15638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=03011020
+3014500,CHADAKOIN RIVER AT FALCONER NY,-79.20388889,42.1125,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=03014500
+4213319,CHAUTAUQUA CREEK BELOW WESTFIELD NY,-79.5899167,42.33080556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04213319
+4213376,CANADAWAY CREEK AT FREDONIA NY,-79.3504444,42.45063889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04213376
+4213394,SILVER CREEK AT US ROUTE 20 AT SILVER CREEK NY,-79.1646667,42.54391667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04213394
+4213401,WALNUT CREEK AT US ROUTE 20 AT SILVER CREEK NY,-79.1692066,42.5383917,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04213401
+4213500,CATTARAUGUS CREEK AT GOWANDA NY,-78.9341667,42.4633333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04213500
+4214060,BIG SISTER CREEK AT EVANS CENTER NY,-79.0355556,42.65666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04214060
+421422210,EIGHTEENMILE CREEK AT HAMBURG NY,-78.84925,42.70655556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0421422210
+4214231,S BR EIGHTEENMILE CR AT BLEY RD AT EDEN VALLEY,-78.8786944,42.68027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04214231
+4214500,BUFFALO CREEK AT GARDENVILLE NY,-78.755,42.8547222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04214500
+4215000,CAYUGA CREEK NEAR LANCASTER NY,-78.645,42.89,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04215000
+4215500,CAZENOVIA CREEK AT EBENEZER NY,-78.775,42.8297222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04215500
+4216418,TONAWANDA CREEK AT ATTICA NY,-78.2836111,42.86388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04216418
+4217000,TONAWANDA CREEK AT BATAVIA NY,-78.1886111,42.9975,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04217000
+4218000,TONAWANDA CREEK AT RAPIDS NY,-78.6361111,43.09305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04218000
+4218518,ELLICOTT CREEK BELOW WILLIAMSVILLE NY,-78.7636111,42.97777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04218518
+4219000,ERIE (BARGE) CANAL AT LOCK 30 AT MACEDON NY,-77.2969722,43.07177778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04219000
+4219768,EIGHTEENMILE CREEK AT BURT NY,-78.7154167,43.31380556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04219768
+4220045,OAK ORCHARD CREEK NEAR SHELBY NY,-78.38638889,43.17430556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04220045
+422016550,OAK ORCHARD CREEK NEAR KENYONVILLE NY,-78.3102734,43.301169,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0422016550
+4220223,SANDY CREEK AT NORTH HAMLIN NY,-77.9152222,43.3390833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04220223
+422026250,NORTHRUP CREEK AT NORTH GREECE NY,-77.7422222,43.2536111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0422026250
+4221000,GENESEE RIVER AT WELLSVILLE NY,-77.9572222,42.1222222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04221000
+4223000,GENESEE RIVER AT PORTAGEVILLE NY,-78.0422222,42.57027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04223000
+4224775,CANASERAGA CREEK ABOVE DANSVILLE NY,-77.7041667,42.53555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04224775
+4226000,KESHEQUA CR AT CRAIG COLONY AT SONYEA NY,-77.8286944,42.6824722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04226000
+4227000,CANASERAGA CREEK AT SHAKERS CROSSING NY,-77.8405556,42.73694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04227000
+4227500,GENESEE RIVER NEAR MOUNT MORRIS NY,-77.83888889,42.76666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04227500
+4227995,CONESUS CREEK NEAR LAKEVILLE NY,-77.71527778,42.85388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04227995
+4228500,GENESEE RIVER AT AVON NY,-77.7572222,42.91777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04228500
+4229500,HONEOYE CREEK AT HONEOYE FALLS NY,-77.58888889,42.9572222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04229500
+4230380,OATKA CREEK AT WARSAW NY,-78.1375,42.74416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04230380
+4230500,OATKA CREEK AT GARBUTT NY,-77.79138889,43.01,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04230500
+4230650,GENESEE R AT BALLANTYNE BRIDGE NEAR MORTIMER NY,-77.68027778,43.0922222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04230650
+4231000,BLACK CREEK AT CHURCHVILLE NY,-77.8822222,43.10055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04231000
+4231600,"GENESEE RIVER AT FORD STREET BRIDGE, ROCHESTER NY",-77.6163056,43.1417222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04231600
+4232034,IRONDEQUOIT CR AT RAILROAD MILLS NEAR FISHERS NY,-77.4780556,43.02777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04232034
+4232050,ALLEN CREEK NEAR ROCHESTER NY,-77.5186111,43.13027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04232050
+423205010,IRONDEQUOIT CR ABOVE BLOSSOM RD NEAR ROCHESTER NY,-77.5119444,43.145,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0423205010
+4232076,SODUS CREEK AT NORTH ROSE NY,-76.9121857,43.19145438,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04232076
+4232100,STERLING CREEK AT STERLING NY,-76.6472222,43.32527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04232100
+4232482,KEUKA LAKE OUTLET AT DRESDEN NY,-76.95388889,42.68027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04232482
+4232730,SENECA RIVER NEAR SENECA FALLS NY,-76.7611111,42.93888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04232730
+4233255,CAYUGA INLET AT ITHACA NY,-76.5216667,42.4272222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04233255
+4233286,SIXMILE CREEK AT BROOKTONDALE NY,-76.3944444,42.38138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04233286
+4233300,SIXMILE CREEK AT BETHEL GROVE NY,-76.435,42.40305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04233300
+4234000,FALL CREEK NEAR ITHACA NY,-76.47277778,42.4533333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04234000
+423401815,SALMON CREEK NEAR LUDLOWVILLE NY,-76.5338333,42.5526111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0423401815
+423406130,SENECA RIVER AT FREE BRIDGE CORNERS NY,-76.7368961,42.96292674,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=0423406130
+4234254,GANARGUA CREEK AT MACEDON NY,-77.2982222,43.0674722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04234254
+4235000,CANANDAIGUA OUTLET AT CHAPIN NY,-77.23277778,42.91805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04235000
+4235250,FLINT CREEK AT PHELPS NY,-77.0680556,42.95777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04235250
+4235299,OWASCO INLET BELOW AURORA STREET AT MORAVIA NY,-76.434,42.7115833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04235299
+4235440,"OWASCO OUTLET AT GENESEE ST., AUBURN NY",-76.565,42.9322222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04235440
+4235600,SENECA RIVER (ERIE CANAL) NEAR PORT BYRON NY,-76.6455556,43.0786111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04235600
+4236800,SKANEATELES CREEK NEAR SKANEATELES JUNCTION NY,-76.47225,43.01488889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04236800
+4237020,SENECA R (BARGE CANAL) AT CROSS LAKE NR JORDAN NY,-76.4981667,43.10013889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04237020
+4237411,"SENECA RIVER, MOUTH OF STATE DITCH, NR JORDAN NY",-76.4388249,43.11506688,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04237411
+4237496,SENECA RIVER NEAR BALDWINSVILLE NY,-76.3626944,43.1623333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04237496
+4239000,"ONONDAGA CREEK AT DORWIN AVENUE, SYRACUSE NY",-76.1508333,42.9833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04239000
+4240010,"ONONDAGA CREEK AT SPENCER STREET, SYRACUSE NY",-76.1625,43.0575,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04240010
+4240100,HARBOR BROOK AT SYRACUSE NY,-76.1816667,43.0358333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04240100
+4240105,"HARBOR BROOK AT HIAWATHA BOULEVARD, SYRACUSE NY",-76.185,43.0561111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04240105
+4240120,"LEY CREEK AT PARK STREET, SYRACUSE NY",-76.17027778,43.0772222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04240120
+4240300,NINEMILE CREEK AT LAKELAND NY,-76.22638889,43.0808333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04240300
+4242500,EAST BRANCH FISH CREEK AT TABERG NY,-75.6214722,43.3011111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04242500
+4242640,FISH CREEK AT BECKS GROVE NY,-75.61302778,43.25825,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04242640
+4243500,ONEIDA CREEK AT ONEIDA NY,-75.6394167,43.09755556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04243500
+4243783,COWASELON CREEK AT STATE ROUTE 13 AT CANASTOTA NY,-75.7512222,43.0956111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04243783
+4244000,CHITTENANGO CREEK NEAR CHITTENANGO NY,-75.8586111,43.02305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04244000
+4245840,SCRIBA CREEK NEAR CONSTANTIA NY,-76.00277778,43.2597222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04245840
+4247000,ONEIDA RIVER NEAR EUCLID NY,-76.21777778,43.205,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04247000
+4247055,OSWEGO RIVER NEAR PHOENIX NY,-76.2871111,43.21116667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04247055
+4249000,"OSWEGO RIVER AT LOCK 7, OSWEGO NY",-76.50527778,43.45166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04249000
+4249200,NORTH BRANCH SALMON RIVER AT REDFIELD NY,-75.81388889,43.5422222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04249200
+4250200,SALMON RIVER AT PINEVILLE NY,-76.0376944,43.53119444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04250200
+4250750,SANDY CREEK NEAR ADAMS NY,-76.0747222,43.8133333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04250750
+4252500,BLACK RIVER NEAR BOONVILLE NY,-75.3066667,43.51166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04252500
+4253296,BUCK CREEK NEAR INLET NY,-74.7218348,43.7439541,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04253296
+4254500,MOOSE RIVER AT MCKEEVER NY,-75.1105556,43.61027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04254500
+4256000,INDEPENDENCE RIVER AT DONNATTSBURG NY,-75.3334444,43.74680556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04256000
+4258000,BEAVER RIVER AT CROGHAN NY,-75.4041667,43.8972222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04258000
+4260500,BLACK RIVER AT WATERTOWN NY,-75.9247222,43.98555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04260500
+4262000,OSWEGATCHIE RIVER NEAR OSWEGATCHIE NY,-75.0744444,44.2225,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04262000
+4262500,WEST BRANCH OSWEGATCHIE RIVER NEAR HARRISVILLE NY,-75.3308333,44.18555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04262500
+4263000,OSWEGATCHIE RIVER NEAR HEUVELTON NY,-75.37888889,44.5994444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04263000
+4265432,GRASS RIVER AT CHASE MILLS NY,-75.0780556,44.84666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04265432
+4266500,RAQUETTE RIVER AT PIERCEFIELD NY,-74.5719444,44.2347222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04266500
+4267500,RAQUETTE RIVER AT SOUTH COLTON NY,-74.8836111,44.5098333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04267500
+4268000,RAQUETTE RIVER AT RAYMONDVILLE NY,-74.97888889,44.83888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04268000
+4268800,WEST BRANCH ST. REGIS RIVER NEAR PARISHVILLE NY,-74.7372222,44.5986111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04268800
+4269000,ST. REGIS RIVER AT BRASHER CENTER NY,-74.77888889,44.8636111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04269000
+4270200,LITTLE SALMON RIVER AT BOMBAY NY,-74.5569444,44.94,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04270200
+4271500,GREAT CHAZY RIVER AT PERRY MILLS NY,-73.5008333,45,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04271500
+4271815,LITTLE CHAZY RIVER NEAR CHAZY NY,-73.415,44.9022222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04271815
+4273500,SARANAC RIVER AT PLATTSBURGH NY,-73.4711111,44.68166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04273500
+4273700,SALMON RIVER AT SOUTH PLATTSBURGH NY,-73.4947222,44.64,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04273700
+4273800,LITTLE AUSABLE RIVER NEAR VALCOUR NY,-73.4961111,44.59416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04273800
+4275000,EAST BRANCH AUSABLE RIVER AT AU SABLE FORKS NY,-73.6809722,44.43738889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04275000
+4275500,AUSABLE RIVER NEAR AU SABLE FORKS NY,-73.6425,44.45138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04275500
+4276500,BOUQUET RIVER AT WILLSBORO NY,-73.3944444,44.3583333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04276500
+4276842,PUTNAM CREEK EAST OF CROWN POINT CENTER NY,-73.4636111,43.9425,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04276842
+4279000,LA CHUTE AT TICONDEROGA NY,-73.43188889,43.84402778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04279000
+4279001,LA CHUTE (TAILRACE) AT TICONDEROGA NY,-73.4317222,43.8440833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04279001
+4280450,METTAWEE RIVER NEAR MIDDLE GRANVILLE NY,-73.2841667,43.46388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=04280450
+424129077495501,"NY-SW4 ALFRED FARMS EDGE OF FIELD, SONYEA NY",-77.8320278,42.69138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=424129077495501
+424129077495502,"NY-TL2 ALFRED TILE EDGE OF FIELD, SONYEA",-77.83188889,42.6913611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=424129077495502
+424131077495801,"NY-SW3 ALFRED FARMS EDGE OF FIELD, SONYEA NY",-77.83263889,42.6918333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=424131077495801
+424131077495802,"NY-TL1 ALFRED TILE EDGE OF FIELD, SONYEA NY",-77.8324722,42.6918333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=424131077495802
+424421077495301,"NY-SW1 MERRIMAC FARMS EDGE OF FIELD, E GROVELAND",-77.8312944,42.7392861,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=424421077495301
+424428077495401,"NY-SW2 MERRIMAC FARMS EDGE OF FIELD, E GROVELAND",-77.8316667,42.7409611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=424428077495401
+425520078535601,"MANHOLE, DELEVAN ST, 110 FT WEST OF NIAGARA ST",-78.8988333,42.92227778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=425520078535601

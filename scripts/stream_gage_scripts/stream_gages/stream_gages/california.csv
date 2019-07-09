@@ -1,0 +1,499 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+9423350,CARUTHERS C NR IVANPAH CA,-115.2988759,35.24498915,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09423350
+9423550,"TOPOCK MARSH INLET NEAR NEEDLES, CA",-114.584964,34.8361156,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09423550
+9423560,"FIREBREAK CANAL AT HAVASU NWR NEAR NEEDLES, CA",-114.5714914,34.8079217,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09423560
+9427500,"LAKE HAVASU NEAR PARKER DAM, AZ-CA",-114.1571702,34.31612564,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09427500
+9427520,"COLORADO RIVER BELOW PARKER DAM, AZ-CA",-114.140225,34.29557035,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09427520
+9429000,"PALO VERDE CANAL NEAR BLYTHE, CA",-114.5118999,33.7319659,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429000
+9429100,"COLORADO RIVER BELOW PALO VERDE DAM, AZ-CA",-114.4980105,33.71946626,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429100
+9429155,"PVID F-CANAL SPILL NEAR BLYTHE, CA",-114.5463436,33.57474765,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429155
+9429180,"PVID D23 SPILL NEAR BLYTHE, CA",-114.6035666,33.4916942,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429180
+9429200,"PVID C CANAL SPILL NEAR BLYTHE, CA",-114.6732907,33.42780713,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429200
+9429495,"IMPERIAL RESERVOIR AT IMPERIAL DAM, AZ-CA",-114.4628056,32.88288889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429495
+9429500,"COLORADO RIVER BELOW IMPERIAL DAM, AZ-CA",-114.472111,32.86758333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429500
+9429600,"COLORADO RIVER BELOW LAGUNA DAM, AZ-CA",-114.5149494,32.8122666,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09429600
+9522500,"GILA GRAVITY MAIN CANAL AT IMPERIAL DAM, AZ-CA",-114.455781,32.87615405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09522500
+9523000,"ALL-AMERICAN CANAL NR IMPERIAL DAM, CA-AZ",-114.480504,32.8714319,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09523000
+9524700,"YUMA MAIN CANAL ABOVE WASTEWAY NR WINTERHAVEN, CA",-114.6230556,32.73408333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09524700
+9526200,"YPSILANTI CANAL NEAR WINTERHAVEN, CA",-114.6555093,32.76837927,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09526200
+9527590,COACHELLA CANAL ABOVE ALL-AMERICAN CANAL DIVERSION,-114.9438889,32.71416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09527590
+9527594,"COACHELLA CANAL NEAR NILAND, CA",-115.4511667,33.2562222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09527594
+9527597,"COACHELLA CANAL NEAR DESERT BEACH, CA",-115.9186083,33.53808109,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09527597
+9527630,"BROCK RESERVOIR INLET NEAR CALEXICO, CA",-115.0254425,32.7094932,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09527630
+9527660,"BROCK RESERVOIR OUTLET NEAR CALEXICO, CA",-115.0344429,32.70557669,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09527660
+9527700,ALL-AMERICAN CANAL BELOW DROP 2 RESERVOIR OUTLET,-115.0481139,32.70425,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09527700
+9530500,"DRAIN 8-B NEAR WINTERHAVEN, CA",-114.6943992,32.74615776,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=09530500
+10251290,"BOREHOLE SPG CHANNEL NR TECOPA HOT SPGS, CA",-116.23425,35.88569444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10251290
+10251300,"AMARGOSA RV AT TECOPA, CA",-116.2308333,35.84944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10251300
+10251330,"AMARGOSA RV ABV CHINA RANCH WASH NR TECOPA, CA",-116.2076389,35.79052778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10251330
+10251335,"WILLOW CK AT CHINA RANCH, CA",-116.1944167,35.80094444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10251335
+10254050,SALT C NR MECCA,-115.8433289,33.44697395,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10254050
+10254730,ALAMO R NR NILAND CA,-115.5969343,33.19892768,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10254730
+10254970,NEW R AT INTERNATIONAL BOUNDARY AT CALEXICO CA,-115.5030501,32.6658925,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10254970
+10255550,NEW R NR WESTMORLAND CA,-115.6644382,33.10476565,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10255550
+10255810,BORREGO PALM C NR BORREGO SPRINGS CA,-116.4305556,33.27916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10255810
+10255890,EF WHITEWATER R DIV NR BANNING CA,-116.808361,34.0628333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10255890
+10255895,SF WHITEWATER R NR BANNING CA,-116.819111,34.0623333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10255895
+10255897,SF WHITEWATER R DIV NR BANNING CA,-116.818861,34.06194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10255897
+10256500,SNOW C NR WHITE WATER CA,-116.681127,33.8705722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10256500
+10257500,FALLS C NR WHITE WATER CA,-116.6716824,33.86946114,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10257500
+10257548,WHITEWATER R A WINDY POINT MAIN CHANNEL CA,-116.6211256,33.8989045,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10257548
+10257549,WHITEWATER R A WINDY POINT OVERFLOW CHANNEL CA,-116.6211256,33.8989045,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10257549
+10257600,MISSION C NR DESERT HOT SPRINGS CA,-116.6280689,34.01112284,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10257600
+10257720,CHINO CYN C BL TRAMWAY NR PALM SPRINGS CA,-116.6052929,33.8441843,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10257720
+10258000,TAHQUITZ C NR PALM SPRINGS CA,-116.5591816,33.80501929,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10258000
+10258500,PALM CYN C NR PALM SPRINGS CA,-116.5355709,33.74502178,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10258500
+10258700,MURRAY CYN C NR PALM SPRINGS CA,-116.5444444,33.75277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10258700
+10259000,ANDREAS C NR PALM SPRINGS CA,-116.5500155,33.7600211,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10259000
+10259050,PALM CYN WASH NR CATHEDRAL CITY CA,-116.481958,33.79724196,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10259050
+10259100,WHITEWATER R A RANCHO MIRAGE CA,-116.4227903,33.749466,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10259100
+10259200,DEEP C NR PALM DESERT CA,-116.3922342,33.63113647,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10259200
+10259300,WHITEWATER R A INDIO CA,-116.236118,33.7372434,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10259300
+10259540,WHITEWATER R NR MECCA,-116.0775023,33.52474915,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10259540
+10260500,DEEP C NR HESPERIA CA,-117.2264316,34.34305858,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10260500
+10260855,GRASS VALLEY LK TUNNEL OUTLET A LAKE ARROWHEAD CA,-117.2044444,34.26,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10260855
+10260950,WF MOJAVE R AB MOJAVE R FORKS RES NR HESPERIA CA,-117.2578213,34.33889196,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10260950
+10261500,MOJAVE R A LO NARROWS NR VICTORVILLE CA,-117.3206018,34.57304916,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10261500
+10262500,MOJAVE R A BARSTOW CA,-117.022818,34.90692668,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10262500
+10263000,MOJAVE R A AFTON CA,-116.3841887,35.03720565,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10263000
+10263500,BIG ROCK C NR VALYERMO CA,-117.8395072,34.42083115,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10263500
+10265100,DEADMAN C A BIG SPRINGS NR CRESTVIEW CA,-118.9394444,37.75027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10265100
+10265150,HOT C A FLUME NR MAMMOTH LAKES CA,-118.8176312,37.66882166,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10265150
+10293000,"E WALKER RV NR BRIDGEPORT, CA",-119.2148759,38.3276958,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10293000
+10296000,"W WALKER RV BLW L WALKER RV NR COLEVILLE, CA",-119.4501649,38.3796366,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10296000
+10296500,"W WALKER RV NR COLEVILLE, CA",-119.4498872,38.51324495,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10296500
+10297010,"TOPAZ CANAL BLW TOPAZ LAKE NR TOPAZ, CA",-119.5080556,38.69555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10297010
+10308200,E FK CARSON RV BLW MARKLEEVILLE CK NR MARKLEEVILLE,-119.7648985,38.7146274,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308200
+10308783,LEVIATHAN C AB MINE NR MARKLEEVILLE CA,-119.6565614,38.7012952,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308783
+10308784,LEVIATHAN MINE ADIT DRAIN NR MARKLEEVILLE CA,-119.6587837,38.70407294,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308784
+10308785,LEVIATHAN MINE PIT FLOW NR MARKLEEVILLE CA,-119.6587837,38.70407294,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308785
+103087853,LEVIATHAN MINE POND 1 NR MARKLEEVILLE CA,-119.6590615,38.70407294,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=103087853
+10308789,LEVIATHAN C AB ASPEN C NR MARKLEEVILLE CA,-119.6601726,38.7168505,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308789
+10308792,LEVIATHAN C AB MOUNTAINEER C NR MARKLEEVILLE CA,-119.6454497,38.73573925,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308792
+10308794,BRYANT C BL MOUNTAINEER C NR MARKLEEVILLE CA,-119.6454497,38.73573925,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10308794
+10310000,"W FK CARSON RV AT WOODFORDS, CA",-119.833789,38.76962765,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10310000
+103366092,"UPPER TRUCKEE RV AT HWY 50 ABV MEYERS, CA",-120.0271275,38.8485185,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=103366092
+10336610,"UPPER TRUCKEE RV AT SOUTH LAKE TAHOE, CA",-119.9915706,38.9224078,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10336610
+10336645,GENERAL C NR MEEKS BAY CA,-120.1185209,39.05185197,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10336645
+10336660,BLACKWOOD C NR TAHOE CITY CA,-120.1621352,39.10740708,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10336660
+10336674,WARD C BL CONFLUENCE NR TAHOE CITY CA,-120.2121377,39.1407401,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10336674
+10336676,WARD C AT HWY 89 NR TAHOE PINES CA,-120.1576913,39.1321292,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10336676
+10336780,"TROUT CK NR TAHOE VALLEY, CA",-119.9724036,38.9199077,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10336780
+10337000,LAKE TAHOE A TAHOE CITY CA,-120.1193583,39.1807402,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10337000
+10337500,TRUCKEE R A TAHOE CITY CA,-120.1443586,39.16629577,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10337500
+10337810,NF SQUAW C A OLYMPIC VALLEY CA,-120.241111,39.198775,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10337810
+10338000,TRUCKEE R NR TRUCKEE CA,-120.2054752,39.2962952,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10338000
+10338500,DONNER C A DONNER LK NR TRUCKEE CA,-120.2343654,39.3235172,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10338500
+10338700,DONNER C AT HWY 89 NR TRUCKEE CA,-120.2079759,39.32101739,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10338700
+10339410,TRUCKEE R BL MARTIS C NR TRUCKEE CA,-120.1194444,39.35305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10339410
+10340500,PROSSER C BL PROSSER C DAM NR TRUCKEE CA,-120.131587,39.37324026,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10340500
+10341100,PERAZZO C NR SODA SPRINGS CA,-120.3912222,39.4548611,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10341100
+10343000,INDEPENDENCE C NR TRUCKEE CA,-120.2871477,39.4565717,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10343000
+10343500,SAGEHEN C NR TRUCKEE CA,-120.2379793,39.43157246,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10343500
+10344400,LITTLE TRUCKEE R AB BOCA RES NR TRUCKEE CA,-120.084366,39.43574106,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10344400
+10344500,LITTLE TRUCKEE R BL BOCA DAM NR TRUCKEE CA,-120.0954757,39.38685177,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10344500
+10344505,TRUCKEE R A BOCA BRIDGE NR TRUCKEE CA,-120.0876977,39.38518517,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10344505
+10346000,TRUCKEE R A FARAD CA,-120.0340873,39.42796385,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=10346000
+11012500,CAMPO C NR CAMPO CA,-116.525572,32.591172,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11012500
+11014000,JAMUL C NR JAMUL CA,-116.8841893,32.6375566,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11014000
+11015000,SWEETWATER R NR DESCANSO CA,-116.6230747,32.8347737,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11015000
+11016200,SWEETWATER R A DEHESA CA,-116.8502778,32.77416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11016200
+11022200,LOS COCHES C NR LAKESIDE CA,-116.9003035,32.83616156,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11022200
+11022480,SAN DIEGO R A MAST RD NR SANTEE CA,-117.0258627,32.84032675,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11022480
+11023000,SAN DIEGO R A FASHION VALLEY AT SAN DIEGO CA,-117.1686449,32.76504998,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11023000
+11023340,LOS PENASQUITOS C NR POWAY CA,-117.1216999,32.9431013,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11023340
+11025500,SANTA YSABEL C NR RAMONA CA,-116.866137,33.1069866,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11025500
+11027000,GUEJITO C NR SAN PASQUAL CA,-116.9530841,33.1158743,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11027000
+11028500,SANTA MARIA C NR RAMONA CA,-116.9455844,33.0522655,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11028500
+11042000,SAN LUIS REY R A OCEANSIDE CA,-117.3603162,33.21809119,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11042000
+11042400,TEMECULA C NR AGUANGA CA,-116.9236357,33.45919759,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11042400
+11042631,PECHANGA C NR TEMECULA CA,-117.1238889,33.46416667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11042631
+11042700,MURRIETA C NR MURRIETA CA,-117.2314239,33.55558075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11042700
+11042800,WARM SPRINGS C NR MURRIETA CA,-117.1769771,33.53224867,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11042800
+11042900,SANTA GERTRUDIS C NR TEMECULA CA,-117.1647544,33.52447127,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11042900
+11043000,MURRIETA C A TEMECULA CA,-117.1439203,33.47975066,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11043000
+11044000,SANTA MARGARITA R NR TEMECULA CA,-117.1422536,33.4739175,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11044000
+11044250,RAINBOW C NR FALLBROOK CA,-117.200867,33.40753006,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11044250
+11044300,SANTA MARGARITA R A FPUD SUMP NR FALLBROOK CA,-117.2411462,33.41364059,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11044300
+11044350,SANDIA C NR FALLBROOK CA,-117.249202,33.42447348,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11044350
+11044800,DE LUZ C NR DE LUZ CA,-117.3217044,33.4197511,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11044800
+11045300,FALLBROOK C NR FALLBROOK CA,-117.3178152,33.34697584,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11045300
+11045600,ONEILL LAKE OUTLET CH NR FALLBROOK CA,-117.3255931,33.3250321,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11045600
+11045700,ONEILL LK SPILL CH NR FALLBROOK CA,-117.3272599,33.32892087,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11045700
+11046000,SANTA MARGARITA R A YSIDORA CA,-117.3472604,33.3111436,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11046000
+11046050,SANTA MARGARITA R A MOUTH NR OCEANSIDE CA,-117.3953056,33.23780556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11046050
+11046100,LAS FLORES C NR OCEANSIDE CA,-117.4530556,33.2936111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11046100
+11046300,SAN MATEO C NR SAN CLEMENTE CA,-117.4730986,33.47085987,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11046300
+11046360,CRISTIANITOS C AB SAN MATEO C NR SAN CLEMENTE CA,-117.5703242,33.42641717,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11046360
+11046530,SAN JUAN C AT LA NOVIA ST BR AT SAN JUAN CAPIS CA,-117.6481058,33.5025264,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11046530
+11047300,ARROYO TRABUCO A SAN JUAN CAPISTRANO CA,-117.6658843,33.49835999,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11047300
+11048200,AGUA CHINON WASH NR IRVINE CA,-117.6954167,33.6870833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11048200
+11048600,BONITA C A IRVINE CA,-117.8611673,33.64502095,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11048600
+11051499,SANTA ANA R NR MENTONE (RIVER ONLY) CA,-117.1005911,34.10834489,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11051499
+11051502,SAR SUPP GAGE NR MENTONE CA,-117.1005911,34.10834489,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11051502
+11055500,PLUNGE C NR EAST HIGHLANDS CA,-117.141704,34.11834458,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11055500
+11055800,CITY C NR HIGHLAND CA,-117.1886507,34.1438992,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11055800
+11057500,SAN TIMOTEO C NR LOMA LINDA CA,-117.2675419,34.0614024,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11057500
+11058000,SAND CANYON C NR HIGHLAND CA,-117.2266667,34.1547222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11058000
+11058500,E TWIN C NR ARROWHEAD SPRINGS CA,-117.2655982,34.17917556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11058500
+11058600,WATERMAN CANYON CREEK NR ARROWHEAD SPRINGS CA,-117.2722222,34.1858333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11058600
+11059300,SANTA ANA R A E ST NR SAN BERNARDINO CA,-117.3003208,34.0650131,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11059300
+11060400,WARM C NR SAN BERNARDINO CA,-117.3003209,34.07834596,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11060400
+11062000,LYTLE C NR FONTANA CA,-117.458105,34.2122298,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11062000
+11062399,FONTANA WATER CO SURFACE DIV WEIR 2 NR FONTANA CA,-117.4494936,34.20278567,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11062399
+11062400,FONTANA WATER CO SURFACE DIV NR FONTANA CA,-117.4494936,34.20306344,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11062400
+11062450,FONTANA PH FOREBAY SPILLWAY NR FONTANA CA,-117.4492158,34.20278567,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11062450
+11062800,FONTANA WATER CO SPILL CH FROM AFTERBAY NR FONTANA,-117.3956025,34.155565,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11062800
+11063510,CAJON C BL LONE PINE C NR KEENBROOK CA,-117.4669944,34.2633392,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11063510
+11063680,DEVIL CYN C NR SAN BERNARDINO CA,-117.331434,34.20834107,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11063680
+11065000,LYTLE C A COLTON CA,-117.3055989,34.07890146,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11065000
+11066320,RIX OUTFLOW A SANTA ANA R NR GRAND TERRACE CA,-117.3545694,34.0413861,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11066320
+11066460,SANTA ANA R A MWD CROSSING CA,-117.4483806,33.96862566,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11066460
+11069500,SAN JACINTO R NR SAN JACINTO,-116.8339098,33.73807629,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11069500
+11070150,SAN JACINTO R AB STATE STREET NR SAN JACINTO CA,-116.973358,33.8214075,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11070150
+11070210,SAN JACINTO R A RAMONA EXPRESSWAY NR LAKEVIEW CA,-117.135866,33.83974065,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11070210
+11070270,PERRIS VALLEY STORM DR A NUEVO RD NR PERRIS CA,-117.2061469,33.80113024,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11070270
+11070365,SAN JACINTO R NR SUN CITY CA,-117.231703,33.74613114,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11070365
+11070465,SALT C A MURRIETA RD NR SUN CITY CA,-117.2055903,33.6941882,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11070465
+11070500,SAN JACINTO R NR ELSINORE CA,-117.293927,33.66418858,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11070500
+11071760,COLDWATER CANYON C NR CORONA CA,-117.4958056,33.75444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11071760
+11071900,TEMESCAL C A CORONA LK NR CORONA CA,-117.4458333,33.75027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11071900
+11072100,TEMESCAL C AB MAIN ST A CORONA CA,-117.5628274,33.8891821,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11072100
+11073300,SAN ANTONIO C A RIVERSIDE DRIVE NR CHINO CA,-117.7306118,34.01862319,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11073300
+11073360,CHINO C A SCHAEFER AVENUE NR CHINO CA,-117.7270006,34.00390144,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11073360
+11073495,CUCAMONGA C NR MIRA LOMA CA,-117.5994966,33.9827912,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11073495
+11074000,SANTA ANA R BL PRADO DAM CA,-117.6453296,33.88334875,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11074000
+11075720,CARBON C BL CARBON CYN DAM CA,-117.8425584,33.91334748,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11075720
+11075800,SANTIAGO C A MODJESKA CA,-117.635605,33.70890848,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11075800
+11077500,SANTIAGO C A SANTA ANA CA,-117.8845014,33.7702946,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11077500
+11078000,SANTA ANA R A SANTA ANA CA,-117.9083906,33.75112815,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11078000
+11085000,SAN GABRIEL R BL SANTA FE DAM NR BALDWIN PK CA,-117.9695092,34.11223019,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11085000
+11087020,SAN GABRIEL R AB WHITTIER NARROWS DAM CA,-118.0381225,34.03417767,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11087020
+11088500,BREA C BL BREA DAM NR FULLERTON CA,-117.9264496,33.88779206,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11088500
+11089500,FULLERTON C BL FULLERTON DAM NR BREA CA,-117.8861706,33.89584765,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11089500
+11092450,LOS ANGELES R A SEPULVEDA DAM CA,-118.466749,34.16167247,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11092450
+11097000,BIG TUJUNGA C BL HANSEN DAM CA,-118.38897,34.25361395,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11097000
+11098000,ARROYO SECO NR PASADENA CA,-118.1775727,34.22222629,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11098000
+11101250,RIO HONDO AB WHITTIER NARROWS DAM CA,-118.0717348,34.05834368,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11101250
+11102300,RIO HONDO BL WHITTIER NARROWS DAM CA,-118.0884018,34.0166788,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11102300
+11109000,SANTA CLARA R NR PIRU CA,-118.739258,34.40360813,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11109000
+11109550,PIRU C AB FRENCHMANS FLAT CA,-118.7484244,34.63082016,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11109550
+11109600,PIRU CREEK ABOVE LAKE PIRU CA,-118.7570362,34.52304728,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11109600
+11109800,PIRU CREEK BELOW SANTA FELICIA DAM CA,-118.7520361,34.4602723,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11109800
+11111500,SESPE CREEK NEAR WHEELER SPRINGS CA,-119.2573347,34.5777657,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11111500
+11113000,SESPE C NR FILLMORE,-118.9273212,34.4416618,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11113000
+11113500,SANTA PAULA C NR SANTA PAULA,-119.0823272,34.4133295,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11113500
+11114495,MATILIJA C NR RES NR MATILIJA HOT SPRINGS CA,-119.3573393,34.5027693,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11114495
+11118500,VENTURA R NR VENTURA,-119.3084466,34.35222038,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11118500
+11119500,CARPINTERIA C NR CARPINTERIA CA,-119.4865103,34.4013836,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11119500
+11119745,MISSION C A ROCKY NOOK PARK A SANTA BARBARA CA,-119.7118027,34.44055266,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11119745
+11119750,MISSION C NR MISSION ST NR SANTA BARBARA CA,-119.7252778,34.4275,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11119750
+11119940,MARIA YGNACIO C A UNIVERSITY DRIVE NR GOLETA CA,-119.80375,34.4449965,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11119940
+11120000,ATASCADERO C NR GOLETA CA,-119.811805,34.4247189,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11120000
+11120500,SAN JOSE C NR GOLETA CA,-119.8090283,34.45916286,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11120500
+11120520,SAN PEDRO C A GOLETA CA,-119.8402778,34.4486111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11120520
+11121900,GIBRALTAR DAM DIV WEIR A GIBRALTAR DAM CA,-119.68708,34.5241613,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11121900
+11122010,GIBRALTAR DAM RELEASE WEIR A GIBRALTAR DAM CA,-119.6873579,34.52416133,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11122010
+11123000,SANTA YNEZ R BL GIBRALTAR DAM NR SANTA BARBARA CA,-119.6873579,34.5244391,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11123000
+11123500,SANTA YNEZ R BL LOS LAURLS CYN NR SNTA YNEZ CA,-119.8648627,34.54360358,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11123500
+11124500,SANTA CRUZ C NR SANTA YNEZ CA,-119.9087519,34.5966563,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11124500
+11125600,HILTON CYN C NR SANTA YNEZ CA,-119.9826419,34.58221109,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11125600
+11125605,HILTON CYN C 0.25 MI BL BRADBURY DAM NR SANTA YNEZ,-119.985,34.58388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11125605
+11126000,SANTA YNEZ R NR SANTA YNEZ CA,-119.9887532,34.5891552,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11126000
+11128250,ALAMO PINTADO C NR SOLVANG CA,-120.120703,34.61831975,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11128250
+11128500,SANTA YNEZ R A SOLVANG CA,-120.1445926,34.58498706,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11128500
+11129800,ZACA C NR BUELLTON CA,-120.1843172,34.64859614,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11129800
+11132500,SALSIPUEDES C NR LOMPOC CA,-120.4084938,34.5885957,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11132500
+11133000,SANTA YNEZ R A NARROWS NR LOMPOC CA,-120.424606,34.63609474,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11133000
+11134000,SANTA YNEZ R A H ST NR LOMPOC CA,-120.4579411,34.6683162,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11134000
+11135800,SAN ANTONIO C A LOS ALAMOS CA,-120.2709888,34.74331534,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11135800
+11136040,HARRIS CANYON C NR ORCUTT CA,-120.4316667,34.77777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11136040
+11136100,SAN ANTONIO C NR CASMALIA CA,-120.530167,34.78220307,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11136100
+11136600,SANTA BARBARA CYN C NR VENTUCOPA CA,-119.5620708,34.81664656,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11136600
+11136800,CUYAMA R BL BUCKHORN CYN NR SANTA MARIA CA,-120.2284868,35.0219213,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11136800
+11137900,HUASNA R NR ARROYO GRANDE CA,-120.3718267,35.07775398,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11137900
+11138500,SISQUOC R NR SISQUOC CA,-120.1682063,34.83970289,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11138500
+11140000,SISQUOC R NR GAREY,-120.3065463,34.89386807,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11140000
+11140585,SANTA MARIA R A SUEY CROSSING NR SANTA MARIA CA,-120.404051,34.96831117,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11140585
+11141050,ORCUTT C NR ORCUTT CA,-120.4948883,34.88359037,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11141050
+11141280,LOPEZ C NR ARROYO GRANDE CA,-120.4723857,35.23553035,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11141280
+11143000,BIG SUR R NR BIG SUR CA,-121.7732872,36.24579648,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11143000
+11143200,CARMEL R A ROBLES DEL RIO CA,-121.7288364,36.47440615,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11143200
+11143250,CARMEL R NR CARMEL CA,-121.8805084,36.5391278,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11143250
+11147500,SALINAS R A PASO ROBLES CA,-120.6843373,35.6285813,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11147500
+11148500,ESTRELLA R NR ESTRELLA CA,-120.6401683,35.71719096,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11148500
+11148900,NACIMIENTO R BL SAPAQUE C NR BRYSON CA,-121.0938048,35.78857918,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11148900
+11149400,NACIMIENTO R BL NACIMIENTO DAM NR BRADLEY CA,-120.855458,35.76135678,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11149400
+11149900,SAN ANTONIO R NR LOCKWOOD CA,-121.0882491,35.89663404,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11149900
+11150500,SALINAS R NR BRADLEY CA,-120.8687915,35.9302434,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11150500
+11151300,SAN LORENZO C BL BITTERWATER C NR KING CITY CA,-121.066303,36.26802087,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11151300
+11151700,SALINAS R A SOLEDAD CA,-121.3193738,36.411076,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11151700
+11151870,ARROYO SECO NR GREENFIELD CA,-121.4816027,36.23746164,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11151870
+11152000,ARROYO SECO NR SOLEDAD CA,-121.3227063,36.28052076,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11152000
+11152050,ARROYO SECO BL RELIZ C NR SOLEDAD CA,-121.3240962,36.39968708,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11152050
+11152300,SALINAS R NR CHUALAR CA,-121.5493856,36.55357267,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11152300
+11152500,SALINAS R NR SPRECKELS CA,-121.672446,36.631071,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11152500
+11152650,RECLAMATION DITCH NR SALINAS CA,-121.7049475,36.7049586,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11152650
+11153000,PACHECO C NR DUNNEVILLE CA,-121.3802778,36.98,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11153000
+11153650,LLAGAS C NR GILROY,-121.5271622,36.98744858,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11153650
+11156500,SAN BENITO R NR WILLOW CREEK SCHOOL CA,-121.2029797,36.60940609,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11156500
+11157500,TRES PINOS C NR TRES PINOS CA,-121.2996532,36.76579177,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11157500
+11158600,SAN BENITO R A HWY 156 NR HOLLISTER CA,-121.4299368,36.85189909,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11158600
+11159000,PAJARO R A CHITTENDEN CA,-121.5977215,36.9002307,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11159000
+11159200,CORRALITOS C A FREEDOM CA,-121.7705065,36.9393968,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11159200
+11159500,PAJARO R A WATSONVILLE CA,-121.7518889,36.9056111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11159500
+11160000,SOQUEL C A SOQUEL CA,-121.9557933,36.9913389,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11160000
+11160500,SAN LORENZO R A BIG TREES CA,-122.072464,37.0443931,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11160500
+11161000,SAN LORENZO R A SANTA CRUZ CA,-122.0319076,36.9907832,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11161000
+11162500,PESCADERO C NR PESCADERO CA,-122.3288602,37.26077707,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11162500
+11162570,SAN GREGORIO C A SAN GREGORIO CA,-122.3866404,37.3257762,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11162570
+11162620,PILARCITOS C BL STONE DAM NR HILLSBOROUGH CA,-122.3994177,37.52466087,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11162620
+11162630,PILARCITOS C A HALF MOON BAY CA,-122.434142,37.46660747,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11162630
+11162753,SAN MATEO C BL LO CRYSTAL SP RES NR SAN MATEO CA,-122.3583333,37.52944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11162753
+11164500,SAN FRANCISQUITO C A STANFORD UNIVERSITY CA,-122.1894095,37.42327257,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11164500
+11169025,GUADALUPE R ABV HWY 101 A SAN JOSE CA,-121.9330129,37.3738296,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11169025
+11169500,SARATOGA C A SARATOGA CA,-122.039404,37.25438808,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11169500
+11169800,COYOTE C NR GILROY CA,-121.4943832,37.07772286,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11169800
+11169860,COYOTE C BL COYOTE RES NR SAN MARTIN CA,-121.5527193,37.1229999,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11169860
+11172175,COYOTE C AB HWY 237 A MILPITAS CA,-121.9274577,37.4221617,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11172175
+11172945,ALAMEDA C AB DIV DAM NR SUNOL CA,-121.7735644,37.4974356,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11172945
+11172955,ALAMEDA C BL DIV DAM NR SUNOL CA,-121.7794444,37.4986111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11172955
+11173200,ARROYO HONDO NR SAN JOSE CA,-121.769397,37.46160337,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11173200
+11173500,CALAVERAS C NR SUNOL CA,-121.8183333,37.50194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11173500
+11173510,ALAMEDA C BL CALAVERAS C NR SUNOL CA,-121.8246774,37.5035472,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11173510
+11173575,ALAMEDA C BL WELCH C NR SUNOL CA,-121.856345,37.5404908,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11173575
+11174000,SAN ANTONIO C NR SUNOL CA,-121.857734,37.577434,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11174000
+11174600,ALAMO CN NR PLEASANTON CA,-121.9194444,37.69444444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11174600
+11176400,ARROYO VALLE BL LANG CYN NR LIVERMORE CA,-121.6838389,37.56132196,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11176400
+11176500,ARROYO VALLE NR LIVERMORE CA,-121.7588418,37.62326509,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11176500
+11176900,ARROYO DE LA LAGUNA A VERONA CA,-121.8830126,37.62659915,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11176900
+11179000,ALAMEDA C NR NILES CA,-121.960793,37.58715679,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11179000
+11179100,ALAMEDA C NR FREMONT CA,-122.0016278,37.56660245,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11179100
+11180500,DRY C A UNION CITY CA,-122.0238504,37.6060452,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11180500
+11180700,ALAMEDA C FLOOD CHANNEL A UNION CITY CA,-122.0482955,37.58576818,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11180700
+11180825,SAN LORENZO C AB DON CASTRO RES NR CASTRO V CA,-122.044962,37.69520825,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11180825
+11180900,CROW C NR HAYWARD CA,-122.0438508,37.70493008,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11180900
+11180960,CULL C AB CULL C RES NR CASTRO VALLEY CA,-122.0544067,37.71770737,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11180960
+11181000,SAN LORENZO C A HAYWARD CA,-122.064407,37.68548644,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11181000
+11181008,CASTRO VALLEY C A HAYWARD CA,-122.0805186,37.6799311,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11181008
+11181040,SAN LORENZO C A SAN LORENZO CA,-122.1399649,37.6840977,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11181040
+11182500,SAN RAMON C A SAN RAMON CA,-121.9946825,37.772983,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11182500
+11189500,SF KERN R NR ONYX CA,-118.173689,35.7374516,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11189500
+11200800,DEER C NR FOUNTAIN SPRINGS CA,-118.8228702,35.94161745,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11200800
+11203580,SF TULE R NR CHOLOLLO CAMPGROUND NR PORTERVILLE CA,-118.6542556,36.04828125,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11203580
+11204100,SF TULE R NR RESERVATION BNDRY NR PORTERVILLE CA,-118.8134258,36.02411648,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11204100
+11206820,MARBLE FORK KAWEAH R AB HORSE C NR LODGEPOLE CA,-118.7016667,36.61166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11206820
+11224000,MF SAN JOAQUIN R NR MAMMOTH LAKES CA,-119.0863889,37.63194444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11224000
+11224500,LOS GATOS C AB NUNEZ CYN NR COALINGA CA,-120.4707116,36.21467719,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11224500
+11251000,SAN JOAQUIN R BL FRIANT CA,-119.7243124,36.98439397,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11251000
+11253310,CANTUA C NR CANTUA CREEK CA,-120.4334917,36.40217399,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11253310
+11254000,SAN JOAQUIN R NR MENDOTA CA,-120.3782256,36.8105046,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11254000
+11255575,PANOCHE C A I-5 NR SILVER CREEK CA,-120.6321186,36.65245145,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11255575
+11261100,SALT SLOUGH A HWY 165 NR STEVINSON CA,-120.8521446,37.24771864,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11261100
+11261500,SAN JOAQUIN R A FREMONT FORD BRIDGE CA,-120.9310369,37.3099386,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11261500
+11262900,MUD SLOUGH NR GUSTINE CA,-120.9065908,37.26244,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11262900
+11264500,MERCED R A HAPPY ISLES BRIDGE NR YOSEMITE CA,-119.5590514,37.73131496,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11264500
+11266500,MERCED R A POHONO BRIDGE NR YOSEMITE CA,-119.6662788,37.71687138,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11266500
+11273400,SAN JOAQUIN R AB MERCED R NR NEWMAN CA,-120.9761777,37.3472151,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11273400
+11274000,SAN JOAQUIN R NR NEWMAN CA,-120.97715,37.3504928,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11274000
+11274500,ORESTIMBA C NR NEWMAN CA,-121.1252081,37.31549247,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11274500
+11274550,SAN JOAQUIN R NR CROWS LANDING CA,-121.0138193,37.43187949,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11274550
+11274630,DEL PUERTO C NR PATTERSON CA,-121.2091026,37.48659935,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11274630
+11274790,TUOLUMNE R A GRAND CYN OF TUOLUMNE AB HETCH HETCHY,-119.6598938,37.9165884,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11274790
+11276500,TUOLUMNE R NR HETCH HETCHY CA,-119.7982326,37.93742147,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11276500
+11276600,TUOLUMNE R AB EARLY INTAKE NR MATHER CA,-119.947126,37.87936848,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11276600
+11276900,TUOLUMNE R BL EARLY INTAKE NR MATHER CA,-119.9701824,37.8815908,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11276900
+11277300,CHERRY C BL VALLEY DAM NR HETCH HETCHY CA,-119.9174029,37.96769944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11277300
+11278000,ELEANOR C NR HETCH HETCHY CA,-119.882124,37.969088,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11278000
+11278300,CHERRY C NR EARLY INTAKE CA,-119.962682,37.89436824,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11278300
+11278400,CHERRY C BL DION R HOLM PH NR MATHER CA,-119.9699046,37.8902017,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11278400
+11284400,BIG C AB WHITES GULCH NR GROVELAND CA,-120.1849103,37.8418714,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11284400
+11289000,MODESTO CN NR LA GRANGE CA,-120.4749183,37.67243198,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11289000
+11289500,TURLOCK CN NR LA GRANGE CA,-120.4410283,37.66576548,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11289500
+11289650,TUOLUMNE R BL LAGRANGE DAM NR LAGRANGE CA,-120.4421394,37.666321,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11289650
+11290000,TUOLUMNE R A MODESTO CA,-120.9843777,37.627153,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11290000
+11299600,BLACK C NR COPPEROPOLIS CA,-120.6152035,37.96103615,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11299600
+11303000,STANISLAUS R A RIPON CA,-121.1104934,37.72965078,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11303000
+11303500,SAN JOAQUIN R NR VERNALIS CA,-121.2663293,37.6760406,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11303500
+11304810,SAN JOAQUIN R BL GARWOOD BRIDGE A STOCKTON CA,-121.3302245,37.93547987,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11304810
+11311300,TURNER CUT NR HOLT CA,-121.4538889,37.9925,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11311300
+11312672,VICTORIA CANAL NR BYRON CA,-121.53,37.8708333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11312672
+11312676,MIDDLE R AT MIDDLE RIVER CA,-121.5341175,37.9427017,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11312676
+11312685,MIDDLE R NR HOLT CA,-121.5108333,38.00305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11312685
+11312968,OLD R NR DELTA MENDOTA CANAL CA,-121.5424488,37.81048298,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11312968
+11313240,GRANT LINE CN NR TRACY CA,-121.5447222,37.82,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313240
+11313315,OLD RIVER NEAR BYRON CA,-121.5702283,37.89103627,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313315
+11313405,OLD R A BACON ISLAND CA,-121.572174,37.96992306,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313405
+11313431,HOLLAND CUT NR BETHEL ISLAND CA,-121.5819444,38.01638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313431
+11313433,DUTCH SLOUGH BL JERSEY ISLAND RD A JERSEY ISLAND,-121.667731,38.0135326,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313433
+11313434,OLD R A QUIMBY ISLAND NR BETHEL ISLAND CA,-121.5644444,38.0272222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313434
+11313440,FALSE R NR OAKLEY CA,-121.6669444,38.0558333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313440
+11313452,OLD R A FRANKS TRACT NR TERMINOUS CA,-121.5788889,38.0711111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313452
+11313460,SAN JOAQUIN R A PRISONERS PT NR TERMINOUS CA,-121.5572222,38.05944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11313460
+11335000,COSUMNES R A MICHIGAN BAR CA,-121.0452212,38.50018619,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11335000
+11336580,MORRISON C NR SACRAMENTO CA,-121.4527317,38.49851847,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336580
+11336585,LAGUNA C NR ELK GROVE CA,-121.353284,38.42324335,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336585
+11336600,DELTA CROSS CHANNEL NR WALNUT GROVE,-121.5052778,38.2447222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336600
+11336680,S MOKELUMNE R A NEW HOPE BR NR WALNUT GROVE CA,-121.491111,38.22555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336680
+11336685,N MOKELUMNE NR WALNUT GROVE CA,-121.5072222,38.2233333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336685
+11336790,LITTLE POTATO SLOUGH A TERMINOUS CA,-121.496111,38.09638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336790
+11336930,MOKELUMNE R A ANDRUS ISLAND NR TERMINOUS CA,-121.571111,38.1061111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11336930
+11337080,THREEMILE SLOUGH NR RIO VISTA CA,-121.686111,38.1033333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11337080
+11337190,SAN JOAQUIN R A JERSEY POINT CA,-121.6888428,38.0521424,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11337190
+11342000,SACRAMENTO R A DELTA CA,-122.4172351,40.93959397,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11342000
+11345500,SF PIT R NR LIKELY CA,-120.4371726,41.2307286,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11345500
+11348500,PIT R NR CANBY CA,-120.9277458,41.40600116,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11348500
+11355010,PIT R BL PIT NO 1 PH NR FALL RIVER MILLS CA,-121.511927,40.9832178,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11355010
+11355500,HAT C NR HAT CREEK CA,-121.4228056,40.6891111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11355500
+11361000,BURNEY C A BURNEY FALLS NR BURNEY CA,-121.6541539,41.01738285,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11361000
+11370500,SACRAMENTO R A KESWICK CA,-122.4444553,40.6009835,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11370500
+11370700,ANDERSON-COTTONWOOD ID CN AT SHARON AVE REDDING CA,-122.381397,40.56876198,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11370700
+11372000,CLEAR C NR IGO CA,-122.5241795,40.51320587,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11372000
+11374000,COW C NR MILLVILLE CA,-122.2330577,40.50487467,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11374000
+11376000,COTTONWOOD C NR COTTONWOOD CA,-122.2386119,40.38709797,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11376000
+11376550,BATTLE C BL COLEMAN FISH HATCHERY NR COTTONWOOD CA,-122.1463869,40.39820996,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11376550
+11377100,SACRAMENTO R AB BEND BRIDGE NR RED BLUFF CA,-122.1866645,40.28848836,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11377100
+11379500,ELDER C NR PASKENTA CA,-122.5119462,40.02376507,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11379500
+11381500,MILL C NR LOS MOLINOS CA,-122.0241541,40.0546022,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11381500
+11383500,DEER C NR VINA CA,-121.9483181,40.01404745,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11383500
+11389500,SACRAMENTO R A COLUSA CA,-122.0002508,39.2140566,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11389500
+11390000,BUTTE C NR CHICO CA,-121.7088643,39.72599524,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11390000
+11390500,SACRAMENTO R BL WILKINS SLOUGH NR GRIMES CA,-121.82469,39.00989476,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11390500
+11401920,SPANISH C A QUINCY CA,-120.9425,39.9458333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11401920
+11402000,SPANISH C AB BLACKHAWK C AT KEDDIE CA,-120.9543994,40.002947,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11402000
+11413000,N YUBA R BL GOODYEARS BAR CA,-120.9380068,39.5248937,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11413000
+11418500,DEER C NR SMARTSVILLE CA,-121.2685697,39.22433764,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11418500
+11421000,YUBA R NR MARYSVILLE CA,-121.5249647,39.1757251,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11421000
+11424000,BEAR R NR WHEATLAND CA,-121.4066238,39.0001727,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11424000
+11424500,DRY C NR WHEATLAND CA,-121.4371809,39.02628325,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11424500
+11425500,SACRAMENTO R A VERONA CA,-121.5982928,38.77434584,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11425500
+11427000,NF AMERICAN R A NORTH FORK DAM CA,-121.023833,38.93600919,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11427000
+11446500,AMERICAN R A FAIR OAKS CA,-121.2277262,38.6354601,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11446500
+11447360,ARCADE C NR DEL PASO HEIGHTS CA,-121.3827302,38.64184848,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447360
+11447650,SACRAMENTO R A FREEPORT CA,-121.5013437,38.45601954,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447650
+11447830,SUTTER SLOUGH A COURTLAND CA,-121.5791667,38.32916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447830
+11447850,STEAMBOAT SLOUGH NR WALNUT GROVE CA,-121.5866667,38.2847222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447850
+11447890,SACRAMENTO R AB DELTA CROSS CHANNEL CA,-121.5182865,38.25769218,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447890
+11447903,GEORGIANA SLOUGH NR SACRAMENTO R,-121.5175,38.2372222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447903
+11447905,SACRAMENTO R BL GEORGIANA SLOUGH CA,-121.5227309,38.23880385,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11447905
+11449500,KELSEY C NR KELSEYVILLE CA,-122.8436046,38.92739984,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11449500
+11450000,CLEAR LK A LAKEPORT CA,-122.9133292,39.0390618,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11450000
+11451000,CACHE C NR LOWER LAKE CA,-122.5658147,38.9240648,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11451000
+11451100,NF CACHE C A HOUGH SPRING NR CLEARLAKE OAKS CA,-122.6199862,39.1654458,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11451100
+11451300,NF CACHE C NR CLEARLAKE OAKS CA,-122.5341477,39.07544877,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11451300
+11451715,BEAR C AB HOLSTEN CHIMNEY CYN NR RUMSEY CA,-122.3427535,38.95767446,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11451715
+11451800,CACHE C A RUMSEY CA,-122.2383082,38.8898988,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11451800
+11452500,CACHE C A YOLO CA,-121.8071874,38.727126,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11452500
+11452800,CACHE C OVERFLOW WEIR FROM SETTLING BAS NR WOOD'LD,-121.6730164,38.68268185,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11452800
+11452900,CACHE C OUTFLOW FROM SETTLING BASIN NR WOODLAND CA,-121.6727386,38.67851526,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11452900
+11453000,YOLO BYPASS NR WOODLAND CA,-121.6441266,38.6776817,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11453000
+11453500,PUTAH C NR GUENOC CA,-122.5174807,38.77879078,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11453500
+11454000,PUTAH C NR WINTERS CA,-122.0819159,38.51518487,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11454000
+11455095,SACRAMENTO R DEEP WATER SHIP CHANNEL NR FREEPORT,-121.5836417,38.47686944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455095
+11455140,TOE DRAIN A LIBERTY ISLAND NR COURTLAND CA,-121.6447222,38.34916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455140
+11455143,LITTLE HOLLAND TRACT A NORTH BREACH NR COURTLAND C,-121.658186,38.3354111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455143
+11455146,LIBERTY CUT A LITTLE HOLLAND TRACT NR COURTLAND CA,-121.6675306,38.32885,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455146
+11455165,MINER SLOUGH A HWY 84 BRIDGE,-121.6308333,38.29166667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455165
+11455167,PROSPECT SLOUGH A TOE DRAIN NR COURTLAND CA,-121.662225,38.2903861,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455167
+11455315,CACHE SLOUGH A S LIBERTY ISLAND NR RIO VISTA CA,-121.686111,38.2422222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455315
+11455335,SACRAMENTO R DEEP WATER SHIP CHANNEL NR RIO VISTA,-121.6666667,38.2561111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455335
+11455350,CACHE SLOUGH A RYER ISLAND,-121.6691667,38.21277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455350
+11455385,CACHE SLOUGH AB RYER ISLAND FERRY NR RIO VISTA CA,-121.6580028,38.19395556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455385
+11455420,SACRAMENTO R A RIO VISTA CA,-121.6889444,38.14904444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455420
+11455478,SACRAMENTO R A DECKER ISLAND NR RIO VISTA CA,-121.7371772,38.093252,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11455478
+11456000,NAPA R NR ST HELENA CA,-122.455813,38.51129745,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11456000
+11458000,NAPA R NR NAPA CA,-122.3033085,38.3682457,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11458000
+11458433,SONOMA CREEK A KENWOOD CA,-122.5627606,38.4188004,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11458433
+11458500,SONOMA C A AGUA CALIENTE CA,-122.4944258,38.32324705,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11458500
+11458600,NATHANSON C A SONOMA CA,-122.4558333,38.2808333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11458600
+11459500,NOVATO C A NOVATO CA,-122.5799815,38.10769775,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11459500
+11460000,CORTE MADERA C A ROSS CA,-122.556922,37.96297947,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11460000
+11460151,REDWOOD C A HWY 1 BRIDGE A MUIR BEACH CA,-122.578611,37.8661111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11460151
+11460400,LAGUNITAS C A SAMUEL P TAYLOR STATE PARK CA,-122.736377,38.0268673,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11460400
+11460600,LAGUNITAS C NR PT REYES STATION CA,-122.7844348,38.08019988,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11460600
+11460605,OLEMA C A VEDANTA BRIDGE A OLEMA CA,-122.7858333,38.0386111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11460605
+11460750,WALKER C NR MARSHALL CA,-122.8183254,38.1757531,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11460750
+11461000,RUSSIAN R NR UKIAH CA,-123.1950048,39.1954471,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11461000
+11461500,EF RUSSIAN R NR CALPELLA CA,-123.1302806,39.24655605,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11461500
+11462080,RUSSIAN R NR TALMAGE CA,-123.1830602,39.1129496,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11462080
+11462500,RUSSIAN R NR HOPLAND CA,-123.1305588,39.02656314,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11462500
+11463000,RUSSIAN R NR CLOVERDALE CA,-123.0536124,38.8793475,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463000
+11463170,BIG SULPHUR C A G RESORT NR CLOVERDALE CA,-122.8024929,38.79768326,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463170
+11463200,BIG SULPHUR C NR CLOVERDALE CA,-122.9969442,38.8260167,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463200
+11463500,RUSSIAN R A GEYSERVILLE CA,-122.8958295,38.71268685,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463500
+11463682,RUSSIAN R A JIMTOWN CA,-122.8294376,38.65824247,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463682
+11463900,MAACAMA C NR KELLOGG CA,-122.7638792,38.6410198,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463900
+11463980,RUSSIAN R A DIGGER BEND NR HEALDSBURG CA,-122.8555494,38.6329653,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11463980
+11464000,RUSSIAN R NR HEALDSBURG CA,-122.8363818,38.61324316,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11464000
+11465200,DRY C NR GEYSERVILLE CA,-122.9580539,38.698521,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465200
+11465240,DRY C BLW LAMBERT BR NR GEYSERVILLE CA,-122.9272191,38.65324355,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465240
+11465350,DRY C NR MOUTH NR HEALDSBURG CA,-122.8622159,38.58741046,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465350
+11465390,RUSSIAN R NR WINDSOR CA,-122.8647153,38.5157448,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465390
+11465660,COPELAND C A ROHNERT PARK CA,-122.7019317,38.34324776,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465660
+11465680,LAGUNA DE SANTA ROSA A STONY PT RD NR COTATI CA,-122.7441551,38.35213667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465680
+11465690,COLGAN C NR SANTA ROSA CA,-122.7330434,38.40213524,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465690
+11465700,COLGAN C NR SEBASTOPOL CA,-122.7683227,38.37352515,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465700
+11465750,LAGUNA DE SANTA ROSA C NR SEBASTOPOL CA,-122.8291584,38.42546874,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11465750
+11466170,MATANZAS C A SANTA ROSA CA,-122.7024867,38.4388007,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11466170
+11466200,SANTA ROSA C A SANTA ROSA CA,-122.7247096,38.4365787,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11466200
+11466320,SANTA ROSA C A WILLOWSIDE RD NR SANTA ROSA CA,-122.8072129,38.44519026,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11466320
+11466800,MARK WEST C NR MIRABEL HEIGHTS CA,-122.8533258,38.49407838,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11466800
+11467000,RUSSIAN R NR GUERNEVILLE CA,-122.9277737,38.50852336,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467000
+11467002,RUSSIAN R A JOHNSONS BEACH A GUERNEVILLE CA,-122.9983325,38.49935758,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467002
+11467200,AUSTIN C NR CAZADERO CA,-123.0697239,38.5065797,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467200
+11467270,RUSSIAN R A HIGHWAY 1 BRIDGE NR JENNER CA,-123.1011083,38.4340222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467270
+11467510,SF GUALALA R NR THE SEA RANCH CA,-123.4266753,38.70907868,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467510
+11467553,NF GUALALA R AB SF GUALALA R NR GUALALA CA,-123.5094535,38.7899103,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467553
+11467590,GARCIA R AT EUREKA HILL RD NR PT ARENA CA,-123.6077778,38.9036111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11467590
+11468000,NAVARRO R NR NAVARRO CA,-123.668069,39.17045608,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11468000
+11468500,NOYO R NR FORT BRAGG CA,-123.7377917,39.42822378,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11468500
+11468900,MATTOLE R NR ETTERSBURG CA,-123.991423,40.139309,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11468900
+11469000,MATTOLE R NR PETROLIA CA,-124.283381,40.31319125,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11469000
+11472180,OUTLET C NR WILLITS CA,-123.3406667,39.42044444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11472180
+11473900,MF EEL R NR DOS RIOS CA,-123.3252913,39.70626687,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11473900
+11475000,EEL R A FORT SEWARD CA,-123.63253,40.2182,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11475000
+11475560,ELDER C NR BRANSCOMB CA,-123.6439073,39.7295997,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11475560
+11475800,SF EEL R A LEGGETT CA,-123.7205775,39.8745957,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11475800
+11476500,SF EEL R NR MIRANDA CA,-123.7761426,40.18181004,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11476500
+11476600,BULL C NR WEOTT CA,-124.0050423,40.351528,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11476600
+11477000,EEL R A SCOTIA CA,-124.0997699,40.49152384,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11477000
+11478500,VAN DUZEN R NR BRIDGEVILLE CA,-123.890876,40.48041636,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11478500
+11479560,EEL R A FERNBRIDGE CA,-124.202833,40.6156852,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11479560
+11480390,MAD R AB RUTH RES NR FOREST GLEN CA,-123.3353034,40.28431329,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11480390
+11481000,MAD R NR ARCATA CA,-124.0606183,40.9098497,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11481000
+11481200,LITTLE R NR TRINIDAD CA,-124.0814555,41.0098479,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11481200
+11481500,REDWOOD C NR BLUE LAKE CA,-123.815335,40.90596479,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11481500
+11482500,REDWOOD C A ORICK CA,-124.0511825,41.2992896,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11482500
+11516530,KLAMATH R BL IRON GATE DAM CA,-122.4441882,41.92791865,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11516530
+11517000,SHASTA R NR  MONTAGUE CA,-122.5380787,41.70903196,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11517000
+11517500,SHASTA R NR YREKA CA,-122.5955813,41.8229179,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11517500
+11519500,SCOTT R NR FORT JONES CA,-123.015037,41.64069017,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11519500
+11520500,KLAMATH R NR SEIAD VALLEY CA,-123.2322733,41.8537379,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11520500
+11521500,INDIAN C NR HAPPY CAMP CA,-123.3831113,41.83512325,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11521500
+11522500,SALMON R A SOMES BAR CA,-123.4770026,41.3765154,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11522500
+11523000,KLAMATH R A ORLEANS,-123.5345036,41.3034599,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11523000
+11523200,TRINITY R AB COFFEE C NR TRINITY CENTER CA,-122.7055788,41.1112571,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11523200
+11525500,TRINITY R A LEWISTON CA,-122.801111,40.7247222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11525500
+11525530,RUSH C NR LEWISTON CA,-122.8347458,40.7245899,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11525530
+11525630,GRASS VALLEY C NR LEWISTON CA,-122.8611348,40.68653456,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11525630
+11525655,TRINITY R BL LIMEKILN GULCH NR DOUGLAS CITY CA,-122.9205805,40.6726453,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11525655
+11525670,INDIAN C NR DOUGLAS CITY CA,-122.9144689,40.65181225,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11525670
+11525854,TRINITY R A DOUGLAS CITY CA,-122.9566667,40.64527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11525854
+11526250,TRINITY R A JUNCTION CITY CA,-123.0619736,40.7284768,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11526250
+11526400,TRINITY R AB NF TRINITY R NR HELENA CA,-123.1144757,40.76653148,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11526400
+11526500,NF TRINITY R A HELENA CA,-123.1283653,40.7818089,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11526500
+11527000,TRINITY R NR BURNT RANCH CA,-123.4400401,40.7887498,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11527000
+11528700,SF TRINITY R BL HYAMPOM CA,-123.4942046,40.6498627,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11528700
+11530000,TRINITY R A HOOPA CA,-123.673668,41.049852,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11530000
+11530500,KLAMATH R NR KLAMATH CA,-123.9795164,41.5109543,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11530500
+11532500,SMITH R NR CRESCENT CITY CA,-124.0761887,41.7915026,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11532500
+11532650,SMITH R NR FORT DICK CA,-124.1364704,41.8806684,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=11532650
+340229116510601,BURNT CANYON C ABV DIV DAM NR BANNING CA,-116.8516667,34.04138889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=340229116510601
+340242116492901,WHITEWATER R DIV FLUME IN UP BURNT CYN NR BANNING,-116.8247222,34.045,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=340242116492901
+373025122065901,SAN FRANCISCO BAY A OLD DUMBARTON BR NR NEWARK CA,-122.1163889,37.50694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=373025122065901
+373818118513301,003S028E35NS03M HOT C FH,-118.8601312,37.638267,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=373818118513301
+373822118514401,003S028E34RS01M HOT C FH,-118.8631869,37.63937816,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=373822118514401
+373829118505801,003S028E35KS01M HOT C FH,-118.8504089,37.6413224,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=373829118505801
+381142122015801,FIRST MALLARD BRANCH NR FAIRFIELD CA,-122.0328139,38.19489444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=381142122015801
+382006121401601,LIBERTY ISLAND A LIBERTY CUT NR COURTLAND CA,-121.6711083,38.33500556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=382006121401601
+384041121402601,CACHE C SETTLING BASIN SITE C NR WOODLAND CA,-121.6749609,38.6779597,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=384041121402601

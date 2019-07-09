@@ -1,0 +1,71 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+1010000,"St. John River at Ninemile Bridge, Maine",-69.7155556,46.70055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01010000
+1010070,"Big Black River near Depot Mtn, Maine",-69.7516667,46.89388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01010070
+1010500,"St. John River at Dickey, Maine",-69.0880556,47.11305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01010500
+1011000,"Allagash River near Allagash, Maine",-69.0794444,47.0697222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01011000
+1011500,"St. Francis River near Connors, New Brunswick",-68.9564281,47.20697926,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01011500
+1013500,"Fish River near Fort Kent, Maine",-68.58277778,47.2375,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01013500
+1014000,"St. John River below Fish R, nr Fort Kent, Maine",-68.58527778,47.2833333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01014000
+1015800,"Aroostook River near Masardis, Maine",-68.3716667,46.52305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01015800
+1017000,"Aroostook River at Washburn, Maine",-68.1572222,46.7772222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01017000
+1017060,"Hardwood Brook below Glidden Brk nr Caribou, Maine",-67.9891667,46.7836111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01017060
+1017290,"Little Madawaska River at Caribou, Maine",-67.945,46.8886111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01017290
+1017550,"Williams Brook at Phair, Maine",-67.9530556,46.62805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01017550
+1017960,"Meduxnekeag R above S Br Medux. R nr Houlton, ME",-67.88138889,46.105,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01017960
+1018009,"Pearce Brook at Route 1 at Houlton, Maine",-67.84027778,46.11527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01018009
+1018035,"Meduxnekeag River at Lowery Rd. nr Houlton, Maine",-67.80388889,46.1811111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01018035
+1018500,"St. Croix River at Vanceboro, Maine",-67.4283333,45.5683333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01018500
+1019000,"Grand Lake Stream at Grand Lake Stream, Maine",-67.76888889,45.1725,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01019000
+1021000,"St. Croix River at Baring, Maine",-67.3180556,45.1369444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01021000
+1021060,"St. Croix River at Calais, Maine",-67.2834222,45.1916583,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01021060
+1021470,"Libby Brook near Northfield, Maine",-67.725,44.8008333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01021470
+1021480,"Old Stream near Wesley, Maine",-67.7361111,44.9369444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01021480
+1022500,"Narraguagus River at Cherryfield, Maine",-67.93527778,44.60805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01022500
+1022840,"Otter Creek near Bar Harbor, Maine",-68.2066667,44.33277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01022840
+1027200,"North Branch Penobscot River nr Pittston Farm, ME",-69.9936111,45.93527778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01027200
+1027240,"S. Br. Penobscot River nr Canada Falls Lake, Maine",-69.9950083,45.8739222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01027240
+1029200,"Seboeis River near Shin Pond, Maine",-68.6336111,46.14305556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01029200
+1029500,"East Branch Penobscot River at Grindstone, Maine",-68.5894444,45.73027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01029500
+1030350,Wytopitlock Stream near Wytopitlock Maine,-68.1580556,45.7086111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01030350
+1030500,"Mattawamkeag River near Mattawamkeag, Maine",-68.3058333,45.5011111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01030500
+1031300,"Piscataquis River at Blanchard, Maine",-69.58388889,45.2672222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01031300
+1031450,"Kingsbury Stream at Abbot Village, Maine",-69.4522222,45.1844444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01031450
+1031500,"Piscataquis River near Dover-Foxcroft, Maine",-69.3147222,45.175,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01031500
+1031510,"Black Stream near Dover-Foxcroft, Maine",-69.23638889,45.15027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01031510
+1034000,"Piscataquis River at Medford, Maine",-68.8686111,45.26055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01034000
+1034500,"Penobscot River at West Enfield, Maine",-68.65138889,45.2361111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01034500
+1036390,"Penobscot River at Eddington, Maine",-68.6966667,44.82666667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01036390
+1037000,"Kenduskeag Stream near Bangor, Maine",-68.8316667,44.8611111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01037000
+1037050,"Penobscot River at Bangor, Maine",-68.76777778,44.79638889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01037050
+1037380,"Ducktrap River near Lincolnville, Maine",-69.0608333,44.32916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01037380
+1038000,"Sheepscot River at North Whitefield, Maine",-69.59388889,44.22277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01038000
+1042500,"Kennebec River at The Forks, Maine",-69.9619444,45.3397222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01042500
+1043500,"Dead River near Dead River, Maine",-70.20112778,45.22905,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01043500
+1044550,"Spencer Stream near Grand Falls, Maine",-70.2416667,45.3136111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01044550
+1046000,"Austin Stream at Bingham, Maine",-69.8805556,45.0644444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01046000
+1046500,"Kennebec River at Bingham, Maine",-69.8855556,45.0519444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01046500
+1047000,"Carrabassett River near North Anson, Maine",-69.955,44.86916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01047000
+1047150,"Kennebec River near Madison, Maine",-69.8869444,44.77888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01047150
+1047200,"Sandy River near Madrid, Maine",-70.48527778,44.85777778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01047200
+1048000,"Sandy River near Mercer, Maine",-69.9375,44.70805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01048000
+1048220,"East Branch Wesserunsett Stream near Athens, Maine",-69.6569444,44.9475,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01048220
+1049265,"Kennebec River at North Sidney, Maine",-69.68388889,44.4722222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01049265
+1049320,"Kennebec River at Calumet Bridge at Augusta, Maine",-69.7716667,44.3186111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01049320
+1049330,"Kennebec River at Hallowell, Maine",-69.7881944,44.28680556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01049330
+1049500,"Cobbosseecontee Stream at Gardiner, Maine",-69.7780556,44.22916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01049500
+1049505,"Kennebec River at Gardiner, Maine",-69.7694444,44.23027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01049505
+1054200,"Wild River at Gilead, Maine",-70.9797222,44.39055556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01054200
+1054300,"Ellis River at South Andover, Maine",-70.7330556,44.5933333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01054300
+1054500,"Androscoggin River at Rumford, Maine",-70.5441667,44.5519444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01054500
+1055000,"Swift River near Roxbury, Maine",-70.58888889,44.64277778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01055000
+1055500,"Nezinscot River at Turner Center, Maine",-70.2297222,44.26944444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01055500
+1057000,"Little Androscoggin River near South Paris, Maine",-70.5397222,44.30388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01057000
+1059000,"Androscoggin River near Auburn, Maine",-70.2080556,44.0722222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01059000
+1063310,"Stony Brook at East Sebago, Maine",-70.6397222,43.85555556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01063310
+1064118,"Presumpscot River at Westbrook, Maine",-70.3472222,43.68694444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01064118
+1066000,"Saco River at Cornish, Maine",-70.7816667,43.80805556,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01066000
+1067950,"Kennebunk River near Kennebunk, Maine",-70.5533333,43.4322222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01067950
+1068910,"Mousam River at Route 4 near Sanford, Maine",-70.7380556,43.4183333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01068910
+1069500,"Mousam River near West Kennebunk, Maine",-70.6583333,43.4183333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01069500
+1069700,"Branch Brook near Kennebunk, Maine",-70.5833333,43.37916667,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=01069700
+432742070225401,"Saco River at Camp Ellis near Saco, Maine",-70.3817,43.46162778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=432742070225401

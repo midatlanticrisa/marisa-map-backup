@@ -1,0 +1,106 @@
+SiteNumber, SiteName, SiteLongitude, SiteLatitude, SiteNWISURL
+15008000,SALMON R NR HYDER AK,-130.0669823,56.025815,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15008000
+15015595,UNUK R BL BLUE R NR WRANGELL AK,-130.8819864,56.2402062,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15015595
+15019990,TYEE LK OUTLET NR WRANGELL AK,-131.5083622,56.1996415,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15019990
+15024800,STIKINE R NR WRANGELL AK,-132.1319653,56.70772188,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15024800
+15041200,TAKU R NR JUNEAU AK,-133.7017432,58.53829828,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15041200
+15052000,LEMON C NR JUNEAU AK,-134.4226062,58.3913429,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15052000
+15052500,MENDENHALL R NR AUKE BAY AK,-134.5745592,58.4293972,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15052500
+15055500,ANTLER R BL ANTLER LK NR AUKE BAY AK,-134.710401,58.85162387,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15055500
+15056210,TAIYA R NR SKAGWAY AK,-135.3462752,59.5116183,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15056210
+15056500,CHILKAT R NR KLUKWAN AK,-135.9310198,59.41494719,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15056500
+15057596,SALMON R AT GUSTAVUS AK,-135.7418302,58.44465728,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15057596
+15058700,GOVERNMENT C NR KETCHIKAN AK,-131.7005736,55.3424302,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15058700
+15068040,LEASK CREEK AT SHELTER COVE NR KETCHIKAN AK,-131.5244658,55.51909057,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15068040
+15072000,FISH C NR KETCHIKAN AK,-131.1955833,55.3916038,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15072000
+15081497,STANEY C NR KLAWOCK AK,-133.1103222,55.8010287,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15081497
+15085100,OLD TOM C NR KASAAN AK,-132.4086268,55.3951944,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15085100
+15086225,HATCHERY C AT FOREST SVC RD 23 NR COFFMAN COVE AK,-132.9308333,55.9086111,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15086225
+15087700,INDIAN R AT SITKA AK,-135.3162085,57.05297119,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15087700
+15088000,SAWMILL C NR SITKA AK,-135.2295402,57.0510267,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15088000
+15129120,ALSEK R AT DRY BAY NR YAKUTAT AK,-138.3284089,59.19026419,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15129120
+15129280,ITALIO R AB MOUTH NR YAKUTAT AK,-139.0456944,59.30202778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15129280
+15129300,DANGEROUS R AT HARLEQUIN LK OUTLET NR YAKUTAT AK,-139.019217,59.4172165,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15129300
+15129500,SITUK R NR YAKUTAT AK,-139.4941877,59.58636636,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15129500
+15200280,GULKANA R AT SOURDOUGH AK,-145.5330154,62.5203918,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15200280
+15209700,WF KENNICOTT R AT MCCARTHY AK,-142.9426256,61.43372656,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15209700
+15214000,COPPER R AT MILLION DOLLAR BRIDGE NR CORDOVA AK,-144.7467135,60.6711432,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15214000
+15215900,GLACIER R TRIB NR CORDOVA AK,-145.3806148,60.5327973,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15215900
+15225997,SOLOMON GULCH AT TOP OF FALLS NR VALDEZ AK,-146.3050704,61.0786427,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15225997
+15226620,LOWE R AB HORSETAIL FALLS NR VALDEZ AK,-145.906111,61.0670833,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15226620
+15227090,VALDEZ GLACIER R AT VALDEZ GLACIER LK NR VALDEZ AK,-146.1715833,61.14888889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15227090
+15236900,WOLVERINE C NR LAWING AK,-148.8987624,60.36995858,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15236900
+15237730,GROUSE C AT GROUSE LK OUTLET NR SEWARD AK,-149.3754835,60.19777389,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15237730
+15238648,UPPER NUKA R NR PARK BOUNDARY NR HOMER AK,-150.7054468,59.6838574,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15238648
+15238986,BATTLE C 1.0 MI AB MOUTH NR HOMER AK,-150.955177,59.76173646,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15238986
+15238990,UPPER BRADLEY R NR NUKA GLACIER NR HOMER AK,-150.704616,59.6999688,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15238990
+15239050,MF BRADLEY R NR HOMER AK,-150.7562948,59.77774568,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15239050
+15239060,MF BRADLEY R BL NF BRADLEY R NR HOMER AK,-150.8654632,59.79774138,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15239060
+15239070,BRADLEY R NR TIDEWATER NR HOMER AK,-150.8849079,59.80107399,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15239070
+15239900,ANCHOR R NR ANCHOR POINT AK,-151.7552124,59.74660897,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15239900
+15243900,SNOW R NR SEWARD AK,-149.3460397,60.2944395,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15243900
+15258000,KENAI R AT COOPER LANDING AK,-149.8099203,60.49219269,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15258000
+15261000,COOPER C AT MOUTH NR COOPER LANDING AK,-149.882711,60.4799795,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15261000
+15266110,KENAI R BL SKILAK LK OUTLET NR STERLING AK,-150.60109,60.466099,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15266110
+15266300,KENAI R AT SOLDOTNA AK,-151.0816675,60.4769289,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15266300
+15271000,SIXMILE C NR HOPE AK,-149.427443,60.82027267,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15271000
+15272502,"GLACIER C AT ALYESKA HIGHWAY AT GIRDWOOD, AK",-149.1319194,60.9616194,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15272502
+15274600,CAMPBELL C NR SPENARD AK,-149.9255337,61.1388906,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15274600
+15275100,CHESTER C AT ARCTIC BOULEVARD AT ANCHORAGE AK,-149.8974826,61.20472578,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15275100
+15276000,SHIP C NR ANCHORAGE AK,-149.6372008,61.22500619,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15276000
+15278000,EKLUTNA LK NR PALMER AK,-149.1244357,61.4102917,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15278000
+15280999,PALMER (BODENBURG) C AT E DILLY AVE NR PALMER AK,-149.0418889,61.52338889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15280999
+15281000,KNIK R NR PALMER AK,-149.032765,61.5044605,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15281000
+15283700,MOOSE C NR PALMER AK,-149.045541,61.6828021,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15283700
+15284000,MATANUSKA R AT PALMER AK,-149.0730432,61.6086312,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15284000
+15290000,L SUSITNA R NR PALMER AK,-149.231938,61.7097433,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15290000
+15292000,SUSITNA R AT GOLD CREEK AK,-149.6933794,62.7672899,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15292000
+15292700,TALKEETNA R NR TALKEETNA AK,-150.019201,62.3464388,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15292700
+15292800,MONTANA C NR MONTANA AK,-150.0597486,62.1047619,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15292800
+15293200,KASHWITNA R NR WILLOW AK,-150.073075,61.92586389,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15293200
+15294005,WILLOW C NR WILLOW AK,-149.8866786,61.78030346,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15294005
+15294080,KROTO CREEK AT OILWELL ROAD NEAR TRAPPER CREEK AK,-150.5386667,62.1328333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15294080
+15295700,TERROR R AT MOUTH NR KODIAK AK,-153.1639087,57.69397807,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15295700
+15297475,RED CLOUD R TR NR KODIAK AK,-152.6244165,57.81592178,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15297475
+15297610,RUSSELL C NR COLD BAY AK,-162.6895109,55.1769059,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15297610
+15300300,ILIAMNA R NR PEDRO BAY AK,-153.8468866,59.7579499,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15300300
+15302000,NUYAKUK R NR DILLINGHAM AK,-158.1900062,59.93483,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15302000
+15302200,KOKTULI R NR ILIAMNA AK,-155.5246895,59.7926376,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15302200
+15302250,NF KOKTULI R NR ILIAMNA AK,-155.7185564,59.8424682,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15302250
+15302812,KOKWOK R 22 MI AB NUSHAGAK R NR EKWOK AK,-157.8041667,59.415,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15302812
+15303900,KUSKOKWIM R AT LISKYS CROSSING NR STONY RIVER AK,-156.2129069,62.0512773,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15303900
+15304000,KUSKOKWIM R AT CROOKED CREEK AK,-158.1137848,61.8687445,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15304000
+15304010,CROOKED C AB AIRPORT RD NR CROOKED CREEK AK,-158.156842,61.8893006,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15304010
+15310002,MOSQUITO FORK 2 MI BL KECHUMSTUK C NR CHICKEN AK,-142.5283333,64.0344444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15310002
+15320100,WADE C TRIB NR CHICKEN AK,-141.5558947,64.1180119,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15320100
+15348000,FORTYMILE R NR STEELE CREEK AK,-141.4045168,64.3088552,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15348000
+15356000,YUKON R AT EAGLE AK,-141.2000892,64.789168,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15356000
+15453500,YUKON R NR STEVENS VILLAGE AK,-149.7203487,65.8751013,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15453500
+15457790,GOLDSTREAM C BL ALABAM C NR LIVENGOOD AK,-148.3911245,65.57540267,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15457790
+15477740,GOODPASTER R NR BIG DELTA AK,-144.9445717,64.4501744,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15477740
+15478040,PHELAN C NR PAXSON AK,-145.4680556,63.24027778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15478040
+15484000,SALCHA R NR SALCHAKET AK,-146.9280556,64.47152778,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15484000
+15485500,TANANA R AT FAIRBANKS AK,-147.8413097,64.792344,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15485500
+15493000,CHENA R NR TWO RIVERS AK,-146.3613333,64.9019722,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15493000
+15493400,CHENA R BL HUNTS C NR TWO RIVERS AK,-146.8057505,64.8595879,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15493400
+15493700,CHENA R BL MOOSE C DAM AK,-147.2301929,64.8004119,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15493700
+15502000,FISH C BL SOLO C NR CHATANIKA AK,-147.2007725,65.00930348,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15502000
+15511000,L CHENA R NR FAIRBANKS AK,-147.2496477,64.88568988,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15511000
+15514000,CHENA R AT FAIRBANKS AK,-147.703536,64.8454026,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15514000
+15515048,MARGUERITE C 3.6 MI AB EMMA C NR HEALY AK,-148.761111,63.97388889,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15515048
+15515060,MARGUERITE C AB EMMA C NR HEALY AK,-148.7281673,64.0084337,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15515060
+15515500,TANANA R AT NENANA AK,-149.094,64.5649444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15515500
+15519100,TOLOVANA R BL ROSEBUD C NR LIVENGOOD AK,-148.6311143,65.4648407,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15519100
+15564879,SLATE C AT COLDFOOT AK,-150.1772222,67.2544444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15564879
+15565447,YUKON R AT PILOT STATION AK,-162.8829356,61.9336866,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15565447
+15580095,NIUKLUK R AB MELSING C AT COUNCIL AK,-163.67,64.8919444,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15580095
+15743850,DAHL C NR KOBUK AK,-156.9116193,66.9455603,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15743850
+15744500,KOBUK R NR KIANA AK,-160.1336307,66.972994,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15744500
+15747000,WULIK R BL TUTAK C NR KIVALINA AK,-163.6773733,67.8754405,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15747000
+15803000,MEADE R AT ATKASUK AK,-157.395848,70.4953764,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15803000
+15875000,COLVILLE R AT UMIAT AK,-152.1226944,69.3605,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15875000
+15896000,KUPARUK R NR DEADHORSE AK,-148.962786,70.28138539,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15896000
+15905100,ATIGUN R BL GALBRAITH LK NR PUMP STATION 4 AK,-149.3733333,68.4522222,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15905100
+15908000,SAGAVANIRKTOK R NR PUMP STA 3 AK,-148.8177778,69.0158333,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15908000
+15980000,HULAHULA R NR KAKTOVIK AK,-144.2010893,69.7036856,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=15980000
+644255147180200,TANANA R UNNAMD SL AT MOOSE C DAM NR NORTH POLE AK,-147.3029618,64.71485417,https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=644255147180200
