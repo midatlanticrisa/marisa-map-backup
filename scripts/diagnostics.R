@@ -85,20 +85,20 @@ if (tide_json_diag == FALSE){
 }
 
 # Extract when all the stream gauge plots were last created.
-#stream_dir <- "/home/staff/klr324/marisa.psu.edu/mapdata/Stream_figs"
-#stream_list <- list.files(stream_dir)
-#stream_files <- stream_list
-#for(i in 1:length(stream_list)){
-#  stream_files[i] <- paste(stream_dir, "/", stream_list[i], sep="")
-#}
-#stream_times <- file.info(stream_files)$ctime
-#stream_Dates <- as.Date(stream_times, format = "%y-%m-%d")
+stream_dir <- "/home/staff/klr324/marisa.psu.edu/mapdata/Stream_figs"
+stream_list <- list.files(stream_dir)
+stream_files <- stream_list
+for(i in 1:length(stream_list)){
+  stream_files[i] <- paste(stream_dir, "/", stream_list[i], sep="")
+}
+stream_times <- file.info(stream_files)$ctime
+stream_Dates <- as.Date(stream_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's or yesterday's date.
-#stream_diag <- all(stream_Dates == date_today | stream_Dates == date_yesterday)
+stream_diag <- all(stream_Dates == date_today | stream_Dates == date_yesterday)
 
-#if (stream_diag == FALSE){
-#  print("check Stream_figs")
-#}
+if (stream_diag == FALSE){
+  print("check Stream_figs")
+}
 
 # Extract when the stream gage json file was last created.
 njmdstream_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/NJMD_stream_obs.js"
@@ -158,13 +158,14 @@ if (vastream_json_diag == FALSE){
 # --------------------------------------------------------------------------------------------------------------------
 # If all files are up to date then create a json file recording passing as true and print that the test passed.
 # If the test fails, the json file will record false for the property "pass" and will print that the test failed.
-if (all(c(buoy_diag, weather_diag, tide_diag, tide_json_diag, #stream_diag,
+if (all(c(buoy_diag, weather_diag, tide_diag, tide_json_diag, stream_diag,
  njmdstream_json_diag, nystream_json_diag, ohstream_json_diag, pastream_json_diag, vastream_json_diag) == TRUE)){
   print("Automated files PASS diagnostic; Marisa map up to date.")
   json_merge = 'diagnostic = [{"type": "Feature","properties": {"name": "Diagnostic test", "pass": "true"}, "geometry": {"type": "Point", "coordinates": [-73.4, 36.7]}}];'
 } else {
   print("Automated files FAIL diagnostic; Check scripts for potential errors.")
   json_merge = 'diagnostic = [{"type": "Feature","properties": {"name": "Diagnostic test", "pass": "false"}, "geometry": {"type": "Point", "coordinates": [-73.4, 36.7]}}];'
+  system2('echo "Automated files FAIL diagnostic; Check scripts for potential errors." | mail -s "Error: check Marisa map scripts" klr324@psu.edu')
 }
 
 # --------------------------------------------------------------------------------------------------------------------

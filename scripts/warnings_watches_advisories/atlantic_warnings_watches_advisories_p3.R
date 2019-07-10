@@ -26,9 +26,9 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-if (!require(“XML”)) { install.packages(“XML”) }
-if (!require(“httr”)) { install.packages(“httr”) }
-if (!require(“stringr”)) { install.packages(“stringr”) }
+if (!require("XML")) { install.packages("XML") }
+if (!require("httr")) { install.packages("httr") }
+if (!require("stringr")) { install.packages("stringr") }
 
 library(XML)
 library(httr)

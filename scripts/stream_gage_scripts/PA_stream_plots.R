@@ -28,8 +28,8 @@
 # THE SOFTWARE.
 #-------------------------------------------------------------------------------------------------------------------- 
 # Ensure necessary packages are installed and loaded
-if (!require(“RCurl”)) { install.packages(“RCurl”) }
-if (!require(“readr”)) { install.packages(“readr”) }
+if (!require("RCurl")) { install.packages("RCurl") }
+if (!require("readr")) { install.packages("readr") }
 
 library(RCurl)
 library(readr)
