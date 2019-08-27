@@ -27,6 +27,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
+# https://www.ndbc.noaa.gov/docs/ndbc_web_data_guide.pdf
 # Ensure necessary packages are installed and loaded
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
