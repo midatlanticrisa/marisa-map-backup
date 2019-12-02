@@ -6,7 +6,7 @@
 # Previous edit: June 13, 2018
 # Previous edit: April 27, 2017
 #
-# This script parses RSS meteorological data from buoy stations from the 
+# This script parses RSS meteorological data from buoy stations from the
 # National Data Buoy Center and outputs the results in a single file.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -15,10 +15,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,8 +43,8 @@ enableJIT(3)
 enableJIT(3)
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists("/home/staff/klr324/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/klr324/marisa.psu.edu/mapdata")
+if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
 }
 # --------------------------------------------------------------------------------------------------------------------
 # Create a vector of buoy stations using lists from the NDBC
@@ -60,7 +60,7 @@ data.rows <- total.rows - meta.rows
 bouy_list <- strsplit(readr.total[3:total.rows],"\\|")
 
 buoy_dat <- matrix("NA", nrow = data.rows, ncol=4)
-for(i in 1:data.rows){ 
+for(i in 1:data.rows){
   buoy_dat[i,1] <- bouy_list[[i]][1]
   buoy_dat[i,2] <- bouy_list[[i]][5]
   coord = gsub(pattern = " \\(.*$", "", x= bouy_list[[i]][7])
@@ -100,37 +100,37 @@ buoy_data = function(buoys_id){
   if(url.exists(xml.url) == TRUE) {
     # Use the ID to create a URL to the RSS file.
     script      <- getURL(xml.url)
-    
+
     script <- gsub(pattern = "&", "&amp;", x = script)
     script <- gsub(pattern = "&amp;#", "&#", x = script)
     script <- gsub(pattern = '</rss"', '</rss>"', x = script)
     script <- gsub("\"","\'", script)
-    
+
     # Parse through the data from the RSS file.
     doc         <- xmlParse(script)
-    
-    # Extract the meteorological data, which is in the 'description' node.  
+
+    # Extract the meteorological data, which is in the 'description' node.
     buoy_vec <- xpathSApply(doc,'//channel/item/description',xmlValue)
-    
-    # Extract the name, link, and coordinates which are in the 'title', 'link', and 'georss:point' node.  
+
+    # Extract the name, link, and coordinates which are in the 'title', 'link', and 'georss:point' node.
     buoy_name <- xpathSApply(doc,'//channel/item/title',xmlValue)
     buoy_link <- xpathSApply(doc,'//channel/item/link',xmlValue)
     buoy_coord <- xpathSApply(doc,'//channel/item/georss:point',xmlValue)
-    
+
     # Remove the '\n' character from the extracted string.
     buoy_obs <- str_replace_all(buoy_vec, "([\n])", "")
-    
+
     buoy_lat = gsub(pattern = " .*$", "", x= buoy_coord)
     buoy_lon = gsub(pattern = "^.* ", "", x= buoy_coord)
-    
+
     update = gsub(pattern = "<strong>Location:</strong>.*$", "", x= buoy_obs)
     removebold = gsub(pattern = "^.*<strong>|</strong><br />", "", x=update)
     buoy_time = paste("Last Updated on ", removebold, sep="")
-    
+
     month = format(Sys.Date(),"%B")
     buoy_obs = gsub(pattern = paste("^.*<strong>", month, ".*</strong><br />", sep=""), "", x= buoy_obs)
     buoy_obs = paste(buoy_obs, "<br />", sep="")
-    
+
    } else {
      buoy_obs <- "There are no current meteorological observations recorded at this buoy."
      buoy_time <- ""
@@ -157,27 +157,27 @@ colnames(non_NDBC_data) <- c("id", "obs", "time", "name", "link", "lat", "lon")
 # --------------------------------------------------------------------------------------------------------------------
 
 buoy_string = function(ID, name, link, obs, time, lon, lat){
-    str = paste('{"type": "Feature", "properties": {"name": "', name[match(ID, ID)], '", "id": "', ID, '", "url": "', link[match(ID, ID)], '", "obs": "', 
-                obs[match(ID, ID)], '", "time": "', time[match(ID, ID)], '"}, "geometry": {"type": "Point", "coordinates": [', 
+    str = paste('{"type": "Feature", "properties": {"name": "', name[match(ID, ID)], '", "id": "', ID, '", "url": "', link[match(ID, ID)], '", "obs": "',
+                obs[match(ID, ID)], '", "time": "', time[match(ID, ID)], '"}, "geometry": {"type": "Point", "coordinates": [',
                 lon[match(ID, ID)], ',',  lat[match(ID, ID)], ']}}', sep="")
   return(str)
 }
 
 # Combine all buoy info into one string
-ndbc_st = buoy_string(NDBC_stat_data$id, NDBC_stat_data$name, NDBC_stat_data$link, NDBC_stat_data$obs, NDBC_stat_data$time, 
+ndbc_st = buoy_string(NDBC_stat_data$id, NDBC_stat_data$name, NDBC_stat_data$link, NDBC_stat_data$obs, NDBC_stat_data$time,
                          NDBC_stat_data$lon, NDBC_stat_data$lat)
 ndbc_st = paste(ndbc_st, ",", collapse="")
 
-ndbc_bu = buoy_string(NDBC_buoy_data$id, NDBC_buoy_data$name, NDBC_buoy_data$link, NDBC_buoy_data$obs, NDBC_buoy_data$time, 
+ndbc_bu = buoy_string(NDBC_buoy_data$id, NDBC_buoy_data$name, NDBC_buoy_data$link, NDBC_buoy_data$obs, NDBC_buoy_data$time,
                       NDBC_buoy_data$lon, NDBC_buoy_data$lat)
 ndbc_bu = paste(ndbc_bu, ",", collapse="")
 
-ndbc_non = buoy_string(non_NDBC_data$id, non_NDBC_data$name, non_NDBC_data$link, non_NDBC_data$obs, non_NDBC_data$time, 
+ndbc_non = buoy_string(non_NDBC_data$id, non_NDBC_data$name, non_NDBC_data$link, non_NDBC_data$obs, non_NDBC_data$time,
                        non_NDBC_data$lon, non_NDBC_data$lat)
 ndbc_non_last = ndbc_non[length(ndbc_non)] #make sure the last feature doesn't end with a ","
 ndbc_non = paste(ndbc_non[1:length(ndbc_non) - 1], ",", collapse="")
 
-# Create a geojson object with the observation and statement info and merge into a 
+# Create a geojson object with the observation and statement info and merge into a
 # specific file format with Buoys as the variable name.
 json_merge = paste('Buoys = {"type": "FeatureCollection","features": [', ndbc_st, ndbc_bu, ndbc_non, ndbc_non_last, ']};', sep="")
 
@@ -185,5 +185,5 @@ json_merge = paste('Buoys = {"type": "FeatureCollection","features": [', ndbc_st
 # cat(json_merge, file="buoys_extend2.js")
 
 # Export data to geojson.
-cat(json_merge, file="/home/staff/klr324/marisa.psu.edu/mapdata/buoys_extend.js")
+cat(json_merge, file="/net/www/www.marisa.psu.edu/htdocs/mapdata/buoys_extend.js")
 # --------------------------------------------------------------------------------------------------------------------

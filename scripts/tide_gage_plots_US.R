@@ -5,7 +5,7 @@
 # Last edit: Jan 25, 2019    - expanded to entire US
 # prior edit: June 16, 2017
 #
-# This script parses XML data of current tide station observations from the 
+# This script parses XML data of current tide station observations from the
 # National Ocean and Atmospheric Administration and outputs the results as
 # a figure of preliminery 6-minute water level heights.
 #
@@ -15,10 +15,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,11 +37,11 @@ library(XML)
 library(httr)
 
 # Files are saved to a directory called Tide_figs in mapdata. Create these directories if they don't exist
-if (!file.exists("/home/staff/klr324/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/klr324/marisa.psu.edu/mapdata")
+if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
 }
-if (!file.exists("/home/staff/klr324/marisa.psu.edu/mapdata/Tide_figs")){
-  dir.create("/home/staff/klr324/marisa.psu.edu/mapdata/Tide_figs")
+if (!file.exists("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs")){
+  dir.create("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs")
 }
 # --------------------------------------------------------------------------------------------------------------------
 # Set variables for determining plot size.
@@ -67,8 +67,8 @@ day_noon = as.POSIXct(paste(Sys.Date() - day, "12:00", sep=" "), format = "%Y-%m
 # <!-- TIDE STATIONS -->
 AL_ID = c("8735523", "8737048", "8738043", "8737138", "8739803", "8732828", "8735180", "8735391", "8736897")
 AK_ID = c("9454240", "9457292", "9462450", "9468756", "9491094", "9468333", "9462620", "9461380", "9457804",
-          "9455920", "9454050", "9453220", "9452634", "9452210", "9451600", "9451054", "9450460", "9452400", 
-          "9455090", "9455500", "9455760", "9459450", "9459881", "9461710", "9464212", "9497645") # not available: "9452635", "9456173", "9458705" 
+          "9455920", "9454050", "9453220", "9452634", "9452210", "9451600", "9451054", "9450460", "9452400",
+          "9455090", "9455500", "9455760", "9459450", "9459881", "9461710", "9464212", "9497645") # not available: "9452635", "9456173", "9458705"
 CA_ID = c("9410170", "9410230", "9411406", "9414290", "9415144", "9419750", "9416841", "9415102", "9415020",
           "9414958", "9414575", "9413450", "9412110", "9411340", "9410660", "9410840", "9414523", "9414750", "9414863",
           "9418767")
@@ -82,7 +82,7 @@ FL_ID = c("8720219", "8726384", "8726520", "8726667", "8726724", "8729210", "872
 GA_ID = "8670870"
 HI_ID = c("1612480", "1617760", "1611400", "1615680", "1612340", "1617433")
 LA_ID = c("8760721", "8760922", "8761305", "8767961", "8768094", "8766072", "8762075",
-          "8761724", "8761927", "8762483", "8764044", "8764227", "8764314", "8767816") 
+          "8761724", "8761927", "8762483", "8764044", "8764227", "8764314", "8767816")
 LA_MSL_ID = c("8761955", "8762482") # MSL datum
 ME_ID = c("8410140", "8419317", "8418150", "8413320", "8411060") # c("8419751", "8414821") # error no longer supported
 # <!--Maryland tide stations-->
@@ -107,12 +107,12 @@ TX_ID = c("8770475", "8770570", "8770613", "8770808", "8770971", "8771972", "877
 TX_MSL_ID = c("8776604", "8777812", "8778490", "8776139")
 # <!--Virginia tide stations-->
 VA_ID = c("8638863", "8635027", "8632200", "8635750", "8639348", "8638610", "8631044", "8636580", "8637689", "8638901")
-WA_ID = c("9440422", "9440581", "9442396", "9443090", "9444900", "9449880", 
+WA_ID = c("9440422", "9440581", "9442396", "9443090", "9444900", "9449880",
           "9444090", "9440910", "9440569", "9440083", "9441102", "9446484", "9447130", "9449424") # c("9447112", "9446500", "9447113", "9447114", "9447115", "9449896", 9449712") # wa error no longer supported
 # <!--Great Lakes: Lake Erie tide stations-->
 GL_ID = c("9063020", "9063063", "9063038", "9063053", "9063028", "9063085", "9063079")
-GLDR_ID = c("9044020", "9044036", "9044030", "9044049") 
-GLLH_ID = c("9075002", "9075065", "9075014", "9075035", "9075099", "9075080") 
+GLDR_ID = c("9044020", "9044036", "9044030", "9044049")
+GLLH_ID = c("9075002", "9075065", "9075014", "9075035", "9075099", "9075080")
 GRLM_ID = c("9087031", "9087044", "9087072", "9087079", "9087096", "9087023", "9087088", "9087057", "9087068")
 GRLO_ID = c("9052000", "9052030", "9052090", "9052058", "9052025", "9052076")
 GLLSC_ID = c("9034052", "9034057")
@@ -124,76 +124,76 @@ GLSMR_ID = c("9076024", "9076060", "9076027", "9076033", "9076070")
 
 # --------------------------------------------------------------------------------------------------------------------
 # Function extracting tide data (hight and time) from a XML file online.
-waterheight_plot = function(ID, b.date, e.date, datum, timezone, units, day_midnight, day_noon){ 
+waterheight_plot = function(ID, b.date, e.date, datum, timezone, units, day_midnight, day_noon){
   # Use the ID, b.date, e.date, datum, timezone, and units to create a URL to the XML file.
-  url = paste('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=', 
-              b.date, '&end_date=', e.date, '&datum=', datum, '&station=', ID, '&time_zone=', timezone, '&units=', units, 
+  url = paste('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=',
+              b.date, '&end_date=', e.date, '&datum=', datum, '&station=', ID, '&time_zone=', timezone, '&units=', units,
               '&format=xml', sep="")
-  
+
   xml_data <- xmlToList(rawToChar(GET(url)$content))
   test = t(data.frame(xml_data$observations))
-  
+
   if(is.logical(test) == TRUE){
     # Create plot with no data
-    png(file=paste("/home/staff/klr324/marisa.psu.edu/mapdata/Tide_figs/Fig_", ID, ".png", sep=""), family="Helvetica", units="in", width=p.width, height=p.height, pointsize=14, res=300)
+    png(file=paste("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs/Fig_", ID, ".png", sep=""), family="Helvetica", units="in", width=p.width, height=p.height, pointsize=14, res=300)
     par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
     # plot.new()
     plot(0,xaxt='n',yaxt='n',bty='n',pch='',ylab='',xlab='')
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
     legend("center", "No data available", bg = "white")
     dev.off()
-    
+
   } else if (is.null(xml_data$observations$disclaimers) == FALSE) {
-    
+
     remove <- c("disclaimers.disclaimer.text", "disclaimers.disclaimer..attrs")
     test <- test[!rownames(test) %in% remove, ]
-    
+
     values <- as.numeric(test[ ,2])
-    
+
     date <- as.POSIXct(test[ ,1], format = "%Y-%m-%d %H:%M", tz = "GMT")
     date <- format(date, tz = "America/New_York") # convert from GMT to current time zone
     date <- as.POSIXct(date, format = "%Y-%m-%d %H:%M", tz = "")
-    
+
     # Determine which indices of the date occur at midnight and noon.
     #     hours <- strftime(date, format="%H:%M")
     #     midnight = which(hours == "00:00")
     #     noon = which(hours == "12:00")
-    
-    png(file=paste("/home/staff/klr324/marisa.psu.edu/mapdata/Tide_figs/Fig_", ID, ".png", sep=""), family="Helvetica", units="in", width=p.width, height=p.height, pointsize=14, res=300)
+
+    png(file=paste("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs/Fig_", ID, ".png", sep=""), family="Helvetica", units="in", width=p.width, height=p.height, pointsize=14, res=300)
     par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
-    
+
     plot(date, values, type = "n", ylab = paste("Height (m ", datum, ")", sep=""), xlab="Past 3 days", xaxt="n")
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
     axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
     axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
-    
-    grid(NA, NULL, lty = 6, col = "gray") 
+
+    grid(NA, NULL, lty = 6, col = "gray")
     abline(v = day_midnight, lty = 6, col = "gray")
     lines(date, values, lwd=2, col="steelblue")
     dev.off()
-    
+
   } else {
-    
+
     values <- as.numeric(test[ ,2])
-    
+
     date <- as.POSIXct(test[ ,1], format = "%Y-%m-%d %H:%M", tz = "GMT")
     date <- format(date, tz = "America/New_York") # convert from GMT to current time zone
     date <- as.POSIXct(date, format = "%Y-%m-%d %H:%M", tz = "")
-    
+
     # Determine which indices of the date occur at midnight and noon.
     hours <- strftime(date, format="%H:%M")
     midnight = which(hours == "00:00")
     noon = which(hours == "12:00")
-    
-    png(file=paste("/home/staff/klr324/marisa.psu.edu/mapdata/Tide_figs/Fig_", ID, ".png", sep=""), family="Helvetica", units="in", width=p.width, height=p.height, pointsize=14, res=300)
+
+    png(file=paste("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs/Fig_", ID, ".png", sep=""), family="Helvetica", units="in", width=p.width, height=p.height, pointsize=14, res=300)
     par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
-    
+
     plot(date, values, type = "n", ylab = paste("Height (m ", datum, ")", sep=""), xlab="Past 3 days", xaxt="n")
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
     axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
     axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
-    
-    grid(NA, NULL, lty = 6, col = "gray") 
+
+    grid(NA, NULL, lty = 6, col = "gray")
     abline(v = day_midnight, lty = 6, col = "gray")
     lines(date, values, lwd=2, col="steelblue")
     dev.off()
@@ -201,7 +201,7 @@ waterheight_plot = function(ID, b.date, e.date, datum, timezone, units, day_midn
   # }
 }
 
-# -------------------------------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
 # Run through each Alabama station.
 for(i in 1:length(AL_ID)){ waterheight_plot(AL_ID[i], b.date, e.date, datum, timezone, units, day_midnight, day_noon) }

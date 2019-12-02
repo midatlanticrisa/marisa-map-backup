@@ -6,7 +6,7 @@
 # Previous edit: May 29, 2018; implement techniques from dataRetrieval package to improve data extraction; add gage height and avg. discharge
 # Previous edit: June 17, 2017; Created
 #
-# This script parses discharge and gage height data of stream gauges from the 
+# This script parses discharge and gage height data of stream gauges from the
 # United States Geological Survey (USGS) and plots the results.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -15,10 +15,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-# -------------------------------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
@@ -77,7 +77,7 @@ MD_ID = c("01485500", "01486000", "01485000", "01490000", "01491000", "01493000"
           "01614500", "01613000", "01609000", "01603000", "01601500", "01599000", "01598500", "01597500", "01596500",
           "03078000", "03076600", "03076500", "01595500", "01595000", "03075500")
 
-# -------------------------------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
 # Run through each New Jersey station.
 for(i in 1:length(NJ_ID)){ stream_gage_plot(NJ_ID[i], b.date, e.date, day_midnight, day_noon) }
@@ -85,4 +85,4 @@ for(i in 1:length(NJ_ID)){ stream_gage_plot(NJ_ID[i], b.date, e.date, day_midnig
 # Run through each Maryland station.
 for(i in 1:length(MD_ID)){ stream_gage_plot(MD_ID[i], b.date, e.date, day_midnight, day_noon) }
 
-# -------------------------------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------------------------------------------

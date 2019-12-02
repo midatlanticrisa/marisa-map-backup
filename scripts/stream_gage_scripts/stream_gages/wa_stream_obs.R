@@ -5,7 +5,7 @@
 # Last edit: June 14, 2018
 # Last edit: June 7, 2018
 #
-# This script parses RSS meteorological data from buoy stations from the 
+# This script parses RSS meteorological data from buoy stations from the
 # National Data Buoy Center and outputs the results in a single file.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -14,10 +14,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE

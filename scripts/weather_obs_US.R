@@ -4,7 +4,7 @@
 # Kelsey Ruckert (klr324@psu.edu)
 # Last edit: April 4, 2017; April 14 (change to creating geojson file)
 #
-# This script parses XML data of current weather station observations from the 
+# This script parses XML data of current weather station observations from the
 # National Weather Service and outputs the results in a single file.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -13,10 +13,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,8 +33,8 @@ library(XML)
 library(httr)
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists("/home/staff/klr324/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/klr324/marisa.psu.edu/mapdata")
+if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
 }
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
@@ -46,7 +46,7 @@ parse_xml = function(id){
 
   # Turn XML data into a list.
   xml_data <- xmlToList(rawToChar(GET(xml.url)$content))
-  
+
   # Station location.
   if(is.null(xml_data$location)){
     name <- ""
@@ -125,33 +125,33 @@ parse_xml = function(id){
   } else {
     link <- xml_data$ob_url
   }
-  
+
   obs = paste(weather, temp, humidity, wind, speed, dewpoint, windchill, visibility, sep="")
-  
+
   # Return the weather variables
   return(c(name, as.character(id), latitude, longitude, obs, link, time))
 }
 
 # Run through each station
-weather_stat_data = t(sapply(weather_stations[ ,2], parse_xml)) 
+weather_stat_data = t(sapply(weather_stations[ ,2], parse_xml))
 weather_stat_data = data.frame(weather_stat_data, row.names = weather_stations[ ,2])
 colnames(weather_stat_data) <- c("name", "id", "lat", "lon", "obs", "link", "time")
 
 # Remove stations without latitude or longitude
-weather_stat_data = weather_stat_data[!is.na(weather_stat_data$lat), ] 
+weather_stat_data = weather_stat_data[!is.na(weather_stat_data$lat), ]
 weather_stat_data = weather_stat_data[!is.na(weather_stat_data$lon), ]
 
 # --------------------------------------------------------------------------------------------------------------------
 # Format information to a feature string for json
 weather_string = function(ID, name, link, obs, time, lon, lat){
-  str = paste('{"type": "Feature", "properties": {"name": "', name[match(ID, ID)], '", "id": "', ID, '", "url": "', link[match(ID, ID)], '", "obs": "', 
-              obs[match(ID, ID)], '", "time": "', time[match(ID, ID)], '"}, "geometry": {"type": "Point", "coordinates": [', 
+  str = paste('{"type": "Feature", "properties": {"name": "', name[match(ID, ID)], '", "id": "', ID, '", "url": "', link[match(ID, ID)], '", "obs": "',
+              obs[match(ID, ID)], '", "time": "', time[match(ID, ID)], '"}, "geometry": {"type": "Point", "coordinates": [',
               lon[match(ID, ID)], ',',  lat[match(ID, ID)], ']}}', sep="")
   return(str)
 }
-# -------------------------------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------------------------------------------
 # Combine all info into one string
-weat_obs = weather_string(weather_stat_data$id, weather_stat_data$name, weather_stat_data$link, weather_stat_data$obs, weather_stat_data$time, 
+weat_obs = weather_string(weather_stat_data$id, weather_stat_data$name, weather_stat_data$link, weather_stat_data$obs, weather_stat_data$time,
                           weather_stat_data$lon, weather_stat_data$lat)
 weat_obs_last = weat_obs[length(weat_obs)] #make sure the last feature doesn't end with a ","
 weat_obs = paste(weat_obs[1:length(weat_obs) - 1], ",", collapse="")
@@ -166,5 +166,5 @@ json_merge = paste('weatherStations = {"type": "FeatureCollection","features": [
 # --------------------------------------------------------------------------------------------------------------------
 
 # # Export data to geojson.
-cat(json_merge, file="/home/staff/klr324/marisa.psu.edu/mapdata/weather_observations_extend.json")
+cat(json_merge, file="/net/www/www.marisa.psu.edu/htdocs/mapdata/weather_observations_extend.json")
 # --------------------------------------------------------------------------------------------------------------------

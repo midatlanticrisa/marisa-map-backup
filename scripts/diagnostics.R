@@ -5,7 +5,7 @@
 # Last edit: June 19, 2018; check new features
 # Creation: July 3, 2017
 #
-# This script is a diagnostic test to determine whether the Marisa map up to date. 
+# This script is a diagnostic test to determine whether the Marisa map up to date.
 # The script simple tests whether the plotting files were created 'today' or 'yesterday'
 # in the case of the stream gauges (they are updated twice a day). Based on when the files
 # were updated the Marisa map will display a green or red dot in the bottom right corner of
@@ -18,10 +18,10 @@
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -36,7 +36,7 @@ date_yesterday <- Sys.Date() - 1
 
 # --------------------------------------------------------------------------------------------------------------------
 # Extract when the buoy json file was last created.
-buoy_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/buoys_extend.js"
+buoy_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/buoys_extend.js"
 buoy_times <- file.info(buoy_file)$ctime
 buoy_Dates <- as.Date(buoy_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -47,7 +47,7 @@ if (buoy_diag == FALSE){
 }
 
 # Extract when the weather observation json file was last created.
-weather_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/weather_observations_extend.json"
+weather_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/weather_observations_extend.json"
 weather_times <- file.info(weather_file)$ctime
 weather_Dates <- as.Date(weather_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -58,7 +58,7 @@ if (weather_diag == FALSE){
 }
 
 # Extract when all the tide station plots were last created.
-tide_dir <- "/home/staff/klr324/marisa.psu.edu/mapdata/Tide_figs"
+tide_dir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs"
 tide_list <- list.files(tide_dir)
 tide_files <- tide_list
 for(i in 1:length(tide_list)){
@@ -74,7 +74,7 @@ if (tide_diag == FALSE){
 }
 
 # Extract when the tide station json file was last created.
-tide_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/tide_station_obs_extend.js"
+tide_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/tide_station_obs_extend.js"
 tide_json_times <- file.info(tide_json_file)$ctime
 tide_json_Dates <- as.Date(tide_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -85,7 +85,7 @@ if (tide_json_diag == FALSE){
 }
 
 # Extract when all the stream gauge plots were last created.
-stream_dir <- "/home/staff/klr324/marisa.psu.edu/mapdata/Stream_figs"
+stream_dir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/Stream_figs"
 stream_list <- list.files(stream_dir)
 stream_files <- stream_list
 for(i in 1:length(stream_list)){
@@ -101,7 +101,7 @@ if (stream_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-njmdstream_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/NJMD_stream_obs.js"
+njmdstream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/NJMD_stream_obs.js"
 njmdstream_json_times <- file.info(njmdstream_json_file)$ctime
 njmdstream_json_Dates <- as.Date(njmdstream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -112,7 +112,7 @@ if (njmdstream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-nystream_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/NY_stream_obs.js"
+nystream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/NY_stream_obs.js"
 nystream_json_times <- file.info(nystream_json_file)$ctime
 nystream_json_Dates <- as.Date(nystream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -123,7 +123,7 @@ if (nystream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-ohstream_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/OHDEDCWVTNNCCTMA_stream_obs.js"
+ohstream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/OHDEDCWVTNNCCTMA_stream_obs.js"
 ohstream_json_times <- file.info(ohstream_json_file)$ctime
 ohstream_json_Dates <- as.Date(ohstream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -134,7 +134,7 @@ if (ohstream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-pastream_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/PA_stream_obs.js"
+pastream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/PA_stream_obs.js"
 pastream_json_times <- file.info(pastream_json_file)$ctime
 pastream_json_Dates <- as.Date(pastream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -145,7 +145,7 @@ if (pastream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-vastream_json_file <- "/home/staff/klr324/marisa.psu.edu/mapdata/VA_stream_obs.js"
+vastream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/VA_stream_obs.js"
 vastream_json_times <- file.info(vastream_json_file)$ctime
 vastream_json_Dates <- as.Date(vastream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -165,13 +165,11 @@ if (all(c(buoy_diag, weather_diag, tide_diag, tide_json_diag, stream_diag,
 } else {
   print("Automated files FAIL diagnostic; Check scripts for potential errors.")
   json_merge = 'diagnostic = [{"type": "Feature","properties": {"name": "Diagnostic test", "pass": "false"}, "geometry": {"type": "Point", "coordinates": [-73.4, 36.7]}}];'
-  system2('echo "Automated files FAIL diagnostic; Check scripts for potential errors." | mail -s "Error: check Marisa map scripts" klr324@psu.edu')
+  system2('echo "Automated files FAIL diagnostic; Check scripts for potential errors." | mail -s "Error: check Marisa map scripts" mdl5548@psu.edu')
 }
 
 # --------------------------------------------------------------------------------------------------------------------
 # Export data to geojson.
-cat(json_merge, file="/home/staff/klr324/marisa.psu.edu/mapdata/diagnostic.json")
+cat(json_merge, file="/net/www/www.marisa.psu.edu/htdocs/mapdata/diagnostic.json")
 
 # --------------------------------------------------------------------------------------------------------------------
-
-
