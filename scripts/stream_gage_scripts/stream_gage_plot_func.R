@@ -28,12 +28,12 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Files are saved to a directory called Stream_figs in mapdata. Create these directories if they don't exist
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
-}
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata/Stream_figs")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata/Stream_figs")
-}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
+#}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata/Stream_figs")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata/Stream_figs")
+#}
 
 # Function extracting stream data (discharge, gage height, and time) from USGS stream gages.
 stream_gage_plot = function(ID, b.date, e.date, day_midnight, day_noon){
@@ -43,7 +43,7 @@ stream_gage_plot = function(ID, b.date, e.date, day_midnight, day_noon){
   gaugeheight_dat <- usgs_dataRetrieve(ID, "00065", b.date, e.date, tz="America/New_York")
 
   # Export a plot from the discharge data.
-  png(file=paste("/home/staff/mdl5548/marisa.psu.edu/mapdata/Stream_figs/Fig_", ID, ".png", sep=""), family="sans", units="in", width=p.width, height=p.height, pointsize=14, res=300)
+  png(file=paste("/net/www/www.marisa.psu.edu/htdocs/mapdata/Stream_figs/Fig_", ID, ".png", sep=""), family="sans", units="in", width=p.width, height=p.height, pointsize=14, res=300)
   par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,2.5))
 
   if(all(is.na(discharge_dat)) && all(is.na(gaugeheight_dat)) ){    # No data is available
