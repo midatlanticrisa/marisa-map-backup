@@ -54,7 +54,8 @@ NWS_cols = read.csv("NationalWeatherService_Events.csv", header=TRUE)
 atlantic_codes = read.csv("NationalWeatherService_AtlanticCodes.csv", header=TRUE)[29:42, ]
 
 # Function extracting alerts from an NWS XML file.
-source("NWS_AlertParseFunc.R")
+inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/warnings_watches_advisories/"
+source(paste0(inDir,"NWS_AlertParseFunc.R"))
 
 # --------------------------------------------------------------------------------------------------------------------
 # Create empty vectors.

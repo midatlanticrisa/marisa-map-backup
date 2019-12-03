@@ -38,8 +38,9 @@ enableJIT(3)
 enableJIT(3)
 
 # Read functions to retrieve data and plot
-source("usgs_dataRetrieve.R")
-source("stream_gage_plot_func.R")
+inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
+source(paste0(inDir,"usgs_dataRetrieve.R"))
+source(paste0(inDir,"obs_string_single.R"))
 # --------------------------------------------------------------------------------------------------------------------
 # Set variables for determining plot size.
 p.width   = 4            # Width
