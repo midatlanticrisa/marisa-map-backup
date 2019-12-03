@@ -42,19 +42,19 @@ enableJIT(3)
 #  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
 #}
 # --------------------------------------------------------------------------------------------------------------------
+inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/warnings_watches_advisories/"
 # https://www.weather.gov/help-map
 # NWS_cols[ ,1] : List of all warnings, watches, advisories, and statements
 # NWS_cols[ ,2] : Associated colors for all warnings, watches, advisories, and statements.
-NWS_cols = read.csv("NationalWeatherService_Events.csv", header=TRUE)
+NWS_cols = read.csv(paste0(inDir,"NationalWeatherService_Events.csv"), header=TRUE)
 
 # https://alerts.weather.gov/cap
 # atlantic_codes[ ,1] : Zone code
 # atlantic_codes[ ,2] : Zone name
 # atlantic_codes[ ,3] : Ocean
-atlantic_codes = read.csv("NationalWeatherService_AtlanticCodes.csv", header=TRUE)[43:57, ]
+atlantic_codes = read.csv(paste0(inDir,"NationalWeatherService_AtlanticCodes.csv"), header=TRUE)[43:57, ]
 
 # Function extracting alerts from an NWS XML file.
-inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/warnings_watches_advisories/"
 source(paste0(inDir,"NWS_AlertParseFunc.R"))
 
 # --------------------------------------------------------------------------------------------------------------------
