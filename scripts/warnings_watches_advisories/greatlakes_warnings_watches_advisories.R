@@ -387,5 +387,5 @@ json_merge = paste('GLalerts = {"type": "FeatureCollection","features": [
 ]};', sep="")
 
 # Export data to geojson.
-cat(json_merge, file="/home/staff/mdl5548/marisa.psu.edu/mapdata/greatlakes_alerts.json")
+cat(json_merge, file="/net/www/www.marisa.psu.edu/htdocs/mapdata/greatlakes_alerts.json")
 # --------------------------------------------------------------------------------------------------------------------
