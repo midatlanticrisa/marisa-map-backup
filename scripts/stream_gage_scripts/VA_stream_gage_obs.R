@@ -42,8 +42,9 @@ enableJIT(3)
 #}
 
 # Read function to retrieve data
-source("usgs_dataRetrieve.R")
-source("obs_string_single.R")
+inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
+source(paste0(inDir,"usgs_dataRetrieve.R"))
+source(paste0(inDir,"obs_string_single.R"))
 # --------------------------------------------------------------------------------------------------------------------
 # We only need todays date to get the most recent value.
 e.date = Sys.Date()      # End date
