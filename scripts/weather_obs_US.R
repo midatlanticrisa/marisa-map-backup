@@ -38,7 +38,7 @@ library(httr)
 #}
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
-weather_stations <- read.csv("current_weather_stations.csv", header = FALSE, col.names = c("name", "id"))
+weather_stations <- read.csv("/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/current_weather_stations.csv", header = FALSE, col.names = c("name", "id"))
 
 # Function extracting weather data from an XML file.
 parse_xml = function(id){
