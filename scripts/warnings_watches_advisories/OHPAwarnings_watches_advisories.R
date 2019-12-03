@@ -38,9 +38,9 @@ enableJIT(3)
 enableJIT(3)
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
-}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
+#}
 # --------------------------------------------------------------------------------------------------------------------
 # https://www.weather.gov/help-map
 # NWS_cols[ ,1] : List of all warnings, watches, advisories, and statements

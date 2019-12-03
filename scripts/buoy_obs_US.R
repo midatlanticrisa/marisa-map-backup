@@ -43,9 +43,9 @@ enableJIT(3)
 enableJIT(3)
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
-}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
+#}
 # --------------------------------------------------------------------------------------------------------------------
 # Create a vector of buoy stations using lists from the NDBC
 readr.total <- read_lines("https://www.ndbc.noaa.gov/data/stations/station_table.txt")

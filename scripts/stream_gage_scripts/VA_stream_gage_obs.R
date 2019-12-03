@@ -37,9 +37,9 @@ enableJIT(3)
 enableJIT(3)
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
-}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
+#}
 
 # Read function to retrieve data
 source("usgs_dataRetrieve.R")

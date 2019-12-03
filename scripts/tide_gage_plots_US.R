@@ -37,9 +37,9 @@ library(XML)
 library(httr)
 
 # Files are saved to a directory called Tide_figs in mapdata. Create these directories if they don't exist
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
-}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
+#}
 if (!file.exists("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs")){
   dir.create("/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs")
 }

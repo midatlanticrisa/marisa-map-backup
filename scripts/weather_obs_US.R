@@ -33,9 +33,9 @@ library(XML)
 library(httr)
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
-  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
-}
+#if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
+#  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
+#}
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
 weather_stations <- read.csv("current_weather_stations.csv", header = FALSE, col.names = c("name", "id"))
