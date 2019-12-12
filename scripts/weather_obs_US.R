@@ -32,6 +32,7 @@ if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
 library(XML)
 library(httr)
+#library(parallel)
 
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
@@ -40,6 +41,9 @@ comp <- as.data.frame(t(Sys.info()))
 if(comp$nodename=="rsc64dot1x-60.ems.psu.edu"){
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
+}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){
+  inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
+  outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
 }else{
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
@@ -57,7 +61,7 @@ if (!file.exists(outDir)){
 weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), header=FALSE, col.names=c("name", "id"))
 
 # collect weather data for each station
-weather_stat_data = t(sapply(weather_stations$id, parse_xml))
+weather_stat_data = t(pbsapply(weather_stations$id, parse_xml))
 weather_stat_data = data.frame(weather_stat_data, row.names=weather_stations$id)
 
 #cores <- 6  
