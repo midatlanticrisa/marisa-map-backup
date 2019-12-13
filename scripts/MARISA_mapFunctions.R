@@ -114,7 +114,7 @@ parse_xml = function(id){
 collectBuoyData = function(buoys_ids, US_buoys){
   #################
   #buoys_ids <- NDBC_stations$ID
-  #buoys_ids <- NDBC_buoys$ID
+  #buoys_ids <- non_NDBC_stations$ID
   #US_buoys <- US_buoys
   #################
   ##set up 'bones' for data to be returned, mostly for preserving input/output order
@@ -138,9 +138,9 @@ collectBuoyData = function(buoys_ids, US_buoys){
                                               subTxt<-gsub(pattern='</rss"', '</rss>"', x=subTxt);
                                               subTxt<-gsub("\"","\'", subTxt);
                                               return(subTxt)})
-  
-    docs <- lapply(scripts, xmlParse)
 
+    docs <- lapply(scripts, xmlParse)
+  
     # Extract the meteorological data, which is in the 'description' node.
     buoy_vects <- sapply(docs, xpathSApply, path='//channel/item/description', fun=xmlValue)
     # Remove the '\n' character from the extracted string.
@@ -181,12 +181,12 @@ collectBuoyData = function(buoys_ids, US_buoys){
 collectLatestTidal <- function(varURL){
   #################
   #varURL <- varURLs[1]
+  #varURL <- varURLs[9]
   #################
-
   xml_data <- retry(xmlToList(rawToChar(GET(varURL)$content)))
   var <- sapply(strsplit(varURL, "product=|&datum="), "[[", 2)
   
-  if("error" %in% names(xml_data)){
+  if("error" %in% names(xml_data) | class(xml_data)!="list"){
     ##if there is no available data
     value <- NA
     date <- NA
@@ -196,6 +196,7 @@ collectLatestTidal <- function(varURL){
     metaLon <- NA
   }else if(is.null(xml_data$observations$disclaimers)==FALSE){
     remove <- c("disclaimers.disclaimer.text", "disclaimers.disclaimer..attrs")
+    chkVals <- data.frame(t(xml_data$observations[[1]]))
     chkVals <- chkVals[!rownames(chkVals) %in% remove,]
     value <- chkVals$v
     if(var=="wind"){
@@ -210,17 +211,18 @@ collectLatestTidal <- function(varURL){
   }else{
     chkVals <- data.frame(t(xml_data$observations[[1]]))
     if(var=="wind"){
-      value <- paste0("From the ", chkVals$dr, " at ", chkVals$s)
+      value <- paste0("From the ", as.character(chkVals$dr), " at ", as.character(chkVals$s))
     }else{
-      value <- chkVals$v
+      value <- as.numeric(as.character(chkVals[1,2]))
     }
     date <- as.POSIXct(chkVals$t, format = "%Y-%m-%d %H:%M", tz = "GMT")
     date <- format(date, format = "%b %d, %Y %I:%M %p %Z", tz = "America/New_York") # convert from GMT to current time zone
-    metaID <- xml_data$metadata["id"]
-    metaName <- xml_data$metadata["name"]
-    metaLat <- xml_data$metadata["lat"]
-    metaLon <- xml_data$metadata["lon"]
+    metaID <- as.character(xml_data$metadata["id"])
+    metaName <- as.character(xml_data$metadata["name"])
+    metaLat <- as.numeric(as.character(xml_data$metadata["lat"]))
+    metaLon <- as.numeric(as.character(xml_data$metadata["lon"]))
   }
+  
   return(c(value, date, metaID, metaName, metaLat, metaLon))
 }
 ##########################################################################
@@ -229,7 +231,8 @@ collectLatestTidal <- function(varURL){
 # CREATE a function of this step!!
 tideStationData <- function(statID, spDatum, timez, un){
   #################
-  #statID <- tideIDs[5]
+  #statID <- tideIDs[206]
+  #statID <- tideIDsMSL[1]
   #spDatum <- datum
   #timez <- timezone
   #un <- units
@@ -258,10 +261,6 @@ tideStationData <- function(statID, spDatum, timez, un){
   metaString <- ""
   obsString <- ""
   if(nrow(subVarTab)>0){
-    metaString <- paste0(metaString, '{"type": "Feature", "properties": {"name": "', unique(subVarTab$metaName), '", "id": "', statID, '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', statID, '", "obs": "',
-                         OBS[2], '", "time": "', TIME[2], '", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_', statID, '.png"}, geometry": {"type": "Point", "coordinates": [', unique(subVarTab$metaLon), 
-                         ',',  unique(subVarTab$metaLat), ']}}')
-    
     subVarNames <- subVarTab$vars
     if("air_temperature" %in% subVarNames){
       obsString <- paste0(obsString, "<strong>Air temperature: </strong>", subVarTab$value[which(subVarNames=="air_temperature")], " &#8451;<br/>")
@@ -298,16 +297,73 @@ tideStationData <- function(statID, spDatum, timez, un){
     if("salinity" %in% subVarNames){
       obsString <- paste0(obsString, "<strong>Salinity: </strong>", subVarTab$value[which(subVarNames=="salinity")], " psu<br/>")
     }
+    
+    metaString <- paste0(metaString, '{"type": "Feature", "properties": {"name": "', unique(subVarTab$metaName), '", "id": "', statID, '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', statID, '", "obs": "',
+                         obsString, '", "time": "', unique(subVarTab$time), '", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_', statID, '.png"}, geometry": {"type": "Point", "coordinates": [', 
+                         unique(subVarTab$metaLon), ',',  unique(subVarTab$metaLat), ']}}')
   }
   
-  return(c(metaString, obsString))
+  return(metaString)
 }
 ##########################################################################
 ##########################################################################
-
-
-
-
+# Function extracting tide data (hight and time) from a XML file online.
+waterheight_plot = function(statID, bDate, eDate, spDatum, timez, un, weekMidnights, weekNoons, plotW, plotH, plotOut){
+  #################
+  #statID <- tideIDs[1]
+  #statID <- "8760922"
+  #bDate <- originDate
+  #eDate <- endDate
+  #spDatum <- datum
+  #timez <- timezone
+  #un <- units
+  #weekMidnights <- day_midnight
+  #weekNoons <- day_noon
+  #plotW <- p.width
+  #plotH <- p.height
+  #plotOut <- plotDir
+  #################
+  #print(statID)
+  # Use the ID, b.date, e.date, datum, timezone, and units to create a URL to the XML file.
+  url <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=', bDate, '&end_date=', eDate, 
+               '&datum=', spDatum, '&station=', statID, '&time_zone=', timez, '&units=', un, '&format=xml')
+  xml_data <- xmlToList(rawToChar(GET(url)$content))
+  
+  ##create plot
+  png(file=paste0(plotOut, "Fig_", statID, ".png"), family="Helvetica", units="in", width=plotW, height=plotH, pointsize=14, res=300)
+  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
+  if("error" %in% names(xml_data) | class(xml_data)!="list"){
+    plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
+    legend("center", "No data available", bg="white")
+  }else{
+    if(is.null(xml_data$observations$disclaimers)==FALSE){
+      remove <- which(names(xml_data$observations)=="disclaimers")
+      xml_data$observations[remove] <- NULL
+    }
+    stationData <- do.call(rbind.data.frame, xml_data$observations)
+    colnames(stationData) <- c("time", "values", "s", "f", "q")
+    
+    date <- as.POSIXct(stationData$time, format="%Y-%m-%d %H:%M", tz="GMT")
+    date <- format(date, tz="America/New_York") # convert from GMT to current time zone
+    stationData$time <- as.POSIXct(date, format="%Y-%m-%d %H:%M", tz="")
+    # Determine which indices of the date occur at midnight and noon.
+    hours <- strftime(stationData$time, format="%H:%M")
+    midnight <- which(hours=="00:00")
+    noon <- which(hours=="12:00")
+    
+    plot(stationData$time, stationData$values, type="n", ylab=paste0("Height (m ", datum, ")"), xlab="Past 3 days", xaxt="n")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
+    axis(1, at=weekMidnights, labels=FALSE, tick=TRUE)
+    axis(1, at=weekNoons, labels=gsub("0(\\d)", "\\1", format(weekNoons, "%m/%d")), tick=FALSE)
+    grid(NA, NULL, lty=6, col="gray")
+    abline(v=weekMidnights, lty=6, col="gray")
+    lines(stationData$time, stationData$values, lwd=2, col="steelblue")
+  }
+  dev.off()
+}
+##########################################################################
+##########################################################################
 
 
 

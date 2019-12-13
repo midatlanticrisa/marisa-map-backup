@@ -32,6 +32,7 @@ if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
 library(XML)
 library(httr)
+library(pbapply)
 #library(parallel)
 
 # what computer am I on?
@@ -49,13 +50,14 @@ if(comp$nodename=="rsc64dot1x-60.ems.psu.edu"){
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
 
+# Files are saved to a directory called mapdata. Create this directory if it doesn't exist
+if (!dir.exists(outDir)){
+  dir.create(outDir, recursive=T)
+}
+
 ##sourced functions
 source(paste0(inDir, "MARISA_mapFunctions.R"))
 
-# Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!file.exists(outDir)){
-  dir.create(outDir, recursive=T)
-}
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
 weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), header=FALSE, col.names=c("name", "id"))
@@ -64,7 +66,7 @@ weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), heade
 weather_stat_data = t(pbsapply(weather_stations$id, parse_xml))
 weather_stat_data = data.frame(weather_stat_data, row.names=weather_stations$id)
 
-#cores <- 6  
+#cores <- 3  
 #cl <- makeCluster(cores)
 #clusterEvalQ(cl, {library(XML); library(httr)})
 #clusterExport(cl, varlist=c("weather_stations", "parse_xml"))
