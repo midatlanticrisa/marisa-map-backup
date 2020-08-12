@@ -33,7 +33,6 @@ if (!require("httr")) { install.packages("httr") }
 library(XML)
 library(httr)
 library(pbapply)
-#library(parallel)
 
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
@@ -58,60 +57,51 @@ if (!dir.exists(outDir)){
 ##sourced functions
 source(paste0(inDir, "MARISA_mapFunctions.R"))
 
+cores <- 3 
+
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
 weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), header=FALSE, col.names=c("name", "id"))
 
 # collect weather data for each station
-weather_stat_data = t(pbsapply(weather_stations$id, parse_xml))
-weather_stat_data = data.frame(weather_stat_data, row.names=weather_stations$id)
-
-#cores <- 3  
-#cl <- makeCluster(cores)
-#clusterEvalQ(cl, {library(XML); library(httr)})
-#clusterExport(cl, varlist=c("weather_stations", "parse_xml"))
-#parCollect <- parLapply(cl, weather_stations$id, fun=parse_xml)
-#stopCluster(cl)
-#weather_stat_data <- do.call(rbind.data.frame, parCollect)
-
-colnames(weather_stat_data) <- c("name", "id", "lat", "lon", "obs", "link", "time")
+if(cores>1){
+  library(parallel)
+  weather_stat_data <- mclapply(weather_stations$id, parse_xml, mc.cores=cores)
+  weather_stat_data <- do.call(rbind.data.frame, weather_stat_data)
+}else{
+  weather_stat_data <- t(pbsapply(weather_stations$id, parse_xml))
+  weather_stat_data <- data.frame(weather_stat_data, row.names=weather_stations$id)
+}
+colnames(weather_stat_data) <- c("name", "id", "lat", "lon", "obs", "link", "date", "time")
 
 # Remove stations without latitude or longitude
 weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(weather_stat_data$lon),]
 
-# --------------------------------------------------------------------------------------------------------------------
-# Format information to a feature string for json
-#weather_string = function(ID, name, link, obs, time, lon, lat){
-#  str = paste('{"type": "Feature", "properties": {"name": "', name[match(ID, ID)], '", "id": "', ID, '", "url": "', link[match(ID, ID)], '", "obs": "',
-#              obs[match(ID, ID)], '", "time": "', time[match(ID, ID)], '"}, "geometry": {"type": "Point", "coordinates": [',
-#              lon[match(ID, ID)], ',',  lat[match(ID, ID)], ']}}', sep="")
-#  return(str)
-#}
-# --------------------------------------------------------------------------------------------------------------------
-# Combine all info into one string
-#weat_obs <- weather_string(weather_stat_data$id, weather_stat_data$name, weather_stat_data$link, weather_stat_data$obs, weather_stat_data$time,
-#                          weather_stat_data$lon, weather_stat_data$lat)
-#weat_obs_last <- weat_obs[length(weat_obs)] #make sure the last feature doesn't end with a ","
-
+##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 
                         '", "obs": "', weather_stat_data$obs, '", "time": "', weather_stat_data$time, '"}, "geometry": {"type": "Point", "coordinates": [',
                         weather_stat_data$lon, ',',  weather_stat_data$lat, ']}}')
-fullWString <- paste(weatherString, collapse=",")
-json_merge <- paste0('weatherStations = {"type": "FeatureCollection","features": [', fullWString, ']};')
+json_merge <- paste0('weatherStations = {"type": "FeatureCollection","features": [', paste(weatherString, collapse=","), ']};')
 
-#weat_obs <- paste(weat_obs[1:length(weat_obs) - 1], ",", collapse="")
-
-# Create geojson objects with the information.
-# Merge geojson objects into a specific file format with data as the variable name.
-#json_merge = paste('weatherStations = {"type": "FeatureCollection","features": [', weat_obs, weat_obs_last, ']};', sep="")
-
-
-
-# Export data to geojson.
-# cat(json_merge, file="weather_observations_extend.json")
-
-# --------------------------------------------------------------------------------------------------------------------
 
 # # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "weather_observations_extend.json"))
 # --------------------------------------------------------------------------------------------------------------------
+
+#############################################
+##test code to write out as geojson file
+library(rgdal)
+
+#fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
+#coordinates(fullTab) <- c("lon", "lat")
+#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(weather_stat_data$lon), as.numeric(weather_stat_data$lat)), data=weather_stat_data, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+sptData <- data.frame(id=weather_stat_data$id, name=weather_stat_data$name, lon=as.numeric(as.character(weather_stat_data$lon)), lat=as.numeric(as.character(weather_stat_data$lat)))
+nonSptData <- data.frame(id=weather_stat_data$id, obs=weather_stat_data$obs, link=weather_stat_data$link, time=weather_stat_data$time)
+spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+#writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="weatherObs", driver="ESRI Shapefile")
+#write.csv(nonSptData, paste0(outDir, "testOutput/weatherObsTab.csv"), row.names=F)
+write.csv(weather_stat_data, paste0(outDir, "testOutput/weatherObsFull.csv"), row.names=F)
+
+

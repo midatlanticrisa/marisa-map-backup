@@ -38,7 +38,6 @@ library(XML)
 library(httr)
 library(anytime)
 library(pbapply)
-#library(parallel)
 
 
 # what computer am I on?
@@ -78,19 +77,27 @@ cores <- 3
 
 # --------------------------------------------------------------------------------------------------------------------
 
-
 # Run through each station.
-tideStations <- pbsapply(tideIDs, tideStationData, spDatum=datum, timez=timezone, un=units)
-tideStationsMSL <- pbsapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)
-tideStationsGL <- pbsapply(tideIDsGrtLakes, tideStationData, spDatum=gl.datum, timez=timezone, un=units)
+if(cores>1){
+  ##run in parallel
+  library(parallel)
+  tideStations <- mclapply(tideIDs, tideStationData, spDatum=datum, timez=timezone, un=units, mc.cores=cores)
+  #tideStationsMSL <- pbsapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)
+  tideStationsMSL <- pblapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)
+  tideStationsGL <- mclapply(tideIDsGrtLakes, tideStationData, spDatum=gl.datum, timez=timezone, un=units, mc.cores=cores)
+}else{
+  ##run on single core
+  #tideStations <- pbsapply(tideIDs, tideStationData, spDatum=datum, timez=timezone, un=units)
+  #tideStationsMSL <- pbsapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)
+  #tideStationsGL <- pbsapply(tideIDsGrtLakes, tideStationData, spDatum=gl.datum, timez=timezone, un=units)
+  tideStations <- pblapply(tideIDs, tideStationData, spDatum=datum, timez=timezone, un=units)
+  tideStationsMSL <- pblapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)
+  tideStationsGL <- pblapply(tideIDsGrtLakes, tideStationData, spDatum=gl.datum, timez=timezone, un=units)
+}
 
-#cl <- makeCluster(cores)
-#clusterEvalQ(cl, {library(RCurl); library(XML); library(httr); library(anytime)})
-#clusterExport(cl, varlist=c("tideIDs", "tideStationData", "datum", "timezone", "units", "collectLatestTidal", "retry"))
-#tideStations <- parSapply(cl, tideIDs, tideStationData, spDatum=datum, timez=timezone, un=units)  
-#tideStationsGL <- parSapply(cl, tideIDs, tideIDsGrtLakes, spDatum=gl.datum, timez=timezone, un=units) 
-#stopCluster(cl)
-#tideStationsMSL <- pbsapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)
+tideStations <- do.call(rbind.data.frame, tideStations)
+tideStationsMSL <- do.call(rbind.data.frame, tideStationsMSL)
+tideStationsGL <- do.call(rbind.data.frame, tideStationsGL)
 
 # --------------------------------------------------------------------------------------------------------------------
 # Combine all info into one string
@@ -100,4 +107,23 @@ json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [',
 
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "tide_station_obs_extend.json"))
+
+
+#############################################
+##test code to write out as geojson file
+library(rgdal)
+
+fullTab <- rbind.data.frame(tideStations, tideStationsMSL, tideStationsGL)
+fullTab <- fullTab[is.na(fullTab$lat)==F,]
+fullTab$id <- as.character(fullTab$id)
+#coordinates(fullTab) <- c("lon", "lat")
+#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(weather_stat_data$lon), as.numeric(weather_stat_data$lat)), data=weather_stat_data, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+sptData <- data.frame(id=fullTab$id, lon=as.numeric(as.character(fullTab$lon)), lat=as.numeric(as.character(fullTab$lat)))
+nonSptData <- data.frame(id=fullTab$id, obs=fullTab$obs, link=fullTab$url, image=fullTab$image, time=fullTab$time)
+spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+#writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="tideObs", driver="ESRI Shapefile")
+#write.csv(nonSptData, paste0(outDir, "testOutput/tideObsTab.csv"), row.names=F)
+write.csv(fullTab, paste0(outDir, "testOutput/tideObsFull.csv"), row.names=F)
 

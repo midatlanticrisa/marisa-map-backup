@@ -45,9 +45,14 @@ parse_xml = function(id){
   }
   # Time when observations were collected.
   if(is.null(xml_data$observation_time)){
+    date <- ""
     time <- ""
   } else {
-    time <- xml_data$observation_time
+    exTime <- sapply(strsplit(xml_data$observation_time, "on "), "[[", 2)
+    exZ <- sapply(strsplit(exTime," "), "[[", length(strsplit(exTime[1]," ")[[1]]))
+    dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz=exZ)
+    date <- format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
+    time <- format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
   }
   # General weather condition.
   if(is.null(xml_data$weather)){
@@ -107,12 +112,13 @@ parse_xml = function(id){
   obs = paste0(weather, temp, humidity, wind, speed, dewpoint, windchill, visibility)
   
   # Return the weather variables
-  return(c(name, as.character(id), latitude, longitude, obs, link, time))
+  return(c(name, as.character(id), latitude, longitude, obs, link, date, time))
 }
 ##########################################################################
 ##########################################################################
 collectBuoyData = function(buoys_ids, US_buoys){
   #################
+  #buoys_ids <- NDBC_buoys$ID
   #buoys_ids <- NDBC_stations$ID
   #buoys_ids <- non_NDBC_stations$ID
   #US_buoys <- US_buoys
@@ -149,6 +155,12 @@ collectBuoyData = function(buoys_ids, US_buoys){
     exTime <- sapply(strsplit(buoy_vects,"<strong>|</strong>"), "[[", 2)
     buoySubObs <- sapply(strsplit(removeEnd, paste0(exTime, "</strong><br />")), "[[", 2)
     
+    splitLength <- sapply(exTime, function(x){length(strsplit(x, " ")[[1]])})
+    exZ <- sapply(1:length(exTime), function(x){sapply(strsplit(exTime[x]," "), "[[", splitLength[x])})
+    dateBases <- mapply(as.POSIXlt, exTime, format="%b %d, %Y %I:%M %p", tz=exTime, SIMPLIFY=F)   #as.POSIXlt(exTime, format="%b %d, %Y %I:%M %p", tz=exZ)
+    date <- sapply(dateBases, format, format="%b %d, %Y")  #format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
+    time <- sapply(dateBases, format, format="%I:%M %p %Z")  #format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
+    
     # Extract the name, link, and coordinates which are in the 'title', 'link', and 'georss:point' node.
     buoy_names <- sapply(docs, xpathSApply, path='//channel/item/title', fun=xmlValue)
     buoy_links <- sapply(docs, xpathSApply, path='//channel/item/link', fun=xmlValue)
@@ -156,7 +168,9 @@ collectBuoyData = function(buoys_ids, US_buoys){
     buoy_lats <- as.numeric(sapply(strsplit(buoy_coords," "),"[[", 1))
     buoy_lons <- as.numeric(sapply(strsplit(buoy_coords," "),"[[", 2))
     
-    existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br />"), time=paste0("Late Updated on ", exTime), name=buoy_names,
+    #existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br />"), time=paste0("Late Updated on ", exTime), name=buoy_names,
+    #                         link=buoy_links, lat=buoy_lats, lon=buoy_lons)
+    existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br />"), date=date, time=time, name=buoy_names,
                              link=buoy_links, lat=buoy_lats, lon=buoy_lons)
   }
   
@@ -165,13 +179,14 @@ collectBuoyData = function(buoys_ids, US_buoys){
   if(F%in%buoyExistance){
     noExist <- buoys_ids[which(buoyExistance==F)]
     noExistUS <- which(US_buoys$ID%in%noExist)
-    noExistFrame <- data.frame(id=noExist, obs="There are no current meteorological observations recorded at this buoy.", time="",
+    noExistFrame <- data.frame(id=noExist, obs="There are no current meteorological observations recorded at this buoy.", date="", time="",
                                name=as.character(US_buoys$name[noExistUS]), link=paste0("http://www.ndbc.noaa.gov/station_page.php?station=", noExist),
                                lat=as.character(US_buoys$lat[noExistUS]), lon=as.character(US_buoys$lon[noExistUS]))
+    existFrame <- rbind.data.frame(existFrame,noExistFrame)
   }
   
   ##output table
-  fullFrame <- merge(x=outTab, y=rbind.data.frame(existFrame,noExistFrame), by="id", sort=F)
+  fullFrame <- merge(x=outTab, y=existFrame, by="id", sort=F)
   
   return(fullFrame)
 }
@@ -190,6 +205,7 @@ collectLatestTidal <- function(varURL){
     ##if there is no available data
     value <- NA
     date <- NA
+    time <- NA
     metaID <- NA
     metaName <- NA
     metaLat <- NA
@@ -202,8 +218,11 @@ collectLatestTidal <- function(varURL){
     if(var=="wind"){
       value <- paste0("From the ", chkVals$dr, " at ", chkVals$s)
     }
-    date <- as.POSIXct(chkVals$t, format = "%Y-%m-%d %H:%M", tz = "GMT")
-    date <- format(date, format = "%b %d, %Y %I:%M %p %Z", tz = "America/New_York") # convert from GMT to current time zone
+    #date <- as.POSIXct(chkVals$t, format = "%Y-%m-%d %H:%M", tz = "GMT")
+    #date <- format(date, format = "%b %d, %Y %I:%M %p %Z", tz = "America/New_York") # convert from GMT to current time zone
+    dateBase <- as.POSIXct(chkVals$t, format="%Y-%m-%d %H:%M", tz="GMT")
+    date <- format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
+    time <- format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
     metaID <- xml_data$metadata["id"]
     metaName <- xml_data$metadata["name"]
     metaLat <- xml_data$metadata["lat"]
@@ -215,15 +234,19 @@ collectLatestTidal <- function(varURL){
     }else{
       value <- as.numeric(as.character(chkVals[1,2]))
     }
-    date <- as.POSIXct(chkVals$t, format = "%Y-%m-%d %H:%M", tz = "GMT")
-    date <- format(date, format = "%b %d, %Y %I:%M %p %Z", tz = "America/New_York") # convert from GMT to current time zone
+    #date <- as.POSIXct(chkVals$t, format="%Y-%m-%d %H:%M", tz="GMT")
+    #date <- format(date, format="%b %d, %Y %I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
+    dateBase <- as.POSIXct(chkVals$t, format="%Y-%m-%d %H:%M", tz="GMT")
+    date <- format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
+    time <- format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
     metaID <- as.character(xml_data$metadata["id"])
     metaName <- as.character(xml_data$metadata["name"])
     metaLat <- as.numeric(as.character(xml_data$metadata["lat"]))
     metaLon <- as.numeric(as.character(xml_data$metadata["lon"]))
   }
   
-  return(c(value, date, metaID, metaName, metaLat, metaLon))
+  #return(c(value, date, metaID, metaName, metaLat, metaLon))
+  return(c(value, date, time, metaID, metaName, metaLat, metaLon))
 }
 ##########################################################################
 ##########################################################################
@@ -232,33 +255,37 @@ collectLatestTidal <- function(varURL){
 tideStationData <- function(statID, spDatum, timez, un){
   #################
   #statID <- tideIDs[206]
+  #statID <- "8571421"
   #statID <- tideIDsMSL[1]
   #spDatum <- datum
   #timez <- timezone
   #un <- units
   #################
   vars <- c("air_temperature", "air_pressure", "visibility", "humidity", "wind", "water_level", "water_temperature", "conductivity", "salinity")
-  
+
   # Use the ID, variable, datum, timezone, and units to create a URL to the XML file.
   varURLs <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?date=latest&station=', statID, '&product=', vars, '&datum=', spDatum, '&units=', un, '&time_zone=', timez, '&application=web_services&format=xml')
   
   getVarVals <- lapply(varURLs, collectLatestTidal)
   tableVars <- cbind.data.frame(vars, do.call(rbind.data.frame, getVarVals))
-  colnames(tableVars)[2:ncol(tableVars)] <- c("value", "time", "metaID", "metaName", "metaLat", "metaLon") 
+  colnames(tableVars)[2:ncol(tableVars)] <- c("value", "date", "time", "metaID", "metaName", "metaLat", "metaLon") 
   
   if(F %in% is.na(tableVars$time)){
     ##collect the non-NA update times
-    validTimes <- tableVars$time[which(is.na(tableVars$time)==F)]
+    validTimes <- which(is.na(tableVars$time)==F)
     ##determine which time is the latest
-    latTimeInd <- which.min(utctime(validTimes))
+    #latTimeInd <- which.min(utctime(validTimes))
+    latTimeInd <- which.min(utctime(as.POSIXlt(paste(tableVars$date[validTimes], tableVars$time[validTimes]), format="%b %d, %Y %I:%M %p", tz="EDT")))
     ##set all times to latest updated time
-    tableVars$time <- as.character(validTimes[latTimeInd])
+    tableVars$date <- as.character(tableVars$date[validTimes[latTimeInd]])
+    tableVars$time <- as.character(tableVars$time[validTimes[latTimeInd]])
   }
   
   ##determine which variables to include in variable
   subVarTab <- tableVars[which(is.na(tableVars$value)==F),]
   
-  metaString <- ""
+  #metaString <- ""
+  dataFramed <- data.frame(id=statID, url=paste0("https://tidesandcurrents.noaa.gov/stationhome.html?id=",statID), obs=NA, date=NA, time=NA, image=paste0("https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_",statID,".png"), lon=NA, lat=NA)
   obsString <- ""
   if(nrow(subVarTab)>0){
     subVarNames <- subVarTab$vars
@@ -298,35 +325,35 @@ tideStationData <- function(statID, spDatum, timez, un){
       obsString <- paste0(obsString, "<strong>Salinity: </strong>", subVarTab$value[which(subVarNames=="salinity")], " psu<br/>")
     }
     
-    metaString <- paste0(metaString, '{"type": "Feature", "properties": {"name": "', unique(subVarTab$metaName), '", "id": "', statID, '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', statID, '", "obs": "',
-                         obsString, '", "time": "', unique(subVarTab$time), '", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_', statID, '.png"}, geometry": {"type": "Point", "coordinates": [', 
-                         unique(subVarTab$metaLon), ',',  unique(subVarTab$metaLat), ']}}')
+    #metaString <- paste0(metaString, '{"type": "Feature", "properties": {"name": "', unique(subVarTab$metaName), '", "id": "', statID, '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', statID, '", "obs": "',
+    #                     obsString, '", "time": "', unique(subVarTab$time), '", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_', statID, '.png"}, geometry": {"type": "Point", "coordinates": [', 
+    #                     unique(subVarTab$metaLon), ',',  unique(subVarTab$metaLat), ']}}')
+    dataFramed$obs <- obsString
+    dataFramed$date <- unique(subVarTab$date)
+    dataFramed$time <- unique(subVarTab$time)
+    dataFramed$lon <- unique(subVarTab$metaLon)
+    dataFramed$lat <- unique(subVarTab$metaLat)
   }
   
-  return(metaString)
+  #return(metaString)
+  return(dataFramed)
 }
 ##########################################################################
 ##########################################################################
 # Function extracting tide data (hight and time) from a XML file online.
-waterheight_plot = function(statID, bDate, eDate, spDatum, timez, un, weekMidnights, weekNoons, plotW, plotH, plotOut){
+waterheight_plot <- function(url, weekMidnights, weekNoons, plotW, plotH, plotOut){
   #################
-  #statID <- tideIDs[1]
-  #statID <- "8760922"
-  #bDate <- originDate
-  #eDate <- endDate
-  #spDatum <- datum
-  #timez <- timezone
-  #un <- units
+  #url <- 
   #weekMidnights <- day_midnight
   #weekNoons <- day_noon
   #plotW <- p.width
   #plotH <- p.height
   #plotOut <- plotDir
   #################
+  
+  statID <- sapply(strsplit(url, "&station=|&time_"), "[[", 2)
   #print(statID)
-  # Use the ID, b.date, e.date, datum, timezone, and units to create a URL to the XML file.
-  url <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=', bDate, '&end_date=', eDate, 
-               '&datum=', spDatum, '&station=', statID, '&time_zone=', timez, '&units=', un, '&format=xml')
+
   xml_data <- xmlToList(rawToChar(GET(url)$content))
   
   ##create plot
@@ -364,7 +391,283 @@ waterheight_plot = function(statID, bDate, eDate, spDatum, timez, un, weekMidnig
 }
 ##########################################################################
 ##########################################################################
+# Function extracting stream data (discharge and time) from a TXT file online.
+usgs_dataRetrieveVar = function(url, tz, data){
+  #################
+  #url <- gageTmpURLs[1]
+  #url <- dischargeURL
+  #url <- dailyAveURL
+  #url <- heightURL
+  #url <- gageURL<-paste0("https://waterdata.usgs.gov/nwis/uv?cb_", var, "=on&format=rdb&site_no=", gageID, "&period=&begin_date=", getDate, "&end_date=", getDate)
+  #tz <- "America/New_York"
+  #data <- "latest"  ##"full"  ##daily
+  #data <- "full"
+  #data <- "daily"
+  #################
+  # Extract number of metadata rows to skip and determine header names
+  readr.total <- retry(read_lines(url))
+  totalRows <- length(readr.total)
+  meta.rows <- length(readr.total[grep("^#", readr.total)])  ##rows that begin with a hashtag
+  
+  header.names <- strsplit(readr.total[meta.rows+1],"\t")[[1]]
 
-
-
+  ##format the data based on what data is desired
+  if(data=="latest"){
+    ##only concerned with the latest data
+    latestData <- strsplit(readr.total[totalRows],"\t")[[1]]
+    if((totalRows==meta.rows+3) & (length(latestData)==0)){  ##there is no actual data
+      return(c(NA,NA))
+    }
+    
+    ##get varialbe name and index
+    var <- strsplit(url, "cb_|=on")[[1]][2]
+    varInd <- grep(var, header.names)[1]
+    # NEED TO CHECK FOR MISSING DATA!!!
+    if(is.na(varInd) || is.na(latestData[varInd])==T){
+      return(c(NA,NA))
+    }
+    
+    # Convert and extract the date and time.
+    dateInd <- which(header.names=="datetime")
+    tzInd <- which(header.names=="tz_cd")
+    #latestData[dateInd] <- format(as.POSIXct(latestData[dateInd], format="%Y-%m-%d %H:%M", tz=tz), format="%b %d, %Y %I:%M %p %Z")
+    dateBase <- as.POSIXct(latestData[dateInd], format="%Y-%m-%d %H:%M", tz=latestData[tzInd])
+    #latestData[dateInd] <- format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from local time zone to Eastern NA
+    #latestData <- c(latestData[1:dateInd], format(dateBase, format="%I:%M %p %Z", tz="America/New_York"), latestData[tzInd:length(latestData)]) # convert from local time zone to Eastern NA
+    
+    return(c(latestData[varInd], format(dateBase, format="%b %d, %Y", tz="America/New_York"), format(dateBase, format="%I:%M %p %Z", tz="America/New_York")))
+    
+  }else if(data=="full"){
+    ##want all of the available within the timeframe
+    splitData <- strsplit(readr.total[(meta.rows+3):totalRows],"\t")
+    tableData <- do.call(rbind.data.frame, splitData)
+    if(nrow(tableData)<1){
+      return(NA)
+    }
+    
+    colnames(tableData) <- header.names
+    # Give parameter data a common header name 
+    varCol <- grep(sapply(strsplit(url, "cb_|=on"), "[[", 2), header.names)[1]
+    colnames(tableData)[varCol] <- "var"
+    tableData$var <- as.numeric(as.character(tableData$var))
+    
+    # NEED TO CHECK FOR MISSING DATA!!!
+    if(unique(is.na(tableData$var))==T){
+      return(NA)
+    }
+    
+    # Convert and extract the date and time.
+    tableData$datetime <- as.POSIXct(tableData$datetime, format="%Y-%m-%d %H:%M", tz=tz)
+    tableData$time <- strftime(tableData$datetime, format="%H:%M", tz=tz)
+    
+    return(tableData)
+    
+  }else if(data=="daily"){
+    ##want all of the daily data within the timeframe
+    splitData <- strsplit(readr.total[(meta.rows+3):totalRows],"\t")
+    tableData <- do.call(rbind.data.frame, splitData)
+    if(nrow(tableData)<1){
+      return(NA)
+    }
+    
+    colnames(tableData) <- header.names[1:ncol(tableData)]
+    ##match dates 
+    # Convert month and day to a date.
+    tableData$MonDay <- as.POSIXct(paste(tableData$month_nu, tableData$day_nu, sep="-"), format="%m-%d", tz="America/New_York")
+    #format(paste(tableData$month_nu, tableData$day_nu, sep="-"), format="%m-%d")
+    
+    # NEED TO CHECK FOR MISSING DATA!!!
+    if(unique(is.na(tableData$mean_va))==T){
+      return(NA)
+    }else{
+      ##bDate and eDate are global variables
+      ##remove year from bDate and eDate
+      datesInd <- sapply(c(bDate, eDate), function(x){grep(format(x, format="%m-%d"), tableData$MonDay)})
+      
+      if(class(datesInd)=="list"){
+        weeksAve <- NA
+      }else if(datesInd[1] > datesInd[2]){
+        ##this may happen around the New Year
+        weeksAve <- mean(as.numeric(as.character(tableData$mean_va[c(1:datesInd[2], datesInd[1]:nrow(tableData))])), na.rm=T)
+      }else{
+        weeksAve <- mean(as.numeric(as.character(tableData$mean_va[datesInd[1]:datesInd[2]])), na.rm=T)
+      }
+    }
+    return(weeksAve)
+  }
+}
+##########################################################################
+##########################################################################
+##function to create a string of observations based on what is available
+createObsString <- function(tab){
+  #################
+  #tab <- fullStationData
+  #################
+  ##character objects to put results into 
+  tempObs <- dischargeObs <- heightObs <- vector(mode="character", length=nrow(tab))
+  
+  ##determine the index for each possible variable combination
+  tempNotNA <- which(is.na(tab$temp)==F)
+  dischargeNotNA <- which(is.na(tab$discharge)==F)
+  heightNotNA <- which(is.na(tab$gageHeight)==F)
+  
+  ##construct the observation string
+  tempObs[tempNotNA] <- paste0(tempObs[tempNotNA], "<br/><br/><strong>Temperature: </strong>", tab$temp[tempNotNA], " &#8457")
+  dischargeObs[dischargeNotNA] <- paste0(dischargeObs[dischargeNotNA], "<br/><strong>Discharge: </strong>", tab$discharge[dischargeNotNA], " ft&#179;/s<br/><br/>")
+  heightObs[heightNotNA] <- paste0(heightObs[heightNotNA], "<br/><strong>Gage height: </strong>", tab$gageHeight[heightNotNA], " ft<br/><br/>")
+  
+  outObs <- sapply(1:nrow(tab), function(x){obs<-c(tempObs[x],dischargeObs[x],heightObs[x]);
+                                            obs<-obs[which(obs!="")];
+                                            if(length(obs)>1){
+                                              return(paste0(obs, collapse=";"))
+                                            }else if(length(obs)==1){
+                                              return(obs)
+                                            }else{
+                                              return("")
+                                            }})
+  return(outObs)
+}
+##########################################################################
+##########################################################################
+# Function extracting stream data (discharge, gage height, and time) from USGS stream gages.
+stream_gage_plot <- function(dischargeURL, heightURL, weekMidnights, weekNoons, plotW, plotH, plotOut){
+  #################
+  #dischargeURL <- gageDisURLs[616]
+  #heightURL <- gageGagURLs[616]
+  #weekMidnights <- day_midnight
+  #weekNoons <- day_noon
+  #plotW <- p.width
+  #plotH <- p.height
+  #plotOut <- plotDir
+  #################
+  
+  statID <- sapply(strsplit(dischargeURL, "site_no=|&period"), "[[", 2)
+  print(statID)
+  
+  if(getURL(dischargeURL)=="No sites/data found using the selection criteria specified \n"){
+    dischargeDat <- NA
+  }else{
+    dischargeDat <- usgs_dataRetrieveVar(dischargeURL, "America/New_York", "full")
+  }
+  if(getURL(heightURL)=="No sites/data found using the selection criteria specified \n"){
+    heightDat <- NA
+  }else{
+    heightDat <- usgs_dataRetrieveVar(heightURL, "America/New_York", "full")
+  }
+  
+  
+  # Export a plot from the discharge data.
+  png(file=paste0(plotOut, "Fig_", statID, ".png"), family="sans", units="in", width=plotW, height=plotH, pointsize=14, res=300)
+  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,2.5))
+  
+  if(all(is.na(dischargeDat)) && all(is.na(heightDat))){    # No data is available
+    # During cold weather, stage and discharge values may be affected by ice at some
+    # streamgages. Streamgages experiencing ice conditions will have the discharge record
+    # temporarily disabled to prevent the display of erroneous discharge values. Display of
+    # discharge record will resume when it is determined that ice conditions are no longer
+    # present. Adjustment of data affected by ice can only be done after detailed analysis.
+    plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
+    legend("center", "No data available", bg="white")
+    
+  }else if(all(is.na(dischargeDat))==FALSE && all(is.na(heightDat))){    # Only discharge data is available
+    # Extract daily mean statistic for days of the current week
+    dailyAveURL <- paste0('https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=', statID, '&parameterCd=00060&statReportType=daily')
+    if(getURL(dailyAveURL)=="# //Output-Format: RDB\n# //Response-Status: OK\n# //Response-Message: No sites found matching all criteria\n"){
+      daily_avgQ <- NA
+    }else{
+      daily_avgQ <- usgs_dataRetrieveVar(dailyAveURL, "America/New_York", "daily")
+    }
+    
+    # Create discharge plot.
+    plot(dischargeDat$datetime, dischargeDat$var, type = "n", ylab = "", xlab="Past 7 days", xaxt="n",
+         col="#018571", col.ticks="#018571", col.axis="#018571", ylim=c(min(daily_avgQ, min(dischargeDat$var, na.rm=TRUE), na.rm=TRUE),
+                                                                        max(daily_avgQ, max(dischargeDat$var, na.rm=TRUE), na.rm=TRUE)))
+    
+    mtext(2, text=expression("Discharge"~(ft^3/s)), line=1.25, col="#018571")
+    # Color the background light gray.
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+    
+    # Set axis ticks to midnight and labels to noon.
+    axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
+    axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
+    
+    # Add a grid.
+    grid(NA, NULL, lty = 6, col = "gray")
+    abline(v = day_midnight, lty = 6, col = "gray")
+    # Add the data.
+    lines(dischargeDat$datetime, dischargeDat$var, lwd=2, col="#018571") # steelblue
+    
+    # Add climate average
+    abline(h=daily_avgQ, lty=3, lwd=2, col="#018571")
+    
+  }else if(all(is.na(dischargeDat)) && all(is.na(heightDat))==FALSE ){    # Only gauge height data is available
+    # Create gage height plot.
+    plot(heightDat$datetime, heightDat$var, type = "n", ylab = "", xlab="Past 7 days", xaxt="n", yaxt="n")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+    
+    axis(4, col="#a6611a", col.ticks="#a6611a", col.axis="#a6611a")
+    mtext(4, text="Gage height (ft)", line=1.25, col="#a6611a")
+    
+    # Set axis ticks to midnight and labels to noon.
+    axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
+    axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
+    
+    # Add a grid.
+    grid(NA, NULL, lty = 6, col = "gray")
+    abline(v = day_midnight, lty = 6, col = "gray")
+    # Add the data.
+    lines(heightDat$datetime, heightDat$var, lwd=2, col="#a6611a") # steelblue
+    
+  } else if(all(is.na(dischargeDat))==FALSE && all(is.na(heightDat))==FALSE){    # Discharge and gauge height data are available
+    # Extract daily mean statistic for days of the current week
+    dailyAveURL <- paste0('https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=', statID, '&parameterCd=00060&statReportType=daily')
+    if(getURL(dailyAveURL)=="# //Output-Format: RDB\n# //Response-Status: OK\n# //Response-Message: No sites found matching all criteria\n"){
+      daily_avgQ <- NA
+    }else{
+      daily_avgQ <- usgs_dataRetrieveVar(dailyAveURL, "America/New_York", "daily")
+    }
+    
+    # Create discharge and gage height plot.
+    plot(dischargeDat$datetime, dischargeDat$var, type = "n", ylab = "", xlab="Past 7 days", xaxt="n",
+         col="#018571", col.ticks="#018571", col.axis="#018571", ylim=c(min(daily_avgQ, min(heightDat$var, na.rm=TRUE), min(dischargeDat$var, na.rm=TRUE), na.rm=TRUE),
+                                                                        max(daily_avgQ, max(heightDat$var, na.rm=TRUE), max(dischargeDat$var, na.rm=TRUE), na.rm=TRUE)))
+    
+    mtext(2, text=expression("Discharge"~(ft^3/s)), line=1.25, col="#018571")
+    # Color the background light gray.
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+    
+    # Set axis ticks to midnight and labels to noon.
+    axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
+    axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
+    
+    # Add a grid.
+    grid(NA, NULL, lty = 6, col = "gray")
+    abline(v = day_midnight, lty = 6, col = "gray")
+    # Add the data.
+    lines(dischargeDat$datetime, dischargeDat$var, lwd=2, col="#018571") # steelblue
+    
+    # Add climate average
+    abline(h=daily_avgQ, lty=3, lwd=2, col="#018571")
+    
+    # Add gage height data
+    par(new=TRUE)
+    plot(heightDat$datetime, heightDat$var, lwd=2, col="#a6611a", typ="l",
+         ylab="", xlab="", xaxt="n", yaxt="n")
+    axis(4, col="#a6611a", col.ticks="#a6611a", col.axis="#a6611a")
+    mtext(4, text="Gage height (ft)", line=1.25, col="#a6611a")
+    
+  }else{ # Create empty plot to indicate there may be something wrong with the script
+    plot(c(b.date,e.date), rep(0, 2), xaxt='n',yaxt='n',bty='n',pch='',ylab='',xlab='')
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+    
+    # Add a grid.
+    grid(NA, NULL, lty = 6, col = "gray")
+    legend("center", "Check import script for errors", bg = "white")
+    
+  }
+  dev.off()
+}
+##########################################################################
+##########################################################################
 

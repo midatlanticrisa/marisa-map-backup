@@ -34,11 +34,11 @@ comp <- as.data.frame(t(Sys.info()))
 
 # output directory
 if(comp$nodename=="rsc64dot1x-60.ems.psu.edu"){
-  outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
+  outDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){
-  outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
+  outDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
 }else{
-  outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
+  outDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
 }
 
 

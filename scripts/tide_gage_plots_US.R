@@ -37,7 +37,6 @@ library(XML)
 library(httr)
 library(pbapply)
 library(anytime)
-library(parallel)
 
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
@@ -90,26 +89,27 @@ day_midnight <- as.POSIXct(paste0(Sys.Date() - day, "00:00"), format = "%Y-%m-%d
 day_noon <- as.POSIXct(paste0(Sys.Date() - day, "12:00"), format = "%Y-%m-%d %H:%M", tz = "America/New_York")
 
 # --------------------------------------------------------------------------------------------------------------------
+
+# Use the ID, b.date, e.date, datum, timezone, and units to create a URL to the XML file.
+tideURLs <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=', originDate, '&end_date=', endDate, 
+                    '&datum=', datum, '&station=', tideIDs, '&time_zone=', timezone, '&units=', units, '&format=xml')
+tideMSLURLs <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=', originDate, '&end_date=', endDate, 
+                   '&datum=', msl.datum, '&station=', tideIDsMSL, '&time_zone=', timezone, '&units=', units, '&format=xml')
+tideGrtLakesURLs <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?product=water_level&application=NOS.COOPS.TAC.WL&begin_date=', originDate, '&end_date=', endDate, 
+                   '&datum=', gl.datum, '&station=', tideIDsGrtLakes, '&time_zone=', timezone, '&units=', units, '&format=xml')
+
 # Run the function extracting the data we want and creating a plot.
-pbsapply(tideIDs, waterheight_plot, bDate=originDate, eDate=endDate, spDatum=datum, timez=timezone, un=units, weekMidnight=day_midnight, weekNoons=day_noon, 
-          plotW=p.width, plotH=p.height, plotOut=plotDir)
-pbsapply(tideIDsMSL, waterheight_plot, bDate=originDate, eDate=endDate, spDatum=msl.datum, timez=timezone, un=units, weekMidnight=day_midnight, weekNoons=day_noon, 
-          plotW=p.width, plotH=p.height, plotOut=plotDir)
-pbsapply(tideIDsGrtLakes, waterheight_plot, bDate=originDate, eDate=endDate, spDatum=gl.datum, timez=timezone, un=units, weekMidnight=day_midnight, weekNoons=day_noon, 
-          plotW=p.width, plotH=p.height, plotOut=plotDir)
-
-
-#cl <- makeCluster(cores)
-#clusterEvalQ(cl, {library(RCurl); library(XML); library(httr); library(anytime)})
-#clusterExport(cl, varlist=c("tideIDs", "tideIDsMSL", "tideIDsGrtLakes", "waterheight_plot", "datum", "gl.datum", "msl.datum", "timezone", "units", "collectLatestTidal", 
-#                            "day_midnight", "day_noon", "p.width", "p.height", "plotDir"))
-#parSapply(cl, tideIDs, waterheight_plot, bDate=originDate, eDate=endDate, spDatum=datum, timez=timezone, un=units, weekMidnight=day_midnight, weekNoons=day_noon, 
-#          plotW=p.width, plotH=p.height, plotOut=plotDir)
-#parSapply(cl, tideIDsGrtLakes, waterheight_plot, bDate=originDate, eDate=endDate, spDatum=datum, timez=timezone, un=units, weekMidnight=day_midnight, weekNoons=day_noon, 
-#          plotW=p.width, plotH=p.height, plotOut=plotDir)
-#stopCluster(cl)
-#pbsapply(tideIDsMSL, waterheight_plot, bDate=originDate, eDate=endDate, spDatum=msl.datum, timez=timezone, un=units, weekMidnight=day_midnight, weekNoons=day_noon, 
-#         plotW=p.width, plotH=p.height, plotOut=plotDir)
-
+if(cores>1){
+  library(parallel)
+  mclapply(tideURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
+  mclapply(tideMSLURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
+  mclapply(tideGrtLakesURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
+}else{
+  pbsapply(tideIDs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
+  pbsapply(tideIDsMSL, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
+  pbsapply(tideIDsGrtLakes, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
+}
 
 # --------------------------------------------------------------------------------------------------------------------
+
+

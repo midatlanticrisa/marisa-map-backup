@@ -64,14 +64,12 @@ if (!dir.exists(outDir)){
 
 ##sourced functions
 source(paste0(inDir, "MARISA_mapFunctions.R"))
-#print("set up")
 
 # --------------------------------------------------------------------------------------------------------------------
 # Create a vector of buoy stations using lists from the NDBC
 readr.total <- retry(read.csv("https://www.ndbc.noaa.gov/data/stations/station_table.txt", sep="|"))
 colnames(readr.total)[1] <- sapply(strsplit(colnames(readr.total)[1],"X.."), "[[", 2)
 readr.total <- readr.total[-1,]  ##removes the first row as nothing of importance
-#print("got buoy ids")  
 
 ##pair down to only the columns needed
 isoCoords <- gsub(pattern=" \\(.*$", "", x=readr.total$LOCATION)
@@ -79,7 +77,6 @@ splitCoords <- strsplit(isoCoords," ")
 buoy_dat <- data.frame(ID=readr.total$STATION_ID, name=readr.total$NAME, 
                          lat=sapply(splitCoords, function(xy){ifelse(xy[2]=="N", as.numeric(xy[1]), -as.numeric(xy[1]))}), 
                          lon=sapply(splitCoords, function(xy){ifelse(xy[4]=="E", as.numeric(xy[3]), -as.numeric(xy[3]))}))
-#print("collected buoy data")
 
 # US bounding box based on the farthest points: includes alaska and hawaii
 # # http://en.wikipedia.org/wiki/Extreme_points_of_the_United_States#Westernmost
@@ -87,26 +84,23 @@ buoy_dat <- data.frame(ID=readr.total$STATION_ID, name=readr.total$NAME,
 # kaLae = 18.910833, -155.681111 # southern most point
 # sailRock = 44.812556, -66.947028 # east
 # peakedIsland = 52.920556, -172.437778 #west
-US_buoys <- buoy_dat[buoy_dat$lon>=-172.437778 & buoy_dat$lon<=-66.947028 & buoy_dat$lat>=18.910833 & buoy_dat$lat<=71.388889,]
+US_buoys <- unique(buoy_dat[buoy_dat$lon>=-172.437778 & buoy_dat$lon<=-66.947028 & buoy_dat$lat>=18.910833 & buoy_dat$lat<=71.388889,])
 
 NDBC_buoys <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/buoyht.txt", skip=7, col.names=c("ID", "siteElv", "airTempElv", "anemometerElv", "barometerElv")))
 NDBC_stations <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/cmanht.txt", skip=7, col.names=c("ID", "siteElv", "airTempElv", "anemometerElv", "tideRef", "barometerElv")))
 NDBC_stations$ID <- sapply(as.character(NDBC_stations$ID), tolower)
 non_NDBC_stations <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/non_ndbc_heights.txt", skip=3, col.names=c("ID", "siteElv", "airTempElv", "anemometerElv", "tideRef", "barometerElv", "wtmpElv", "waterDpth", "watchCircle")))[-1,]
-#print("read in buoy stations")
 
 # Remove all buoys outside the US boundary
 NDBC_buoys <- NDBC_buoys[NDBC_buoys$ID %in% US_buoys$ID,]
 NDBC_stations <- NDBC_stations[NDBC_stations$ID %in% US_buoys$ID,]
 non_NDBC_stations <- non_NDBC_stations[non_NDBC_stations$ID %in% US_buoys$ID,]
-#print("cropped US buoys")
 
 ##format buoy data
 NDBC_buoy_data <- collectBuoyData(NDBC_buoys$ID, US_buoys)
 NDBC_stat_data <- collectBuoyData(NDBC_stations$ID, US_buoys)
 non_NDBC_data <- collectBuoyData(non_NDBC_stations$ID, US_buoys)
 
-#print("formatted buoy data")
 
 # Combine all buoy info into one string
 ndbc_bu <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_buoy_data$name, '", "id": "', NDBC_buoy_data$id, '", "url": "', NDBC_buoy_data$link, '", "obs": "',
@@ -115,10 +109,10 @@ ndbc_st <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_stat_data
                   NDBC_stat_data$obs, '", "time": "', NDBC_stat_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_stat_data$lon, ',', NDBC_stat_data$lat, ']}}', collapse=",")
 ndbc_non <- paste0('{"type": "Feature", "properties": {"name": "', non_NDBC_data$name, '", "id": "', non_NDBC_data$id, '", "url": "', non_NDBC_data$link, '", "obs": "',
                    non_NDBC_data$obs, '", "time": "', non_NDBC_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', non_NDBC_data$lon, ',', non_NDBC_data$lat, ']}}', collapse=",")
-print("create geojsons text")
+
 # Create a geojson object with the observation and statement info and merge into a
 # specific file format with Buoys as the variable name.
-json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', ndbc_st, ndbc_bu, ndbc_non, ndbc_non, ']};')
+json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', ndbc_st, ndbc_bu, ndbc_non, ']};')
 
 # Export data to geojson.
 # cat(json_merge, file="buoys_extend2.js")
@@ -126,3 +120,24 @@ json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', ndbc_s
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "buoys_extend.json"))
 # --------------------------------------------------------------------------------------------------------------------
+
+#############################################
+##test code to write out as geojson file
+library(rgdal)
+
+fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
+#coordinates(fullTab) <- c("lon", "lat")
+#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(fullTab$lon), as.numeric(fullTab$lat)), data=fullTab, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+#writeOGR(spTab, dsn=paste0(outDir, "buoys_extend.GeoJSON"), layer="Bouys", driver="GeoJSON")
+#writeOGR(spTab, dsn=paste0(outDir, "buoys_extend.kml"), layer="Bouys", driver="KML")
+#write.csv(fullTab, paste0(outDir, "buoys_extend.csv"), row.names=F)
+
+#sptData <- data.frame(id=fullTab$id, name=fullTab$name, lon=as.numeric(as.character(fullTab$lon)), lat=as.numeric(as.character(fullTab$lat)))
+#nonSptData <- data.frame(id=fullTab$id, obs=fullTab$obs, link=fullTab$link, time=fullTab$time)
+#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+
+#writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="buoysObs", driver="ESRI Shapefile")
+#write.csv(nonSptData, paste0(outDir, "testOutput/buoysObsTab.csv"), row.names=F)
+write.csv(fullTab, paste0(outDir, "testOutput/buoyObsFull.csv"), row.names=F)
+
