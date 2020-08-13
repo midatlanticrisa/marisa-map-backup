@@ -70,7 +70,7 @@ p.height = 2.5           # Height
 eDate <- Sys.Date()      # End date
 bDate <- Sys.Date()-7       # Beginning date
 
-cores <- 3
+cores <- 1
 
 ##read in the .csvs associated with each state, to be able to more efficiantly format the output geojson file
 stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv/"), pattern=".csv", full.names=T)
