@@ -66,7 +66,8 @@ if (!dir.exists(plotDir)){
 source(paste0(inDir, "MARISA_mapFunctions.R"))
 
 ##load station ids
-load(paste0(inDir, "tideStationIDs.RData"))
+#load(paste0(inDir, "tideStationIDs.RData"))
+load(paste0(inDir, "tideStationIDs_regional.RData"))
 
 # --------------------------------------------------------------------------------------------------------------------
 # Set variables for determining plot size.
@@ -81,7 +82,7 @@ gl.datum <- "IGLD"
 msl.datum <- "MSL"
 timezone <- "GMT"
 units <- "metric"
-cores <- 3
+cores <- 1
 
 # Determine midnight and noon for dates of this previous week
 day <- 0:7

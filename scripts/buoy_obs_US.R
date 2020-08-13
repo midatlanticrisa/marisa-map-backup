@@ -84,7 +84,9 @@ buoy_dat <- data.frame(ID=readr.total$STATION_ID, name=readr.total$NAME,
 # kaLae = 18.910833, -155.681111 # southern most point
 # sailRock = 44.812556, -66.947028 # east
 # peakedIsland = 52.920556, -172.437778 #west
-US_buoys <- unique(buoy_dat[buoy_dat$lon>=-172.437778 & buoy_dat$lon<=-66.947028 & buoy_dat$lat>=18.910833 & buoy_dat$lat<=71.388889,])
+#US_buoys <- unique(buoy_dat[buoy_dat$lon>=-172.437778 & buoy_dat$lon<=-66.947028 & buoy_dat$lat>=18.910833 & buoy_dat$lat<=71.388889,])
+##remove points outside of project area for faster loading
+US_buoys <- unique(buoy_dat[buoy_dat$lon>=-82.0 & buoy_dat$lon<=-73.0 & buoy_dat$lat>=36.0 & buoy_dat$lat<=43.5,])
 
 NDBC_buoys <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/buoyht.txt", skip=7, col.names=c("ID", "siteElv", "airTempElv", "anemometerElv", "barometerElv")))
 NDBC_stations <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/cmanht.txt", skip=7, col.names=c("ID", "siteElv", "airTempElv", "anemometerElv", "tideRef", "barometerElv")))
@@ -123,9 +125,9 @@ cat(json_merge, file=paste0(outDir, "buoys_extend.json"))
 
 #############################################
 ##test code to write out as geojson file
-library(rgdal)
+#library(rgdal)
 
-fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
+#fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
 #coordinates(fullTab) <- c("lon", "lat")
 #spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(fullTab$lon), as.numeric(fullTab$lat)), data=fullTab, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 
@@ -139,5 +141,5 @@ fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
 
 #writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="buoysObs", driver="ESRI Shapefile")
 #write.csv(nonSptData, paste0(outDir, "testOutput/buoysObsTab.csv"), row.names=F)
-write.csv(fullTab, paste0(outDir, "testOutput/buoyObsFull.csv"), row.names=F)
+#write.csv(fullTab, paste0(outDir, "testOutput/buoyObsFull.csv"), row.names=F)
 

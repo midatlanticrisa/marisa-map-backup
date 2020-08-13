@@ -57,7 +57,7 @@ if (!dir.exists(outDir)){
 ##sourced functions
 source(paste0(inDir, "MARISA_mapFunctions.R"))
 
-cores <- 3 
+cores <- 1 
 
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
@@ -73,9 +73,13 @@ if(cores>1){
   weather_stat_data <- data.frame(weather_stat_data, row.names=weather_stations$id)
 }
 colnames(weather_stat_data) <- c("name", "id", "lat", "lon", "obs", "link", "date", "time")
+weather_stat_data$lon <- as.numeric(as.character(weather_stat_data$lon))
+weather_stat_data$lat <- as.numeric(as.character(weather_stat_data$lat))
 
 # Remove stations without latitude or longitude
 weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(weather_stat_data$lon),]
+##remove points outside of project area for faster loading
+weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.0 & weather_stat_data$lat<=43.5,]
 
 ##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 

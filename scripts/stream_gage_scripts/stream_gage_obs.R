@@ -71,10 +71,14 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 #gageCSVs <- lapply(stateGageFiles, read.csv)
 ##subset files unitl ready to map to full country
 #subStates <- c("pennsylvania", "delaware")
-subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
+#subStates <- c("newjersey", "delaware")
+#subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
+subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts")
 gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
-gageRecs <- do.call(rbind.data.frame, gageCSVs)
 
+##the rest of the script
+gageRecs <- do.call(rbind.data.frame, gageCSVs)
+gageRecs <- gageRecs[gageRecs$SiteLongitude>=-82.0 & gageRecs$SiteLongitude<=-73.0 & gageRecs$SiteLatitude>=36.0 & gageRecs$SiteLatitude<=43.5,]
 # Site numbers should be between 8 and 15 digits long
 shortIDs <- which(nchar(gageRecs$SiteNumber)<8)
 gageRecs$SiteNumber[shortIDs] <- paste0("0", gageRecs$SiteNumber[shortIDs])
@@ -140,12 +144,12 @@ findMinDate <- unlist(mapply(function(td,dd,hd){dateVars<-c(td,dd,hd);
                       td=utctime(as.POSIXlt(paste(fullObsData$date_t,fullObsData$time_t),format="%b %d, %Y %I:%M %p",tz="EDT")),
                       dd=utctime(as.POSIXlt(paste(fullObsData$date_d,fullObsData$time_d),format="%b %d, %Y %I:%M %p",tz="EDT")),
                       hd=utctime(as.POSIXlt(paste(fullObsData$date_h,fullObsData$time_h),format="%b %d, %Y %I:%M %p",tz="EDT"))))
-fullObsData$date[findMinDate==1] <- as.character(fullObsData$date_t[findMinDate==1])
-fullObsData$time[findMinDate==1] <- as.character(fullObsData$time_t[findMinDate==1])
-fullObsData$date[findMinDate==2] <- as.character(fullObsData$date_d[findMinDate==2])
-fullObsData$time[findMinDate==2] <- as.character(fullObsData$time_d[findMinDate==2])
-fullObsData$date[findMinDate==3] <- as.character(fullObsData$date_h[findMinDate==3])
-fullObsData$time[findMinDate==3] <- as.character(fullObsData$time_h[findMinDate==3])
+fullObsData$date[which(is.na(findMinDate)==F & findMinDate==1)] <- as.character(fullObsData$date_t[which(is.na(findMinDate)==F & findMinDate==1)])
+fullObsData$time[which(is.na(findMinDate)==F & findMinDate==1)] <- as.character(fullObsData$time_t[which(is.na(findMinDate)==F & findMinDate==1)])
+fullObsData$date[which(is.na(findMinDate)==F & findMinDate==2)] <- as.character(fullObsData$date_d[which(is.na(findMinDate)==F & findMinDate==2)])
+fullObsData$time[which(is.na(findMinDate)==F & findMinDate==2)] <- as.character(fullObsData$time_d[which(is.na(findMinDate)==F & findMinDate==2)])
+fullObsData$date[which(is.na(findMinDate)==F & findMinDate==3)] <- as.character(fullObsData$date_h[which(is.na(findMinDate)==F & findMinDate==3)])
+fullObsData$time[which(is.na(findMinDate)==F & findMinDate==3)] <- as.character(fullObsData$time_h[which(is.na(findMinDate)==F & findMinDate==3)])
 
 ##create the observation string to the map popup
 #stationObs <- data.frame(stationIDs=fullObsData$stationIDs, obsString=createObsString(fullObsData), latestDate=paste0("<br/><br/>Last Updated on ", fullObsData$latestDateTime))
@@ -168,18 +172,18 @@ cat(json_merge, file=paste0(outDir, "stream_extend.json"))
 
 #############################################
 ##test code to write out as geojson file
-library(rgdal)
+#library(rgdal)
 
 #fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
 #coordinates(fullTab) <- c("lon", "lat")
 #spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(weather_stat_data$lon), as.numeric(weather_stat_data$lat)), data=weather_stat_data, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 
-sptData <- data.frame(id=fullStationData$SiteNumber, name=fullStationData$SiteName, lon=fullStationData$SiteLongitude, lat=fullStationData$SiteLatitude)
-nonSptData <- data.frame(id=fullStationData$SiteNumber, obs=fullStationData$obsString, url=fullStationData$SiteNWISURL, time=fullStationData$latestDate)
-spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+#sptData <- data.frame(id=fullStationData$SiteNumber, name=fullStationData$SiteName, lon=fullStationData$SiteLongitude, lat=fullStationData$SiteLatitude)
+#nonSptData <- data.frame(id=fullStationData$SiteNumber, obs=fullStationData$obsString, url=fullStationData$SiteNWISURL, time=fullStationData$latestDate)
+#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 
 #writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="streamGageObs", driver="ESRI Shapefile", overwrite_layer=T)
 #write.csv(nonSptData, paste0(outDir, "testOutput/streamGageTab.csv"), row.names=F)
-write.csv(fullStationData, paste0(outDir, "testOutput/streamgagesFull.csv"), row.names=F)
+#write.csv(fullStationData, paste0(outDir, "testOutput/streamgagesFull.csv"), row.names=F)
 
 
