@@ -67,7 +67,7 @@ source(paste0(inDir, "MARISA_mapFunctions.R"))
 
 ##load station ids
 #load(paste0(inDir, "tideStationIDs.RData"))
-load(paste0(inDir, "tideStationIDs_regional.RData"))
+load(paste0(inDir, "tideStationIDs_regional.rdata"))
 
 # --------------------------------------------------------------------------------------------------------------------
 # Set variables for determining plot size.
