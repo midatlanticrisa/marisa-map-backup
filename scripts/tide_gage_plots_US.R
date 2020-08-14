@@ -106,9 +106,9 @@ if(cores>1){
 #  mclapply(tideMSLURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
   mclapply(tideGrtLakesURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
 }else{
-  pbsapply(tideIDs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
+  pbsapply(tideURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
 #  pbsapply(tideIDsMSL, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
-  pbsapply(tideIDsGrtLakes, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
+  pbsapply(tideGrtLakesURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
 }
 
 # --------------------------------------------------------------------------------------------------------------------
