@@ -33,6 +33,7 @@ if (!require("readr")) { install.packages("readr") }
 library(RCurl)
 library(readr)
 library(compiler)
+library(anytime)
 enableJIT(3)
 enableJIT(3)
 
@@ -73,7 +74,7 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 #subStates <- c("pennsylvania", "delaware")
 #subStates <- c("newjersey", "delaware")
 #subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
-subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts")
+subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
 gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
 
 ##the rest of the script
@@ -158,16 +159,84 @@ stationObs <- data.frame(stationIDs=fullObsData$stationIDs, obsString=createObsS
 ##merge collected data with the read in csv records
 fullStationData <- merge(x=gageRecs, y=stationObs, by.x="SiteNumber", by.y="stationIDs")
 
+
+
+##NJ and MD
+njmdRecs <- rbind.data.frame(fullStationData[grep("NJ", fullStationData$SiteName),], fullStationData[grep("MD", fullStationData$SiteName),])
 ##create the feature record for each station for the geojson file
-stream_string <- paste0('{"type": "Feature", "properties": {"name": "', fullStationData$SiteName, '", "id": "', fullStationData$SiteNumber, '", "url": "', fullStationData$SiteNWISURL, 
-                        '", "obs": "', fullStationData$obsString, '", "time": "', fullStationData$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', fullStationData$SiteNumber,
-                        '.png"}, "geometry": {"type": "Point", "coordinates": [', fullStationData$SiteLongitude, ',', fullStationData$SiteLatitude, ']}}')
+stream_string <- paste0('{"type": "Feature", "properties": {"name": "', njmdRecs$SiteName, '", "id": "', njmdRecs$SiteNumber, '", "url": "', njmdRecs$SiteNWISURL, 
+                        '", "obs": "', njmdRecs$obsString, '", "time": "', njmdRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', njmdRecs$SiteNumber,
+                        '.png"}, "geometry": {"type": "Point", "coordinates": [', njmdRecs$SiteLongitude, ',', njmdRecs$SiteLatitude, ']}}')
 ##create the final string for the output file
 json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-
-
 # Export data to geojson.
-cat(json_merge, file=paste0(outDir, "stream_extend.json"))
+cat(json_merge, file=paste0(outDir, "NJMD_stream_obs.js"))
+
+##NY
+if("newyork" %in% subStates){
+  nyRecs <- fullStationData[grep("NY", fullStationData$SiteName),]
+  
+  ##create the feature record for each station for the geojson file
+  stream_string <- paste0('{"type": "Feature", "properties": {"name": "', nyRecs$SiteName, '", "id": "', nyRecs$SiteNumber, '", "url": "', nyRecs$SiteNWISURL, 
+                          '", "obs": "', nyRecs$obsString, '", "time": "', nyRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', nyRecs$SiteNumber,
+                          '.png"}, "geometry": {"type": "Point", "coordinates": [', nyRecs$SiteLongitude, ',', nyRecs$SiteLatitude, ']}}')
+  ##create the final string for the output file
+  json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  # Export data to geojson.
+  cat(json_merge, file=paste0(outDir, "NY_stream_obs.js"))
+}
+
+##OH, DE, DC, WV, CT, MA
+rangeRecs <- rbind.data.frame(fullStationData[grep("OH", fullStationData$SiteName),], fullStationData[grep("DE", fullStationData$SiteName),],
+                              fullStationData[grep("DC", fullStationData$SiteName),], fullStationData[grep("WV", fullStationData$SiteName),],
+                              fullStationData[grep("CT", fullStationData$SiteName),], fullStationData[grep("MA", fullStationData$SiteName),])
+##create the feature record for each station for the geojson file
+stream_string <- paste0('{"type": "Feature", "properties": {"name": "', rangeRecs$SiteName, '", "id": "', rangeRecs$SiteNumber, '", "url": "', rangeRecs$SiteNWISURL, 
+                        '", "obs": "', rangeRecs$obsString, '", "time": "', rangeRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', rangeRecs$SiteNumber,
+                        '.png"}, "geometry": {"type": "Point", "coordinates": [', rangeRecs$SiteLongitude, ',', rangeRecs$SiteLatitude, ']}}')
+##create the final string for the output file
+json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+# Export data to geojson.
+cat(json_merge, file=paste0(outDir, "OHDEDCWVTNNCCTMA_stream_obs.js"))
+
+##PA
+if("pennsylvania" %in% subStates){
+  paRecs <- fullStationData[grep("PA", fullStationData$SiteName),]
+  
+  ##create the feature record for each station for the geojson file
+  stream_string <- paste0('{"type": "Feature", "properties": {"name": "', paRecs$SiteName, '", "id": "', paRecs$SiteNumber, '", "url": "', paRecs$SiteNWISURL, 
+                          '", "obs": "', paRecs$obsString, '", "time": "', paRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', paRecs$SiteNumber,
+                          '.png"}, "geometry": {"type": "Point", "coordinates": [', paRecs$SiteLongitude, ',', paRecs$SiteLatitude, ']}}')
+  ##create the final string for the output file
+  json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  # Export data to geojson.
+  cat(json_merge, file=paste0(outDir, "PA_stream_obs.js"))
+}
+
+##VA
+if("/virginia" %in% subStates){
+  vaRecs <- fullStationData[grep("VA", fullStationData$SiteName),]
+  
+  ##create the feature record for each station for the geojson file
+  stream_string <- paste0('{"type": "Feature", "properties": {"name": "', vaRecs$SiteName, '", "id": "', vaRecs$SiteNumber, '", "url": "', vaRecs$SiteNWISURL, 
+                          '", "obs": "', vaRecs$obsString, '", "time": "', vaRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', vaRecs$SiteNumber,
+                          '.png"}, "geometry": {"type": "Point", "coordinates": [', vaRecs$SiteLongitude, ',', vaRecs$SiteLatitude, ']}}')
+  ##create the final string for the output file
+  json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  # Export data to geojson.
+  cat(json_merge, file=paste0(outDir, "VA_stream_obs.js"))
+}
+
+
+
+##create the feature record for each station for the geojson file
+#stream_string <- paste0('{"type": "Feature", "properties": {"name": "', fullStationData$SiteName, '", "id": "', fullStationData$SiteNumber, '", "url": "', fullStationData$SiteNWISURL, 
+#                        '", "obs": "', fullStationData$obsString, '", "time": "', fullStationData$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', fullStationData$SiteNumber,
+#                        '.png"}, "geometry": {"type": "Point", "coordinates": [', fullStationData$SiteLongitude, ',', fullStationData$SiteLatitude, ']}}')
+##create the final string for the output file
+#json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+# Export data to geojson.
+#cat(json_merge, file=paste0(outDir, "stream_extend.json"))
 
 
 #############################################
