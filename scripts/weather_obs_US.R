@@ -38,13 +38,13 @@ library(pbapply)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="rsc64dot1x-60.ems.psu.edu"){
+if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
-}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){
+}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
   inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
-}else{
+}else{  ##idocrase
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
@@ -78,6 +78,9 @@ weather_stat_data$lat <- as.numeric(as.character(weather_stat_data$lat))
 
 # Remove stations without latitude or longitude
 weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(weather_stat_data$lon),]
+
+ggg <- weather_stat_data[weather_stat_data$id=="KFFA",]
+
 ##remove points outside of project area for faster loading
 weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.0 & weather_stat_data$lat<=43.5,]
 
@@ -94,18 +97,18 @@ cat(json_merge, file=paste0(outDir, "weather_observations_extend.json"))
 
 #############################################
 ##test code to write out as geojson file
-library(rgdal)
+#library(rgdal)
 
 #fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
 #coordinates(fullTab) <- c("lon", "lat")
 #spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(weather_stat_data$lon), as.numeric(weather_stat_data$lat)), data=weather_stat_data, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 
-sptData <- data.frame(id=weather_stat_data$id, name=weather_stat_data$name, lon=as.numeric(as.character(weather_stat_data$lon)), lat=as.numeric(as.character(weather_stat_data$lat)))
-nonSptData <- data.frame(id=weather_stat_data$id, obs=weather_stat_data$obs, link=weather_stat_data$link, time=weather_stat_data$time)
-spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+#sptData <- data.frame(id=weather_stat_data$id, name=weather_stat_data$name, lon=as.numeric(as.character(weather_stat_data$lon)), lat=as.numeric(as.character(weather_stat_data$lat)))
+#nonSptData <- data.frame(id=weather_stat_data$id, obs=weather_stat_data$obs, link=weather_stat_data$link, time=weather_stat_data$time)
+#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 
 #writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="weatherObs", driver="ESRI Shapefile")
 #write.csv(nonSptData, paste0(outDir, "testOutput/weatherObsTab.csv"), row.names=F)
-write.csv(weather_stat_data, paste0(outDir, "testOutput/weatherObsFull.csv"), row.names=F)
+#write.csv(weather_stat_data, paste0(outDir, "testOutput/weatherObsFull.csv"), row.names=F)
 
 

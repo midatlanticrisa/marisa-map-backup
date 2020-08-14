@@ -40,13 +40,13 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="rsc64dot1x-60.ems.psu.edu"){
+if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
-}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){
+}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
   inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
-}else{
+}else{  ##idocrase
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
@@ -64,7 +64,7 @@ source(paste0(inDir, "MARISA_mapFunctions.R"))
 eDate <- Sys.Date()      # End date
 #bDate = Sys.Date()-1      # Beginning date
 
-cores <- 3
+cores <- 1
 
 ##read in the .csvs associated with each state, to be able to more efficiantly format the output geojson file
 stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv/"), pattern=".csv", full.names=T)

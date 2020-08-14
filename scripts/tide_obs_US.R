@@ -44,13 +44,13 @@ library(pbapply)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="rsc64dot1x-60.ems.psu.edu"){
+if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
-}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){
+}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
   inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
-}else{
+}else{  ##idocrase
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
