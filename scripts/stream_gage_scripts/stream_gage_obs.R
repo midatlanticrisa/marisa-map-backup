@@ -168,7 +168,7 @@ stream_string <- paste0('{"type": "Feature", "properties": {"name": "', njmdRecs
                         '", "obs": "', njmdRecs$obsString, '", "time": "', njmdRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', njmdRecs$SiteNumber,
                         '.png"}, "geometry": {"type": "Point", "coordinates": [', njmdRecs$SiteLongitude, ',', njmdRecs$SiteLatitude, ']}}')
 ##create the final string for the output file
-json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+json_merge <- paste0('NJMD_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "NJMD_stream_obs.js"))
 
@@ -181,7 +181,7 @@ if("newyork" %in% subStates){
                           '", "obs": "', nyRecs$obsString, '", "time": "', nyRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', nyRecs$SiteNumber,
                           '.png"}, "geometry": {"type": "Point", "coordinates": [', nyRecs$SiteLongitude, ',', nyRecs$SiteLatitude, ']}}')
   ##create the final string for the output file
-  json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  json_merge <- paste0('NY_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
   # Export data to geojson.
   cat(json_merge, file=paste0(outDir, "NY_stream_obs.js"))
 }
@@ -195,7 +195,7 @@ stream_string <- paste0('{"type": "Feature", "properties": {"name": "', rangeRec
                         '", "obs": "', rangeRecs$obsString, '", "time": "', rangeRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', rangeRecs$SiteNumber,
                         '.png"}, "geometry": {"type": "Point", "coordinates": [', rangeRecs$SiteLongitude, ',', rangeRecs$SiteLatitude, ']}}')
 ##create the final string for the output file
-json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+json_merge <- paste0('OHDEDCWVTNNCCTMA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "OHDEDCWVTNNCCTMA_stream_obs.js"))
 
@@ -208,7 +208,7 @@ if("pennsylvania" %in% subStates){
                           '", "obs": "', paRecs$obsString, '", "time": "', paRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', paRecs$SiteNumber,
                           '.png"}, "geometry": {"type": "Point", "coordinates": [', paRecs$SiteLongitude, ',', paRecs$SiteLatitude, ']}}')
   ##create the final string for the output file
-  json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  json_merge <- paste0('PA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
   # Export data to geojson.
   cat(json_merge, file=paste0(outDir, "PA_stream_obs.js"))
 }
@@ -222,7 +222,7 @@ if("/virginia" %in% subStates){
                           '", "obs": "', vaRecs$obsString, '", "time": "', vaRecs$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', vaRecs$SiteNumber,
                           '.png"}, "geometry": {"type": "Point", "coordinates": [', vaRecs$SiteLongitude, ',', vaRecs$SiteLatitude, ']}}')
   ##create the final string for the output file
-  json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  json_merge <- paste0('VA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
   # Export data to geojson.
   cat(json_merge, file=paste0(outDir, "VA_stream_obs.js"))
 }
