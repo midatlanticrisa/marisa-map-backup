@@ -1,6 +1,7 @@
 library(raster)
 library(rvest)
 library(pbapply)
+library(parallel)
 
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
@@ -17,59 +18,57 @@ if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
 
+cores <- 1
+
 ##set up directories in order to download and process radar
 downDir <- paste0(inDir, "radar/downloads/")
 clipDir <- paste0(outDir, "radar/")
 if(dir.exists(downDir)==F){dir.create(downDir, recursive=T)}
 if(dir.exists(clipDir)==F){dir.create(clipDir, recursive=T)}
 
+#Viewport bounds plus a little extra
+cropEx <- extent(c(-85.0, -70.0, 33.0, 46.5))
+
 ##site indentity
 baseURL <- "http://mesonet.agron.iastate.edu"
 SiteURL <- paste0(baseURL, '/current/mcview.phtml')
 
 ##get site nodes
-webpage <- read_html(url)
-webSession <- html_session(url)
+webpage <- read_html(SiteURL)
+webSession <- html_session(SiteURL)
 ##extract nodes and get thier text, may need to change based on css of website
 getNodes <- html_nodes(webpage, 'a')
 getText <- html_text(getNodes)
 
-GTLinks <- grep("GeoTiff", getText)  ##order is oldest first, newest last
+GTLinks <- rev(grep("GeoTiff", getText))  ##original order is oldest first, newest last
+subLinks <- GTLinks[1:(length(GTLinks)-2)]
+layerNames <- c("minus0", "minus5", "minus10", "minus15", "minus20", "minus25", "minus30", "minus35", "minus40", "minus45", "minus50")
 
-getDatLink <- paste0(baseURL, html_attr(getNodes[GTLinks[1]], "href"))
-
-download.file(getDatLink, paste0(downDir, "dlRad_minus55.zip"))
-
-
-
-
-
-
-
-sapply(strsplit(getNodes[GTLinks[1]], "href="), "[[", 2)
-
-
-
-follow_link(webSession, getNodes[GTLinks[1]])
-
-
-
-
-
-sppPage <- read_html(follow_link(sess, link))
-
-
-
-bound <- extent()
-
-#https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0q.cgi
-#rast <- raster("https://mesonet.agron.iastate.edu/archive/data/2020/08/14/GIS/uscomp/n0q_202008140000.png")
-
-#http://mesonet.agron.iastate.edu/request/gis/n0q2gtiff.php?dstr=202008141955
-rast <- raster("http://mesonet.agron.iastate.edu/request/gis/n0q2gtiff.php?dstr=202008141955")
-
-rast <- raster("/Users/mdl5548/Documents/n0q_202008141955.tif")
-
+if(cores>1){
+  mcmapply(function(lnk, ln){getDatLink <- paste0(baseURL, html_attr(getNodes[lnk], "href"))
+                              linkID <- sapply(strsplit(getDatLink, "="), "[[", 2)
+                              downloadName <- paste0(downDir, "dlRad_", ln, ".zip")
+                              download.file(getDatLink, downloadName)
+                              unzip(downloadName, exdir=downDir)
+                              findUnzip <- list.files(downDir, linkID, full.names=T)
+                              rast <- raster(findUnzip)
+                              names(rast) <- ln
+                              crRast <- crop(rast, cropEx)
+                              writeRaster(crRast, paste0(clipDir, "cropped_", ln, ".tif"), overwrite=T)}, lnk=subLinks, ln=layerNames, mc.cores=cores)
+}else{
+  #lnk <- subLinks[1]
+  #ln <- layerNames[1]
+  pbmapply(function(lnk, ln){getDatLink <- paste0(baseURL, html_attr(getNodes[lnk], "href"))
+                              linkID <- sapply(strsplit(getDatLink, "="), "[[", 2)
+                              downloadName <- paste0(downDir, "dlRad_", ln, ".zip")
+                              download.file(getDatLink, downloadName)
+                              unzip(downloadName, exdir=downDir)
+                              findUnzip <- list.files(downDir, linkID, full.names=T)
+                              rast <- raster(findUnzip)
+                              names(rast) <- ln
+                              crRast <- crop(rast, cropEx)
+                              writeRaster(crRast, paste0(clipDir, "cropped_", ln, ".tif"), overwrite=T)}, lnk=subLinks, ln=layerNames)
+}  
 
 
 
