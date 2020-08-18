@@ -107,7 +107,7 @@ json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [',
                   paste(tideStations, collapse=", "), paste(tideStationsGL, collapse=", "), ']};')
 
 # Export data to geojson.
-cat(json_merge, file=paste0(outDir, "tide_station_obs_extend.json"))
+cat(json_merge, file=paste0(outDir, "tide_station_obs_extend.js"))
 
 
 #############################################
