@@ -120,7 +120,7 @@ json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', ndbc_s
 # cat(json_merge, file="buoys_extend2.js")
 
 # Export data to geojson.
-cat(json_merge, file=paste0(outDir, "buoys_extend.json"))
+cat(json_merge, file=paste0(outDir, "buoys_extend.js"))
 # --------------------------------------------------------------------------------------------------------------------
 
 #############################################
