@@ -93,10 +93,16 @@ if(cores>1){
 }
 
 tideStations <- do.call(rbind.data.frame, tideStations)
+tideStations$lon <- as.numeric(tideStations$lon)
+tideStations$lat <- as.numeric(tideStations$lat)
 #tideStationsMSL <- do.call(rbind.data.frame, tideStationsMSL)  ##Uncomment is MSL stations included
 tideStationsGL <- do.call(rbind.data.frame, tideStationsGL)
+tideStationsGL$lon <- as.numeric(tideStationsGL$lon)
+tideStationsGL$lat <- as.numeric(tideStationsGL$lat)
 
+tideStations <- tideStations[is.na(tideStations$lon)==F | is.na(tideStations$lat)==F,]
 tideStations <- tideStations[tideStations$lon>=-82.0 & tideStations$lon<=-73.0 & tideStations$lat>=36.0 & tideStations$lat<=43.5,]
+tideStationsGL <- tideStationsGL[is.na(tideStationsGL$lon)==F | is.na(tideStationsGL$lat)==F,]
 tideStationsGL <- tideStationsGL[tideStationsGL$lon>=-82.0 & tideStationsGL$lon<=-73.0 & tideStationsGL$lat>=36.0 & tideStationsGL$lat<=43.5,]
 
 # --------------------------------------------------------------------------------------------------------------------
