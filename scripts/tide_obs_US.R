@@ -108,10 +108,12 @@ tideStationsGL <- tideStationsGL[tideStationsGL$lon>=-82.0 & tideStationsGL$lon<
 # --------------------------------------------------------------------------------------------------------------------
 # Combine all info into one string
 tideStStrs <- paste0('{"type": "Feature", "properties": {"name": "', tideStations$id, '", "id": "', tideStations$id, '", "url": "', tideStations$url, 
-                     '", "obs": "', tideStations$obs, '", "date": "', tideStations$date, '", "time": "', tideStations$time, '"}, "geometry": {"type": "Point", "coordinates": [',
+                     '", "obs": "', tideStations$obs, '", "date": "', tideStations$date, '", "time": "', tideStations$time, 
+                     '", "image": "https://marisa.psu.edu/mapdata/Tide_figs/Fig_', tideStations$id, '.png"}, "geometry": {"type": "Point", "coordinates": [',
                      tideStations$lon, ',',  tideStations$lat, ']}}')
 tideStStrsGL <- paste0('{"type": "Feature", "properties": {"name": "', tideStationsGL$id, '", "id": "', tideStationsGL$id, '", "url": "', tideStationsGL$url, 
-                     '", "obs": "', tideStationsGL$obs, '", "date": "', tideStationsGL$date, '", "time": "', tideStationsGL$time, '"}, "geometry": {"type": "Point", "coordinates": [',
+                     '", "obs": "', tideStationsGL$obs, '", "date": "', tideStationsGL$date, '", "time": "', tideStationsGL$time, 
+                     '", "image": "https://marisa.psu.edu/mapdata/Tide_figs/Fig_', tideStations$id, '.png"}, "geometry": {"type": "Point", "coordinates": [',
                      tideStationsGL$lon, ',',  tideStationsGL$lat, ']}}')
 
 json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [', #paste(tideStStrs, collapse=", "), ']};')
