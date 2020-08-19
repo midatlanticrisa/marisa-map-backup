@@ -106,15 +106,15 @@ non_NDBC_data <- collectBuoyData(non_NDBC_stations$ID, US_buoys)
 
 # Combine all buoy info into one string
 ndbc_bu <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_buoy_data$name, '", "id": "', NDBC_buoy_data$id, '", "url": "', NDBC_buoy_data$link, '", "obs": "',
-                  NDBC_buoy_data$obs, '", "time": "', NDBC_buoy_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_buoy_data$lon, ',', NDBC_buoy_data$lat, ']}}', collapse=",")
+                  NDBC_buoy_data$obs, '", "time": "', NDBC_buoy_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_buoy_data$lon, ',', NDBC_buoy_data$lat, ']}}')
 ndbc_st <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_stat_data$name, '", "id": "', NDBC_stat_data$id, '", "url": "', NDBC_stat_data$link, '", "obs": "',
-                  NDBC_stat_data$obs, '", "time": "', NDBC_stat_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_stat_data$lon, ',', NDBC_stat_data$lat, ']}}', collapse=",")
+                  NDBC_stat_data$obs, '", "time": "', NDBC_stat_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_stat_data$lon, ',', NDBC_stat_data$lat, ']}}')
 ndbc_non <- paste0('{"type": "Feature", "properties": {"name": "', non_NDBC_data$name, '", "id": "', non_NDBC_data$id, '", "url": "', non_NDBC_data$link, '", "obs": "',
-                   non_NDBC_data$obs, '", "time": "', non_NDBC_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', non_NDBC_data$lon, ',', non_NDBC_data$lat, ']}}', collapse=",")
+                   non_NDBC_data$obs, '", "time": "', non_NDBC_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', non_NDBC_data$lon, ',', non_NDBC_data$lat, ']}}')
 
 # Create a geojson object with the observation and statement info and merge into a
 # specific file format with Buoys as the variable name.
-json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', ndbc_st, ndbc_bu, ndbc_non, ']};')
+json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', paste(ndbc_st, collapse=","), ",", paste(ndbc_bu, collapse=","), ",", paste(ndbc_non, collapse=","), ']};')
 
 # Export data to geojson.
 # cat(json_merge, file="buoys_extend2.js")

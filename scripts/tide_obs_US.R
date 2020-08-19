@@ -93,12 +93,12 @@ if(cores>1){
 }
 
 tideStations <- do.call(rbind.data.frame, tideStations)
-tideStations$lon <- as.numeric(tideStations$lon)
-tideStations$lat <- as.numeric(tideStations$lat)
+tideStations$lon <- as.numeric(as.character(tideStations$lon))
+tideStations$lat <- as.numeric(as.character(tideStations$lat))
 #tideStationsMSL <- do.call(rbind.data.frame, tideStationsMSL)  ##Uncomment is MSL stations included
 tideStationsGL <- do.call(rbind.data.frame, tideStationsGL)
-tideStationsGL$lon <- as.numeric(tideStationsGL$lon)
-tideStationsGL$lat <- as.numeric(tideStationsGL$lat)
+tideStationsGL$lon <- as.numeric(as.character(tideStationsGL$lon))
+tideStationsGL$lat <- as.numeric(as.character(tideStationsGL$lat))
 
 tideStations <- tideStations[is.na(tideStations$lon)==F | is.na(tideStations$lat)==F,]
 tideStations <- tideStations[tideStations$lon>=-82.0 & tideStations$lon<=-73.0 & tideStations$lat>=36.0 & tideStations$lat<=43.5,]
@@ -107,10 +107,16 @@ tideStationsGL <- tideStationsGL[tideStationsGL$lon>=-82.0 & tideStationsGL$lon<
 
 # --------------------------------------------------------------------------------------------------------------------
 # Combine all info into one string
+tideStStrs <- paste0('{"type": "Feature", "properties": {"name": "', tideStations$id, '", "id": "', tideStations$id, '", "url": "', tideStations$url, 
+                     '", "obs": "', tideStations$obs, '", "date": "', tideStations$date, '", "time": "', tideStations$time, '"}, "geometry": {"type": "Point", "coordinates": [',
+                     tideStations$lon, ',',  tideStations$lat, ']}}')
+tideStStrsGL <- paste0('{"type": "Feature", "properties": {"name": "', tideStationsGL$id, '", "id": "', tideStationsGL$id, '", "url": "', tideStationsGL$url, 
+                     '", "obs": "', tideStationsGL$obs, '", "date": "', tideStationsGL$date, '", "time": "', tideStationsGL$time, '"}, "geometry": {"type": "Point", "coordinates": [',
+                     tideStationsGL$lon, ',',  tideStationsGL$lat, ']}}')
 
-json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [',
+json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [', #paste(tideStStrs, collapse=", "), ']};')
                    #paste(tideStations, collapse=", "), paste(tideStationsMSL, collapse=", "), paste(tideStationsGL, collapse=", "), ']};')
-                  paste(tideStations, collapse=", "), paste(tideStationsGL, collapse=", "), ']};')
+                  paste(tideStStrs, collapse=","), ",", paste(tideStStrsGL, collapse=","), ']};')
 
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "tide_station_obs_extend.js"))
