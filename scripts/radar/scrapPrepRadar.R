@@ -78,7 +78,8 @@ if(cores>1){
                               rast <- raster(findUnzip)
                               names(rast) <- ln
                               crRast <- crop(rast, cropEx)
-                              writeRaster(crRast, paste0(clipDir, "cropped_", ln, ".tif"), overwrite=T)}, lnk=subLinks, ln=layerNames)
+                              writeRaster(crRast, paste0(clipDir, "cropped_", ln, ".asc"), overwrite=T)}, lnk=subLinks, ln=layerNames)
+                              #writeRaster(crRast, paste0(clipDir, "cropped_", ln, ".tif"), overwrite=T)}, lnk=subLinks, ln=layerNames)
 }  
 
 listTif <- list.files(downDir, ".tif", full.names=T)
@@ -86,4 +87,6 @@ sapply(listTif, function(fn){if(file.exists(fn)){file.remove(fn)}})
 
 
 
+
+#rrr <- raster("/Users/mdl5548/Documents/junk/chkCroppedRadar/cropped_minus0.tif")
 
