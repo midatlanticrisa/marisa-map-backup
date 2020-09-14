@@ -137,29 +137,69 @@ colnames(grtLakesInfo) <- c("grtLakesCodes", "OBS", "COL")
 # Merge geojson objects into a specific file format with data as the variable name.
 spCounties$countyCodes <- paste0(spCounties$stateABRS, "C", spCounties$COUNTY)
 countyInfo <- merge(x=spCounties, y=countyInfo, by="countyCodes")
-row.names(countyInfo) <- countyInfo$GEO_ID
-DEtoNYwarnings <- paste0("DEtoNYalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("DE","MD","NJ","NY"),])))
-OHPAwarnings <- paste0("OHPAalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("OH","PA"),])))
-VAWVwarnings <- paste0("VAWValerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("VA","WV"),]))) 
 atlanticInfo <- merge(x=spAtlantic, y=atlanticInfo, by.x="ID", by.y="atlanticCodes")
-row.names(atlanticInfo) <- atlanticInfo$ID
-atlArea1 <- paste0("AT_p1_alerts = ", as.character(geojson_json(atlanticInfo[1:12,])))
-atlArea2 <- paste0("AT_p2_alerts = ", as.character(geojson_json(atlanticInfo[13:28,])))
-atlArea3 <- paste0("AT_p3_alerts = ", as.character(geojson_json(atlanticInfo[29:42,])))
-atlArea4 <- paste0("AT_p4_alerts = ", as.character(geojson_json(atlanticInfo[43:57,])))
 grtLakesInfo <- merge(x=spGrtLakes, y=grtLakesInfo, by.x="ID", by.y="grtLakesCodes")
-row.names(grtLakesInfo) <- grtLakesInfo$ID
-grtLakes <- paste0("GLalerts = ", as.character(geojson_json(grtLakesInfo)))
+row.names(countyInfo) <- as.character(countyInfo$GEO_ID)
+row.names(atlanticInfo) <- as.character(atlanticInfo$ID)
+row.names(grtLakesInfo) <- as.character(grtLakesInfo$ID)
+outObjNames <- c("DEtoNYalerts = ", "OHPAalerts = ", "VAWValerts = ", "AT_p1_alerts = ", "AT_p2_alerts = ", "AT_p3_alerts = ", "AT_p4_alerts = ", "GLalerts = ")
+subSelections <- list(c("DE","MD","NJ","NY"), c("OH","PA"), c("VA","WV"), 1:12, 13:28, 29:42, 43:57, "placeholder")
+writeOutNames <- c("DEtoNYcounty_alerts.json", "OHPAcounty_alerts.json", "VAWVcounty_alerts.json", "atlantic_p1_alerts.json", "atlantic_p2_alerts.json", 
+                   "atlantic_p3_alerts.json", "atlantic_p4_alerts.json", "greatlakes_alerts.json")
 
+##create and write output
+if(cores>1){
+  ##run in parallel
+  library(parallel)
+  #x = 4
+  #nams = outObjNames[x]
+  #subS = subSelections[x]
+  createOutput <- mcmapply(function(nams, subS){
+                                  if(length(grep("AT_", nams))>0){
+                                    subTab<-paste0(nams, as.character(geojson_json(atlanticInfo[subS,])))
+                                  }else if(length(grep("place", nams))>0){
+                                    subTab<-paste0(nams, as.character(geojson_json(grtLakesInfo)))
+                                  }else{
+                                    subTab<-paste0(nams, as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%subS,])))
+                                  }
+                                  return(subTab)}, nams=outObjNames, subS=subSelections, mc.cores=cores)
+  mcmapply(cat, createOutput, file=paste0(outDir, writeOutNames), mc.cores=cores)
+}else{
+  ##run on single core
+  #x = 4
+  #nams = outObjNames[x]
+  #subS = subSelections[x]
+  createOutput <- mapply(function(nams, subS){
+                                  if(length(grep("AT_", nams))>0){
+                                    subTab<-paste0(nams, as.character(geojson_json(atlanticInfo[subS,])))
+                                  }else if(length(grep("place", nams))>0){
+                                    subTab<-paste0(nams, as.character(geojson_json(grtLakesInfo)))
+                                  }else{
+                                    subTab<-paste0(nams, as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%subS,])))
+                                  }
+                                  return(subTab)}, nams=outObjNames, subS=subSelections)
+  mapply(cat, createOutput, file=paste0(outDir, writeOutNames))
+}
+
+
+
+#DEtoNYwarnings <- paste0("DEtoNYalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("DE","MD","NJ","NY"),])))
+#OHPAwarnings <- paste0("OHPAalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("OH","PA"),])))
+#VAWVwarnings <- paste0("VAWValerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("VA","WV"),]))) 
+#atlArea1 <- paste0("AT_p1_alerts = ", as.character(geojson_json(atlanticInfo[1:12,])))
+#atlArea2 <- paste0("AT_p2_alerts = ", as.character(geojson_json(atlanticInfo[13:28,])))
+#atlArea3 <- paste0("AT_p3_alerts = ", as.character(geojson_json(atlanticInfo[29:42,])))
+#atlArea4 <- paste0("AT_p4_alerts = ", as.character(geojson_json(atlanticInfo[43:57,])))
+#grtLakes <- paste0("GLalerts = ", as.character(geojson_json(grtLakesInfo)))
 #cat(json_merge, file="/net/www/www.marisa.psu.edu/htdocs/mapdata/DEtoNYcounty_alerts.json")
-cat(DEtoNYwarnings, file=paste0(outDir, "DEtoNYcounty_alerts.json"))
-cat(OHPAwarnings, file=paste0(outDir, "OHPAcounty_alerts.json"))
-cat(VAWVwarnings, file=paste0(outDir, "VAWVcounty_alerts.json"))
-cat(atlArea1, file=paste0(outDir, "atlantic_p1_alerts.json"))
-cat(atlArea2, file=paste0(outDir, "atlantic_p2_alerts.json"))
-cat(atlArea3, file=paste0(outDir, "atlantic_p3_alerts.json"))
-cat(atlArea4, file=paste0(outDir, "atlantic_p4_alerts.json"))
-cat(grtLakes, file=paste0(outDir, "greatlakes_alerts.json"))
+#cat(DEtoNYwarnings, file=paste0(outDir, "DEtoNYcounty_alerts.json"))
+#cat(OHPAwarnings, file=paste0(outDir, "OHPAcounty_alerts.json"))
+#cat(VAWVwarnings, file=paste0(outDir, "VAWVcounty_alerts.json"))
+#cat(atlArea1, file=paste0(outDir, "atlantic_p1_alerts.json"))
+#cat(atlArea2, file=paste0(outDir, "atlantic_p2_alerts.json"))
+#cat(atlArea3, file=paste0(outDir, "atlantic_p3_alerts.json"))
+#cat(atlArea4, file=paste0(outDir, "atlantic_p4_alerts.json"))
+#cat(grtLakes, file=paste0(outDir, "greatlakes_alerts.json"))
 
 # --------------------------------------------------------------------------------------------------------------------
 
