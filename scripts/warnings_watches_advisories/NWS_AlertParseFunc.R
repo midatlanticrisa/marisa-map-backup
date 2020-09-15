@@ -37,7 +37,7 @@ library(stringr)
 # Function extracting weather data from an XML file.
 parse_xml = function(ID){
   #################
-  #ID <- "OHC057"
+  #ID <- "OHC023"
   #################
   print(ID)
   url = paste("https://alerts.weather.gov/cap/wwaatmget.php?x=", ID, "&y=1", sep="")

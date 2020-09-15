@@ -53,16 +53,16 @@ comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
 if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
-  inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
+  baseDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
-  inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
+  baseDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
 }else{  ##idocrase
-  inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
+  baseDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
-inDir <- paste0(inDir, "warnings_watches_advisories/")
+inDir <- paste0(baseDir, "warnings_watches_advisories/")
 cores <- 1
 
 
@@ -96,8 +96,8 @@ spCounties <- readOGR(dsn=inDir, layer="MARISASite_selectStates")
 spAtlantic <- readOGR(dsn=inDir, layer="MARISASite_atlantic")
 spGrtLakes <- readOGR(dsn=inDir, layer="MARISASite_GLakes")
   
-# Function extracting alerts from an NWS XML file.
-source(paste0(inDir,"NWS_AlertParseFunc.R"))
+##sourced functions
+source(paste0(baseDir, "MARISA_mapFunctions.R"))
 
 # --------------------------------------------------------------------------------------------------------------------
 # Create empty vectors.
