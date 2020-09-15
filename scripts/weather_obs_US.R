@@ -82,7 +82,7 @@ weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(we
 ggg <- weather_stat_data[weather_stat_data$id=="KFFA",]
 
 ##remove points outside of project area for faster loading
-weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.0 & weather_stat_data$lat<=43.5,]
+weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.45 & weather_stat_data$lat<=43.75,]
 
 ##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 
