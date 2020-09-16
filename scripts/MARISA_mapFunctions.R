@@ -676,7 +676,7 @@ parse_xml = function(ID){
   #################
   #ID <- "OHC023"
   #################
-  #print(ID)
+  print(ID)
   url = paste("https://alerts.weather.gov/cap/wwaatmget.php?x=", ID, "&y=1", sep="")
   
   # Turn XML data into a list.
