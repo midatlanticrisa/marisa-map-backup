@@ -118,7 +118,12 @@ if(cores>1){
   grtLakesXML <- mclapply(as.character(greatlake_codes$code), parse_xml, mc.cores=cores)
 }else{
   ##run on single core
-  countyXML <- lapply(as.character(county_codes$code), parse_xml)
+  countyXML_sub1 <- lapply(as.character(county_codes$code[1:110]), parse_xml)
+  countyXML_sub2 <- lapply(as.character(county_codes$code[111:220]), parse_xml)
+  countyXML_sub3 <- lapply(as.character(county_codes$code[221:330]), parse_xml)
+  countyXML_sub4 <- lapply(as.character(county_codes$code[331:440]), parse_xml)
+  countyXML_sub5 <- lapply(as.character(county_codes$code[441:nrow(county_codes)]), parse_xml)
+  countyXML <- c(countyXML_sub1, countyXML_sub2, countyXML_sub3, countyXML_sub4, countyXML_sub5)
   atlanticXML <- lapply(as.character(atlantic_codes$code), parse_xml)
   grtLakesXML <- lapply(as.character(greatlake_codes$code), parse_xml)
 }
