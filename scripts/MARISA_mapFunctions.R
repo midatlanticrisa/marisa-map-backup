@@ -4,11 +4,12 @@
 ##########################################################################
 ##a function to retry running a function if there is an error
 ##modified from code found at: https://stackoverflow.com/questions/37379472/creating-a-retry-function-in-r
-retry <- function(a, max=6, init=0){
+retry <- function(a, max=6, init=0, delay=0){
   suppressWarnings(tryCatch({
   if(init<max){
     a
   }}, error=function(e){
+    Sys.sleep(delay)
     retry(a, max, init=init+1)
     }))
 }
@@ -679,7 +680,7 @@ parse_xml = function(ID){
   url = paste("https://alerts.weather.gov/cap/wwaatmget.php?x=", ID, "&y=1", sep="")
   
   # Turn XML data into a list.
-  xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=2000)
+  xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=6, delay=120)
   name <- xml_data$title
   entry <- xml_data$entry$title
   link <- xml_data$entry$id
