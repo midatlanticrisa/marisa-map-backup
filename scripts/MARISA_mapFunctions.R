@@ -680,7 +680,7 @@ parse_xml = function(ID){
   url = paste("https://alerts.weather.gov/cap/wwaatmget.php?x=", ID, "&y=1", sep="")
   
   # Turn XML data into a list.
-  xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=6, delay=120)
+  xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=6, delay=30)
   name <- xml_data$title
   entry <- xml_data$entry$title
   link <- xml_data$entry$id
