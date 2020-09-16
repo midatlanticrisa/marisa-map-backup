@@ -16,7 +16,7 @@ retry <- function(a, max=6, init=0, delay=0){
 ##########################################################################
 ##########################################################################
 # Function extracting weather data from an XML file.
-parse_xml = function(id){
+parseWS_xml = function(id){
   #################
   #id <- weather_stations$id[1]
   #################
@@ -672,7 +672,7 @@ stream_gage_plot <- function(dischargeURL, heightURL, weekMidnights, weekNoons, 
 ##########################################################################
 ##########################################################################
 # Function extracting weather data from an XML file.
-parse_xml = function(ID){
+parseWW_xml = function(ID){
   #################
   #ID <- "OHC023"
   #################

@@ -66,10 +66,10 @@ weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), heade
 # collect weather data for each station
 if(cores>1){
   library(parallel)
-  weather_stat_data <- mclapply(weather_stations$id, parse_xml, mc.cores=cores)
+  weather_stat_data <- mclapply(weather_stations$id, parseWS_xml, mc.cores=cores)
   weather_stat_data <- do.call(rbind.data.frame, weather_stat_data)
 }else{
-  weather_stat_data <- t(pbsapply(weather_stations$id, parse_xml))
+  weather_stat_data <- t(pbsapply(weather_stations$id, parseWS_xml))
   weather_stat_data <- data.frame(weather_stat_data, row.names=weather_stations$id)
 }
 colnames(weather_stat_data) <- c("name", "id", "lat", "lon", "obs", "link", "date", "time")
@@ -78,8 +78,7 @@ weather_stat_data$lat <- as.numeric(as.character(weather_stat_data$lat))
 
 # Remove stations without latitude or longitude
 weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(weather_stat_data$lon),]
-
-ggg <- weather_stat_data[weather_stat_data$id=="KFFA",]
+#ggg <- weather_stat_data[weather_stat_data$id=="KFFA",]
 
 ##remove points outside of project area for faster loading
 weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.45 & weather_stat_data$lat<=43.75,]
