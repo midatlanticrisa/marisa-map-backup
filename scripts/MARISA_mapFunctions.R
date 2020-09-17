@@ -20,7 +20,7 @@ parseWS_xml = function(id){
   #################
   #id <- weather_stations$id[1]
   #################
-  
+
   xml.url <- paste0('http://w1.weather.gov/xml/current_obs/', id, '.xml')
   
   # Turn XML data into a list.
@@ -51,9 +51,23 @@ parseWS_xml = function(id){
   } else {
     exTime <- sapply(strsplit(xml_data$observation_time, "on "), "[[", 2)
     exZ <- sapply(strsplit(exTime," "), "[[", length(strsplit(exTime[1]," ")[[1]]))
-    dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz=exZ)
-    date <- format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
-    time <- format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
+    if(exZ=="HST"|exZ=="HDT"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="Pacific/Honolulu")
+    }else if(exZ=="EST"|exZ=="EDT"|exZ=="ZST"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/New_York")
+    }else if(exZ=="CST"|exZ=="CDT"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Chicago")
+    }else if(exZ=="MST"|exZ=="MDT"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Denver")
+    }else if(exZ=="PST"|exZ=="PDT"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Los_Angeles")
+    }else if(exZ=="AKST"|exZ=="AKDT"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Anchorage")
+    }else if(exZ=="SST"|exZ=="SDT"){
+      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="Pacific/Samoa")
+    }
+    date <- format(dateBase, format="%b %d, %Y") # convert from GMT to current time zone
+    time <- format(dateBase, format="%I:%M %p %Z") # convert from GMT to current time zone
   }
   # General weather condition.
   if(is.null(xml_data$weather)){
@@ -158,7 +172,10 @@ collectBuoyData = function(buoys_ids, US_buoys){
     
     splitLength <- sapply(exTime, function(x){length(strsplit(x, " ")[[1]])})
     exZ <- sapply(1:length(exTime), function(x){sapply(strsplit(exTime[x]," "), "[[", splitLength[x])})
-    dateBases <- mapply(as.POSIXlt, exTime, format="%b %d, %Y %I:%M %p", tz=exTime, SIMPLIFY=F)   #as.POSIXlt(exTime, format="%b %d, %Y %I:%M %p", tz=exZ)
+    dateBases <- mapply(function(tim, zon){if(zon=="EST"|zon=="EDT"){  ##currently only have to worry about records in one time zone
+                                            reForm<-as.POSIXlt(tim, format="%b %d, %Y %I:%M %p", tz="America/New_York")
+                                          }
+                                          return(reForm)}, tim=exTime, zon=exZ, SIMPLIFY=F)
     date <- sapply(dateBases, format, format="%b %d, %Y")  #format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
     time <- sapply(dateBases, format, format="%I:%M %p %Z")  #format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
     

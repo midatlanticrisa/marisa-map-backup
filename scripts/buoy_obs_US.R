@@ -103,14 +103,13 @@ NDBC_buoy_data <- collectBuoyData(NDBC_buoys$ID, US_buoys)
 NDBC_stat_data <- collectBuoyData(NDBC_stations$ID, US_buoys)
 non_NDBC_data <- collectBuoyData(non_NDBC_stations$ID, US_buoys)
 
-
 # Combine all buoy info into one string
 ndbc_bu <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_buoy_data$name, '", "id": "', NDBC_buoy_data$id, '", "url": "', NDBC_buoy_data$link, '", "obs": "',
-                  NDBC_buoy_data$obs, '", "time": "', NDBC_buoy_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_buoy_data$lon, ',', NDBC_buoy_data$lat, ']}}')
+                  NDBC_buoy_data$obs, '", "time": "', paste0("Last Updated on ", NDBC_buoy_data$date, " at ", NDBC_buoy_data$time), '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_buoy_data$lon, ',', NDBC_buoy_data$lat, ']}}')
 ndbc_st <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_stat_data$name, '", "id": "', NDBC_stat_data$id, '", "url": "', NDBC_stat_data$link, '", "obs": "',
-                  NDBC_stat_data$obs, '", "time": "', NDBC_stat_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_stat_data$lon, ',', NDBC_stat_data$lat, ']}}')
+                  NDBC_stat_data$obs, '", "time": "', paste0("Last Updated on ", NDBC_stat_data$date, " at ", NDBC_stat_data$time), '"}, "geometry": {"type": "Point", "coordinates": [', NDBC_stat_data$lon, ',', NDBC_stat_data$lat, ']}}')
 ndbc_non <- paste0('{"type": "Feature", "properties": {"name": "', non_NDBC_data$name, '", "id": "', non_NDBC_data$id, '", "url": "', non_NDBC_data$link, '", "obs": "',
-                   non_NDBC_data$obs, '", "time": "', non_NDBC_data$time, '"}, "geometry": {"type": "Point", "coordinates": [', non_NDBC_data$lon, ',', non_NDBC_data$lat, ']}}')
+                   non_NDBC_data$obs, '", "time": "', paste0("Last Updated on ", non_NDBC_data$date, " at ", non_NDBC_data$time), '"}, "geometry": {"type": "Point", "coordinates": [', non_NDBC_data$lon, ',', non_NDBC_data$lat, ']}}')
 
 # Create a geojson object with the observation and statement info and merge into a
 # specific file format with Buoys as the variable name.

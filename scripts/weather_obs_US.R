@@ -85,12 +85,12 @@ weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_st
 
 ##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 
-                        '", "obs": "', weather_stat_data$obs, '", "time": "', weather_stat_data$time, '"}, "geometry": {"type": "Point", "coordinates": [',
-                        weather_stat_data$lon, ',',  weather_stat_data$lat, ']}}')
+                        '", "obs": "', weather_stat_data$obs, '", "time": "', paste0("Last Updated on ", weather_stat_data$date, " at ", weather_stat_data$time), 
+                        '"}, "geometry": {"type": "Point", "coordinates": [', weather_stat_data$lon, ',',  weather_stat_data$lat, ']}}')
 json_merge <- paste0('weatherStations = {"type": "FeatureCollection","features": [', paste(weatherString, collapse=","), ']};')
+paste0("Last Updated on ", non_NDBC_data$date, " at ", non_NDBC_data$time)
 
-
-# # Export data to geojson.
+## Export data to geojson.
 cat(json_merge, file=paste0(outDir, "weather_observations_extend.json"))
 # --------------------------------------------------------------------------------------------------------------------
 
