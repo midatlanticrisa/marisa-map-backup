@@ -104,7 +104,6 @@ tideStations <- tideStations[is.na(tideStations$lon)==F | is.na(tideStations$lat
 tideStations <- tideStations[tideStations$lon>=-82.0 & tideStations$lon<=-73.0 & tideStations$lat>=36.45 & tideStations$lat<=43.75,]
 tideStationsGL <- tideStationsGL[is.na(tideStationsGL$lon)==F | is.na(tideStationsGL$lat)==F,]
 tideStationsGL <- tideStationsGL[tideStationsGL$lon>=-82.0 & tideStationsGL$lon<=-73.0 & tideStationsGL$lat>=36.45 & tideStationsGL$lat<=43.75,]
-paste0("Last Updated on ", non_NDBC_data$date, " at ", non_NDBC_data$time)
 # --------------------------------------------------------------------------------------------------------------------
 # Combine all info into one string
 tideStStrs <- paste0('{"type": "Feature", "properties": {"name": "', tideStations$id, '", "id": "', tideStations$id, '", "url": "', tideStations$url, 
