@@ -187,9 +187,9 @@ collectBuoyData = function(buoys_ids, US_buoys){
     buoy_lats <- as.numeric(sapply(strsplit(buoy_coords," "),"[[", 1))
     buoy_lons <- as.numeric(sapply(strsplit(buoy_coords," "),"[[", 2))
     
-    #existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br />"), time=paste0("Late Updated on ", exTime), name=buoy_names,
+    #existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br/>"), time=paste0("Late Updated on ", exTime), name=buoy_names,
     #                         link=buoy_links, lat=buoy_lats, lon=buoy_lons)
-    existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br />"), date=date, time=time, name=buoy_names,
+    existFrame <- data.frame(id=buoys_ids[which(buoyExistance==T)], obs=paste0(buoySubObs, "<br/>"), date=date, time=time, name=buoy_names,
                              link=buoy_links, lat=buoy_lats, lon=buoy_lons)
   }
   
@@ -198,7 +198,7 @@ collectBuoyData = function(buoys_ids, US_buoys){
   if(F%in%buoyExistance){
     noExist <- buoys_ids[which(buoyExistance==F)]
     noExistUS <- which(US_buoys$ID%in%noExist)
-    noExistFrame <- data.frame(id=noExist, obs="There are no current meteorological observations recorded at this buoy. ", date="", time="",
+    noExistFrame <- data.frame(id=noExist, obs="There are no current meteorological observations recorded at this buoy.<br/><br/>", date="", time="",
                                name=as.character(US_buoys$name[noExistUS]), link=paste0("http://www.ndbc.noaa.gov/station_page.php?station=", noExist),
                                lat=as.character(US_buoys$lat[noExistUS]), lon=as.character(US_buoys$lon[noExistUS]))
     existFrame <- rbind.data.frame(existFrame,noExistFrame)
@@ -206,6 +206,13 @@ collectBuoyData = function(buoys_ids, US_buoys){
   
   ##output table
   fullFrame <- merge(x=outTab, y=existFrame, by="id", sort=F)
+  
+  fullFrame$date <-as.character(as.numeric(fullFrame$date))
+  fullFrame$time <-as.character(as.numeric(fullFrame$time))
+  if(""%in%fullFrame$date){
+    fullFrame$date[fullFrame$date==""] <- max(fullFrame$date[fullFrame$date!=""])
+    fullFrame$time[fullFrame$time==""] <- max(fullFrame$time[fullFrame$time!=""])
+  }
   
   return(fullFrame)
 }
