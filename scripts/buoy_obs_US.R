@@ -100,8 +100,20 @@ non_NDBC_stations <- non_NDBC_stations[non_NDBC_stations$ID %in% US_buoys$ID,]
 
 ##format buoy data
 NDBC_buoy_data <- collectBuoyData(NDBC_buoys$ID, US_buoys)
+if(""%in%NDBC_buoy_data$date){
+  NDBC_buoy_data$date[NDBC_buoy_data$date==""] <- max(NDBC_buoy_data$date[NDBC_buoy_data$date!=""])
+  NDBC_buoy_data$time[NDBC_buoy_data$time==""] <- max(NDBC_buoy_data$time[NDBC_buoy_data$time!=""])
+}
 NDBC_stat_data <- collectBuoyData(NDBC_stations$ID, US_buoys)
+if(""%in%NDBC_stat_data$date){
+  NDBC_stat_data$date[NDBC_stat_data$date==""] <- max(NDBC_stat_data$date[NDBC_stat_data$date!=""])
+  NDBC_stat_data$time[NDBC_stat_data$time==""] <- max(NDBC_stat_data$time[NDBC_stat_data$time!=""])
+}
 non_NDBC_data <- collectBuoyData(non_NDBC_stations$ID, US_buoys)
+if(""%in%non_NDBC_data$date){
+  non_NDBC_data$date[non_NDBC_data$date==""] <- max(non_NDBC_data$date[non_NDBC_data$date!=""])
+  non_NDBC_data$time[non_NDBC_data$time==""] <- max(non_NDBC_data$time[non_NDBC_data$time!=""])
+}
 
 # Combine all buoy info into one string
 ndbc_bu <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_buoy_data$name, '", "id": "', NDBC_buoy_data$id, '", "url": "', NDBC_buoy_data$link, '", "obs": "',

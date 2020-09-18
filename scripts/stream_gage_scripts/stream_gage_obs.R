@@ -142,9 +142,9 @@ findMinDate <- unlist(mapply(function(td,dd,hd){dateVars<-c(td,dd,hd);
                         return(which.min(dateVars))
                       }else{
                         return(NA)}}, 
-                      td=utctime(as.POSIXlt(paste(fullObsData$date_t,fullObsData$time_t),format="%b %d, %Y %I:%M %p",tz="EDT")),
-                      dd=utctime(as.POSIXlt(paste(fullObsData$date_d,fullObsData$time_d),format="%b %d, %Y %I:%M %p",tz="EDT")),
-                      hd=utctime(as.POSIXlt(paste(fullObsData$date_h,fullObsData$time_h),format="%b %d, %Y %I:%M %p",tz="EDT"))))
+                      td=utctime(as.POSIXlt(paste(fullObsData$date_t,fullObsData$time_t),format="%b %d, %Y %I:%M %p",tz="America/New_York")),
+                      dd=utctime(as.POSIXlt(paste(fullObsData$date_d,fullObsData$time_d),format="%b %d, %Y %I:%M %p",tz="America/New_York")),
+                      hd=utctime(as.POSIXlt(paste(fullObsData$date_h,fullObsData$time_h),format="%b %d, %Y %I:%M %p",tz="America/New_York"))))
 fullObsData$date[which(is.na(findMinDate)==F & findMinDate==1)] <- as.character(fullObsData$date_t[which(is.na(findMinDate)==F & findMinDate==1)])
 fullObsData$time[which(is.na(findMinDate)==F & findMinDate==1)] <- as.character(fullObsData$time_t[which(is.na(findMinDate)==F & findMinDate==1)])
 fullObsData$date[which(is.na(findMinDate)==F & findMinDate==2)] <- as.character(fullObsData$date_d[which(is.na(findMinDate)==F & findMinDate==2)])
@@ -158,7 +158,10 @@ stationObs <- data.frame(stationIDs=fullObsData$stationIDs, obsString=createObsS
 
 ##merge collected data with the read in csv records
 fullStationData <- merge(x=gageRecs, y=stationObs, by.x="SiteNumber", by.y="stationIDs")
-
+if(TRUE%in%is.na(fullStationData$latestDate)){
+  fullStationData$latestDate[is.na(fullStationData$latestDate)==T] <- max(fullStationData$latestDate[is.na(fullStationData$latestDate)==F])
+  fullStationData$latestTime[is.na(fullStationData$latestTime)==T] <- max(fullStationData$latestTime[is.na(fullStationData$latestTime)==F])
+}
 
 
 ##NJ and MD

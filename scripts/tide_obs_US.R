@@ -107,11 +107,11 @@ tideStationsGL <- tideStationsGL[tideStationsGL$lon>=-82.0 & tideStationsGL$lon<
 # --------------------------------------------------------------------------------------------------------------------
 # Combine all info into one string
 tideStStrs <- paste0('{"type": "Feature", "properties": {"name": "', tideStations$id, '", "id": "', tideStations$id, '", "url": "', tideStations$url, 
-                     '", "obs": "', tideStations$obs, '", "date": "', tideStations$date, '", "time": "', paste0("Last Updated on", tideStations$date, " at ", tideStations$time), 
+                     '", "obs": "', tideStations$obs, '", "date": "', tideStations$date, '", "time": "', paste0("Last Updated on ", tideStations$date, " at ", tideStations$time), 
                      '", "image": "https://marisa.psu.edu/mapdata/Tide_figs/Fig_', tideStations$id, '.png"}, "geometry": {"type": "Point", "coordinates": [',
                      tideStations$lon, ',',  tideStations$lat, ']}}')
 tideStStrsGL <- paste0('{"type": "Feature", "properties": {"name": "', tideStationsGL$id, '", "id": "', tideStationsGL$id, '", "url": "', tideStationsGL$url, 
-                     '", "obs": "', tideStationsGL$obs, '", "date": "', tideStationsGL$date, '", "time": "', paste0("Last Updated on", tideStationsGL$date, " at ", tideStationsGL$time), 
+                     '", "obs": "', tideStationsGL$obs, '", "date": "', tideStationsGL$date, '", "time": "', paste0("Last Updated on ", tideStationsGL$date, " at ", tideStationsGL$time), 
                      '", "image": "https://marisa.psu.edu/mapdata/Tide_figs/Fig_', tideStations$id, '.png"}, "geometry": {"type": "Point", "coordinates": [',
                      tideStationsGL$lon, ',',  tideStationsGL$lat, ']}}')
 

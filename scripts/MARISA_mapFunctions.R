@@ -138,6 +138,7 @@ collectBuoyData = function(buoys_ids, US_buoys){
   #buoys_ids <- non_NDBC_stations$ID
   #US_buoys <- US_buoys
   #################
+  print(buoys_ids)
   ##set up 'bones' for data to be returned, mostly for preserving input/output order
   outTab <- data.frame(id=buoys_ids)
   
@@ -197,7 +198,7 @@ collectBuoyData = function(buoys_ids, US_buoys){
   if(F%in%buoyExistance){
     noExist <- buoys_ids[which(buoyExistance==F)]
     noExistUS <- which(US_buoys$ID%in%noExist)
-    noExistFrame <- data.frame(id=noExist, obs="There are no current meteorological observations recorded at this buoy.", date="", time="",
+    noExistFrame <- data.frame(id=noExist, obs="There are no current meteorological observations recorded at this buoy. ", date="", time="",
                                name=as.character(US_buoys$name[noExistUS]), link=paste0("http://www.ndbc.noaa.gov/station_page.php?station=", noExist),
                                lat=as.character(US_buoys$lat[noExistUS]), lon=as.character(US_buoys$lon[noExistUS]))
     existFrame <- rbind.data.frame(existFrame,noExistFrame)
@@ -519,7 +520,7 @@ usgs_dataRetrieveVar = function(url, tz, data){
 ##function to create a string of observations based on what is available
 createObsString <- function(tab){
   #################
-  #tab <- fullStationData
+  #tab <- fullObsData
   #################
   ##character objects to put results into 
   tempObs <- dischargeObs <- heightObs <- vector(mode="character", length=nrow(tab))
@@ -530,16 +531,16 @@ createObsString <- function(tab){
   heightNotNA <- which(is.na(tab$gageHeight)==F)
   
   ##construct the observation string
-  tempObs[tempNotNA] <- paste0(tempObs[tempNotNA], "<br/><br/><strong>Temperature: </strong>", tab$temp[tempNotNA], " &#8457")
-  dischargeObs[dischargeNotNA] <- paste0(dischargeObs[dischargeNotNA], "<br/><strong>Discharge: </strong>", tab$discharge[dischargeNotNA], " ft&#179;/s<br/><br/>")
-  heightObs[heightNotNA] <- paste0(heightObs[heightNotNA], "<br/><strong>Gage height: </strong>", tab$gageHeight[heightNotNA], " ft<br/><br/>")
+  tempObs[tempNotNA] <- paste0(tempObs[tempNotNA], "<br/><strong>Temperature: </strong>", tab$temp[tempNotNA], " &#8457")
+  dischargeObs[dischargeNotNA] <- paste0(dischargeObs[dischargeNotNA], "<br/><strong>Discharge: </strong>", tab$discharge[dischargeNotNA], " ft&#179;/s")
+  heightObs[heightNotNA] <- paste0(heightObs[heightNotNA], "<br/><strong>Gage height: </strong>", tab$gageHeight[heightNotNA], " ft")
   
   outObs <- sapply(1:nrow(tab), function(x){obs<-c(tempObs[x],dischargeObs[x],heightObs[x]);
                                             obs<-obs[which(obs!="")];
                                             if(length(obs)>1){
-                                              return(paste0(obs, collapse=";"))
+                                              return(paste0("<br/>", obs, "<br/><br/>", collapse=""))
                                             }else if(length(obs)==1){
-                                              return(obs)
+                                              return(paste0("<br/>", obs, "<br/><br/>"))
                                             }else{
                                               return("")
                                             }})
@@ -692,10 +693,21 @@ stream_gage_plot <- function(dischargeURL, heightURL, weekMidnights, weekNoons, 
 parseWW_xml = function(ID){
   #################
   #ID <- "OHC023"
+  #ID <- "OHC057"
+  #ID <- "OHC109"
+  #ID <- "NJC013"
   #################
   print(ID)
   #url = paste("https://alerts.weather.gov/cap/wwaatmget.php?x=", ID, "&y=1", sep="")
   url = paste("https://alerts.weather.gov/cap/wwaatmget.php?x=", ID, "&amp;y=1", sep="")
+  
+  #for(i in 1:25000){
+  #  getData <- GET(url)
+  #  getContent <- getData$content
+  #  makeChar <- rawToChar(getContent)
+  #  makeList <- xmlToList(makeChar)
+  #  holdChar <- makeChar
+  #}
   
   # Turn XML data into a list.
   xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=6, delay=60)
@@ -703,7 +715,7 @@ parseWW_xml = function(ID){
   entry <- xml_data$entry$title
   link <- xml_data$entry$id
   
-  if(entry == "There are no active watches, warnings or advisories"){
+  if(entry=="There are no active watches, warnings or advisories" | length(entry)<1){
     cols = "#00000000" # 100% transparent black
     
     time <- xml_data$updated
