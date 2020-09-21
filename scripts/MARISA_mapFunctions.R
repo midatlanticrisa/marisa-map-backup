@@ -545,9 +545,9 @@ createObsString <- function(tab){
   outObs <- sapply(1:nrow(tab), function(x){obs<-c(tempObs[x],dischargeObs[x],heightObs[x]);
                                             obs<-obs[which(obs!="")];
                                             if(length(obs)>1){
-                                              return(paste0(paste0("<br/>", obs, collapse=""), "<br/><br/>"))
+                                              return(paste0("<br/>", paste0("<br/>", obs, collapse=""), "<br/><br/>"))
                                             }else if(length(obs)==1){
-                                              return(paste0(paste0("<br/>", obs), "<br/><br/>"))
+                                              return(paste0("<br/>", paste0("<br/>", obs), "<br/><br/>"))
                                             }else{
                                               return("")
                                             }})
