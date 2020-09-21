@@ -72,7 +72,7 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 #gageCSVs <- lapply(stateGageFiles, read.csv)
 ##subset files unitl ready to map to full country
 #subStates <- c("pennsylvania", "delaware")
-#subStates <- c("newjersey", "delaware")
+#subStates <- c("newjersey", "maryland")
 #subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
 subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
 gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
@@ -158,6 +158,8 @@ stationObs <- data.frame(stationIDs=fullObsData$stationIDs, obsString=createObsS
 
 ##merge collected data with the read in csv records
 fullStationData <- merge(x=gageRecs, y=stationObs, by.x="SiteNumber", by.y="stationIDs")
+fullStationData$latestDate <- as.character(fullStationData$latestDate)
+fullStationData$latestTime <- as.character(fullStationData$latestTime)
 if(TRUE%in%is.na(fullStationData$latestDate)){
   fullStationData$latestDate[is.na(fullStationData$latestDate)==T] <- max(fullStationData$latestDate[is.na(fullStationData$latestDate)==F])
   fullStationData$latestTime[is.na(fullStationData$latestTime)==T] <- max(fullStationData$latestTime[is.na(fullStationData$latestTime)==F])

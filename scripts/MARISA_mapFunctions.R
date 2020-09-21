@@ -207,8 +207,8 @@ collectBuoyData = function(buoys_ids, US_buoys){
   ##output table
   fullFrame <- merge(x=outTab, y=existFrame, by="id", sort=F)
   
-  fullFrame$date <-as.character(as.numeric(fullFrame$date))
-  fullFrame$time <-as.character(as.numeric(fullFrame$time))
+  fullFrame$date <-as.character(fullFrame$date)
+  fullFrame$time <-as.character(fullFrame$time)
   if(""%in%fullFrame$date){
     fullFrame$date[fullFrame$date==""] <- max(fullFrame$date[fullFrame$date!=""])
     fullFrame$time[fullFrame$time==""] <- max(fullFrame$time[fullFrame$time!=""])
@@ -722,7 +722,7 @@ parseWW_xml = function(ID){
   entry <- xml_data$entry$title
   link <- xml_data$entry$id
   
-  if(entry=="There are no active watches, warnings or advisories" | length(entry)<1){
+  if(length(entry)<1 | entry=="There are no active watches, warnings or advisories"){
     cols = "#00000000" # 100% transparent black
     
     time <- xml_data$updated
