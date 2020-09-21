@@ -538,16 +538,16 @@ createObsString <- function(tab){
   heightNotNA <- which(is.na(tab$gageHeight)==F)
   
   ##construct the observation string
-  tempObs[tempNotNA] <- paste0(tempObs[tempNotNA], "<br/><strong>Temperature: </strong>", tab$temp[tempNotNA], " &#8457")
-  dischargeObs[dischargeNotNA] <- paste0(dischargeObs[dischargeNotNA], "<br/><strong>Discharge: </strong>", tab$discharge[dischargeNotNA], " ft&#179;/s")
-  heightObs[heightNotNA] <- paste0(heightObs[heightNotNA], "<br/><strong>Gage height: </strong>", tab$gageHeight[heightNotNA], " ft")
+  tempObs[tempNotNA] <- paste0(tempObs[tempNotNA], "<strong>Temperature: </strong>", tab$temp[tempNotNA], " &#8457")
+  dischargeObs[dischargeNotNA] <- paste0(dischargeObs[dischargeNotNA], "<strong>Discharge: </strong>", tab$discharge[dischargeNotNA], " ft&#179;/s")
+  heightObs[heightNotNA] <- paste0(heightObs[heightNotNA], "<strong>Gage height: </strong>", tab$gageHeight[heightNotNA], " ft")
   
   outObs <- sapply(1:nrow(tab), function(x){obs<-c(tempObs[x],dischargeObs[x],heightObs[x]);
                                             obs<-obs[which(obs!="")];
                                             if(length(obs)>1){
-                                              return(paste0("<br/>", obs, "<br/><br/>", collapse=""))
+                                              return(paste0(paste0("<br/>", obs, collapse=""), "<br/><br/>"))
                                             }else if(length(obs)==1){
-                                              return(paste0("<br/>", obs, "<br/><br/>"))
+                                              return(paste0(paste0("<br/>", obs), "<br/><br/>"))
                                             }else{
                                               return("")
                                             }})
