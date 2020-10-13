@@ -772,3 +772,121 @@ parseWW_xml = function(ID){
 }
 ##########################################################################
 ##########################################################################
+# Function to create plots
+plot_climdiv = function(climate_dat, state, writeDir){
+  #################
+  #climate_dat <- stateDivTabs[[1]]
+  #state <- state_name
+  #writeDir <- wrtDir
+  #################
+  
+  clim_30yrs <- aggregate(climate_dat, by=list(climate_dat$month), FUN=mean, na.rm=T)
+  monthNames <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+  clim_30yrs$month <- factor(monthNames, levels=monthNames)
+  
+  
+  #years = unique(climate_division$Year)
+  #pcp.yrs = rep(NA, length(years))
+  #for(i in 1:length(years)){
+  #  pcp.yrs[i] = mean(climate_division$PCP[which(climate_division$Year == years[i])])
+  #}
+  #yearly.avg.prcp = mean(pcp.yrs)
+  
+  #clim_30yrs = data.frame(tmax = tmax, tmin = tmin, tavg = tavg, prcp = pcp,
+  #                        month = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), month_num = 1:12)
+  #clim_30yrs$month <- factor(clim_30yrs$month, levels = clim_30yrs$month[order(clim_30yrs$month_num)])
+  
+  png(file=paste0(writeDir, "Fig_", state, "-", unique(climate_dat$division), ".png"), family="sans", units="in", width=p.width, height=p.height*2, pointsize=12, res=300)
+  par(mfrow=c(2,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.5))
+  plot(1:12, clim_30yrs$tmax, type="l", lwd = 2, col=temp_cols[3], xaxt="n", yaxt="n",
+       ylab=expression(paste("Temperature (", degree, "F)", sep="")), xlab="",
+       ylim = c(min(clim_30yrs$tmin), max(clim_30yrs$tmax)), bty="l")
+  lines(1:12, clim_30yrs$tmin, type="l", lwd = 2, col=pcp_cols[2])
+  lines(1:12, clim_30yrs$tmpc, type="l", lwd = 2, col="black")
+  axis(2, las=2, tck=-0.025)
+  axis(1, labels=clim_30yrs$month, at=1:12, tck=-0.025)
+  legend("topleft", legend=c("Maximum", "Average", "Minimum"), pch = 15, col = c(temp_cols[3], "black", pcp_cols[2]), ncol=1, bty="n", cex=1)
+  mtext(paste0("(", min(climate_dat$year), "-", max(climate_dat$year), ")"), side = 3, las=1, adj = 1, line=-1)
+  
+  plot.new()
+  vps <- baseViewports()
+  pushViewport(vps$figure)
+  
+  pp = ggplot(clim_30yrs, aes(x=month, y=pcpn)) + geom_bar(stat = "identity", fill=pcp_cols[3], width=0.6) +
+    scale_x_discrete(breaks = clim_30yrs$month[seq(1, length(clim_30yrs$month), by = 2)]) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          panel.background = element_blank(), axis.line = element_line(colour = "black"),
+          axis.text=element_text(size=11, colour = "black"),
+          axis.title=element_text(size=11, colour = "black")) +
+    labs(x="", y = "Precipitation (in)")
+  
+  vp <- viewport(height = unit(1,"npc"), width=unit(1, "npc"),
+                 just = c("left","top"),
+                 y = 1, x = 0)
+  print(pp, vp = vp)
+  dev.off()
+}
+##########################################################################
+##########################################################################
+# Function to cycle through climate divisions within a state
+state_climdiv = function(stateNum, fullTab, wrtDir){
+  #################
+  #stateNum <- "36"
+  #fullTab <- fullVarTab
+  #wrtDir <- outDir
+  #################
+  stateTab <- fullTab[fullTab$state==stateNum,]
+  
+  #statediv$Year = substr(statediv$YearMonth, 1, 4)
+  #statediv$Month = substr(statediv$YearMonth, 5, 6)
+  #statediv30yrs = statediv[min(which(statediv$Year == 1988)):max(which(statediv$Year == 2018)), ]
+  latestYr <- max(as.numeric(stateTab$year))
+  seqYrs <- as.character((latestYr-29):latestYr)
+  stateTab30yrs <- stateTab[which(stateTab$year %in% seqYrs),]
+  
+  subVars <- stateTab30yrs[,c("division", "year", "month", "tmax", "tmin", "tmpc", "pcpn")]
+  stateDivTabs <- lapply(unique(subVars$division), function(div_num){subVars[subVars$division==div_num,]})
+  
+  lapply(stateDivTabs, plot_climdiv, state=stateTab$Name, writeDir=wrtDir)
+  #apply(as.array(unique(statediv30yrs$Division)), 1, plot_climdiv, climate_dat=statediv30yrs, state=state_name)
+}
+##########################################################################
+##########################################################################
+combineClimDivDat <- function(tabFile){
+  #################
+  #tabFile <- downloadFileNames[1]
+  #tabFile <- downloadFileNames[9]
+  #################
+  #varTab <- read.table(tabFile, header=F, na.strings=c(-9.99, -99.9, -99.99, -9999, -9999.))
+  varTab <- read.table(tabFile, header=F, na.strings=c("-9999.", "-9.99", "-99.99", "-99.90"))
+  varTxt <- sapply(strsplit(tabFile, "_Data/|_download"), "[[", 2)
+  colnames(varTab) <- c("headerInfo", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
+  
+  ##splitting up the header info
+  ##first, checks the number of characters in each header, and if only have 9, add the 0 to the front
+  numChars <- sapply(varTab$headerInfo, nchar)
+  varTab$state <- mapply(function(ent,nCh){substr(ent,1,nCh-8)}, ent=varTab$headerInfo, nCh=numChars)  ##state
+  varTab$state <- sapply(varTab$state, function(txt){if(nchar(txt)==1){
+                                                      return(paste0("0",txt))
+                                                    }else{
+                                                      return(txt)
+                                                    }})
+  varTab$year <- mapply(function(ent,nCh){substr(ent,nCh-3,nCh)}, ent=varTab$headerInfo, nCh=numChars)  ##year
+  #varTab$variable <- mapply(function(ent,nCh){substr(ent,nCh-5,nCh-4)}, ent=varTab$headerInfo, nCh=numChars)  ##variable
+  varTab$division <- mapply(function(ent,nCh){substr(ent,nCh-7,nCh-6)}, ent=varTab$headerInfo, nCh=numChars)  ##division
+  ##split off the original head column
+  varTab <- varTab[,-which(colnames(varTab) %in% "headerInfo")]
+  
+  ##make a melt table (cheesy) to be in the form needed
+  cheesyTable <- melt(varTab, varible.name="month", value.names=vars[1], id.vars=c("division", "state", "year"))
+  colnames(cheesyTable)[which(colnames(cheesyTable) %in% c("variable", "value"))] <-c("month", varTxt)
+  
+  ##just in case the na.strings argument from the read in table
+  #cheesyTable[,5][cheesyTable[,5]==-99.99]
+  #cheesyTable[,5][cheesyTable[,5]==-99.9]
+  #cheesyTable[,5][cheesyTable[,5]==-9999]
+  
+  return(cheesyTable)
+}
+##########################################################################
+##########################################################################

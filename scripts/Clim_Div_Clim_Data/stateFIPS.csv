@@ -1,0 +1,67 @@
+FIPS,AlphaCode,Name,ClimDatStateCode
+1,AL,Alabama,1
+2,AK,Alaska,50
+4,AZ,Arizona,2
+5,AR,Arkansas,3
+81,BI,Baker Island,
+6,CA,California,4
+8,CO,Colorado,5
+9,CT,Connecticut,6
+10,DE,Delaware,7
+11,DC,District of Columbia,
+12,FL,Florida,8
+13,FA,Georgia,9
+66,GU,Guam,
+15,HI,Hawaii,
+84,HI,Howland Island,
+16,ID,Idaho,10
+17,IL,Illinois,11
+18,IN,Indiana,12
+19,IA,Iowa,13
+86,JI,Jarvis Island,
+67,JA,Johnston Atoll,
+20,KS,Kansas,14
+21,KY,Kentucky,15
+89,KR,Kingman Reef,
+22,LA,Louisiana,16
+23,ME,Maine,17
+68,MH,Marshall Islands,
+24,MD,Maryland,18
+25,MA,Massachusetts,19
+26,MI,Michigan,20
+71,MI,Midway Islands,
+27,MN,Minnisota,21
+28,MS,Mississippi,22
+29,MO,Missouri,23
+30,MT,Montana,24
+76,NI,Navassa Island,
+31,NE,Nebraska,25
+32,NV,Nevada,26
+33,NH,New Hampshire,27
+34,NJ,New Jersey,28
+35,NM,New Mexico,29
+36,NY,New York,30
+37,NC,North Carolina,31
+38,ND,North Dakota,32
+69,MP,Northern Mariana Islands,
+39,OH,Ohio,33
+40,OK,Oklahoma,34
+41,OR,Oregon,35
+70,PW,Palau,
+95,PA,Palmyra Atoll,
+42,PA,Pennsylvania,36
+72,PR,Puerto Rico,
+44,RI,Rhode Island,37
+45,SC,South Carolina,38
+46,SD,South Dakota,39
+47,TN,Tennessee,40
+48,TX,Texas,41
+49,UT,Utah,42
+50,VT,Vermont,43
+51,VA,Virginia,44
+78,VI,Virgin Islands,
+79,WI,Wake Island,
+53,WA,Washington,45
+54,WV,West Virginia,46
+55,WI,Wisconsin,47
+56,WY,Wyoming,48

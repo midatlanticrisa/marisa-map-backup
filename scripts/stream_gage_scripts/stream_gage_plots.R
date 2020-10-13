@@ -79,6 +79,7 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
 gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
 gageRecs <- do.call(rbind.data.frame, gageCSVs)
+gageRecs <- gageRecs[gageRecs$SiteLongitude>=-82.0 & gageRecs$SiteLongitude<=-73.0 & gageRecs$SiteLatitude>=36.0 & gageRecs$SiteLatitude<=43.5,]
 
 # Site numbers should be between 8 and 15 digits long
 shortIDs <- which(nchar(gageRecs$SiteNumber)<8)
@@ -103,5 +104,5 @@ if(cores>1){
   mapply(stream_gage_plot, gageDisURLs, gageGagURLs, MoreArgs=list(weekMidnights=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir))
 }
 
-
+#stream_gage_plot(gageDisURLs[1838], gageGagURLs[1838], weekMidnights=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
 
