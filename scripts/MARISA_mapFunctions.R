@@ -796,7 +796,7 @@ plot_climdiv = function(climate_dat, state, writeDir){
   #                        month = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), month_num = 1:12)
   #clim_30yrs$month <- factor(clim_30yrs$month, levels = clim_30yrs$month[order(clim_30yrs$month_num)])
   
-  png(file=paste0(writeDir, "Fig_", state, "-", unique(climate_dat$division), ".png"), family="sans", units="in", width=p.width, height=p.height*2, pointsize=12, res=300)
+  png(file=paste0(writeDir, "Fig_", state, "-", as.numeric(unique(climate_dat$division)), ".png"), family="sans", units="in", width=p.width, height=p.height*2, pointsize=12, res=300)
   par(mfrow=c(2,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.5))
   plot(1:12, clim_30yrs$tmax, type="l", lwd = 2, col=temp_cols[3], xaxt="n", yaxt="n",
        ylab=expression(paste("Temperature (", degree, "F)", sep="")), xlab="",
