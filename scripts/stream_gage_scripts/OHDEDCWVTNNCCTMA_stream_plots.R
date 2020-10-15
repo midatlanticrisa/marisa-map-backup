@@ -37,8 +37,22 @@ library(compiler)
 enableJIT(3)
 enableJIT(3)
 
+# what computer am I on?
+comp <- as.data.frame(t(Sys.info()))
+
+# important file locations
+if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+  inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/stream_gage_scripts/"
+  idRecDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
+}else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
+  inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
+  idRecDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
+}else{  ##idocrase
+  inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
+  idRecDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
+}
+
 # Read functions to retrieve data and plot
-inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
 source(paste0(inDir,"usgs_dataRetrieve.R"))
 source(paste0(inDir,"stream_gage_plot_func.R"))
 # --------------------------------------------------------------------------------------------------------------------
@@ -58,39 +72,40 @@ day_noon = as.POSIXct(paste(Sys.Date() - day, "12:00", sep=" "), format = "%Y-%m
 # Create vector including each station ID.
 # <!-- USGS STATIONS -->
 # <!-- Ohio -->
-OH_ID = c("03159540", "03159500", "03115400", "03150000", "03142000", "03144500", "03111548", "03111500", "03129000",
-          "03140500", "03140000", "03139000", "03120500", "03110000", "03109500", "03117500", "03118500", "03117000",
-          "03118000", "04206000", "03091500", "03094000", "03093000", "04202000", "04207200", "04208000", "04201500",
-          "04209000", "04212100", "04213000")
-
-# <!-- Delaware -->
-DE_ID = c("01487000", "01488500", "01484100", "01483700", "01483200", "01478000", "01479000", "01480000", "01481500",
-          "01477800")
-
-# <!-- Washington DC -->
-DC_ID = c("01648000", "01646500")
-
-# <!-- West Virginia -->
-WV_ID = c("03112000",
-          "03062500", "03070500", "01595800", "01608500", "01610000", "01611500", "01614000", "01617000", "01616500",
-          "01618000", "01636500", "01606500", "01607500", "03065000", "03069500", "03050000", "03051000", "03052000",
-          "03053500", "03054500", "03056250", "03052500", "03057000", "03061500", "03114500", "03180500",
-          "03182500", "03186500", "03194700", "03151400", "03154000", "03155000", "03200500", "03198000", "03197000",
-          "03193000", "03192000", "03191500", "03185400", "03190000", "03189100", "03187500", "03183500", "03184000",
-          "03179000", "03185000", "03202400", "03202750", "03213500", "03203000", "03203600", "03198500", "03213700",
-          "03214500", "03206600")
-
-# <!-- Tennessee -->
-TN_ID = "03532000"
-
-# <!-- North Carolina -->
-NC_ID = c("02068500", "02070500", "02074000", "02077670", "02080500")
-
-# <!-- Conneticut -->
-CT_ID = c("01209700", "01200500", "01200000", "01199050")
-
-# <!-- Massachusetts -->
-MA_ID = c("01198000", "01197500")
+# OH_ID = c("03159540", "03159500", "03115400", "03150000", "03142000", "03144500", "03111548", "03111500", "03129000",
+#           "03140500", "03140000", "03139000", "03120500", "03110000", "03109500", "03117500", "03118500", "03117000",
+#           "03118000", "04206000", "03091500", "03094000", "03093000", "04202000", "04207200", "04208000", "04201500",
+#           "04209000", "04212100", "04213000")
+# 
+# # <!-- Delaware -->
+# DE_ID = c("01487000", "01488500", "01484100", "01483700", "01483200", "01478000", "01479000", "01480000", "01481500",
+#           "01477800")
+# 
+# # <!-- Washington DC -->
+# DC_ID = c("01648000", "01646500")
+# 
+# # <!-- West Virginia -->
+# WV_ID = c("03112000",
+#           "03062500", "03070500", "01595800", "01608500", "01610000", "01611500", "01614000", "01617000", "01616500",
+#           "01618000", "01636500", "01606500", "01607500", "03065000", "03069500", "03050000", "03051000", "03052000",
+#           "03053500", "03054500", "03056250", "03052500", "03057000", "03061500", "03114500", "03180500",
+#           "03182500", "03186500", "03194700", "03151400", "03154000", "03155000", "03200500", "03198000", "03197000",
+#           "03193000", "03192000", "03191500", "03185400", "03190000", "03189100", "03187500", "03183500", "03184000",
+#           "03179000", "03185000", "03202400", "03202750", "03213500", "03203000", "03203600", "03198500", "03213700",
+#           "03214500", "03206600")
+# 
+# # <!-- Tennessee -->
+# TN_ID = "03532000"
+# 
+# # <!-- North Carolina -->
+# NC_ID = c("02068500", "02070500", "02074000", "02077670", "02080500")
+# 
+# # <!-- Conneticut -->
+# CT_ID = c("01209700", "01200500", "01200000", "01199050")
+# 
+# # <!-- Massachusetts -->
+# MA_ID = c("01198000", "01197500")
+load(paste0(idRecDir, "OHDEDCWVTNNCCTMA_streamIDs.RData"))
 
 # --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
@@ -107,10 +122,10 @@ for(i in 1:length(DC_ID)){ stream_gage_plot(DC_ID[i], b.date, e.date, day_midnig
 for(i in 1:length(WV_ID)){ stream_gage_plot(WV_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # Run the Tennessee station.
-stream_gage_plot(TN_ID, b.date, e.date, day_midnight, day_noon)
+#stream_gage_plot(TN_ID, b.date, e.date, day_midnight, day_noon)
 
 # Run through each North Carolina station.
-for(i in 1:length(NC_ID)){ stream_gage_plot(NC_ID[i], b.date, e.date, day_midnight, day_noon) }
+#for(i in 1:length(NC_ID)){ stream_gage_plot(NC_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # Run through each Conneticut station.
 for(i in 1:length(CT_ID)){ stream_gage_plot(CT_ID[i], b.date, e.date, day_midnight, day_noon) }
@@ -120,7 +135,7 @@ for(i in 1:length(MA_ID)){ stream_gage_plot(MA_ID[i], b.date, e.date, day_midnig
 
 # Run through a few other stations. These stations are sometimes difficult to extract
 # data, so they are run seperately from the others
-WV_ID_NC_ID = c("03056000", "02077303")
-for(i in 1:length(WV_ID_NC_ID)){ stream_gage_plot(WV_ID_NC_ID[i], b.date, e.date, day_midnight, day_noon) }
+#WV_ID_NC_ID = c("03056000", "02077303")
+#for(i in 1:length(WV_ID_NC_ID)){ stream_gage_plot(WV_ID_NC_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # --------------------------------------------------------------------------------------------------------------------

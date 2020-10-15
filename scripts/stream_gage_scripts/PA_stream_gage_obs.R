@@ -75,7 +75,10 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 subStates <- c("pennsylvania")
 #subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
 #subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
-gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
+gageCSVs <- lapply(subStates, function(st){readTab<-read.csv(stateGageFiles[grep(st, stateGageFiles)]);
+                                            ##adding state column, as descriptions included are not all formatted the same
+                                            readTab$state<-st;
+                                            return(readTab)})
 
 ##the rest of the script
 gageRecs <- do.call(rbind.data.frame, gageCSVs)
@@ -206,7 +209,8 @@ if(TRUE%in%is.na(fullStationData$latestDate)){
 
 ##PA
 if("pennsylvania" %in% subStates){
-  paRecs <- fullStationData[grep("PA", fullStationData$SiteName),]
+  #paRecs <- fullStationData[grep("PA", fullStationData$SiteName),]  ##has some issues selecting all records, not surewhy, consider looking at other solution when time comes
+  paRecs <- fullStationData
   
   ##create the feature record for each station for the geojson file
   stream_string <- paste0('{"type": "Feature", "properties": {"name": "', paRecs$SiteName, '", "id": "', paRecs$SiteNumber, '", "url": "', paRecs$SiteNWISURL, 
@@ -214,6 +218,11 @@ if("pennsylvania" %in% subStates){
                           '.png"}, "geometry": {"type": "Point", "coordinates": [', paRecs$SiteLongitude, ',', paRecs$SiteLatitude, ']}}')
   ##create the final string for the output file
   json_merge <- paste0('PA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  
+  ##save object with ids for plotting
+  PA_ID <- paRecs$SiteNumber
+  save("PA_ID", file=paste0(outDir, "PA_streamIDs.RData"))
+  
   # Export data to geojson.
   cat(json_merge, file=paste0(outDir, "PA_stream_obs.js"))
 }

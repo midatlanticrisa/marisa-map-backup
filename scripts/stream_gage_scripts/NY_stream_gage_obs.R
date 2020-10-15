@@ -75,7 +75,10 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 subStates <- c("newyork")
 #subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
 #subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
-gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
+gageCSVs <- lapply(subStates, function(st){readTab<-read.csv(stateGageFiles[grep(st, stateGageFiles)]);
+                                            ##adding state column, as descriptions included are not all formatted the same
+                                            readTab$state<-st;
+                                            return(readTab)})
 
 ##the rest of the script
 gageRecs <- do.call(rbind.data.frame, gageCSVs)
@@ -179,7 +182,8 @@ if(TRUE%in%is.na(fullStationData$latestDate)){
 
 ##NY
 if("newyork" %in% subStates){
-  nyRecs <- fullStationData[grep("NY", fullStationData$SiteName),]
+  #nyRecs <- fullStationData[grep("NY", fullStationData$SiteName),]
+  nyRecs <- fullStationData
   
   ##create the feature record for each station for the geojson file
   stream_string <- paste0('{"type": "Feature", "properties": {"name": "', nyRecs$SiteName, '", "id": "', nyRecs$SiteNumber, '", "url": "', nyRecs$SiteNWISURL, 
@@ -187,6 +191,11 @@ if("newyork" %in% subStates){
                           '.png"}, "geometry": {"type": "Point", "coordinates": [', nyRecs$SiteLongitude, ',', nyRecs$SiteLatitude, ']}}')
   ##create the final string for the output file
   json_merge <- paste0('NY_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+  
+  ##save object with ids for plotting
+  NY_ID <- nyRecs$SiteNumber
+  save("NY_ID", file=paste0(outDir, "NY_streamIDs.RData"))
+  
   # Export data to geojson.
   cat(json_merge, file=paste0(outDir, "NY_stream_obs.js"))
 }

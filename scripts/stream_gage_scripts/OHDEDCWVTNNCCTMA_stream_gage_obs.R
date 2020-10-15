@@ -65,7 +65,7 @@ source(paste0(inDir, "MARISA_mapFunctions.R"))
 eDate <- Sys.Date()      # End date
 #bDate = Sys.Date()-1      # Beginning date
 
-cores <- 1
+cores <- 7
 
 ##read in the .csvs associated with each state, to be able to more efficiantly format the output geojson file
 stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv/"), pattern=".csv", full.names=T)
@@ -75,7 +75,10 @@ stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv
 subStates <- c("ohio", "Delaware", "DC", "westvirginia", "conneticut", "massachusetts")
 #subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
 #subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
-gageCSVs <- lapply(stateGageFiles[sapply(subStates, grep, x=stateGageFiles)], read.csv)
+gageCSVs <- lapply(subStates, function(st){readTab<-read.csv(stateGageFiles[grep(st, stateGageFiles)]);
+                                            ##adding state column, as descriptions included are not all formatted the same
+                                            readTab$state<-st;
+                                            return(readTab)})
 
 ##the rest of the script
 gageRecs <- do.call(rbind.data.frame, gageCSVs)
@@ -192,15 +195,27 @@ if(TRUE%in%is.na(fullStationData$latestDate)){
 #}
 
 ##OH, DE, DC, WV, CT, MA
-rangeRecs <- rbind.data.frame(fullStationData[grep("OH", fullStationData$SiteName),], fullStationData[grep("DE", fullStationData$SiteName),],
-                              fullStationData[grep("DC", fullStationData$SiteName),], fullStationData[grep("WV", fullStationData$SiteName),],
-                              fullStationData[grep("CT", fullStationData$SiteName),], fullStationData[grep("MA", fullStationData$SiteName),])
+#rangeRecs <- rbind.data.frame(fullStationData[grep("OH", fullStationData$SiteName),], fullStationData[grep("DE", fullStationData$SiteName),],
+#                              fullStationData[grep("DC", fullStationData$SiteName),], fullStationData[grep("WV", fullStationData$SiteName),],
+#                              fullStationData[grep("CT", fullStationData$SiteName),], fullStationData[grep("MA", fullStationData$SiteName),])
+rangeRecs <- fullStationData
+
 ##create the feature record for each station for the geojson file
 stream_string <- paste0('{"type": "Feature", "properties": {"name": "', rangeRecs$SiteName, '", "id": "', rangeRecs$SiteNumber, '", "url": "', rangeRecs$SiteNWISURL, 
                         '", "obs": "', rangeRecs$obsString, '", "time": "', paste0("Last Updated on ", rangeRecs$latestDate, " at ", rangeRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', rangeRecs$SiteNumber,
                         '.png"}, "geometry": {"type": "Point", "coordinates": [', rangeRecs$SiteLongitude, ',', rangeRecs$SiteLatitude, ']}}')
 ##create the final string for the output file
 json_merge <- paste0('OHDEDCWVTNNCCTMA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
+
+##save object with ids for plotting
+OH_ID <- rangeRecs$SiteNumber[which(rangeRecs$state=="ohio")]
+DE_ID <- rangeRecs$SiteNumber[which(rangeRecs$state=="Delaware")]
+DC_ID <- rangeRecs$SiteNumber[which(rangeRecs$state=="DC")]
+WV_ID <- rangeRecs$SiteNumber[which(rangeRecs$state=="westvirginia")]
+CT_ID <- rangeRecs$SiteNumber[which(rangeRecs$state=="conneticut")]
+MA_ID <- rangeRecs$SiteNumber[which(rangeRecs$state=="massachusetts")]
+save("OH_ID", "DE_ID", "WV_ID", "DC_ID", "MA_ID", file=paste0(outDir, "OHDEDCWVTNNCCTMA_streamIDs.RData"))
+
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "OHDEDCWVTNNCCTMA_stream_obs.js"))
 
