@@ -65,7 +65,7 @@ source(paste0(inDir, "MARISA_mapFunctions.R"))
 eDate <- Sys.Date()      # End date
 #bDate = Sys.Date()-1      # Beginning date
 
-cores <- 7
+cores <- 1
 
 ##read in the .csvs associated with each state, to be able to more efficiantly format the output geojson file
 stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv/"), pattern=".csv", full.names=T)
