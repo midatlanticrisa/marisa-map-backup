@@ -717,12 +717,12 @@ parseWW_xml = function(ID){
   #}
   
   # Turn XML data into a list.
-  xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=6, delay=60)
+  xml_data <- retry(xmlToList(rawToChar(GET(url)$content)), max=10, delay=60)
   name <- xml_data$title
   entry <- xml_data$entry$title
   link <- xml_data$entry$id
   
-  if(length(entry)<1 | entry=="There are no active watches, warnings or advisories"){
+  if(length(entry)<1){
     cols = "#00000000" # 100% transparent black
     
     time <- xml_data$updated
