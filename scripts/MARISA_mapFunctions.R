@@ -733,7 +733,18 @@ parseWW_xml = function(ID){
     
     OBS<- paste("<strong><a href='", link, "' target='_blank'>", name, "</a></strong><br/><br/><strong>", entry, "</strong><br/><br/>Last Updated on ", format_time, sep="")
     
-  } else {
+  }else if(entry == "There are no active watches, warnings or advisories"){
+    cols = "#00000000" # 100% transparent black
+    
+    time <- xml_data$updated
+    
+    # Reformat time to match the rest of the Marisa data
+    format_time <- as.POSIXct(str_replace_all(time, "T", " "), format = "%Y-%m-%d %H:%M", tz = "GMT")
+    format_time <- format(format_time, format = "%b %d, %Y %I:%M %p %Z", tz = "America/New_York")
+    
+    OBS<- paste("<strong><a href='", link, "' target='_blank'>", name, "</a></strong><br/><br/><strong>", entry, "</strong><br/><br/>Last Updated on ", format_time, sep="")
+    
+  }else{
     xml_active <- xmlToList(rawToChar(GET(link)$content))
     time <- xml_data$updated
     
