@@ -41,7 +41,7 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -129,7 +129,11 @@ fullGageHeight <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageHei
 #colnames(fullGageTemps)[2:3] <- c("temp", "dateTime")
 #colnames(fullGageDischarge)[2:3] <- c("discharge", "dateTime")  
 #colnames(fullGageHeight)[2:3] <- c("gageHeight", "dateTime")
+
+##rename the variable column names to be english understood
 colnames(fullGageTemps)[2:4] <- c("temp", "date_t", "time_t")
+##convert tempurature values from C to F
+fullGageTemps$temp <- as.character(as.numeric(fullGageTemps$temp) * (9/5) + 32)
 colnames(fullGageDischarge)[2:4] <- c("discharge", "date_d", "time_d")  
 colnames(fullGageHeight)[2:4] <- c("gageHeight", "date_h", "time_h")
 fullObsData <- merge(fullGageTemps, fullGageDischarge, by="stationIDs")
