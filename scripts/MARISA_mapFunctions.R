@@ -405,7 +405,7 @@ waterheight_plot <- function(url, weekMidnights, weekNoons, plotW, plotH, plotOu
     midnight <- which(hours=="00:00")
     noon <- which(hours=="12:00")
     
-    plot(stationData$time, as.numeric(as.character(stationData$values)), type="n", ylab=paste0("Height (m ", datum, ")"), xlab="Past 3 days", xaxt="n")
+    plot(stationData$time, as.numeric(as.character(stationData$values)), type="n", ylab=paste0("Height (ft ", datum, ")"), xlab="Past 3 days", xaxt="n") #klr changed m to ft
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
     axis(1, at=weekMidnights, labels=FALSE, tick=TRUE)
     axis(1, at=weekNoons, labels=gsub("0(\\d)", "\\1", format(weekNoons, "%m/%d")), tick=FALSE)
