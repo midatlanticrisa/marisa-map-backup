@@ -121,7 +121,7 @@ parseWS_xml = function(id){
   if(is.null(xml_data$ob_url)){
     link <- ""
   } else {
-    link <- xml_data$ob_url
+    link <- xml.url # xml_data$ob_url: klr use human readable link
   }
   
   obs = paste0(weather, temp, humidity, wind, speed, dewpoint, windchill, visibility)
