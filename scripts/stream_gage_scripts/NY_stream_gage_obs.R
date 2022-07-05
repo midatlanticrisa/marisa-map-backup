@@ -130,6 +130,8 @@ fullGageHeight <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageHei
 #colnames(fullGageDischarge)[2:3] <- c("discharge", "dateTime")  
 #colnames(fullGageHeight)[2:3] <- c("gageHeight", "dateTime")
 colnames(fullGageTemps)[2:4] <- c("temp", "date_t", "time_t")
+##convert tempurature values from C to F
+fullGageTemps$temp <- as.character(as.numeric(fullGageTemps$temp) * (9/5) + 32)
 colnames(fullGageDischarge)[2:4] <- c("discharge", "date_d", "time_d")  
 colnames(fullGageHeight)[2:4] <- c("gageHeight", "date_h", "time_h")
 fullObsData <- merge(fullGageTemps, fullGageDischarge, by="stationIDs")
