@@ -316,11 +316,11 @@ tideStationData <- function(statID, spDatum, timez, un){
   if(nrow(subVarTab)>0){
     subVarNames <- subVarTab$vars
     if("air_temperature" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Air temperature: </strong>", subVarTab$value[which(subVarNames=="air_temperature")], " &#8451;<br/>")
+      obsString <- paste0(obsString, "<strong>Air temperature: </strong>", subVarTab$value[which(subVarNames=="air_temperature")], " &#8457;<br/>") #klr convert C (&#8451;) to F (&#8457;)
     }
     
     if("air_pressure" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Air pressure: </strong>", subVarTab$value[which(subVarNames=="air_pressure")], " mbar<br/>")
+      obsString <- paste0(obsString, "<strong>Air pressure: </strong>", subVarTab$value[which(subVarNames=="air_pressure")], " mb<br/>") # klr changed mbar to mb
     }
     
     if("visibility" %in% subVarNames){
@@ -332,15 +332,15 @@ tideStationData <- function(statID, spDatum, timez, un){
     }
     
     if("wind" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Wind: </strong>", subVarTab$value[which(subVarNames=="wind")], " kn<br/>")
+      obsString <- paste0(obsString, "<strong>Wind: </strong>", subVarTab$value[which(subVarNames=="wind")], " knots<br/>") #klr spell out knots
     }
     
     if("water_level" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Water level: </strong>", subVarTab$value[which(subVarNames=="water_level")], " m ", spDatum, "<br/>")
+      obsString <- paste0(obsString, "<strong>Water level: </strong>", subVarTab$value[which(subVarNames=="water_level")], " ft ", spDatum, "<br/>") #klr convert m to ft
     }
     
     if("water_temperature" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Water temperature: </strong>", subVarTab$value[which(subVarNames=="water_temperature")], " &#8451;<br/>")
+      obsString <- paste0(obsString, "<strong>Water temperature: </strong>", subVarTab$value[which(subVarNames=="water_temperature")], " &#8457;<br/>") #klr convert C (&#8451;) to F (&#8457;)
     }
     
     if("conductivity" %in% subVarNames){

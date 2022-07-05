@@ -73,7 +73,7 @@ datum <- "MLLW"
 gl.datum <- "IGLD"
 msl.datum <- "MSL"
 timezone <- "GMT"
-units <- "metric"
+units <- "english" # klr change to use US standard units instead of "metric"
 cores <- 1
 
 # --------------------------------------------------------------------------------------------------------------------
