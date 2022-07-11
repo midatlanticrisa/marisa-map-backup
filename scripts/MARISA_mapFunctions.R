@@ -121,7 +121,7 @@ parseWS_xml = function(id){
   if(is.null(xml_data$ob_url)){
     link <- ""
   } else {
-    link <- xml_data$ob_url
+    link <- xml.url # xml_data$ob_url: klr use human readable link
   }
   
   obs = paste0(weather, temp, humidity, wind, speed, dewpoint, windchill, visibility)
@@ -316,11 +316,11 @@ tideStationData <- function(statID, spDatum, timez, un){
   if(nrow(subVarTab)>0){
     subVarNames <- subVarTab$vars
     if("air_temperature" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Air temperature: </strong>", subVarTab$value[which(subVarNames=="air_temperature")], " &#8451;<br/>")
+      obsString <- paste0(obsString, "<strong>Air temperature: </strong>", subVarTab$value[which(subVarNames=="air_temperature")], " &#8457;<br/>") #klr convert C (&#8451;) to F (&#8457;)
     }
     
     if("air_pressure" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Air pressure: </strong>", subVarTab$value[which(subVarNames=="air_pressure")], " mbar<br/>")
+      obsString <- paste0(obsString, "<strong>Air pressure: </strong>", subVarTab$value[which(subVarNames=="air_pressure")], " mb<br/>") # klr changed mbar to mb
     }
     
     if("visibility" %in% subVarNames){
@@ -332,15 +332,15 @@ tideStationData <- function(statID, spDatum, timez, un){
     }
     
     if("wind" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Wind: </strong>", subVarTab$value[which(subVarNames=="wind")], " kn<br/>")
+      obsString <- paste0(obsString, "<strong>Wind: </strong>", subVarTab$value[which(subVarNames=="wind")], " knots<br/>") #klr spell out knots
     }
     
     if("water_level" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Water level: </strong>", subVarTab$value[which(subVarNames=="water_level")], " m ", spDatum, "<br/>")
+      obsString <- paste0(obsString, "<strong>Water level: </strong>", subVarTab$value[which(subVarNames=="water_level")], " ft ", spDatum, "<br/>") #klr convert m to ft
     }
     
     if("water_temperature" %in% subVarNames){
-      obsString <- paste0(obsString, "<strong>Water temperature: </strong>", subVarTab$value[which(subVarNames=="water_temperature")], " &#8451;<br/>")
+      obsString <- paste0(obsString, "<strong>Water temperature: </strong>", subVarTab$value[which(subVarNames=="water_temperature")], " &#8457;<br/>") #klr convert C (&#8451;) to F (&#8457;)
     }
     
     if("conductivity" %in% subVarNames){
@@ -405,7 +405,7 @@ waterheight_plot <- function(url, weekMidnights, weekNoons, plotW, plotH, plotOu
     midnight <- which(hours=="00:00")
     noon <- which(hours=="12:00")
     
-    plot(stationData$time, as.numeric(as.character(stationData$values)), type="n", ylab=paste0("Height (m ", datum, ")"), xlab="Past 3 days", xaxt="n")
+    plot(stationData$time, as.numeric(as.character(stationData$values)), type="n", ylab=paste0("Height (ft ", datum, ")"), xlab="Past 3 days", xaxt="n") #klr changed m to ft
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
     axis(1, at=weekMidnights, labels=FALSE, tick=TRUE)
     axis(1, at=weekNoons, labels=gsub("0(\\d)", "\\1", format(weekNoons, "%m/%d")), tick=FALSE)
