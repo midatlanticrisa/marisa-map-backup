@@ -41,7 +41,7 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox

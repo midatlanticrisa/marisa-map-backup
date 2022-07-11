@@ -418,14 +418,14 @@ waterheight_plot <- function(url, weekMidnights, weekNoons, plotW, plotH, plotOu
 ##########################################################################
 ##########################################################################
 # Function extracting stream data (discharge and time) from a TXT file online.
-usgs_dataRetrieveVar = function(url, tz, data){
+usgs_dataRetrieveVar = function(url, timez, data){
   #################
   #url <- gageTmpURLs[1]
   #url <- dischargeURL
   #url <- dailyAveURL
   #url <- heightURL
   #url <- gageURL<-paste0("https://waterdata.usgs.gov/nwis/uv?cb_", var, "=on&format=rdb&site_no=", gageID, "&period=&begin_date=", getDate, "&end_date=", getDate)
-  #tz <- "America/New_York"
+  #timez <- "US/Eastern"
   #data <- "latest"  ##"full"  ##daily
   #data <- "full"
   #data <- "daily"
@@ -457,11 +457,17 @@ usgs_dataRetrieveVar = function(url, tz, data){
     dateInd <- which(header.names=="datetime")
     tzInd <- which(header.names=="tz_cd")
     #latestData[dateInd] <- format(as.POSIXct(latestData[dateInd], format="%Y-%m-%d %H:%M", tz=tz), format="%b %d, %Y %I:%M %p %Z")
-    dateBase <- as.POSIXct(latestData[dateInd], format="%Y-%m-%d %H:%M", tz=latestData[tzInd])
+    if(latestData[tzInd]=="EST" | latestData[tzInd]=="EDT"){
+      dateBase <- as.POSIXct(latestData[dateInd], format="%Y-%m-%d %H:%M", tz="")
+    }else if(latestData[tzInd]=="CST" | latestData[tzInd]=="CDT"){
+      dateBase <- as.POSIXct(latestData[dateInd], format="%Y-%m-%d %H:%M", tz="CST6CDT")
+    }else{
+      stop(paste0("Unsupported TZ: ", latestData[tzInd]))
+    }
     #latestData[dateInd] <- format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from local time zone to Eastern NA
     #latestData <- c(latestData[1:dateInd], format(dateBase, format="%I:%M %p %Z", tz="America/New_York"), latestData[tzInd:length(latestData)]) # convert from local time zone to Eastern NA
     
-    return(c(latestData[varInd], format(dateBase, format="%b %d, %Y", tz="America/New_York"), format(dateBase, format="%I:%M %p %Z", tz="America/New_York")))
+    return(c(latestData[varInd], format(dateBase, format="%b %d, %Y", tz=timez), format(dateBase, format="%I:%M %p %Z", tz=timez)))
     
   }else if(data=="full"){
     ##want all of the available within the timeframe
@@ -483,8 +489,8 @@ usgs_dataRetrieveVar = function(url, tz, data){
     }
     
     # Convert and extract the date and time.
-    tableData$datetime <- as.POSIXct(tableData$datetime, format="%Y-%m-%d %H:%M", tz=tz)
-    tableData$time <- strftime(tableData$datetime, format="%H:%M", tz=tz)
+    tableData$datetime <- as.POSIXct(tableData$datetime, format="%Y-%m-%d %H:%M", tz=timez)
+    tableData$time <- strftime(tableData$datetime, format="%H:%M", tz=timez)
     
     return(tableData)
     
@@ -499,7 +505,7 @@ usgs_dataRetrieveVar = function(url, tz, data){
     colnames(tableData) <- header.names[1:ncol(tableData)]
     ##match dates 
     # Convert month and day to a date.
-    tableData$MonDay <- as.POSIXct(paste(tableData$month_nu, tableData$day_nu, sep="-"), format="%m-%d", tz="America/New_York")
+    tableData$MonDay <- as.POSIXct(paste(tableData$month_nu, tableData$day_nu, sep="-"), format="%m-%d", tz=timez)
     #format(paste(tableData$month_nu, tableData$day_nu, sep="-"), format="%m-%d")
     
     # NEED TO CHECK FOR MISSING DATA!!!
