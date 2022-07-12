@@ -82,7 +82,9 @@ weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(we
 
 ##remove points outside of project area for faster loading
 weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.45 & weather_stat_data$lat<=43.75,]
-
+##add a better link for the user to be able to navigate to
+weather_stat_data$link <- paste0("https://w1.weather.gov/data/obhistory/", weather_stat_data$id, ".html")
+ 
 ##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 
                         '", "obs": "', weather_stat_data$obs, '", "time": "', paste0("Last Updated on ", weather_stat_data$date, " at ", weather_stat_data$time), 
