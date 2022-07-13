@@ -38,7 +38,7 @@ library(pbapply)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -83,7 +83,7 @@ weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(we
 ##remove points outside of project area for faster loading
 weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.45 & weather_stat_data$lat<=43.75,]
 ##add a better link for the user to be able to navigate to
-weather_stat_data$link <- paste0("https://w1.weather.gov/data/obhistory/", weather_stat_data$id, ".html")
+#weather_stat_data$link <- paste0("https://w1.weather.gov/data/obhistory/", weather_stat_data$id, ".html")
  
 ##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 
