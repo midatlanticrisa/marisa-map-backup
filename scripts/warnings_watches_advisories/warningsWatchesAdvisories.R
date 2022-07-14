@@ -41,6 +41,8 @@ library(geojsonio)
 enableJIT(3)
 enableJIT(3)
 
+ptm <- proc.time()
+
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 #if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
 #  dir.create("/home/staff/mdl5548/marisa.psu.edu/mapdata")
@@ -52,7 +54,7 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   baseDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -172,9 +174,9 @@ if(cores>1){
   mcmapply(cat, createOutput, file=paste0(outDir, writeOutNames), mc.cores=cores)
 }else{
   ##run on single core
-  #x = 4
-  #nams = outObjNames[x]
-  #subS = subSelections[x]
+  x = 2
+  nams = outObjNames[x]
+  subS = subSelections[x]
   createOutput <- mapply(function(nams, subS){
                                   if(length(grep("AT_", nams))>0){
                                     subTab<-paste0(nams, as.character(geojson_json(atlanticInfo[subS,])))
@@ -187,7 +189,8 @@ if(cores>1){
   mapply(cat, createOutput, file=paste0(outDir, writeOutNames))
 }
 
-
+ptmEnd <- proc.time() - ptm
+stop(paste0("Total Runtime: ", ptmEnd))
 
 #DEtoNYwarnings <- paste0("DEtoNYalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("DE","MD","NJ","NY"),])))
 #OHPAwarnings <- paste0("OHPAalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("OH","PA"),])))

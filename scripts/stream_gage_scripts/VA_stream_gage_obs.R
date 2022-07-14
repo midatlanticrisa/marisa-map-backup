@@ -37,6 +37,8 @@ library(anytime)
 enableJIT(3)
 enableJIT(3)
 
+#ptm <- proc.time()
+
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
 
@@ -131,7 +133,7 @@ fullGageHeight <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageHei
 #colnames(fullGageHeight)[2:3] <- c("gageHeight", "dateTime")
 colnames(fullGageTemps)[2:4] <- c("temp", "date_t", "time_t")
 ##convert tempurature values from C to F
-fullGageTemps$temp <- as.character(as.numeric(fullGageTemps$temp) * (9/5) + 32)
+fullGageTemps$temp <- as.character(as.numeric(as.character(fullGageTemps$temp)) * (9/5) + 32)
 colnames(fullGageDischarge)[2:4] <- c("discharge", "date_d", "time_d")  
 colnames(fullGageHeight)[2:4] <- c("gageHeight", "date_h", "time_h")
 fullObsData <- merge(fullGageTemps, fullGageDischarge, by="stationIDs")
@@ -243,7 +245,8 @@ if("/virginia" %in% subStates){
   cat(json_merge, file=paste0(outDir, "VA_stream_obs.js"))
 }
 
-
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd))
 
 ##create the feature record for each station for the geojson file
 #stream_string <- paste0('{"type": "Feature", "properties": {"name": "', fullStationData$SiteName, '", "id": "', fullStationData$SiteNumber, '", "url": "', fullStationData$SiteNWISURL, 

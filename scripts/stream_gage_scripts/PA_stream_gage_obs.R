@@ -37,11 +37,13 @@ library(anytime)
 enableJIT(3)
 enableJIT(3)
 
+#ptm <- proc.time()
+
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -133,7 +135,7 @@ fullGageHeight <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageHei
 ##rename the variable column names to be english understood
 colnames(fullGageTemps)[2:4] <- c("temp", "date_t", "time_t")
 ##convert tempurature values from C to F
-fullGageTemps$temp <- as.character(as.numeric(fullGageTemps$temp) * (9/5) + 32)
+fullGageTemps$temp <- as.character(as.numeric(as.character(fullGageTemps$temp)) * (9/5) + 32)
 colnames(fullGageDischarge)[2:4] <- c("discharge", "date_d", "time_d")  
 colnames(fullGageHeight)[2:4] <- c("gageHeight", "date_h", "time_h")
 fullObsData <- merge(fullGageTemps, fullGageDischarge, by="stationIDs")
@@ -230,6 +232,9 @@ if("pennsylvania" %in% subStates){
   # Export data to geojson.
   cat(json_merge, file=paste0(outDir, "PA_stream_obs.js"))
 }
+
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd))
 
 ##VA
 #if("/virginia" %in% subStates){

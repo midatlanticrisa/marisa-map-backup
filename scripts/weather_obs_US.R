@@ -34,6 +34,8 @@ library(XML)
 library(httr)
 library(pbapply)
 
+#ptm <- proc.time()
+
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
 
@@ -94,6 +96,9 @@ json_merge <- paste0('weatherStations = {"type": "FeatureCollection","features":
 ## Export data to geojson.
 cat(json_merge, file=paste0(outDir, "weather_observations_extend.json"))
 # --------------------------------------------------------------------------------------------------------------------
+
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd))
 
 #############################################
 ##test code to write out as geojson file

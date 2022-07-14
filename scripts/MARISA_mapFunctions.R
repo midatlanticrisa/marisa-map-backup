@@ -424,7 +424,9 @@ usgs_dataRetrieveVar = function(url, timez, data){
   #url <- dischargeURL
   #url <- dailyAveURL
   #url <- heightURL
-  #url <- gageURL<-paste0("https://waterdata.usgs.gov/nwis/uv?cb_", var, "=on&format=rdb&site_no=", gageID, "&period=&begin_date=", getDate, "&end_date=", getDate)
+  #url <- gageTmpURLs[grep("03007800", gageTmpURLs)]
+  #url <- gageTmpURLs[grep("01549700", gageTmpURLs)]
+  #url <- gageTmpURLs[grep("01429000", gageTmpURLs)]
   #timez <- "US/Eastern"
   #data <- "latest"  ##"full"  ##daily
   #data <- "full"
