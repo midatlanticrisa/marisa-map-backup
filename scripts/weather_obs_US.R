@@ -33,6 +33,8 @@ if (!require("httr")) { install.packages("httr") }
 library(XML)
 library(httr)
 library(pbapply)
+library(pmetar)
+library(measurements)
 
 #ptm <- proc.time()
 
@@ -63,7 +65,14 @@ cores <- 1
 
 # --------------------------------------------------------------------------------------------------------------------
 # Read in station IDs
-weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), header=FALSE, col.names=c("name", "id"))
+#weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"), header=FALSE, col.names=c("name", "id"))
+weather_stations <- read.csv(paste0(inDir,"current_weather_stations.csv"))
+##remove points outside of project area for faster loading
+weather_stations$lon <- as.numeric(as.character(weather_stations$lon))
+weather_stations$lat <- as.numeric(as.character(weather_stations$lat))
+weather_stations <- weather_stations[weather_stations$lon>=-82.0 & weather_stations$lon<=-73.0 & weather_stations$lat>=36.45 & weather_stations$lat<=43.75,]
+# Remove stations without latitude or longitude - just in case
+weather_stations <- weather_stations[!is.na(weather_stations$lat) | !is.na(weather_stations$lon),]
 
 # collect weather data for each station
 if(cores>1){
@@ -74,18 +83,9 @@ if(cores>1){
   weather_stat_data <- t(pbsapply(weather_stations$id, parseWS_xml))
   weather_stat_data <- data.frame(weather_stat_data, row.names=weather_stations$id)
 }
-colnames(weather_stat_data) <- c("name", "id", "lat", "lon", "obs", "link", "date", "time")
-weather_stat_data$lon <- as.numeric(as.character(weather_stat_data$lon))
-weather_stat_data$lat <- as.numeric(as.character(weather_stat_data$lat))
+weather_stat_data <- merge(x=weather_stations, y=weather_stat_data, by.x="id", by.y="X1")
+colnames(weather_stat_data) <- c("id", "name", "lat", "lon", "obs", "link", "date", "time")
 
-# Remove stations without latitude or longitude
-weather_stat_data <- weather_stat_data[!is.na(weather_stat_data$lat) | !is.na(weather_stat_data$lon),]
-#ggg <- weather_stat_data[weather_stat_data$id=="KFFA",]
-
-##remove points outside of project area for faster loading
-weather_stat_data <- weather_stat_data[weather_stat_data$lon>=-82.0 & weather_stat_data$lon<=-73.0 & weather_stat_data$lat>=36.45 & weather_stat_data$lat<=43.75,]
-##add a better link for the user to be able to navigate to
-#weather_stat_data$link <- paste0("https://w1.weather.gov/data/obhistory/", weather_stat_data$id, ".html")
  
 ##create the observation records to be mapped
 weatherString <- paste0('{"type": "Feature", "properties": {"name": "', weather_stat_data$name, '", "id": "', weather_stat_data$id, '", "url": "', weather_stat_data$link, 

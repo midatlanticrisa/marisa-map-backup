@@ -19,115 +19,284 @@ retry <- function(a, max=6, init=0, delay=0){
 parseWS_xml = function(id){
   #################
   #id <- weather_stations$id[1]
+  #id <- "KUNV"
+  #id <- "KBUF"
+  #id <- "PADK"
+  #id <- "KP60"
   #################
-
-  xml.url <- paste0('http://w1.weather.gov/xml/current_obs/', id, '.xml')
+  #print(id)
+  rawDataURL <- paste0("https://w1.weather.gov/data/METAR/", id, ".1.txt")
+  readRawData <- readLines(rawDataURL)
+  getData <- readRawData[4]
+  #getData <- metar_get(id)
   
-  # Turn XML data into a list.
-  xml_data <- retry(xmlToList(rawToChar(GET(xml.url, user_agent("httr (mdl5548@psu.edu)"))$content)))
+  ##extract various variables, as well as calculate a few followup variables
+  sevWeath <- metar_wx_codes(getData)
+  tempNumC <- metar_temp(getData)
+  tempNumF <- conv_unit(tempNumC, "C", "F")
+  dewNum <- metar_dew_point(getData)
+  windSpeedRaw <- metar_speed(getData, metric=F)
+  windSpeed <- round(conv_unit(windSpeedRaw, "knot", "mph"), 1)
+  if(metar_dir(getData)!=""){
+    windDirDeg <- as.numeric(sapply(strsplit(metar_dir(getData), ","), "[[", 1))
+  }else{
+    windDirDef <- ""
+  }
   
-  # Station location.
-  if(is.null(xml_data$location)){
-    name <- ""
-  } else {
-    name <- xml_data$location
-  }
-  # Latitude.
-  if(is.null(xml_data$latitude)){
-    latitude <- NA
-  } else {
-    latitude <- xml_data$latitude
-  }
-  # Longitude.
-  if(is.null(xml_data$longitude)){
-    longitude <- NA
-  } else {
-    longitude <- xml_data$longitude
-  }
+  relativeHum <- round(100 * (exp((17.645*dewNum)/(243.04+dewNum)) / exp((17.645*tempNumC)/(243.04+tempNumC))), 2)
+  vis <- metar_visibility(getData, metric=F)
+  rwyVis <- metar_rwy_visibility(getData)
+  airPress <- conv_unit(metar_pressure(getData), "hPa", "mbar")
+  cloudConds <- metar_cloud_coverage(getData)
+    
+  ##create empty objects to be filled with actual values, if available
+  weather <- ""
+  cloudCond <- ""
+  temp <- ""
+  humidity <- ""
+  wind <- ""
+  pressure <- ""
+  dewpoint <- ""
+  windchill <- ""
+  visibility <- ""
+  rwyVisibility <- ""
+  data <- ""
+  time <- ""
+  
+  ##as full date is not included in the raw data records, first get a time as clost to the recorded time as possible, 
+  ##then replace hour with hour presented in raw data 
+  dateToGMT <- .POSIXct(as.integer(as.POSIXct(as.character(Sys.time()), tz="EST5EDT")), tz="GMT")
+  dateBase <- .POSIXct(as.POSIXct(paste(strsplit(as.character(dateToGMT), " ")[[1]][1], metar_hour(getData)), tz="GMT"), tz="EST5EDT")
+  
   # Time when observations were collected.
-  if(is.null(xml_data$observation_time)){
-    date <- ""
-    time <- ""
-  } else {
-    exTime <- sapply(strsplit(xml_data$observation_time, "on "), "[[", 2)
-    exZ <- sapply(strsplit(exTime," "), "[[", length(strsplit(exTime[1]," ")[[1]]))
-    if(exZ=="HST"|exZ=="HDT"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="Pacific/Honolulu")
-    }else if(exZ=="EST"|exZ=="EDT"|exZ=="ZST"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/New_York")
-    }else if(exZ=="CST"|exZ=="CDT"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Chicago")
-    }else if(exZ=="MST"|exZ=="MDT"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Denver")
-    }else if(exZ=="PST"|exZ=="PDT"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Los_Angeles")
-    }else if(exZ=="AKST"|exZ=="AKDT"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Anchorage")
-    }else if(exZ=="SST"|exZ=="SDT"){
-      dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="Pacific/Samoa")
-    }
+  if(metar_hour(getData)!=""){
+    dateToGMT <- .POSIXct(as.integer(as.POSIXct(as.character(Sys.time()), tz="EST5EDT")), tz="GMT")
+    dateBase <- .POSIXct(as.POSIXct(paste(strsplit(as.character(dateToGMT), " ")[[1]][1], metar_hour(getData)), tz="GMT"), tz="EST5EDT")
     date <- format(dateBase, format="%b %d, %Y") # convert from GMT to current time zone
     time <- format(dateBase, format="%I:%M %p %Z") # convert from GMT to current time zone
   }
   # General weather condition.
-  if(is.null(xml_data$weather)){
-    weather <- ""
-  } else {
-    weather <- paste0("<strong>Weather: </strong>", xml_data$weather, "<br/>")
+  if(sevWeath==""){
+    sevWeath <- "No Significant Weather"
+  }
+  weather <- paste0("<strong>Weather: </strong>", sevWeath, "<br/>")
+  # Cloud Conditions
+  if(is.na(cloudConds)==F & cloudConds!=""){
+    if(length(grep("No clouds below", cloudConds))>=1){
+      crCldReport <- "Mostly Sunny (0 oktas)"
+    }else if(length(grep("full cloud coverage", cloudConds))>=1){
+      splitNames1 <- sapply(strsplit(cloudConds, "at "), "[[", 2)
+      getCldHt <- sapply(strsplit(splitNames1, " "), "[[", 2)
+      crCldReport <- paste0("Overcast (8 oktas) at ", getCldHt, " ft")
+    }else{
+      splitMulti <- strsplit(cloudConds, ", ")[[1]]
+      splitNames1 <- sapply(strsplit(splitMulti, " okta"), "[[", 1)
+      validEntries <- grep("-", splitNames1)
+      splitNames1 <- splitNames1[validEntries]
+      getOkta <- as.numeric(sapply(strsplit(splitNames1, "-"), "[[", 2))
+      getOktas <- sapply(strsplit(splitMulti[validEntries], " "), "[[", 2)
+      getCldHt <- sapply(strsplit(splitMulti[validEntries], " "), "[[", 5)
+      ##oktas breaks from: https://worldweather.wmo.int/oktas.htm
+      oktaClass <- sapply(getOkta, function(x){if(x>=0 & x<=2){
+                                                y <- "Mostly Sunny"
+                                              }else if(x>=3 & x<=5){
+                                                y <- "Partly Cloudy"
+                                              }else if(x==6 | x==7){
+                                                y <- "Mostly Cloudy"
+                                              }else if(x==8){
+                                                y <- "Overcast"
+                                              }
+                                              return(y)})
+      
+      crCldReport <- paste0(oktaClass, " ", getOktas, " oktas) at ", getCldHt, " ft")
+      crCldReport <- paste(crCldReport, collapse="<br/> ")
+    }
+    cloudCond <- paste0("<strong>Cloud Conditions: </strong>", crCldReport, "<br/>")
   }
   # Air temperature in F.
-  if(is.null(xml_data$temp_f)){
-    temp <- ""
-  } else {
-    temp <- paste0("<strong>Temperature: </strong>", xml_data$temp_f, " &#8457;<br/>")
+  if(is.na(tempNumF)==F & tempNumF!=""){
+    temp <- paste0("<strong>Temperature: </strong>", tempNumF, " &#8457;<br/>")
   }
   # Relative humidity in %.
-  if(is.null(xml_data$relative_humidity)){
-    humidity <- ""
-  } else {
-    humidity <- paste0("<strong>Relative humidity: </strong>", xml_data$relative_humidity, " %<br/>")
+  if(is.na(relativeHum)==F & relativeHum!=""){
+    humidity <- paste0("<strong>Relative Humidity: </strong>", relativeHum, " %<br/>")
   }
   # Which direction the wind is blowing.
-  if(is.null(xml_data$wind_string)){
-    wind <- ""
-  } else {
-    wind <- paste0("<strong>Wind: </strong>", xml_data$wind_string, " <br/>")
+  if(is.na(windSpeed)==F & windSpeed!="" & metar_dir(getData)!=""){
+    if(metar_dir(getData)=="Variable"){
+      wind <- paste0("<strong>Wind: </strong>From ", windDirDeg, " at ", windSpeed, " MPH (", round(windSpeedRaw, 1), " KT) <br/>")
+    }else{
+      if(windDirDeg>=0 & windDirDeg<=11.24){
+        windDir <- "N"
+      }else if(windDirDeg>=11.25 & windDirDeg<=33.74){
+        windDir <- "NNE"
+      }else if(windDirDeg>=33.75 & windDirDeg<=56.24){
+        windDir <- "NE"
+      }else if(windDirDeg>=56.25 & windDirDeg<=78.74){
+        windDir <- "ENE"
+      }else if(windDirDeg>=78.75 & windDirDeg<=101.24){
+        windDir <- "E"
+      }else if(windDirDeg>=101.25 & windDirDeg<=123.74){
+        windDir <- "ESE"
+      }else if(windDirDeg>=123.75 & windDirDeg<=146.24){
+        windDir <- "SE"
+      }else if(windDirDeg>=146.25 & windDirDeg<=168.74){
+        windDir <- "SSE"
+      }else if(windDirDeg>=168.75 & windDirDeg<=191.24){
+        windDir <- "S"
+      }else if(windDirDeg>=191.25 & windDirDeg<=213.74){
+        windDir <- "SSW"
+      }else if(windDirDeg>=213.75 & windDirDeg<=236.24){
+        windDir <- "SW"
+      }else if(windDirDeg>=236.25 & windDirDeg<=258.74){
+        windDir <- "WSW"
+      }else if(windDirDeg>=258.75 & windDirDeg<=281.24){
+        windDir <- "W"
+      }else if(windDirDeg>=281.25 & windDirDeg<=303.74){
+        windDir <- "WNW"
+      }else if(windDirDeg>=303.75 & windDirDeg<=326.24){
+        windDir <- "NW"
+      }else if(windDirDeg>=326.25 & windDirDeg<=348.74){
+        windDir <- "NNW"
+      }else if(windDirDeg>=348.75 & windDirDeg<=360){
+        windDir <- "N"
+      }
+      wind <- paste0("<strong>Wind: </strong>From ", windDir, " (", windDirDeg, "&deg;) at ", windSpeed, " MPH (", round(windSpeedRaw, 1), " KT) <br/>")
+    }
   }
   # Pressure in mb.
-  if(is.null(xml_data$pressure_mb)){
-    speed <- ""
-  } else {
-    speed <- paste0("<strong>Pressure: </strong>", xml_data$pressure_mb, " mb<br/>")
+  if(is.na(airPress)==F & airPress!=""){
+    pressure <- paste0("<strong>Pressure: </strong>", airPress, " mbar<br/>")
   }
   # Dew point in F.
-  if(is.null(xml_data$dewpoint_f)){
-    dewpoint <- ""
-  } else {
-    dewpoint <- paste0("<strong>Dewpoint: </strong>", xml_data$dewpoint_f, " &#8457;<br/>")
+  if(is.na(dewNum)==F & dewNum!=""){
+    dewpoint <- paste0("<strong>Dewpoint: </strong>", conv_unit(dewNum, "C", "F"), " &#8457;<br/>")
   }
   # Windchill in F.
-  if(is.null(xml_data$windchill_f)){
-    windchill <- ""
-  } else {
-    windchill <- paste0("<strong>Wind chill: </strong>", xml_data$windchill_f, " &#8457;<br/>")
+  if(is.na(tempNumF)==F & is.na(windSpeed)==F & tempNumF<=50 & windSpeed>=3){
+    ##based on equation linked to here: https://www.weather.gov/epz/wxcalc_windchill
+    ##limitations are temp <= 50F and wind speed > 3 mph, so not included unless those conditions met in if statement below
+    chillyWind <- round(35.74 + (0.6215*tempNumF) - (35.75*(windSpeed^0.16)) + (0.4275*tempNumF*(windSpeed^0.16)), 1)
+    windchill <- paste0("<strong>Wind chill: </strong>", chillyWind, " &#8457;<br/>")
   }
   # Current visibility in miles.
-  if(is.null(xml_data$visibility_mi)){
-    visibility <- ""
-  } else {
-    visibility <- paste0("<strong>Visibility: </strong>", xml_data$visibility_mi, " miles<br/>")
+  if(is.na(vis)==F & vis!=""){
+    visibility <- paste0("<strong>Visibility: </strong>", vis, " miles<br/>")
+  }
+  # Runway visibility
+  if(is.na(rwyVis)==F & rwyVis!=""){
+    rwyVisibility <- paste0("<strong>Runway Visibility: </strong>", rwyVis, "<br/>") 
   }
   # Observation url.
-  if(is.null(xml_data$ob_url)){
-    link <- ""
-  } else {
-    link <- xml.url # xml_data$ob_url: klr use human readable link
-  }
+  link <- paste0('http://w1.weather.gov/xml/current_obs/', id, '.xml')
   
-  obs = paste0(weather, temp, humidity, wind, speed, dewpoint, windchill, visibility)
+  
+  #xml.url <- paste0('http://w1.weather.gov/xml/current_obs/', id, '.xml')
+  ## Turn XML data into a list.
+  #xml_data <- retry(xmlToList(rawToChar(GET(xml.url, user_agent("httr (mdl5548@psu.edu)"))$content)))
+  # # Station location.
+  # if(is.null(xml_data$location)){
+  #   name <- ""
+  # } else {
+  #   name <- xml_data$location
+  # }
+  # # Latitude.
+  # if(is.null(xml_data$latitude)){
+  #   latitude <- NA
+  # } else {
+  #   latitude <- xml_data$latitude
+  # }
+  # # Longitude.
+  # if(is.null(xml_data$longitude)){
+  #   longitude <- NA
+  # } else {
+  #   longitude <- xml_data$longitude
+  # }
+  # # Time when observations were collected.
+  # if(is.null(xml_data$observation_time)){
+  #   date <- ""
+  #   time <- ""
+  # } else {
+  #   exTime <- sapply(strsplit(xml_data$observation_time, "on "), "[[", 2)
+  #   exZ <- sapply(strsplit(exTime," "), "[[", length(strsplit(exTime[1]," ")[[1]]))
+  #   if(exZ=="HST"|exZ=="HDT"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="Pacific/Honolulu")
+  #   }else if(exZ=="EST"|exZ=="EDT"|exZ=="ZST"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/New_York")
+  #   }else if(exZ=="CST"|exZ=="CDT"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Chicago")
+  #   }else if(exZ=="MST"|exZ=="MDT"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Denver")
+  #   }else if(exZ=="PST"|exZ=="PDT"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Los_Angeles")
+  #   }else if(exZ=="AKST"|exZ=="AKDT"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="America/Anchorage")
+  #   }else if(exZ=="SST"|exZ=="SDT"){
+  #     dateBase <- as.POSIXlt(exTime, format="%b %d %Y, %I:%M %p", tz="Pacific/Samoa")
+  #   }
+  #   date <- format(dateBase, format="%b %d, %Y") # convert from GMT to current time zone
+  #   time <- format(dateBase, format="%I:%M %p %Z") # convert from GMT to current time zone
+  # }
+  # # General weather condition.
+  # if(is.null(xml_data$weather)){
+  #   weather <- ""
+  # } else {
+  #   weather <- paste0("<strong>Weather: </strong>", xml_data$weather, "<br/>")
+  # }
+  # # Air temperature in F.
+  # if(is.null(xml_data$temp_f)){
+  #   temp <- ""
+  # } else {
+  #   temp <- paste0("<strong>Temperature: </strong>", xml_data$temp_f, " &#8457;<br/>")
+  # }
+  # # Relative humidity in %.
+  # if(is.null(xml_data$relative_humidity)){
+  #   humidity <- ""
+  # } else {
+  #   humidity <- paste0("<strong>Relative humidity: </strong>", xml_data$relative_humidity, " %<br/>")
+  # }
+  # # Which direction the wind is blowing.
+  # if(is.null(xml_data$wind_string)){
+  #   wind <- ""
+  # } else {
+  #   wind <- paste0("<strong>Wind: </strong>", xml_data$wind_string, " <br/>")
+  # }
+  # # Pressure in mb.
+  # if(is.null(xml_data$pressure_mb)){
+  #   pressure <- ""
+  # } else {
+  #   pressure <- paste0("<strong>Pressure: </strong>", xml_data$pressure_mb, " mb<br/>")
+  # }
+  # # Dew point in F.
+  # if(is.null(xml_data$dewpoint_f)){
+  #   dewpoint <- ""
+  # } else {
+  #   dewpoint <- paste0("<strong>Dewpoint: </strong>", xml_data$dewpoint_f, " &#8457;<br/>")
+  # }
+  # # Windchill in F.
+  # if(is.null(xml_data$windchill_f)){
+  #   windchill <- ""
+  # } else {
+  #   windchill <- paste0("<strong>Wind chill: </strong>", xml_data$windchill_f, " &#8457;<br/>")
+  # }
+  # # Current visibility in miles.
+  # if(is.null(xml_data$visibility_mi)){
+  #   visibility <- ""
+  # } else {
+  #   visibility <- paste0("<strong>Visibility: </strong>", xml_data$visibility_mi, " miles<br/>")
+  # }
+  # # Observation url.
+  # if(is.null(xml_data$ob_url)){
+  #   link <- ""
+  # } else {
+  #   link <- xml.url # xml_data$ob_url: klr use human readable link
+  # }
+  
+  
+  obs <- paste0(weather, cloudCond, wind, windchill, temp, humidity, dewpoint, pressure, visibility, rwyVisibility)
   
   # Return the weather variables
-  return(c(name, as.character(id), latitude, longitude, obs, link, date, time))
+  return(c(as.character(id), obs, link, date, time))
 }
 ##########################################################################
 ##########################################################################
