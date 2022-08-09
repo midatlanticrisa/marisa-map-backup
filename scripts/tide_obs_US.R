@@ -29,6 +29,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
@@ -39,12 +40,11 @@ library(httr)
 library(anytime)
 library(pbapply)
 
-
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -79,6 +79,7 @@ cores <- 1
 # --------------------------------------------------------------------------------------------------------------------
 
 # Run through each station.
+#ptmDownload <- proc.time()
 if(cores>1){
   ##run in parallel
   library(parallel)
@@ -91,6 +92,8 @@ if(cores>1){
   #tideStationsMSL <- pblapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)  ##Uncomment is MSL stations included
   tideStationsGL <- pblapply(tideIDsGrtLakes, tideStationData, spDatum=gl.datum, timez=timezone, un=units)
 }
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 tideStations <- do.call(rbind.data.frame, tideStations)
 tideStations$lon <- as.numeric(as.character(tideStations$lon))
@@ -122,7 +125,8 @@ json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [',
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "tide_station_obs_extend.js"))
 
-
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd[3]))
 #############################################
 ##test code to write out as geojson file
 #library(rgdal)

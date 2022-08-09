@@ -26,6 +26,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
 if (!require("stringr")) { install.packages("stringr") }
@@ -41,7 +42,6 @@ library(geojsonio)
 enableJIT(3)
 enableJIT(3)
 
-ptm <- proc.time()
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 #if (!file.exists("/home/staff/mdl5548/marisa.psu.edu/mapdata")){
@@ -112,6 +112,7 @@ source(paste0(baseDir, "MARISA_mapFunctions.R"))
 #  xml_info[i,1:3] <- parse_xml(as.character(county_codes$code[i]))
 #}
 # Run through each county
+#ptmDownload <- proc.time()
 if(cores>1){
   ##run in parallel
   library(parallel)
@@ -130,6 +131,9 @@ if(cores>1){
   atlanticXML <- lapply(as.character(atlantic_codes$code), parseWW_xml)
   grtLakesXML <- lapply(as.character(greatlake_codes$code), parseWW_xml)
 }
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
+
 countyInfo <- do.call(rbind.data.frame, countyXML)
 atlanticInfo <- do.call(rbind.data.frame, atlanticXML)
 grtLakesInfo <- do.call(rbind.data.frame, grtLakesXML)
@@ -189,8 +193,8 @@ if(cores>1){
   mapply(cat, createOutput, file=paste0(outDir, writeOutNames))
 }
 
-ptmEnd <- proc.time() - ptm
-stop(paste0("Total Runtime: ", ptmEnd))
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd[3]))
 
 #DEtoNYwarnings <- paste0("DEtoNYalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("DE","MD","NJ","NY"),])))
 #OHPAwarnings <- paste0("OHPAalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("OH","PA"),])))

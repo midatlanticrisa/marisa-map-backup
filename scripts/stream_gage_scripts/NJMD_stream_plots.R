@@ -28,6 +28,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -41,7 +42,7 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/stream_gage_scripts/"
   idRecDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -96,9 +97,13 @@ load(paste0(idRecDir, "NJMD_streamIDs.RData"))
 # --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
 # Run through each New Jersey station.
+#ptmDownload <- proc.time()
 for(i in 1:length(NJ_ID)){ stream_gage_plot(NJ_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # Run through each Maryland station.
 for(i in 1:length(MD_ID)){ stream_gage_plot(MD_ID[i], b.date, e.date, day_midnight, day_noon) }
-
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
 # --------------------------------------------------------------------------------------------------------------------
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd))

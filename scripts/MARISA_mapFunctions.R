@@ -21,8 +21,8 @@ parseWS_xml = function(id){
   #id <- weather_stations$id[1]
   #id <- "KUNV"
   #id <- "KBUF"
-  #id <- "PADK"
-  #id <- "KP60"
+  #id <- "KIDI"
+  #id <- "KCKB"
   #################
   #print(id)
   rawDataURL <- paste0("https://w1.weather.gov/data/METAR/", id, ".1.txt")
@@ -86,7 +86,8 @@ parseWS_xml = function(id){
       crCldReport <- "Mostly Sunny (0 oktas)"
     }else if(length(grep("full cloud coverage", cloudConds))>=1){
       splitNames1 <- sapply(strsplit(cloudConds, "at "), "[[", 2)
-      getCldHt <- sapply(strsplit(splitNames1, " "), "[[", 2)
+      whereFT <- which(strsplit(splitNames1, " ")[[1]]=="ft")
+      getCldHt <- sapply(strsplit(splitNames1, " "), "[[", whereFT-1)
       crCldReport <- paste0("Overcast (8 oktas) at ", getCldHt, " ft")
     }else{
       splitMulti <- strsplit(cloudConds, ", ")[[1]]
@@ -109,7 +110,13 @@ parseWS_xml = function(id){
                                               return(y)})
       
       crCldReport <- paste0(oktaClass, " ", getOktas, " oktas) at ", getCldHt, " ft")
-      crCldReport <- paste(crCldReport, collapse="<br/> ")
+    }
+    if(length(crCldReport)>1){
+      numReports <- length(crCldReport)
+      #addCloudLines <- paste0('<p style="test-indent: 18px">', crCldReport[2:numReports], '</p>')
+      addCloudLines <- paste0("&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;", crCldReport[2:numReports])
+      crCldReport <- c(crCldReport[1], addCloudLines)
+      crCldReport <- paste(crCldReport, collapse="<br/>")
     }
     cloudCond <- paste0("<strong>Cloud Conditions: </strong>", crCldReport, "<br/>")
   }
@@ -587,7 +594,7 @@ waterheight_plot <- function(url, weekMidnights, weekNoons, plotW, plotH, plotOu
 ##########################################################################
 ##########################################################################
 # Function extracting stream data (discharge and time) from a TXT file online.
-usgs_dataRetrieveVar = function(url, timez, data){
+usgs_dataRetrieveVar = function(dataPg, url, timez, data){
   #################
   #url <- gageTmpURLs[1]
   #url <- dischargeURL
@@ -595,7 +602,8 @@ usgs_dataRetrieveVar = function(url, timez, data){
   #url <- heightURL
   #url <- gageTmpURLs[grep("03007800", gageTmpURLs)]
   #url <- gageTmpURLs[grep("01549700", gageTmpURLs)]
-  #url <- gageTmpURLs[grep("01429000", gageTmpURLs)]
+  #dataPg <- chkURL
+  #url <- gageTmpURLs[1]
   #timez <- "US/Eastern"
   #data <- "latest"  ##"full"  ##daily
   #data <- "full"

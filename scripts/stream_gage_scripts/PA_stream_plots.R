@@ -28,6 +28,7 @@
 # THE SOFTWARE.
 #--------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -37,11 +38,12 @@ library(compiler)
 enableJIT(3)
 enableJIT(3)
 
+
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/stream_gage_scripts/"
   idRecDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -100,6 +102,10 @@ load(paste0(idRecDir, "PA_streamIDs.RData"))
 # --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
 # Run through each Pennsylvania station.
+#ptmDownload <- proc.time()
 for(i in 1:length(PA_ID)){ stream_gage_plot(PA_ID[i], b.date, e.date, day_midnight, day_noon) }
-
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
 # --------------------------------------------------------------------------------------------------------------------
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd))

@@ -27,6 +27,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -37,7 +38,6 @@ library(anytime)
 enableJIT(3)
 enableJIT(3)
 
-#ptm <- proc.time()
 
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
@@ -97,32 +97,41 @@ gageTmpURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00010=on&format=rdb
 gageDisURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00060=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
 gageGagURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00065=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
 
+#ptmDownload <- proc.time()
 if(cores>1){
   library(parallel)  
-  gageTemps <- mclapply(gageTmpURLs, function(x){if(getURL(x)=="No sites/data found using the selection criteria specified \n"){
+  gageTemps <- mclapply(gageTmpURLs, function(x){chkURL<-getURL(x)
+                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
                                                     return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(x,"America/New_York", "latest"))}}, mc.cores=cores)
+                                                    return(usgs_dataRetrieveVar(chkURL,x,"America/New_York", "latest"))}}, mc.cores=cores)
   
-  gageDischarge <- mclapply(gageDisURLs, function(x){if(getURL(x)=="No sites/data found using the selection criteria specified \n"){
+  gageDischarge <- mclapply(gageDisURLs, function(x){chkURL<-getURL(x)
+                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
                                                     return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(x,"America/New_York", "latest"))}}, mc.cores=cores)
+                                                    return(usgs_dataRetrieveVar(chkURL,x,"America/New_York", "latest"))}}, mc.cores=cores)
   
-  gageHeight <- mclapply(gageGagURLs, function(x){if(getURL(x)=="No sites/data found using the selection criteria specified \n"){
+  gageHeight <- mclapply(gageGagURLs, function(x){chkURL<-getURL(x)
+                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
                                                     return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(x,"America/New_York", "latest"))}}, mc.cores=cores)
+                                                    return(usgs_dataRetrieveVar(chkURL,x,"America/New_York", "latest"))}}, mc.cores=cores)
 }else{
-  gageTemps <- lapply(gageTmpURLs, function(x){if(getURL(x)=="No sites/data found using the selection criteria specified \n"){
+  gageTemps <- lapply(gageTmpURLs, function(x){chkURL<-getURL(x)
+                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
                                                     return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(x,"America/New_York", "latest"))}})
+                                                    return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
   
-  gageDischarge <- lapply(gageDisURLs, function(x){if(getURL(x)=="No sites/data found using the selection criteria specified \n"){
+  gageDischarge <- lapply(gageDisURLs, function(x){chkURL<-getURL(x)
+                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
                                                     return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(x,"America/New_York", "latest"))}})
+                                                    return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
   
-  gageHeight <- lapply(gageGagURLs, function(x){if(getURL(x)=="No sites/data found using the selection criteria specified \n"){
+  gageHeight <- lapply(gageGagURLs, function(x){chkURL<-getURL(x)
+                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
                                                     return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(x,"America/New_York", "latest"))}})
+                                                    return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
 }
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 ##the process of transforming the collected data into a single dataframe
 fullGageTemps <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageTemps))

@@ -29,6 +29,7 @@
 # --------------------------------------------------------------------------------------------------------------------
 # https://www.ndbc.noaa.gov/docs/ndbc_web_data_guide.pdf
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("stringr")) { install.packages("stringr") }
@@ -46,7 +47,7 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -93,16 +94,19 @@ NDBC_stations <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/cmanh
 NDBC_stations$ID <- sapply(as.character(NDBC_stations$ID), tolower)
 non_NDBC_stations <- retry(read.table("https://www.ndbc.noaa.gov/data/stations/non_ndbc_heights.txt", skip=3, col.names=c("ID", "siteElv", "airTempElv", "anemometerElv", "tideRef", "barometerElv", "wtmpElv", "waterDpth", "watchCircle")))[-1,]
 
+
 # Remove all buoys outside the US boundary
 NDBC_buoys <- NDBC_buoys[NDBC_buoys$ID %in% US_buoys$ID,]
 NDBC_stations <- NDBC_stations[NDBC_stations$ID %in% US_buoys$ID,]
 non_NDBC_stations <- non_NDBC_stations[non_NDBC_stations$ID %in% US_buoys$ID,]
 
 ##format buoy data
+#ptmDownload <- proc.time()
 NDBC_buoy_data <- collectBuoyData(NDBC_buoys$ID, US_buoys)
 NDBC_stat_data <- collectBuoyData(NDBC_stations$ID, US_buoys)
 non_NDBC_data <- collectBuoyData(non_NDBC_stations$ID, US_buoys)
-
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 # Combine all buoy info into one string
 ndbc_bu <- paste0('{"type": "Feature", "properties": {"name": "', NDBC_buoy_data$name, '", "id": "', NDBC_buoy_data$id, '", "url": "', NDBC_buoy_data$link, '", "obs": "',
@@ -122,7 +126,8 @@ json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', paste(
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "buoys_extend.js"))
 # --------------------------------------------------------------------------------------------------------------------
-
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd[3]))
 #############################################
 ##test code to write out as geojson file
 #library(rgdal)

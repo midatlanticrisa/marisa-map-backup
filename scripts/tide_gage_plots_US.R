@@ -28,6 +28,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
@@ -42,7 +43,7 @@ library(anytime)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
-if(comp$nodename=="E2-EES-RSML638.local"){  ##workstation
+if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
   inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
@@ -100,6 +101,7 @@ tideGrtLakesURLs <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?pro
                    '&datum=', gl.datum, '&station=', tideIDsGrtLakes, '&time_zone=', timezone, '&units=', units, '&format=xml')
 
 # Run the function extracting the data we want and creating a plot.
+#ptmDownload <- proc.time()
 if(cores>1){
   library(parallel)
   mclapply(tideURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
@@ -110,7 +112,10 @@ if(cores>1){
 #  pbsapply(tideIDsMSL, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
   pbsapply(tideGrtLakesURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
 }
+#ptmDownloadEnd <- proc.time() - ptmDownload
+#print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 # --------------------------------------------------------------------------------------------------------------------
-
+#ptmEnd <- proc.time() - ptm
+#stop(paste0("Total Runtime: ", ptmEnd[3]))
 

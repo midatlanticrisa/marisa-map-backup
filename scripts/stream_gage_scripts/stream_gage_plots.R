@@ -36,6 +36,8 @@ library(compiler)
 enableJIT(3)
 enableJIT(3)
 
+ptm <- proc.time()
+
 # what computer am I on?
 comp <- as.data.frame(t(Sys.info()))
 
@@ -106,3 +108,5 @@ if(cores>1){
 
 #stream_gage_plot(gageDisURLs[1838], gageGagURLs[1838], weekMidnights=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
 
+ptmEnd <- proc.time() - ptm
+stop(paste0("Total Runtime: ", ptmEnd))
