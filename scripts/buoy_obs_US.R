@@ -53,7 +53,10 @@ if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | com
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
   inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
-}else{  ##idocrase
+}else if(comp$nodename=="firkin.eesi.psu.edu"){  ##firkin
+  inDir <- "/firkin/s0/mdl5548/githubRepos/marisa-map-backup/scripts/"
+  outDir <- "/firkin/s0/mdl5548/marisaMapOutput"
+}else{ ##idocrase
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }

@@ -54,14 +54,18 @@ enableJIT(3)
 comp <- as.data.frame(t(Sys.info()))
 
 # important file locations
+# important file locations
 if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | comp$nodename=="rsc64dot1x-59.ems.psu.edu"){  ##workstation
-  baseDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
+  inDir <- "/Users/mdl5548/Documents/GitHub/marisa-map-backup/scripts/"
   outDir <- "/Users/mdl5548/Documents/MARISA_outDepot/"
 }else if(comp$nodename=="lisk-ZBOX-CI320NANO-series"){  ##zbox
-  baseDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
+  inDir <- "/home/mdl5548/Documents/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/home/mdl5548/Documents/MARISA_outDepot/"
-}else{  ##idocrase
-  baseDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
+}else if(comp$nodename=="firkin.eesi.psu.edu"){  ##firkin
+  inDir <- "/firkin/s0/mdl5548/githubRepos/marisa-map-backup/scripts/"
+  outDir <- "/firkin/s0/mdl5548/marisaMapOutput"
+}else{ ##idocrase
+  inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
 inDir <- paste0(baseDir, "warnings_watches_advisories/")
