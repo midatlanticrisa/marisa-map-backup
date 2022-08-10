@@ -22,7 +22,7 @@ parseWS_xml = function(id){
   #id <- "KUNV"
   #id <- "KBUF"
   #id <- "KIDI"
-  #id <- "KCKB"
+  #id <- "KNYC"
   #################
   #print(id)
   rawDataURL <- paste0("https://w1.weather.gov/data/METAR/", id, ".1.txt")
@@ -133,7 +133,9 @@ parseWS_xml = function(id){
     if(metar_dir(getData)=="Variable"){
       wind <- paste0("<strong>Wind: </strong>From ", windDirDeg, " at ", windSpeed, " MPH (", round(windSpeedRaw, 1), " KT) <br/>")
     }else{
-      if(windDirDeg>=0 & windDirDeg<=11.24){
+      if(is.na(windDirDeg)==T){
+        windDir <- "0"
+      }else if(windDirDeg>=0 & windDirDeg<=11.24){
         windDir <- "N"
       }else if(windDirDeg>=11.25 & windDirDeg<=33.74){
         windDir <- "NNE"

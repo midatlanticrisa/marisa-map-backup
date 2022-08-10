@@ -27,7 +27,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
-#ptm <- proc.time()
+ptm <- proc.time()
 # Ensure necessary packages are installed and loaded
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
@@ -74,7 +74,7 @@ weather_stations <- weather_stations[weather_stations$lon>=-82.0 & weather_stati
 weather_stations <- weather_stations[!is.na(weather_stations$lat) | !is.na(weather_stations$lon),]
 
 # collect weather data for each station
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 if(cores>1){
   library(parallel)
   weather_stat_data <- mclapply(weather_stations$id, parseWS_xml, mc.cores=cores)
@@ -83,7 +83,7 @@ if(cores>1){
   weather_stat_data <- t(pbsapply(weather_stations$id, parseWS_xml))
   weather_stat_data <- data.frame(weather_stat_data, row.names=weather_stations$id)
 }
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 weather_stat_data <- merge(x=weather_stations, y=weather_stat_data, by.x="id", by.y="X1")
@@ -100,8 +100,21 @@ json_merge <- paste0('weatherStations = {"type": "FeatureCollection","features":
 cat(json_merge, file=paste0(outDir, "weather_observations_extend.json"))
 # --------------------------------------------------------------------------------------------------------------------
 
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd[3]))
+
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "weatherObsTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timeWeatherObs[nrow(timeWeatherObs)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeWeatherObs", file=timeFile)
+}else{
+  timeWeatherObs <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeWeatherObs", file=timeFile)
+}
+
 
 #############################################
 ##test code to write out as geojson file

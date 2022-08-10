@@ -29,7 +29,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
@@ -92,8 +92,7 @@ if(cores>1){
   #tideStationsMSL <- pblapply(tideIDsMSL, tideStationData, spDatum=msl.datum, timez=timezone, un=units)  ##Uncomment is MSL stations included
   tideStationsGL <- pblapply(tideIDsGrtLakes, tideStationData, spDatum=gl.datum, timez=timezone, un=units)
 }
-#ptmDownloadEnd <- proc.time() - ptmDownload
-#print(paste0("Download Time: ", ptmDownloadEnd[3]))
+ptmDownloadEnd <- proc.time() - ptmDownload
 
 tideStations <- do.call(rbind.data.frame, tideStations)
 tideStations$lon <- as.numeric(as.character(tideStations$lon))
@@ -125,8 +124,19 @@ json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [',
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "tide_station_obs_extend.js"))
 
-#ptmEnd <- proc.time() - ptm
-#stop(paste0("Total Runtime: ", ptmEnd[3]))
+ptmEnd <- proc.time() - ptm
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "tideObsTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timeTideObs[nrow(timeTideObs)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeTideObs", file=timeFile)
+}else{
+  timeTideObs <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeTideObs", file=timeFile)
+}
+
 #############################################
 ##test code to write out as geojson file
 #library(rgdal)

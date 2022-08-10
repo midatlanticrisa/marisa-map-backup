@@ -28,7 +28,7 @@
 # THE SOFTWARE.
 #--------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -102,10 +102,21 @@ load(paste0(idRecDir, "PA_streamIDs.RData"))
 # --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
 # Run through each Pennsylvania station.
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 for(i in 1:length(PA_ID)){ stream_gage_plot(PA_ID[i], b.date, e.date, day_midnight, day_noon) }
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 # --------------------------------------------------------------------------------------------------------------------
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd))
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "PAstreamPlotsTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timePAStreamPlots[nrow(timePAStreamPlots)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timePAStreamPlots", file=timeFile)
+}else{
+  timePAStreamPlots <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timePAStreamPlots", file=timeFile)
+}

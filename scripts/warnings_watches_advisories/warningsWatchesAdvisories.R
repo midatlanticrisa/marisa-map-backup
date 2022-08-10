@@ -26,7 +26,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+ptm <- proc.time()
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
 if (!require("stringr")) { install.packages("stringr") }
@@ -131,7 +131,7 @@ if(cores>1){
   atlanticXML <- lapply(as.character(atlantic_codes$code), parseWW_xml)
   grtLakesXML <- lapply(as.character(greatlake_codes$code), parseWW_xml)
 }
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 countyInfo <- do.call(rbind.data.frame, countyXML)
@@ -193,8 +193,20 @@ if(cores>1){
   mapply(cat, createOutput, file=paste0(outDir, writeOutNames))
 }
 
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd[3]))
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "weatherWarningsTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timeWeatherWarn[nrow(timeWeatherWarn)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeWeatherWarn", file=timeFile)
+}else{
+  timeWeatherWarn <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeWeatherWarn", file=timeFile)
+}
+
 
 #DEtoNYwarnings <- paste0("DEtoNYalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("DE","MD","NJ","NY"),])))
 #OHPAwarnings <- paste0("OHPAalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("OH","PA"),])))

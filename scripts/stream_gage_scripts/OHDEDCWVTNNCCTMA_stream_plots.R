@@ -28,7 +28,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -112,7 +112,7 @@ load(paste0(idRecDir, "OHDEDCWVTNNCCTMA_streamIDs.RData"))
 # --------------------------------------------------------------------------------------------------------------------
 # Run the function extracting the data we want and creating a plot.
 # Run through each Ohio station.
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 for(i in 1:length(OH_ID)){ stream_gage_plot(OH_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # Run through each Delaware station.
@@ -135,7 +135,7 @@ for(i in 1:length(CT_ID)){ stream_gage_plot(CT_ID[i], b.date, e.date, day_midnig
 
 # Run through each Massachusetts station.
 for(i in 1:length(MA_ID)){ stream_gage_plot(MA_ID[i], b.date, e.date, day_midnight, day_noon) }
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 # Run through a few other stations. These stations are sometimes difficult to extract
 # data, so they are run seperately from the others
@@ -143,5 +143,16 @@ for(i in 1:length(MA_ID)){ stream_gage_plot(MA_ID[i], b.date, e.date, day_midnig
 #for(i in 1:length(WV_ID_NC_ID)){ stream_gage_plot(WV_ID_NC_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # --------------------------------------------------------------------------------------------------------------------
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd))
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "OHDEDCWVTNNCCTMAstreamPlotsTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timeOHDEDCWVTNNCCTMAStreamPlots[nrow(timeOHDEDCWVTNNCCTMAStreamPlots)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeOHDEDCWVTNNCCTMAStreamPlots", file=timeFile)
+}else{
+  timeOHDEDCWVTNNCCTMAStreamPlots <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeOHDEDCWVTNNCCTMAStreamPlots", file=timeFile)
+}

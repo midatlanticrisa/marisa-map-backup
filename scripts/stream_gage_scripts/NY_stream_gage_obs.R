@@ -27,7 +27,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -97,7 +97,7 @@ gageTmpURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00010=on&format=rdb
 gageDisURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00060=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
 gageGagURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00065=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
 
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 if(cores>1){
   library(parallel)  
   gageTemps <- mclapply(gageTmpURLs, function(x){chkURL<-getURL(x)
@@ -130,7 +130,7 @@ if(cores>1){
                                                     return(c(NA,NA,NA))}else{
                                                     return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
 }
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 ##the process of transforming the collected data into a single dataframe
@@ -213,8 +213,19 @@ if("newyork" %in% subStates){
   cat(json_merge, file=paste0(outDir, "NY_stream_obs.js"))
 }
 
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd))
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "NYstreamGagesTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timeNYStreams[nrow(timeNYStreams)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeNYStreams", file=timeFile)
+}else{
+  timeNYStreams <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeNYStreams", file=timeFile)
+}
 
 ##OH, DE, DC, WV, CT, MA
 #rangeRecs <- rbind.data.frame(fullStationData[grep("OH", fullStationData$SiteName),], fullStationData[grep("DE", fullStationData$SiteName),],

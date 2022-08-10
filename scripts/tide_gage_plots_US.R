@@ -28,7 +28,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
@@ -101,7 +101,7 @@ tideGrtLakesURLs <- paste0('https://tidesandcurrents.noaa.gov/api/datagetter?pro
                    '&datum=', gl.datum, '&station=', tideIDsGrtLakes, '&time_zone=', timezone, '&units=', units, '&format=xml')
 
 # Run the function extracting the data we want and creating a plot.
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 if(cores>1){
   library(parallel)
   mclapply(tideURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir, mc.cores=cores)
@@ -112,10 +112,20 @@ if(cores>1){
 #  pbsapply(tideIDsMSL, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
   pbsapply(tideGrtLakesURLs, waterheight_plot, weekMidnight=day_midnight, weekNoons=day_noon, plotW=p.width, plotH=p.height, plotOut=plotDir)
 }
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 # --------------------------------------------------------------------------------------------------------------------
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd[3]))
 
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "tidePlotTracking.RData")
+if(file.exists(timeFile)==T){
+  load(timeFile)
+  timeTidePlots[nrow(timeTidePlots)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeTidePlots", file=timeFile)
+}else{
+  timeTidePlots <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeTidePlots", file=timeFile)
+}

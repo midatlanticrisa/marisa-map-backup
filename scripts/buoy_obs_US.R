@@ -128,6 +128,19 @@ cat(json_merge, file=paste0(outDir, "buoys_extend.js"))
 # --------------------------------------------------------------------------------------------------------------------
 #ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd[3]))
+
+
+##check if a time stop file already exists. If it does not, create one
+timeFile <- paste0(outDir, "buoyObsTracking.RData")
+if(file.exists(timeFile)==T){
+  load(tideFile)
+  timeBuoyObs[nrow(timeBuoyObs)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+  save("timeBuoyObs", file=timeFile)
+}else{
+  timeBuoyObs <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+  save("timeBuoyObs", file=timeFile)
+}
+
 #############################################
 ##test code to write out as geojson file
 #library(rgdal)
