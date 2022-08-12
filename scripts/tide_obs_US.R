@@ -29,6 +29,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+options(stringsAsFactors=F)
 ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
@@ -82,7 +83,7 @@ cores <- 1
 # --------------------------------------------------------------------------------------------------------------------
 
 # Run through each station.
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 if(cores>1){
   ##run in parallel
   library(parallel)

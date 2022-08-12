@@ -29,7 +29,8 @@
 # --------------------------------------------------------------------------------------------------------------------
 # https://www.ndbc.noaa.gov/docs/ndbc_web_data_guide.pdf
 # Ensure necessary packages are installed and loaded
-#ptm <- proc.time()
+options(stringsAsFactors=F)
+ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("stringr")) { install.packages("stringr") }
@@ -104,11 +105,11 @@ NDBC_stations <- NDBC_stations[NDBC_stations$ID %in% US_buoys$ID,]
 non_NDBC_stations <- non_NDBC_stations[non_NDBC_stations$ID %in% US_buoys$ID,]
 
 ##format buoy data
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 NDBC_buoy_data <- collectBuoyData(NDBC_buoys$ID, US_buoys)
 NDBC_stat_data <- collectBuoyData(NDBC_stations$ID, US_buoys)
 non_NDBC_data <- collectBuoyData(non_NDBC_stations$ID, US_buoys)
-#ptmDownloadEnd <- proc.time() - ptmDownload
+ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 
 # Combine all buoy info into one string
@@ -129,7 +130,7 @@ json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', paste(
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "buoys_extend.js"))
 # --------------------------------------------------------------------------------------------------------------------
-#ptmEnd <- proc.time() - ptm
+ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd[3]))
 
 

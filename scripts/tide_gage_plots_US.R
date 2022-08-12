@@ -28,6 +28,7 @@
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
+options(stringsAsFactors=F)
 ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("XML")) { install.packages("XML") }

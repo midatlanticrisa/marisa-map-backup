@@ -27,6 +27,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
+options(stringsAsFactors=F)
 ptm <- proc.time()
 # Ensure necessary packages are installed and loaded
 if (!require("XML")) { install.packages("XML") }
