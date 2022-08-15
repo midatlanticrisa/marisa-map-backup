@@ -117,7 +117,7 @@ source(paste0(baseDir, "MARISA_mapFunctions.R"))
 #  xml_info[i,1:3] <- parse_xml(as.character(county_codes$code[i]))
 #}
 # Run through each county
-#ptmDownload <- proc.time()
+ptmDownload <- proc.time()
 if(cores>1){
   ##run in parallel
   library(parallel)
