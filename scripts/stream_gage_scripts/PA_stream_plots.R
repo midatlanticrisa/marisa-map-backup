@@ -116,7 +116,7 @@ ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd))
 
 ##check if a time stop file already exists. If it does not, create one
-timeFile <- paste0(outDir, "PAstreamPlotsTracking.RData")
+timeFile <- paste0(idRecDir, "PAstreamPlotsTracking.RData")
 if(file.exists(timeFile)==T){
   load(timeFile)
   timePAStreamPlots[nrow(timePAStreamPlots)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])

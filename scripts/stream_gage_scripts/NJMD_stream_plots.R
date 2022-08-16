@@ -115,7 +115,7 @@ ptmEnd <- proc.time() - ptm
 
 
 ##check if a time stop file already exists. If it does not, create one
-timeFile <- paste0(outDir, "NJMDstreamPlotsTracking.RData")
+timeFile <- paste0(idRecDir, "NJMDstreamPlotsTracking.RData")
 if(file.exists(timeFile)==T){
   load(timeFile)
   timeNJMDStreamPlots[nrow(timeNJMDStreamPlots)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
