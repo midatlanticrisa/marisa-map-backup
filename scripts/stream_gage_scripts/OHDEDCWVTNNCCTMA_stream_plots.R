@@ -56,6 +56,7 @@ if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | com
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
   idRecDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
+plottingDir <- paste0(idRecDir, "Stream_figs/")
 
 # Read functions to retrieve data and plot
 source(paste0(inDir,"usgs_dataRetrieve.R"))
@@ -116,16 +117,16 @@ load(paste0(idRecDir, "OHDEDCWVTNNCCTMA_streamIDs.RData"))
 # Run the function extracting the data we want and creating a plot.
 # Run through each Ohio station.
 ptmDownload <- proc.time()
-for(i in 1:length(OH_ID)){ stream_gage_plot(OH_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(OH_ID)){ stream_gage_plot(OH_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 
 # Run through each Delaware station.
-for(i in 1:length(DE_ID)){ stream_gage_plot(DE_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(DE_ID)){ stream_gage_plot(DE_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 
 # Run through each Washington DC station.
-for(i in 1:length(DC_ID)){ stream_gage_plot(DC_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(DC_ID)){ stream_gage_plot(DC_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 
 # Run through each West Virginia station.
-for(i in 1:length(WV_ID)){ stream_gage_plot(WV_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(WV_ID)){ stream_gage_plot(WV_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 
 # Run the Tennessee station.
 #stream_gage_plot(TN_ID, b.date, e.date, day_midnight, day_noon)
@@ -134,10 +135,10 @@ for(i in 1:length(WV_ID)){ stream_gage_plot(WV_ID[i], b.date, e.date, day_midnig
 #for(i in 1:length(NC_ID)){ stream_gage_plot(NC_ID[i], b.date, e.date, day_midnight, day_noon) }
 
 # Run through each Conneticut station.
-for(i in 1:length(CT_ID)){ stream_gage_plot(CT_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(CT_ID)){ stream_gage_plot(CT_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 
 # Run through each Massachusetts station.
-for(i in 1:length(MA_ID)){ stream_gage_plot(MA_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(MA_ID)){ stream_gage_plot(MA_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 # Run through a few other stations. These stations are sometimes difficult to extract

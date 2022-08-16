@@ -57,6 +57,7 @@ if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | com
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/stream_gage_scripts/"
   idRecDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
+plottingDir <- paste0(idRecDir, "Stream_figs/")
 
 # Read functions to retrieve data and plot
 source(paste0(inDir,"usgs_dataRetrieve.R"))
@@ -107,7 +108,7 @@ load(paste0(idRecDir, "PA_streamIDs.RData"))
 # Run the function extracting the data we want and creating a plot.
 # Run through each Pennsylvania station.
 ptmDownload <- proc.time()
-for(i in 1:length(PA_ID)){ stream_gage_plot(PA_ID[i], b.date, e.date, day_midnight, day_noon) }
+for(i in 1:length(PA_ID)){ stream_gage_plot(PA_ID[i], b.date, e.date, day_midnight, day_noon, plottingDir) }
 ptmDownloadEnd <- proc.time() - ptmDownload
 #print(paste0("Download Time: ", ptmDownloadEnd[3]))
 # --------------------------------------------------------------------------------------------------------------------

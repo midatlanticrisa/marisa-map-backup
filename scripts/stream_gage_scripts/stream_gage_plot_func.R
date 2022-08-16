@@ -36,14 +36,14 @@
 #}
 
 # Function extracting stream data (discharge, gage height, and time) from USGS stream gages.
-stream_gage_plot = function(ID, b.date, e.date, day_midnight, day_noon){
+stream_gage_plot = function(ID, b.date, e.date, day_midnight, day_noon, plotDir){
 
   # Use the ID, beginning date, and end date to import national water monitoring data.
   discharge_dat <- usgs_dataRetrieve(ID, "00060", b.date, e.date, tz="America/New_York")
   gaugeheight_dat <- usgs_dataRetrieve(ID, "00065", b.date, e.date, tz="America/New_York")
 
   # Export a plot from the discharge data.
-  png(file=paste("/net/www/www.marisa.psu.edu/htdocs/mapdata/Stream_figs/Fig_", ID, ".png", sep=""), family="sans", units="in", width=p.width, height=p.height, pointsize=14, res=300)
+  png(file=paste(plotDir, "Fig_", ID, ".png", sep=""), family="sans", units="in", width=p.width, height=p.height, pointsize=14, res=300)
   par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,2.5))
 
   if(all(is.na(discharge_dat)) && all(is.na(gaugeheight_dat)) ){    # No data is available
