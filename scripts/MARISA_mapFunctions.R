@@ -313,10 +313,10 @@ collectBuoyData = function(buoys_ids, US_buoys){
   #################
   #buoys_ids <- NDBC_buoys$ID
   #buoys_ids <- NDBC_stations$ID
-  buoys_ids <- non_NDBC_stations$ID
-  US_buoys <- US_buoys
+  #buoys_ids <- non_NDBC_stations$ID
+  #US_buoys <- US_buoys
   #################
-  print(buoys_ids)
+  #print(buoys_ids)
   ##set up 'bones' for data to be returned, mostly for preserving input/output order
   outTab <- data.frame(id=buoys_ids)
   
