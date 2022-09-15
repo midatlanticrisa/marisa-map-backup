@@ -1,6 +1,8 @@
 # --------------------------------------------------------------------------------------------------------------------
 # Copyright 2018 The Pennsylvania State University
 #
+# Matthew D. Lisk (mdl5548@psu.edu)
+# Last edit: September 1, 2022
 # Kelsey Ruckert (klr324@psu.edu)
 # Last edit: June 14, 2018
 # Last edit: June 7, 2018
@@ -28,7 +30,7 @@
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
 options(stringsAsFactors=F)
-ptm <- proc.time()
+#ptm <- proc.time()
 if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("readr")) { install.packages("readr") }
 
@@ -36,6 +38,8 @@ library(RCurl)
 library(readr)
 library(compiler)
 library(anytime)
+library(jsonlite)
+library(stringr)
 enableJIT(3)
 enableJIT(3)
 
@@ -57,247 +61,195 @@ if(comp$nodename=="E2-EES-RSML638.local" | comp$nodename=="E2-EES-RSML638" | com
   inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 }
+plottingDir <- paste0(outDir, "Stream_figs/")
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 if (!dir.exists(outDir)){
   dir.create(outDir, recursive=T)
 }
+if (!dir.exists(plottingDir)){
+  dir.create(plottingDir, recursive=T)
+}
 
 ##sourced functions
 source(paste0(inDir, "MARISA_mapFunctions.R"))
+source(paste0(inDir, "stream_gage_scripts/stream_gage_plot_func_test.R"))
 
 # --------------------------------------------------------------------------------------------------------------------
-# We only need todays date to get the most recent value.
+# # We only need todays date to get the most recent value.
 eDate <- Sys.Date()      # End date
-#bDate = Sys.Date()-1      # Beginning date
+bDate <- Sys.Date() - 7      # Beginning date
 
-cores <- 1
-
-##read in the .csvs associated with each state, to be able to more efficiantly format the output geojson file
-stateGageFiles <- list.files(paste0(inDir, "stream_gage_scripts/stream_gages_csv/"), pattern=".csv", full.names=T)
-#gageCSVs <- lapply(stateGageFiles, read.csv)
-##subset files unitl ready to map to full country
-#subStates <- c("pennsylvania", "delaware")
-subStates <- c("newyork")
-#subStates <- c("pennsylvania", "delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "connecticut", "massachusetts", "northcarolina")
-#subStates <- c("pennsylvania", "Delaware", "maryland", "DC", "newyork", "newjersey", "/virginia", "westvirginia", "ohio", "conneticut", "massachusetts")
-gageCSVs <- lapply(subStates, function(st){readTab<-read.csv(stateGageFiles[grep(st, stateGageFiles)]);
-                                            ##adding state column, as descriptions included are not all formatted the same
-                                            readTab$state<-st;
-                                            return(readTab)})
-
-##the rest of the script
-gageRecs <- do.call(rbind.data.frame, gageCSVs)
-gageRecs <- gageRecs[gageRecs$SiteLongitude>=-82.0 & gageRecs$SiteLongitude<=-73.0 & gageRecs$SiteLatitude>=36.0 & gageRecs$SiteLatitude<=43.5,]
-# Site numbers should be between 8 and 15 digits long
-shortIDs <- which(nchar(gageRecs$SiteNumber)<8)
-gageRecs$SiteNumber[shortIDs] <- paste0("0", gageRecs$SiteNumber[shortIDs])
-
-stationIDs <- gageRecs$SiteNumber
+# Determine midnight and noon for dates of this previous week
+day = 0:7
+day_midnight = as.POSIXct(paste(Sys.Date() - day, "00:00", sep=" "), format = "%Y-%m-%d %H:%M", tz = "America/New_York")
+day_noon = as.POSIXct(paste(Sys.Date() - day, "12:00", sep=" "), format = "%Y-%m-%d %H:%M", tz = "America/New_York")
 
 # --------------------------------------------------------------------------------------------------------------------
 
-gageTmpURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00010=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
-gageDisURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00060=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
-gageGagURLs <- paste0('https://waterdata.usgs.gov/nwis/uv?cb_00065=on&format=rdb&site_no=', stationIDs, '&period=&begin_date=', eDate, '&end_date=', eDate)
+#testFile <- "/Users/mdl5548/Documents/tempDataChk/timesFromFirkin/paGages.json"
+#testFile <- "/Users/mdl5548/Documents/tempDataChk/timesFromFirkin/testSubSites.json"
 
-ptmDownload <- proc.time()
-if(cores>1){
-  library(parallel)  
-  gageTemps <- mclapply(gageTmpURLs, function(x){chkURL<-getURL(x)
-                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
-                                                    return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(chkURL,x,"America/New_York", "latest"))}}, mc.cores=cores)
+#outDir <- "/Users/mdl5548/Documents/tempDataChk/timesFromFirkin/"
+downloadFile <- paste0(outDir, "nyGageObs.json")
+dailyVal <- paste0(outDir, "nyDailyGageObs.json")
+
+#ptmDownload <- proc.time()
+system(paste0("wget -O ", downloadFile, " 'https://waterservices.usgs.gov/nwis/iv?format=json&stateCd=ny&startDT=", bDate, "&endDT=", eDate, "&parameterCd=00010,00060,00065'"))
+system(paste0("wget -O ", dailyVal, " 'https://waterservices.usgs.gov/nwis/dv?format=json&stateCd=ny&startDT=", bDate, "&endDT=", eDate, "&parameterCd=00060'"))
+#ptmDownloadEnd <- proc.time() - ptmDownload
+
+##for local testing
+#downloadFile <- "/Users/mdl5548/Documents/tempDataChk/timesFromFirkin/testPAweekRecsI.json"
+#dailyVal <- "/Users/mdl5548/Documents/tempDataChk/timesFromFirkin/paDailyGageObs.json"
+
+##read in downloaded data
+readGageData <- fromJSON(downloadFile)
+dailyValData <- fromJSON(dailyVal)
+##format data into dataframe
+frameData <- as.data.frame(readGageData$value$timeSeries)
+dailyFrameData <- as.data.frame(dailyValData$value$timeSeries)
+##checks the location of all site to make sure they are within the state, as well as within the study area
+gageRecs <- frameData[frameData$sourceInfo$geoLocation$geogLocation$longitude>=-82.0 & frameData$sourceInfo$geoLocation$geogLocation$longitude<=-73.0 & frameData$sourceInfo$geoLocation$geogLocation$latitude>=36.0 & frameData$sourceInfo$geoLocation$geogLocation$latitude<=43.5,]
+ptsInOtherSts <- grep(", CT", gageRecs$sourceInfo$siteName)
+gageRecs <- gageRecs[-ptsInOtherSts,]
+##daily data
+dailyGageRecs <- dailyFrameData[dailyFrameData$sourceInfo$geoLocation$geogLocation$longitude>=-82.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$longitude<=-73.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$latitude>=36.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$latitude<=43.5,]
+ptsInOtherSts <- grep(", CT", dailyGageRecs$sourceInfo$siteName)
+dailyGageRecs <- dailyGageRecs[-ptsInOtherSts,]
+
+
+##get unique site name
+uniSiteNames <- unique(gageRecs$sourceInfo$siteName)
+##could use some more cleaning for final use
+
+latestData <- list()
+for(loc in 1:length(uniSiteNames)){
+  #print(loc)
+  siteName <- uniSiteNames[loc]
+  ##records of the specific site
+  siteRecs <- gageRecs[gageRecs$sourceInfo$siteName==siteName,]
+  siteDailyRecs <- dailyGageRecs[dailyGageRecs$sourceInfo$siteName==siteName,]
+  siteID <- siteRecs$sourceInfo$siteCode[[1]]$value
   
-  gageDischarge <- mclapply(gageDisURLs, function(x){chkURL<-getURL(x)
-                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
-                                                    return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(chkURL,x,"America/New_York", "latest"))}}, mc.cores=cores)
+  latestDates <- c()
+  ##parse out variables - temperature
+  ##This variable only needs the latest value - temperature not used in the stream graph
+  tempInd <- grep("Temperature", siteRecs$variable$variableDescription)
+  if(length(tempInd)>0){
+    tempVal <- siteRecs$values[[tempInd]]$value[[1]]$value[nrow(siteRecs$values[[tempInd]]$value[[1]])]
+    if(is.null(tempVal)==T){
+      tempVal <- NA
+    }else{
+      latestDates <- c(latestDates, siteRecs$values[[tempInd]]$value[[1]]$dateTime)
+    }
+  }else{
+    tempVal <- NA
+  }
   
-  gageHeight <- mclapply(gageGagURLs, function(x){chkURL<-getURL(x)
-                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
-                                                    return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(chkURL,x,"America/New_York", "latest"))}}, mc.cores=cores)
-}else{
-  gageTemps <- lapply(gageTmpURLs, function(x){chkURL<-getURL(x)
-                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
-                                                    return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
+  ##parse out variables - discharge
+  dischargeInd <- grep("Discharge", siteRecs$variable$variableDescription)
+  if(length(dischargeInd)>0){
+    seriesDischargeVals <- siteRecs$values[[dischargeInd]]$value[[1]]$value
+    if(is.null(seriesDischargeVals)==T){
+      seriesDischargeVals <- NA
+      latestDischargeVal <- NA
+      seriesDischargeTimes <- NA
+    }else{
+      latestDischargeVal <- seriesDischargeVals[length(seriesDischargeVals)]
+      seriesDischargeTimes <- anytime(siteRecs$values[[dischargeInd]]$value[[1]]$dateTime)
+      latestDates <- c(latestDates, seriesDischargeTimes[seriesDischargeTimes])
+    }
+  }else{
+    seriesDischargeVals <- NA
+    latestDischargeVal <- NA
+  }
+  dischargeSeriesVals <- data.frame(var=as.numeric(seriesDischargeVals), dateTime=seriesDischargeTimes)
   
-  gageDischarge <- lapply(gageDisURLs, function(x){chkURL<-getURL(x)
-                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
-                                                    return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
+  ##parse out variables - gage height
+  gageInd <- grep("Gage height", siteRecs$variable$variableDescription)
+  if(length(gageInd)>0){
+    seriesGageVals <- siteRecs$values[[gageInd]]$value[[1]]$value
+    if(is.null(seriesGageVals)==T){
+      seriesGageVals <- NA
+      latestGageVal <- NA
+      seriesGageTimes <- NA
+    }else{
+      latestGageVal <- seriesGageVals[length(seriesGageVals)]
+      seriesGageTimes <- anytime(siteRecs$values[[gageInd]]$value[[1]]$dateTime)
+      latestDates <- c(latestDates, seriesGageTimes[length(seriesGageTimes)])
+    }
+  }else{
+    seriesGageVals <- NA
+    latestGageVal <- NA
+  }
+  gageSeriesVals <- data.frame(var=as.numeric(seriesGageVals), dateTime=seriesGageTimes)
   
-  gageHeight <- lapply(gageGagURLs, function(x){chkURL<-getURL(x)
-                                                  if(chkURL=="No sites/data found using the selection criteria specified \n"){
-                                                    return(c(NA,NA,NA))}else{
-                                                    return(usgs_dataRetrieveVar(chkURL, x, "America/New_York", "latest"))}})
+  ##extract the date and times for each record
+  if(length(latestDates)>0){
+    setDates <- anytime(latestDates)
+    latestDate <- max(setDates, na.rm=T)
+    latestTime <- format(latestDate, "%I:%M %p %Z")
+    latestDate <- format(latestDate, "%b %d, %Y")
+  }else{
+    latestDate <- NA
+    latestTime <- NA
+  }
+  
+  ##create the site data plot
+  if(nrow(siteDailyRecs)>0){
+    dischargeMean <- mean(as.numeric(siteDailyRecs$values[[1]]$value[[1]]$value), na.rm=T)
+  }else{
+    dischargeMean <- NA
+  }
+  stream_gage_plot(ID=siteID, discharge_dat=dischargeSeriesVals, daily_avgQ=dischargeMean, gaugeheight_dat=gageSeriesVals, 
+                   day_midnight=day_midnight, day_noon=day_noon, p.width=4, p.height=2.5, plotDir=plottingDir)
+  
+  
+  ##set up the record for the site
+  latestData[[loc]] <- data.frame(SiteNumber=siteID, SiteName=siteName, 
+                                  SiteLongitude=siteRecs$sourceInfo$geoLocation$geogLocation$longitude[1], SiteLatitude=siteRecs$sourceInfo$geoLocation$geogLocation$latitude[1], 
+                                  temp=tempVal, discharge=latestDischargeVal, gageHeight=latestGageVal, state="newyork", 
+                                  latestDate=latestDate, latestTime=latestTime)
 }
-ptmDownloadEnd <- proc.time() - ptmDownload
-#print(paste0("Download Time: ", ptmDownloadEnd[3]))
+nyRecs <- do.call(rbind.data.frame, latestData)
+nyRecs$obsString <- createObsString(nyRecs)
+nyRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", nyRecs$SiteNumber)
+nyRecs$SiteName <- str_to_title(nyRecs$SiteName)
+nyRecs$SiteName <- gsub(" Ny", ", NY", nyRecs$SiteName)
 
-##the process of transforming the collected data into a single dataframe
-fullGageTemps <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageTemps))
-fullGageDischarge <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageDischarge))
-fullGageHeight <- cbind.data.frame(stationIDs, do.call(rbind.data.frame, gageHeight))
-#colnames(fullGageTemps)[2:3] <- c("temp", "dateTime")
-#colnames(fullGageDischarge)[2:3] <- c("discharge", "dateTime")  
-#colnames(fullGageHeight)[2:3] <- c("gageHeight", "dateTime")
-colnames(fullGageTemps)[2:4] <- c("temp", "date_t", "time_t")
-##convert tempurature values from C to F
-fullGageTemps$temp <- as.character(as.numeric(as.character(fullGageTemps$temp)) * (9/5) + 32)
-colnames(fullGageDischarge)[2:4] <- c("discharge", "date_d", "time_d")  
-colnames(fullGageHeight)[2:4] <- c("gageHeight", "date_h", "time_h")
-fullObsData <- merge(fullGageTemps, fullGageDischarge, by="stationIDs")
-fullObsData <- merge(fullObsData, fullGageHeight, by="stationIDs")
-
-##double check to make sure have to latest data time 
-#fullObsData$latestDateTime <- apply(fullObsData[,grepl("dateTime", colnames(fullObsData))], MARGIN=1, FUN=min, na.rm=T)
-#fullObsData$latestDateTime[is.na(fullObsData$latestDateTime)] <- ""
-fullObsData$date <- NA
-fullObsData$time <- NA
-findMinDate <- unlist(mapply(function(td,dd,hd){dateVars<-c(td,dd,hd);
-                      if(FALSE %in% unique(is.na(dateVars))){
-                        return(which.min(dateVars))
-                      }else{
-                        return(NA)}}, 
-                      td=utctime(as.POSIXlt(paste(fullObsData$date_t,fullObsData$time_t),format="%b %d, %Y %I:%M %p",tz="America/New_York")),
-                      dd=utctime(as.POSIXlt(paste(fullObsData$date_d,fullObsData$time_d),format="%b %d, %Y %I:%M %p",tz="America/New_York")),
-                      hd=utctime(as.POSIXlt(paste(fullObsData$date_h,fullObsData$time_h),format="%b %d, %Y %I:%M %p",tz="America/New_York"))))
-fullObsData$date[which(is.na(findMinDate)==F & findMinDate==1)] <- as.character(fullObsData$date_t[which(is.na(findMinDate)==F & findMinDate==1)])
-fullObsData$time[which(is.na(findMinDate)==F & findMinDate==1)] <- as.character(fullObsData$time_t[which(is.na(findMinDate)==F & findMinDate==1)])
-fullObsData$date[which(is.na(findMinDate)==F & findMinDate==2)] <- as.character(fullObsData$date_d[which(is.na(findMinDate)==F & findMinDate==2)])
-fullObsData$time[which(is.na(findMinDate)==F & findMinDate==2)] <- as.character(fullObsData$time_d[which(is.na(findMinDate)==F & findMinDate==2)])
-fullObsData$date[which(is.na(findMinDate)==F & findMinDate==3)] <- as.character(fullObsData$date_h[which(is.na(findMinDate)==F & findMinDate==3)])
-fullObsData$time[which(is.na(findMinDate)==F & findMinDate==3)] <- as.character(fullObsData$time_h[which(is.na(findMinDate)==F & findMinDate==3)])
-
-##create the observation string to the map popup
-#stationObs <- data.frame(stationIDs=fullObsData$stationIDs, obsString=createObsString(fullObsData), latestDate=paste0("<br/><br/>Last Updated on ", fullObsData$latestDateTime))
-stationObs <- data.frame(stationIDs=fullObsData$stationIDs, obsString=createObsString(fullObsData), latestDate=fullObsData$date, latestTime=fullObsData$time)
-
-##merge collected data with the read in csv records
-fullStationData <- merge(x=gageRecs, y=stationObs, by.x="SiteNumber", by.y="stationIDs")
-fullStationData$latestDate <- as.character(fullStationData$latestDate)
-fullStationData$latestTime <- as.character(fullStationData$latestTime)
-if(TRUE%in%is.na(fullStationData$latestDate)){
-  fullStationData$latestDate[is.na(fullStationData$latestDate)==T] <- max(fullStationData$latestDate[is.na(fullStationData$latestDate)==F])
-  fullStationData$latestTime[is.na(fullStationData$latestTime)==T] <- max(fullStationData$latestTime[is.na(fullStationData$latestTime)==F])
-}
-
-
-##NJ and MD
-#njmdRecs <- rbind.data.frame(fullStationData[grep("NJ", fullStationData$SiteName),], fullStationData[grep("MD", fullStationData$SiteName),])
-##create the feature record for each station for the geojson file
-#stream_string <- paste0('{"type": "Feature", "properties": {"name": "', njmdRecs$SiteName, '", "id": "', njmdRecs$SiteNumber, '", "url": "', njmdRecs$SiteNWISURL, 
-#                        '", "obs": "', njmdRecs$obsString, '", "time": "', paste0("Last Updated on ", njmdRecs$latestDate, " at ", njmdRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', njmdRecs$SiteNumber,
-#                        '.png"}, "geometry": {"type": "Point", "coordinates": [', njmdRecs$SiteLongitude, ',', njmdRecs$SiteLatitude, ']}}')
-##create the final string for the output file
-#json_merge <- paste0('NJMD_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-# Export data to geojson.
-#cat(json_merge, file=paste0(outDir, "NJMD_stream_obs.js"))
+##convert the temperature values from C to F
+nyRecs$temp <- as.character(as.numeric(nyRecs$temp) * (9/5) + 32)
 
 ##NY
-if("newyork" %in% subStates){
-  #nyRecs <- fullStationData[grep("NY", fullStationData$SiteName),]
-  nyRecs <- fullStationData
+##create the feature record for each station for the geojson file
+stream_string <- paste0('{"type": "Feature", "properties": {"name": "', nyRecs$SiteName, '", "id": "', nyRecs$SiteNumber, '", "url": "', nyRecs$SiteNWISURL, 
+                        '", "obs": "', nyRecs$obsString, '", "time": "', paste0("Last Updated on ", nyRecs$latestDate, " at ", nyRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', nyRecs$SiteNumber,
+                        '.png"}, "geometry": {"type": "Point", "coordinates": [', nyRecs$SiteLongitude, ',', nyRecs$SiteLatitude, ']}}')
+##create the final string for the output file
+json_merge <- paste0('NY_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
   
-  ##create the feature record for each station for the geojson file
-  stream_string <- paste0('{"type": "Feature", "properties": {"name": "', nyRecs$SiteName, '", "id": "', nyRecs$SiteNumber, '", "url": "', nyRecs$SiteNWISURL, 
-                          '", "obs": "', nyRecs$obsString, '", "time": "', paste0("Last Updated on ", nyRecs$latestDate, " at ", nyRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', nyRecs$SiteNumber,
-                          '.png"}, "geometry": {"type": "Point", "coordinates": [', nyRecs$SiteLongitude, ',', nyRecs$SiteLatitude, ']}}')
-  ##create the final string for the output file
-  json_merge <- paste0('NY_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-  
-  ##save object with ids for plotting
-  NY_ID <- nyRecs$SiteNumber
-  save("NY_ID", file=paste0(outDir, "NY_streamIDs.RData"))
-  
-  # Export data to geojson.
-  cat(json_merge, file=paste0(outDir, "NY_stream_obs.js"))
-}
+##save object with ids for plotting
+NY_ID <- nyRecs$SiteNumber
+save("NY_ID", file=paste0(outDir, "NY_streamIDs.RData"))
 
-ptmEnd <- proc.time() - ptm
+# Export data to geojson.
+cat(json_merge, file=paste0(outDir, "NY_stream_obs.js"))
+
+
+#ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd))
 
 ##check if a time stop file already exists. If it does not, create one
-timeFile <- paste0(outDir, "NYstreamGagesTracking.RData")
-if(file.exists(timeFile)==T){
-  load(timeFile)
-  timeNYStreams[nrow(timeNYStreams)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
-  save("timeNYStreams", file=timeFile)
-}else{
-  timeNYStreams <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
-  save("timeNYStreams", file=timeFile)
-}
-
-##OH, DE, DC, WV, CT, MA
-#rangeRecs <- rbind.data.frame(fullStationData[grep("OH", fullStationData$SiteName),], fullStationData[grep("DE", fullStationData$SiteName),],
-#                              fullStationData[grep("DC", fullStationData$SiteName),], fullStationData[grep("WV", fullStationData$SiteName),],
-#                              fullStationData[grep("CT", fullStationData$SiteName),], fullStationData[grep("MA", fullStationData$SiteName),])
-##create the feature record for each station for the geojson file
-#stream_string <- paste0('{"type": "Feature", "properties": {"name": "', rangeRecs$SiteName, '", "id": "', rangeRecs$SiteNumber, '", "url": "', rangeRecs$SiteNWISURL, 
-#                        '", "obs": "', rangeRecs$obsString, '", "time": "', paste0("Last Updated on ", rangeRecs$latestDate, " at ", rangeRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', rangeRecs$SiteNumber,
-#                        '.png"}, "geometry": {"type": "Point", "coordinates": [', rangeRecs$SiteLongitude, ',', rangeRecs$SiteLatitude, ']}}')
-##create the final string for the output file
-#json_merge <- paste0('OHDEDCWVTNNCCTMA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-# Export data to geojson.
-#cat(json_merge, file=paste0(outDir, "OHDEDCWVTNNCCTMA_stream_obs.js"))
-
-##PA
-#if("pennsylvania" %in% subStates){
-#  paRecs <- fullStationData[grep("PA", fullStationData$SiteName),]
-  
-  ##create the feature record for each station for the geojson file
-#  stream_string <- paste0('{"type": "Feature", "properties": {"name": "', paRecs$SiteName, '", "id": "', paRecs$SiteNumber, '", "url": "', paRecs$SiteNWISURL, 
-#                          '", "obs": "', paRecs$obsString, '", "time": "', paste0("Last Updated on ", paRecs$latestDate, " at ", paRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', paRecs$SiteNumber,
-#                          '.png"}, "geometry": {"type": "Point", "coordinates": [', paRecs$SiteLongitude, ',', paRecs$SiteLatitude, ']}}')
-  ##create the final string for the output file
-#  json_merge <- paste0('PA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-  # Export data to geojson.
-#  cat(json_merge, file=paste0(outDir, "PA_stream_obs.js"))
+#timeFile <- paste0(outDir, "NYstreamGagesTracking.RData")
+#if(file.exists(timeFile)==T){
+#  load(timeFile)
+#  timeNYStreams[nrow(timeNYStreams)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+#  save("timeNYStreams", file=timeFile)
+#}else{
+#  timeNYStreams <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+#  save("timeNYStreams", file=timeFile)
 #}
 
-##VA
-#if("/virginia" %in% subStates){
-#  vaRecs <- fullStationData[grep("VA", fullStationData$SiteName),]
-  
-  ##create the feature record for each station for the geojson file
-#  stream_string <- paste0('{"type": "Feature", "properties": {"name": "', vaRecs$SiteName, '", "id": "', vaRecs$SiteNumber, '", "url": "', vaRecs$SiteNWISURL, 
-#                          '", "obs": "', vaRecs$obsString, '", "time": "', paste0("Last Updated on ", vaRecs$latestDate, " at ", vaRecs$latestTime), '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', vaRecs$SiteNumber,
-#                          '.png"}, "geometry": {"type": "Point", "coordinates": [', vaRecs$SiteLongitude, ',', vaRecs$SiteLatitude, ']}}')
-  ##create the final string for the output file
-#  json_merge <- paste0('VA_streamGauges = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-  # Export data to geojson.
-#  cat(json_merge, file=paste0(outDir, "VA_stream_obs.js"))
-#}
-
-
-
-##create the feature record for each station for the geojson file
-#stream_string <- paste0('{"type": "Feature", "properties": {"name": "', fullStationData$SiteName, '", "id": "', fullStationData$SiteNumber, '", "url": "', fullStationData$SiteNWISURL, 
-#                        '", "obs": "', fullStationData$obsString, '", "time": "', fullStationData$latestDate, '", "discharge": "https://www.marisa.psu.edu/mapdata/Stream_figs/Fig_', fullStationData$SiteNumber,
-#                        '.png"}, "geometry": {"type": "Point", "coordinates": [', fullStationData$SiteLongitude, ',', fullStationData$SiteLatitude, ']}}')
-##create the final string for the output file
-#json_merge <- paste0('Streams = {"type": "FeatureCollection","features": [', paste(stream_string, collapse=', '), ']};')
-# Export data to geojson.
-#cat(json_merge, file=paste0(outDir, "stream_extend.json"))
-
-
-#############################################
-##test code to write out as geojson file
-#library(rgdal)
-
-#fullTab <- rbind.data.frame(NDBC_buoy_data, NDBC_stat_data, non_NDBC_data)
-#coordinates(fullTab) <- c("lon", "lat")
-#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(weather_stat_data$lon), as.numeric(weather_stat_data$lat)), data=weather_stat_data, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
-
-#sptData <- data.frame(id=fullStationData$SiteNumber, name=fullStationData$SiteName, lon=fullStationData$SiteLongitude, lat=fullStationData$SiteLatitude)
-#nonSptData <- data.frame(id=fullStationData$SiteNumber, obs=fullStationData$obsString, url=fullStationData$SiteNWISURL, time=fullStationData$latestDate)
-#spTab <- SpatialPointsDataFrame(coords=cbind(as.numeric(sptData$lon), as.numeric(sptData$lat)), data=sptData, proj4string=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
-
-#writeOGR(spTab, dsn=paste0(outDir, "testOutput/"), layer="streamGageObs", driver="ESRI Shapefile", overwrite_layer=T)
-#write.csv(nonSptData, paste0(outDir, "testOutput/streamGageTab.csv"), row.names=F)
-#write.csv(fullStationData, paste0(outDir, "testOutput/streamgagesFull.csv"), row.names=F)
 
 
