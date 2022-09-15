@@ -351,7 +351,7 @@ collectBuoyData = function(buoys_ids, US_buoys){
     
     splitLength <- sapply(exTime, function(x){length(strsplit(x, " ")[[1]])})
     exZ <- sapply(1:length(exTime), function(x){sapply(strsplit(exTime[x]," "), "[[", splitLength[x])})
-    dateBases2 <- mapply(function(tim, zon){reForm<-as.POSIXlt(tim, format="%b %d, %Y %I:%M %p", tz="EST5EDT")
+    dateBases <- mapply(function(tim, zon){reForm<-as.POSIXlt(tim, format="%b %d, %Y %I:%M %p", tz="EST5EDT")
                                             return(reForm)}, tim=exTime, zon=exZ, SIMPLIFY=F)
     date <- sapply(dateBases, format, format="%b %d, %Y")  #format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
     time <- sapply(dateBases, format, format="%I:%M %p %Z")  #format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
