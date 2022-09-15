@@ -313,8 +313,8 @@ collectBuoyData = function(buoys_ids, US_buoys){
   #################
   #buoys_ids <- NDBC_buoys$ID
   #buoys_ids <- NDBC_stations$ID
-  #buoys_ids <- non_NDBC_stations$ID
-  #US_buoys <- US_buoys
+  buoys_ids <- non_NDBC_stations$ID
+  US_buoys <- US_buoys
   #################
   print(buoys_ids)
   ##set up 'bones' for data to be returned, mostly for preserving input/output order
@@ -351,10 +351,8 @@ collectBuoyData = function(buoys_ids, US_buoys){
     
     splitLength <- sapply(exTime, function(x){length(strsplit(x, " ")[[1]])})
     exZ <- sapply(1:length(exTime), function(x){sapply(strsplit(exTime[x]," "), "[[", splitLength[x])})
-    dateBases <- mapply(function(tim, zon){if(zon=="EST"|zon=="EDT"){  ##currently only have to worry about records in one time zone
-                                            reForm<-as.POSIXlt(tim, format="%b %d, %Y %I:%M %p", tz="America/New_York")
-                                          }
-                                          return(reForm)}, tim=exTime, zon=exZ, SIMPLIFY=F)
+    dateBases2 <- mapply(function(tim, zon){reForm<-as.POSIXlt(tim, format="%b %d, %Y %I:%M %p", tz="EST5EDT")
+                                            return(reForm)}, tim=exTime, zon=exZ, SIMPLIFY=F)
     date <- sapply(dateBases, format, format="%b %d, %Y")  #format(dateBase, format="%b %d, %Y", tz="America/New_York") # convert from GMT to current time zone
     time <- sapply(dateBases, format, format="%I:%M %p %Z")  #format(dateBase, format="%I:%M %p %Z", tz="America/New_York") # convert from GMT to current time zone
     
