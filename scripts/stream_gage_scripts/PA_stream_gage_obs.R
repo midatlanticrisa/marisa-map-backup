@@ -112,12 +112,8 @@ frameData <- as.data.frame(readGageData$value$timeSeries)
 dailyFrameData <- as.data.frame(dailyValData$value$timeSeries)
 ##checks the location of all site to make sure they are within the state, as well as within the study area
 gageRecs <- frameData[frameData$sourceInfo$geoLocation$geogLocation$longitude>=-82.0 & frameData$sourceInfo$geoLocation$geogLocation$longitude<=-73.0 & frameData$sourceInfo$geoLocation$geogLocation$latitude>=36.0 & frameData$sourceInfo$geoLocation$geogLocation$latitude<=43.5,]
-ptsInOtherSts <- c(grep(" NY", gageRecs$sourceInfo$siteName), grep(" NJ", gageRecs$sourceInfo$siteName))
-gageRecs <- gageRecs[-ptsInOtherSts,]
 ##daily data
 dailyGageRecs <- dailyFrameData[dailyFrameData$sourceInfo$geoLocation$geogLocation$longitude>=-82.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$longitude<=-73.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$latitude>=36.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$latitude<=43.5,]
-ptsInOtherSts <- c(grep(" NY", dailyGageRecs$sourceInfo$siteName), grep(" NJ", dailyGageRecs$sourceInfo$siteName))
-dailyGageRecs <- dailyGageRecs[-ptsInOtherSts,]
 
 
 ##get unique site name
@@ -216,6 +212,10 @@ for(loc in 1:length(uniSiteNames)){
 paRecs <- do.call(rbind.data.frame, latestData)
 paRecs$obsString <- createObsString(paRecs)
 paRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", paRecs$SiteNumber)
+paRecs$SiteName[grep(" NY", paRecs$SiteName)] <- str_to_title(paRecs$SiteName[grep(" NY", paRecs$SiteName)])
+paRecs$SiteName <- gsub(" At ", " at ", paRecs$SiteName)
+paRecs$SiteName <- gsub(" Ny", ", NY", paRecs$SiteName)
+paRecs$SiteName <- gsub(" NJ", ", NJ", paRecs$SiteName)
 
 ##convert the temperature values from C to F
 paRecs$temp <- as.character(as.numeric(paRecs$temp) * (9/5) + 32)

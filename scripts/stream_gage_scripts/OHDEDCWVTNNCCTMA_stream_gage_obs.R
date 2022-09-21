@@ -375,7 +375,9 @@ for(loc in 1:length(uniSiteNamesDE)){
 deRecs <- do.call(rbind.data.frame, latestData)
 deRecs$obsString <- createObsString(deRecs)
 deRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", deRecs$SiteNumber)
-deRecs$SiteName <- gsub(" DE", ", DE", deRecs$SiteName)
+deRecs$SiteName <- str_to_title(deRecs$SiteName)
+deRecs$SiteName <- gsub(" At ", " at ", deRecs$SiteName)
+deRecs$SiteName <- gsub(", De", ", DE", deRecs$SiteName)
 
 latestData <- list()
 for(loc in 1:length(uniSiteNamesDC)){
@@ -469,7 +471,9 @@ for(loc in 1:length(uniSiteNamesDC)){
 dcRecs <- do.call(rbind.data.frame, latestData)
 dcRecs$obsString <- createObsString(dcRecs)
 dcRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", dcRecs$SiteNumber)
-dcRecs$SiteName <- gsub(" DC", ", DC", dcRecs$SiteName)
+dcRecs$SiteName <- str_to_title(dcRecs$SiteName)
+dcRecs$SiteName <- gsub(" At ", " at ", dcRecs$SiteName)
+dcRecs$SiteName <- gsub(", Dc", ", DC", dcRecs$SiteName)
 
 latestData <- list()
 for(loc in 1:length(uniSiteNamesWV)){
@@ -563,7 +567,9 @@ for(loc in 1:length(uniSiteNamesWV)){
 wvRecs <- do.call(rbind.data.frame, latestData)
 wvRecs$obsString <- createObsString(wvRecs)
 wvRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", wvRecs$SiteNumber)
-wvRecs$SiteName <- gsub(" WV", ", WV", wvRecs$SiteName)
+wvRecs$SiteName <- str_to_title(wvRecs$SiteName)
+wvRecs$SiteName <- gsub(" At ", " at ", wvRecs$SiteName)
+wvRecs$SiteName <- gsub(", Wv", ", WV", wvRecs$SiteName)
 
 # latestData <- list()
 # for(loc in 1:length(uniSiteNamesTN)){
@@ -751,7 +757,9 @@ for(loc in 1:length(uniSiteNamesNC)){
 ncRecs <- do.call(rbind.data.frame, latestData)
 ncRecs$obsString <- createObsString(ncRecs)
 ncRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", ncRecs$SiteNumber)
-ncRecs$SiteName <- gsub(" NC", ", NC", ncRecs$SiteName)
+ncRecs$SiteName <- str_to_title(ncRecs$SiteName)
+ncRecs$SiteName <- gsub(" At ", " at ", ncRecs$SiteName)
+ncRecs$SiteName <- gsub(", Nc", ", NC", ncRecs$SiteName)
 
 latestData <- list()
 for(loc in 1:length(uniSiteNamesCT)){
@@ -845,7 +853,9 @@ for(loc in 1:length(uniSiteNamesCT)){
 ctRecs <- do.call(rbind.data.frame, latestData)
 ctRecs$obsString <- createObsString(ctRecs)
 ctRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", ctRecs$SiteNumber)
-ctRecs$SiteName <- gsub(" CT", ", CT", ctRecs$SiteName)
+ctRecs$SiteName <- str_to_title(ctRecs$SiteName)
+ctRecs$SiteName <- gsub(" At ", " at ", ctRecs$SiteName)
+ctRecs$SiteName <- gsub(", Ct", ", CT", ctRecs$SiteName)
 
 latestData <- list()
 for(loc in 1:length(uniSiteNamesMA)){
@@ -939,7 +949,9 @@ for(loc in 1:length(uniSiteNamesMA)){
 maRecs <- do.call(rbind.data.frame, latestData)
 maRecs$obsString <- createObsString(maRecs)
 maRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", maRecs$SiteNumber)
-maRecs$SiteName <- gsub(" MA", ", MA", maRecs$SiteName)
+maRecs$SiteName <- str_to_title(maRecs$SiteName)
+maRecs$SiteName <- gsub(" At ", " at ", maRecs$SiteName)
+maRecs$SiteName <- gsub(", Ma", ", MA", maRecs$SiteName)
 
 
 rangeRecs <- rbind(ohRecs, deRecs, dcRecs, wvRecs, ncRecs, ctRecs, maRecs)  #, tnRecs

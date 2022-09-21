@@ -29,14 +29,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+library(jsonlite)
+
 # --------------------------------------------------------------------------------------------------------------------
 # Set variables to today's and yesterday's date.
 date_today <- Sys.Date()
 date_yesterday <- Sys.Date() - 1
 
 # --------------------------------------------------------------------------------------------------------------------
+
+dataDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
+
 # Extract when the buoy json file was last created.
-buoy_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/buoys_extend.js"
+buoy_file <- paste0(dataDir, "buoys_extend.js")
 buoy_times <- file.info(buoy_file)$ctime
 buoy_Dates <- as.Date(buoy_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -47,7 +53,7 @@ if (buoy_diag == FALSE){
 }
 
 # Extract when the weather observation json file was last created.
-weather_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/weather_observations_extend.json"
+weather_file <- paste0(dataDir, "weather_observations_extend.json")
 weather_times <- file.info(weather_file)$ctime
 weather_Dates <- as.Date(weather_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -58,7 +64,7 @@ if (weather_diag == FALSE){
 }
 
 # Extract when all the tide station plots were last created.
-tide_dir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/Tide_figs"
+tide_dir <- paste0(dataDir, "Tide_figs")
 tide_list <- list.files(tide_dir)
 tide_files <- tide_list
 for(i in 1:length(tide_list)){
@@ -74,7 +80,7 @@ if (tide_diag == FALSE){
 }
 
 # Extract when the tide station json file was last created.
-tide_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/tide_station_obs_extend.js"
+tide_json_file <- paste0(dataDir, "tide_station_obs_extend.js")
 tide_json_times <- file.info(tide_json_file)$ctime
 tide_json_Dates <- as.Date(tide_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -85,7 +91,8 @@ if (tide_json_diag == FALSE){
 }
 
 # Extract when all the stream gauge plots were last created.
-stream_dir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/Stream_figs"
+stream_diag <- TRUE
+stream_dir <- paste0(dataDir, "Stream_figs")
 stream_list <- list.files(stream_dir)
 stream_files <- stream_list
 for(i in 1:length(stream_list)){
@@ -94,14 +101,47 @@ for(i in 1:length(stream_list)){
 stream_times <- file.info(stream_files)$ctime
 stream_Dates <- as.Date(stream_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's or yesterday's date.
-stream_diag <- all(stream_Dates == date_today | stream_Dates == date_yesterday)
+#stream_diag <- all(stream_Dates == date_today | stream_Dates == date_yesterday)
+notUpdated <- stream_files[which(stream_Dates!=date_today & stream_Dates!=date_yesterday)]
 
-if (stream_diag == FALSE){
-  print("check Stream_figs")
+if(length(notUpdated)>0){
+  ##check which files are attached to gages which have gone offline vs those which should be updating but are not
+  ##first, collect the id of each non-updated gage
+  chkGageIDs <- sapply(strsplit(notUpdated, "Fig_"), "[[", 2)
+  chkGageIDs <- sapply(strsplit(chkGageIDs, ".png"), "[[", 1)
+  
+  ##attempts to download data for sites which have not updated
+  diagStreamGageChk <- paste0(dataDir, "diagStreamGageChk.json")
+  system(paste0("wget -O ", diagStreamGageChk, " 'https://waterservices.usgs.gov/nwis/iv?format=json&sites=", paste(chkGageIDs, collapse=","), "&startDT=", date_yesterday, "&endDT=", date_today, "&parameterCd=00010,00060,00065'"))
+  readGageData <- fromJSON(diagStreamGageChk)
+  
+  ##format the downloaded gage data into a data frame
+  frameData <- as.data.frame(readGageData$value$timeSeries)
+  
+  ##extract the siteCode of the gages with valid data
+  siteWithData <- unique(sapply(1:nrow(frameData),function(x){frameData$sourceInfo$siteCode[[x]]$value}))
+  
+  for(loc in 1:length(chkGageIDs)){
+    siteCode <- chkGageIDs[loc]
+    
+    if(siteCode %in% siteWithData){
+      stream_diag <- FALSE
+      print(paste0("check Stream_fig for ", siteCode, ", as it has useable data"))
+    }else{
+      print(paste0("stream gage ", siteCode, " appears to have no useable data"))
+    }
+  }
 }
 
+
+#if (stream_diag == FALSE){
+#  print("check Stream_figs")
+#}
+
+
+
 # Extract when the stream gage json file was last created.
-njmdstream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/NJMD_stream_obs.js"
+njmdstream_json_file <- paste0(dataDir, "NJMD_stream_obs.js")
 njmdstream_json_times <- file.info(njmdstream_json_file)$ctime
 njmdstream_json_Dates <- as.Date(njmdstream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -112,7 +152,7 @@ if (njmdstream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-nystream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/NY_stream_obs.js"
+nystream_json_file <- paste0(dataDir, "NY_stream_obs.js")
 nystream_json_times <- file.info(nystream_json_file)$ctime
 nystream_json_Dates <- as.Date(nystream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -123,7 +163,7 @@ if (nystream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-ohstream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/OHDEDCWVTNNCCTMA_stream_obs.js"
+ohstream_json_file <- paste0(dataDir, "OHDEDCWVTNNCCTMA_stream_obs.js")
 ohstream_json_times <- file.info(ohstream_json_file)$ctime
 ohstream_json_Dates <- as.Date(ohstream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -134,7 +174,7 @@ if (ohstream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-pastream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/PA_stream_obs.js"
+pastream_json_file <- paste0(dataDir, "PA_stream_obs.js")
 pastream_json_times <- file.info(pastream_json_file)$ctime
 pastream_json_Dates <- as.Date(pastream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -145,7 +185,7 @@ if (pastream_json_diag == FALSE){
 }
 
 # Extract when the stream gage json file was last created.
-vastream_json_file <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/VA_stream_obs.js"
+vastream_json_file <- paste0(dataDir, "VA_stream_obs.js")
 vastream_json_times <- file.info(vastream_json_file)$ctime
 vastream_json_Dates <- as.Date(vastream_json_times, format = "%y-%m-%d")
 # Detemine whether the creation date matches today's date.
@@ -170,6 +210,6 @@ if (all(c(buoy_diag, weather_diag, tide_diag, tide_json_diag, stream_diag,
 
 # --------------------------------------------------------------------------------------------------------------------
 # Export data to geojson.
-cat(json_merge, file="/net/www/www.marisa.psu.edu/htdocs/mapdata/diagnostic.json")
+cat(json_merge, file=paste0(dataDir, "diagnostic.json"))
 
 # --------------------------------------------------------------------------------------------------------------------

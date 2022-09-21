@@ -111,12 +111,8 @@ frameData <- as.data.frame(readGageData$value$timeSeries)
 dailyFrameData <- as.data.frame(dailyValData$value$timeSeries)
 ##checks the location of all site to make sure they are within the state, as well as within the study area
 gageRecs <- frameData[frameData$sourceInfo$geoLocation$geogLocation$longitude>=-82.0 & frameData$sourceInfo$geoLocation$geogLocation$longitude<=-73.0 & frameData$sourceInfo$geoLocation$geogLocation$latitude>=36.0 & frameData$sourceInfo$geoLocation$geogLocation$latitude<=43.5,]
-ptsInOtherSts <- grep(", CT", gageRecs$sourceInfo$siteName)
-gageRecs <- gageRecs[-ptsInOtherSts,]
 ##daily data
 dailyGageRecs <- dailyFrameData[dailyFrameData$sourceInfo$geoLocation$geogLocation$longitude>=-82.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$longitude<=-73.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$latitude>=36.0 & dailyFrameData$sourceInfo$geoLocation$geogLocation$latitude<=43.5,]
-ptsInOtherSts <- grep(", CT", dailyGageRecs$sourceInfo$siteName)
-dailyGageRecs <- dailyGageRecs[-ptsInOtherSts,]
 
 
 ##get unique site name
@@ -216,7 +212,9 @@ nyRecs <- do.call(rbind.data.frame, latestData)
 nyRecs$obsString <- createObsString(nyRecs)
 nyRecs$SiteNWISURL <- paste0("https://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&site_no=", nyRecs$SiteNumber)
 nyRecs$SiteName <- str_to_title(nyRecs$SiteName)
+nyRecs$SiteName <- gsub(" At ", " at ", nyRecs$SiteName)
 nyRecs$SiteName <- gsub(" Ny", ", NY", nyRecs$SiteName)
+nyRecs$SiteName <- gsub(" Ct", " CT", nyRecs$SiteName)
 
 ##convert the temperature values from C to F
 nyRecs$temp <- as.character(as.numeric(nyRecs$temp) * (9/5) + 32)
