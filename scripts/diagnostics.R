@@ -202,6 +202,7 @@ if (all(c(buoy_diag, weather_diag, tide_diag, tide_json_diag, stream_diag,
  njmdstream_json_diag, nystream_json_diag, ohstream_json_diag, pastream_json_diag, vastream_json_diag) == TRUE)){
   print("Automated files PASS diagnostic; Marisa map up to date.")
   json_merge = 'diagnostic = [{"type": "Feature","properties": {"name": "Diagnostic test", "pass": "true"}, "geometry": {"type": "Point", "coordinates": [-73.4, 36.7]}}];'
+  system2('echo "Automated files Pass diagnostic" | mail -s "Marisa map scripts Pass" mdl5548@psu.edu')
 } else {
   print("Automated files FAIL diagnostic; Check scripts for potential errors.")
   json_merge = 'diagnostic = [{"type": "Feature","properties": {"name": "Diagnostic test", "pass": "false"}, "geometry": {"type": "Point", "coordinates": [-73.4, 36.7]}}];'
