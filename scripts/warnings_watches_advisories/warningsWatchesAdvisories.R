@@ -183,9 +183,11 @@ if(cores>1){
   mcmapply(cat, createOutput, file=paste0(outDir, writeOutNames), mc.cores=cores)
 }else{
   ##run on single core
-  x = 2
-  nams = outObjNames[x]
-  subS = subSelections[x]
+  #########################
+  #x = 2
+  #nams = outObjNames[x]
+  #subS = subSelections[x]
+  #########################
   createOutput <- mapply(function(nams, subS){
                                   if(length(grep("AT_", nams))>0){
                                     subTab<-paste0(nams, as.character(geojson_json(atlanticInfo[subS,])))
@@ -202,15 +204,15 @@ ptmEnd <- proc.time() - ptm
 #stop(paste0("Total Runtime: ", ptmEnd[3]))
 
 ##check if a time stop file already exists. If it does not, create one
-timeFile <- paste0(outDir, "weatherWarningsTracking.RData")
-if(file.exists(timeFile)==T){
-  load(timeFile)
-  timeWeatherWarn[nrow(timeWeatherWarn)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
-  save("timeWeatherWarn", file=timeFile)
-}else{
-  timeWeatherWarn <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
-  save("timeWeatherWarn", file=timeFile)
-}
+# timeFile <- paste0(outDir, "weatherWarningsTracking.RData")
+# if(file.exists(timeFile)==T){
+#   load(timeFile)
+#   timeWeatherWarn[nrow(timeWeatherWarn)+1,] <- c(date(), ptmDownloadEnd[3], ptmEnd[3])
+#   save("timeWeatherWarn", file=timeFile)
+# }else{
+#   timeWeatherWarn <- data.frame(dateTime=date(), DT=ptmDownloadEnd[3], TT=ptmEnd[3])
+#   save("timeWeatherWarn", file=timeFile)
+# }
 
 
 #DEtoNYwarnings <- paste0("DEtoNYalerts = ", as.character(geojson_json(countyInfo[countyInfo$stateABRS%in%c("DE","MD","NJ","NY"),])))
