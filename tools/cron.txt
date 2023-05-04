@@ -1,0 +1,2 @@
+# Buoy data updated every 5 minutes on NDBC server. Ping the server every 6 minutes to get the latest data.
+*/6 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/ndbc_buoy_obs.R
