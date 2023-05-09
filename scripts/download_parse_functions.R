@@ -2,6 +2,10 @@
 
 library(RCurl)
 library(measurements)
+library(xml2)
+library(httr)
+library(XML)
+library(data.table)
 
 ##########################################################################
 ##########################################################################
@@ -166,6 +170,7 @@ collectBuoyData = function(bbox=NULL){
 #' @return string of formatted buoy observations
 # ------------------------------------------------------------------------
 parseBuoyData = function(dat){
+  # Format the observations
   obs = paste0(
     "<strong>Location:</strong> ", coordinate_hemi(as.numeric(dat$LAT)), 
     " ", coordinate_hemi(as.numeric(dat$LON), "lon"), "<br />",
@@ -215,6 +220,279 @@ parseBuoyData = function(dat){
                     as.numeric(dat$LAT), ']}}')
   
   return(jsFormat)
+}
+
+##########################################################################
+##########################################################################
+#' Download NOAA Tide Station Metadata (e.g., IDs) for active water level stations 
+#' 
+#' @param filenm name of file to save tide station metadata to. Default: "NOAAtideIDs.txt"
+#' @param bbox Boundary extent for tide stations to return. 
+#'   Format = c('xmin','ymin','xmax','ymax'). Default: NULL; all tide stations
+#' @param returnIDs logical. Determines whether to return the data.frame or just 
+#'   save the data.frame as a text file. Default: FALSE; only text file saved.
+#' @return data.frame of tide station metadata for the region of interest.
+#
+# The NOAA CO-OPS Metadata API (MDAPI) can be used to retrieve information about 
+# CO-OPS' stations. A request can be made to return information about a specific 
+# station, or information about multiple stations can be returned. The types of 
+# information accessible via the API are listed in detail at:
+# https://api.tidesandcurrents.noaa.gov/mdapi/prod/
+# ------------------------------------------------------------------------
+# Example of parsing XML data:
+# https://medium.com/geekculture/reading-xml-files-in-r-3122c3a2a8d9
+# ------------------------------------------------------------------------
+collectTideIDs = function(filenm="NOAAtideIDs.txt", bbox=NULL, returnIDs=FALSE){
+  
+  # Active water level stations
+  tideStationURL <- "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.xml?type=waterlevels"
+  
+  # Read the xml file
+  station_data = read_xml(tideStationURL)
+  
+  # Parse into an R structure representing XML tree
+  station_xml <- xmlParse(station_data)
+  
+  # Convert the parsed XML to a dataframe
+  tideStation_df <- xmlToDataFrame(nodes=getNodeSet(station_xml, "//Station"))
+  
+  # Save only the information we need: id, name, lat, lon
+  tideStation_df <- data.frame(id = tideStation_df$id, name = tideStation_df$name, 
+                               lat = tideStation_df$lat, lon = tideStation_df$lng,
+                               greatlakes = tideStation_df$greatlakes)
+  
+  # Return a subset of tide stations or all tide stations?
+  if(is.null(bbox)){
+    tideStations <- tideStation_df
+    
+  } else {
+    # bbox: c('xmin','ymin','xmax','ymax')
+    tideStations <- tideStation_df[as.numeric(tideStation_df$lon) >= bbox[1] & 
+                                     as.numeric(tideStation_df$lon) <= bbox[2] & 
+                                     as.numeric(tideStation_df$lat) >= bbox[3] & 
+                                     as.numeric(tideStation_df$lat) <= bbox[4], ]
+  }
+  
+  # Export data to geojson.
+  write.table(tideStations, file=filenm, row.names=FALSE)
+  
+  if(returnIDs){
+    return(tideStations)
+  }
+}
+
+##########################################################################
+##########################################################################
+#' Download NOAA Tide Station data
+#' 
+#' @param metaDat data.frame of metadata from one tide station. See collectTideIDs() output
+#' @param vars Vector of data products to download. Default: c("air_temperature", 
+#'   "air_pressure", "visibility", "humidity", "wind", "water_level", "water_temperature", 
+#'   "conductivity", "salinity")
+#' @param units String to return standard (english) or metric units. Default: "english"
+#' @param tz String designating timezone. Default: "lst"; local Standard Time, 
+#'   not corrected for Daylight Saving Time, local to the requested station.
+#'   Great Lakes stations must use "lst".
+#' @param dates String to specify the time of observations to return. Options:
+#'  "today": Retrieves data for today
+#'  "latest": Retrieves the last data point available within the last 18 min
+#'  "recent": Retrieves the last 3 days of data
+#'  Default: "latest"
+#' @param datum Reference point for water level data. Default: NULL; Nautical 
+#'   Chart Datum for all U.S. coastal waters (MLLW) or the International Great 
+#'   Lakes Datum (IGLD)
+#' @param begin_date String to specify a starting date (YYYYMMDD) to return 
+#'   observations. Default: NULL. Only used when downloading "ofs_water_level".
+#' @param range String to specify the number of hours after the starting date 
+#'   (begin_date) to return observations. Default: 48 hours. Only used when 
+#'   downloading "ofs_water_level".
+#' @return data.frame of tide station observations
+#
+# Additional information on inputs can be found on the CO-OP API at:
+# https://api.tidesandcurrents.noaa.gov/api/prod/
+# ------------------------------------------------------------------------
+collectTideData = function(metaDat, vars = c("air_temperature", "air_pressure", 
+                                             "visibility", "humidity", "wind", 
+                                             "water_level", "water_temperature", 
+                                             "conductivity", "salinity"),
+                           units = "english", tz = "lst", dates = "latest",
+                           datum=NULL, begin_date=NULL, range=48){
+  
+  # Datum is mandatory for all water level products to correct the data to the reference point desired.
+  if(is.null(datum)){
+    if(noquote(metaDat$greatlakes)){
+      datum <- "IGLD" # International Great Lakes Datum.
+    } else {
+      datum <- "MLLW" # Mean Lower Low Water (Nautical Chart Datum for all U.S. coastal waters)
+    }
+  }
+  
+  # Generate a URL for each variable based on function input
+  if(length(vars) == 1 && vars == "ofs_water_level"){
+    varsURL = paste0("https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=",begin_date, 
+                     "&range=", range, "&station=", metaDat$id, "&product=", vars, "&datum=", datum, "&time_zone=", 
+                     tz, "&units=", units, "&format=xml")
+  } else {
+    varsURL = paste0("https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=",dates, 
+                     "&station=", metaDat$id, "&product=", vars, "&datum=", datum, "&time_zone=", 
+                     tz, "&units=", units, "&format=xml")
+  }
+  
+  # Download the observations for each variable
+  obsList <- lapply(varsURL, function(URL){
+    station_data = xmlToList(rawToChar(GET(URL)$content))
+    
+    # If the station doesn't record the variable an error will appear.
+    # Report missing variables as NA
+    if(any(names(station_data) == "error")){
+      df = as.data.frame(t(as.data.frame(station_data$metadata)))
+      df$t = NA
+      df$v = NA
+      
+    } else { # Read the observations. 
+      if(length(station_data$observations) > 1){
+        stationdf = do.call(rbind, station_data$observations)
+        # Suppress row.names to stop warnings messages of duplicate row.names
+        # Names will be recorded in the list
+        df = cbind(t(as.data.frame(station_data$metadata)), as.data.frame(stationdf),
+                   row.names = NULL)
+        
+      } else {
+        df = cbind(t(as.data.frame(station_data$metadata)), 
+                   t(as.data.frame(station_data$observations[[1]])), 
+                   row.names = NULL)
+        df = as.data.frame(df)
+      }
+    }
+    return(df)
+  })
+  
+  # Record the variable names
+  names(obsList) = vars
+  
+  # Merge the list of data frames filling in missing columns
+  tide_df <- rbindlist(obsList, fill = TRUE, idcol=TRUE)
+  colnames(tide_df)[1] = "var" # change from ".id"
+  tide_df$datum <- datum
+  
+  return(tide_df)
+}
+
+##########################################################################
+##########################################################################
+#' Parse and format NOAA tide station data into a geojson format
+#' 
+#' @param tide_df data.frame of observations from one tide station. See 
+#'   collectTideData() output
+#' @return string of formatted tide station observations
+# ------------------------------------------------------------------------
+parseTideData = function(tide_df){
+  # Format the observations
+  obs = paste0(
+    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(tide_df$lat[1])), 
+    " ", coordinate_hemi(as.numeric(tide_df$lon[1]), "lon"), "<br />",
+    "<strong>Air temperature:</strong> ", tide_df$v[tide_df$var == "air_temperature"],
+    " F (", round(conv_unit(as.numeric(tide_df$v[tide_df$var == "air_temperature"]), from="F", to="C"),1), " C)<br />",
+    "<strong>Barometric pressure:</strong> ", tide_df$v[tide_df$var == "air_pressure"],
+    " mbar (", round(conv_unit(as.numeric(tide_df$v[tide_df$var == "air_pressure"]), from="mbar", to="hPa"),1), " hPa)<br />",
+    "<strong>Visibility:</strong> ", tide_df$v[tide_df$var == "visibility"], " nmi (", 
+    round(conv_unit(as.numeric(tide_df$v[tide_df$var == "visibility"]), from="naut_mi", to="km"),1), " km)<br />",
+    "<strong>Relative humidity:</strong> ", tide_df$v[tide_df$var == "humidity"], " % <br />",
+    "<strong>Wind:</strong> from ", tide_df$dr[tide_df$var == "wind"], " (",
+    tide_df$d[tide_df$var == "wind"], " &deg;) at ", 
+    round(conv_unit(as.numeric(tide_df$s[tide_df$var == "wind"]), from="knot", to="mph"),1), "mph (",
+    round(conv_unit(as.numeric(tide_df$s[tide_df$var == "wind"]), from="knot", to="m_per_sec"),1), " m/s)<br />",
+    "<strong>Gusting to:</strong> ", round(conv_unit(as.numeric(tide_df$g[tide_df$var == "wind"]), from="knot", to="mph"),1), "mph (",
+    round(conv_unit(as.numeric(tide_df$g[tide_df$var == "wind"]), from="knot", to="m_per_sec"),1), " m/s)<br />",
+    "<strong>Water level:</strong> ", tide_df$v[tide_df$var == "water_level"], " ft (", 
+    round(conv_unit(as.numeric(tide_df$v[tide_df$var == "water_level"]), from="ft", to="m"),1), " m) ", tide_df$datum, "<br />",
+    "<strong>Water temperature:</strong> ", tide_df$v[tide_df$var == "water_temperature"],
+    " F (", round(conv_unit(as.numeric(tide_df$v[tide_df$var == "water_temperature"]), from="F", to="C"),1), " C)<br />",
+    "<strong>Conductivity:</strong> ", tide_df$v[tide_df$var == "conductivity"], " mS/cm <br />",
+    "<strong>Salinity:</strong> ", tide_df$v[tide_df$var == "salinity"], " PSU <br />"
+  )
+  
+  # Convert date and time to an R object
+  times = unique(tide_df$t)
+  datetime = as.POSIXlt(times[!is.na(times)], format="%Y-%M-%d %H:%M")
+  formatTime = format(datetime, "%b %d, %Y %I:%M")
+  
+  # Combine all tide info into one string in geojson format
+  jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', unique(tide_df$name), '", "id": "', unique(tide_df$id), 
+                    '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', unique(tide_df$id),
+                    '", "obs": "', obs, '", "time": "Last updated on ', formatTime, 
+                    ' LST", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_"', unique(tide_df$id), '.png"},',
+                    ' "geometry": {"type": "Point", "coordinates": [', as.numeric(unique(tide_df$lon)), ',', 
+                    as.numeric(unique(tide_df$lat)), ']}}')
+  
+  return(jsFormat)
+}
+
+##########################################################################
+##########################################################################
+#' Download and Plot recent and forecast NOAA Tide Station water levels
+#' 
+#' @param metaDat data.frame of metadata from one tide station. See collectTideIDs() output
+#' @param p.width Plot width in inches. Default: 4
+#' @param p.height Plot height in inches. Default: 2.5
+#' @param p.dir Output directory for plots to be saved in.
+#' @return plot saved in p.dir as Fig_<station ID>.png
+#
+# Additional information on inputs can be found on the CO-OP API at:
+# https://api.tidesandcurrents.noaa.gov/api/prod/
+# ------------------------------------------------------------------------
+
+tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
+  
+  # Determine midnight and noon for dates of this previous week
+  day <- -5:7
+  day_midnight <- as.POSIXct(paste0(Sys.Date() - day, "00:00"), 
+                             format = "%Y-%m-%d %H:%M", tz = "America/New_York")
+  day_noon <- as.POSIXct(paste0(Sys.Date() - day, "12:00"), 
+                         format = "%Y-%m-%d %H:%M", tz = "America/New_York")
+  
+  # Download the recent and forecast water levels
+  watLev = collectTideData(metaDat, vars="water_level", dates="recent")
+  forecast = collectTideData(metaDat, vars="ofs_water_level", 
+                             begin_date=format(Sys.Date(), "%Y%m%d"), 
+                             range=72)
+  
+  # Format the date/time into an R object
+  watLev$Date = as.POSIXct(watLev$t, format="%Y-%m-%d %H:%M", tz="")
+  forecast$Date = as.POSIXct(forecast$t, format="%Y-%m-%d %H:%M", tz="")
+  
+  # Find the range of both the time and values for plotting axis limits
+  timernge = range(c(watLev$Date, forecast$Date), na.rm = TRUE)
+  valrnge = range(c(as.numeric(watLev$v), as.numeric(forecast$v)), na.rm = TRUE) 
+  
+  ##create plot
+  png(file=paste0(p.dir, "Fig_", metaDat$id, ".png"), family="Helvetica", units="in", 
+      width=p.width, height=p.height, pointsize=14, res=300)
+  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
+  
+  if(length(watLev$v) == 1 && is.na(watLev$v)){ # If no data
+    plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
+    legend("center", "No data available", bg="white")
+    
+  } else { # if data
+    plot(0, type="n", ylab=paste0("Height (ft ", unique(watLev$datum), ")"), 
+         xlab="Local standard time", xaxt="n", xlim = timernge, ylim = valrnge) #klr changed m to ft
+    
+    # Add some nice gridding
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
+    axis(1, at=day_midnight, labels=FALSE, tick=TRUE)
+    axis(1, at=day_noon, labels=gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick=FALSE)
+    grid(NA, NULL, lty=6, col="gray")
+    abline(v=day_midnight, lty=6, col="gray")
+    
+    # Add the water level values and forecast line
+    lines(watLev$Date, as.numeric(watLev$v), lwd=2, col="steelblue")
+    lines(forecast$Date, as.numeric(forecast$v), lwd=2, lty=2, col="red")
+    abline(v=watLev$Date[length(watLev$Date)], lwd=2, col="black")
+    
+  }
+  dev.off()
 }
 
 ##########################################################################

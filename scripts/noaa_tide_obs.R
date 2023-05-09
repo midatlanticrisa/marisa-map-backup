@@ -2,13 +2,13 @@
 # Copyright 2017 The Pennsylvania State University
 #
 # Kelsey Ruckert (klr324@psu.edu)
-# Latest edit: May 4, 2023: Complete revamp of data download and buoy functions
-# Previous edit: Feb. 5, 2019: Extend country-wide
-# Previous edit: June 13, 2018
-# Previous edit: April 27, 2017
+# Latest edit: May 4, 2023: Complete revamp of data download and tide functions
+# prior edit: Jan 25, 2019: expanded to entire US
+# prior edit: June 18, 2018
+# prior edit: June 16, 2017
 #
-# This script parses txt meteorological data from National Data Buoy Center buoy 
-# stations and outputs the results in a single file.
+# This script parses XML data of 6-minute tide station observations from the
+# National Ocean and Atmospheric Administration.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,15 +28,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 # --------------------------------------------------------------------------------------------------------------------
-# https://www.ndbc.noaa.gov/docs/ndbc_web_data_guide.pdf
 # Ensure necessary packages are installed and loaded
-
 ptm <- proc.time()
-if (!require("RCurl")) { install.packages("RCurl") }
-if (!require("measurements")) { install.packages("measurements") }
+if (!require("data.table")) { install.packages("data.table") }
+if (!require("XML")) { install.packages("XML") }
+if (!require("httr")) { install.packages("httr") }
 
-library(RCurl)
-library(measurements)
+library(data.table)
+library(XML)
+library(httr)
 library(compiler)
 enableJIT(3)
 enableJIT(3)
@@ -61,33 +61,73 @@ enableJIT(3)
 
 inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
 outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
+plotDir <- paste0(outDir, "Tide_figs/")
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
-if (!dir.exists(outDir)){
+if (!file.exists(outDir)){
   dir.create(outDir, recursive=T)
+}
+
+if (!dir.exists(plotDir)){
+  dir.create(plotDir, recursive=T)
 }
 
 # Source functions
 source(paste0(inDir, "download_parse_functions.R"))
 
 # --------------------------------------------------------------------------------------------------------------------
-# Download NDBC buoys and keep only those in the MARISA region
-# bbox: c(Min LON, Max LON, Min LAT, Max LAT)
-bbox = c(-82.0, -73.0, 36.46, 43.75)
-buoy_data = collectBuoyData(bbox)
+# Load or download active NOAA tide station metadata for the MARISA region
+# Load if the file exists and is less than 24 hours old, otherwise
+# download the data. We should only need to do this once a day (24 hours) to capture new or 
+# get rid of nonactive stations.
+filenm = "NOAAtideIDs.txt"
 
-# Parse and format buoy information for each buoy downloaded
-formatBuoys = lapply(X=1:nrow(buoy_data), function(X){parseBuoyData(buoy_data[X,])})
-buoyDF = do.call(rbind.data.frame, formatBuoys) # list to data frame
-buoyString = paste(buoyDF[,1], collapse=",")
+# Time differences in mins
+if(file.exists(filenm) & (Sys.time() - file.info(filenm)$ctime) < (24*60)){
+  tideStations = read.table(filenm, header=TRUE)
+  
+} else {
+  bbox = c(-82.0, -73.0, 36.46, 43.75)
+  tideStations = collectTideIDs(filenm=filenm, bbox, returnIDs=TRUE)
+  
+}
+
+# --------------------------------------------------------------------------------------------------------------------
+# Coastal areas experience two high and two low tides every 24 hours and 50 mins. 
+# High tides occur 12 hours and 25 minutes apart. It takes six hours and 12.5 mins
+# for the water at the shore to go from high to low, or from low to high.
+# To account for tidal changes, we should only need to regenerate the plots every
+# 3 hours.
+# https://oceanservice.noaa.gov/education/tutorial_tides/tides05_lunarday.html
+
+# Time differences in mins
+if(all((Sys.time() - file.info(paste0(plotDir, list.files(plotDir)))$ctime) >= (3*60))){
+  
+  # Create the tidal plots with operational forecasts where available
+  lapply(X=1:nrow(tideStations), function(X){
+    tides_plot(tideStations[X, ], p.dir = plotDir)
+  })
+  
+}
+
+# --------------------------------------------------------------------------------------------------------------------
+# Download, parse, and format tide station information for each tide station
+formatTideStations = lapply(X=1:nrow(tideStations), function(X){
+  tide_data <- collectTideData(tideStations[X, ])
+  tide_format <- parseTideData(tide_data)
+  return(tide_format)
+  })
+# List to data frame
+tideDF = do.call(rbind.data.frame, formatTideStations) 
+tideString = paste(tideDF[,1], collapse=",")
 
 # Create a geojson object with the observation and statement info and merge into a
-# specific file format with Buoys as the variable name.
-json_merge = paste0('Buoys = {"type": "FeatureCollection","features": [', 
-                    buoyString, ']};')
+# specific file format with tideStations as the variable name.
+json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [', 
+                    tideString, ']};')
 
 # Export data to geojson.
-cat(json_merge, file=paste0(outDir, "NDBCbuoys.js"))
+cat(json_merge, file=paste0(outDir, "NOAATideStations.js"))
 # --------------------------------------------------------------------------------------------------------------------
 ptmEnd <- proc.time() - ptm
 ##########################################################################
