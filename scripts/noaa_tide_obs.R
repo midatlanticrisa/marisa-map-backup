@@ -9,6 +9,8 @@
 #
 # This script parses XML data of 6-minute tide station observations from the
 # National Ocean and Atmospheric Administration.
+# https://api.tidesandcurrents.noaa.gov/api/prod/
+# https://tidesandcurrents.noaa.gov/web_services_info.html
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +33,12 @@
 # Ensure necessary packages are installed and loaded
 ptm <- proc.time()
 if (!require("data.table")) { install.packages("data.table") }
+if (!require("xml2")) { install.packages("xml2") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
 
 library(data.table)
+library(xml2)
 library(XML)
 library(httr)
 library(compiler)

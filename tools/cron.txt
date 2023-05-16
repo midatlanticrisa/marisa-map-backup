@@ -1,2 +1,8 @@
-# Buoy data updated every 5 minutes on NDBC server. Ping the server every 6 minutes to get the latest data.
-*/6 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/ndbc_buoy_obs.R
+# Buoy data updated every 5 minutes on NDBC server. Ping the server every 5 minutes to get the latest data.
+*/5 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/ndbc_buoy_obs.R
+
+# Tide data updated every 6 minutes. Ping the server every 6 minutes to get the latest data. Figures will update every 3 hrs and active station ids every 24 hrs.
+*/6 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/noaa_tide_obs.R
+
+# NWS alerts are time sensitive. Ping the server every 2 minutes to get the latest data.
+*/2 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/nws_alerts.R

@@ -1,0 +1,455 @@
+code,county,state
+DEC001,Kent,DE
+DEC003,New Castle,DE
+DEC005,Sussex,DE
+DCC001,District of Columbia,DC
+MDC001,Allegany,MD
+MDC003,Anne Arundel,MD
+MDC005,Baltimore,MD
+MDC510,Baltimore City,MD
+MDC009,Calvert,MD
+MDC011,Caroline,MD
+MDC013,Carroll,MD
+MDC015,Cecil,MD
+MDC017,Charles,MD
+MDC019,Dorchester,MD
+MDC021,Frederick,MD
+MDC023,Garrett,MD
+MDC025,Harford,MD
+MDC027,Howard,MD
+MDC029,Kent,MD
+MDC031,Montgomery,MD
+MDC033,Prince Georges,MD
+MDC035,Queen Anne's,MD
+MDC039,Somerset,MD
+MDC037,St. Marys,MD
+MDC041,Talbot,MD
+MDC043,Washington,MD
+MDC045,Wicomico,MD
+MDC047,Worcester,MD
+NJC001,Atlantic,NJ
+NJC003,Bergen,NJ
+NJC005,Burlington,NJ
+NJC007,Camden,NJ
+NJC009,Cape May,NJ
+NJC011,Cumberland,NJ
+NJC013,Essex,NJ
+NJC015,Gloucester,NJ
+NJC017,Hudson,NJ
+NJC019,Hunterdon,NJ
+NJC021,Mercer,NJ
+NJC023,Middlesex,NJ
+NJC025,Monmouth,NJ
+NJC027,Morris,NJ
+NJC029,Ocean,NJ
+NJC031,Passaic,NJ
+NJC033,Salem,NJ
+NJC035,Somerset,NJ
+NJC037,Sussex,NJ
+NJC039,Union,NJ
+NJC041,Warren,NJ
+NYC001,Albany,NY
+NYC003,Allegany,NY
+NYC005,Bronx,NY
+NYC007,Broome,NY
+NYC009,Cattaraugus,NY
+NYC011,Cayuga,NY
+NYC013,Chautauqua,NY
+NYC015,Chemung,NY
+NYC017,Chenango,NY
+NYC019,Clinton,NY
+NYC021,Columbia,NY
+NYC023,Cortland,NY
+NYC025,Delaware,NY
+NYC027,Dutchess,NY
+NYC029,Erie,NY
+NYC031,Essex,NY
+NYC033,Franklin,NY
+NYC035,Fulton,NY
+NYC037,Genesee,NY
+NYC039,Greene,NY
+NYC041,Hamilton,NY
+NYC043,Herkimer,NY
+NYC045,Jefferson,NY
+NYC047,Kings,NY
+NYC049,Lewis,NY
+NYC051,Livingston,NY
+NYC053,Madison,NY
+NYC055,Monroe,NY
+NYC057,Montgomery,NY
+NYC059,Nassau,NY
+NYC061,New York,NY
+NYC063,Niagara,NY
+NYC065,Oneida,NY
+NYC067,Onondaga,NY
+NYC069,Ontario,NY
+NYC071,Orange,NY
+NYC073,Orleans,NY
+NYC075,Oswego,NY
+NYC077,Otsego,NY
+NYC079,Putnam,NY
+NYC081,Queens,NY
+NYC083,Rensselaer,NY
+NYC085,Richmond,NY
+NYC087,Rockland,NY
+NYC091,Saratoga,NY
+NYC093,Schenectady,NY
+NYC095,Schoharie,NY
+NYC097,Schuyler,NY
+NYC099,Seneca,NY
+NYC089,St. Lawrence,NY
+NYC101,Steuben,NY
+NYC103,Suffolk,NY
+NYC105,Sullivan,NY
+NYC107,Tioga,NY
+NYC109,Tompkins,NY
+NYC111,Ulster,NY
+NYC113,Warren,NY
+NYC115,Washington,NY
+NYC117,Wayne,NY
+NYC119,Westchester,NY
+NYC121,Wyoming,NY
+NYC123,Yates,NY
+OHC001,Adams,OH
+OHC003,Allen,OH
+OHC005,Ashland,OH
+OHC007,Ashtabula,OH
+OHC009,Athens,OH
+OHC011,Auglaize,OH
+OHC013,Belmont,OH
+OHC015,Brown,OH
+OHC017,Butler,OH
+OHC019,Carroll,OH
+OHC021,Champaign,OH
+OHC023,Clark,OH
+OHC025,Clermont,OH
+OHC027,Clinton,OH
+OHC029,Columbiana,OH
+OHC031,Coshocton,OH
+OHC033,Crawford,OH
+OHC035,Cuyahoga,OH
+OHC037,Darke,OH
+OHC039,Defiance,OH
+OHC041,Delaware,OH
+OHC043,Erie,OH
+OHC045,Fairfield,OH
+OHC047,Fayette,OH
+OHC049,Franklin,OH
+OHC051,Fulton,OH
+OHC053,Gallia,OH
+OHC055,Geauga,OH
+OHC057,Greene,OH
+OHC059,Guernsey,OH
+OHC061,Hamilton,OH
+OHC063,Hancock,OH
+OHC065,Hardin,OH
+OHC067,Harrison,OH
+OHC069,Henry,OH
+OHC071,Highland,OH
+OHC073,Hocking,OH
+OHC075,Holmes,OH
+OHC077,Huron,OH
+OHC079,Jackson,OH
+OHC081,Jefferson,OH
+OHC083,Knox,OH
+OHC085,Lake,OH
+OHC087,Lawrence,OH
+OHC089,Licking,OH
+OHC091,Logan,OH
+OHC093,Lorain,OH
+OHC095,Lucas,OH
+OHC097,Madison,OH
+OHC099,Mahoning,OH
+OHC101,Marion,OH
+OHC103,Medina,OH
+OHC105,Meigs,OH
+OHC107,Mercer,OH
+OHC109,Miami,OH
+OHC111,Monroe,OH
+OHC113,Montgomery,OH
+OHC115,Morgan,OH
+OHC117,Morrow,OH
+OHC119,Muskingum,OH
+OHC121,Noble,OH
+OHC123,Ottawa,OH
+OHC125,Paulding,OH
+OHC127,Perry,OH
+OHC129,Pickaway,OH
+OHC131,Pike,OH
+OHC133,Portage,OH
+OHC135,Preble,OH
+OHC137,Putnam,OH
+OHC139,Richland,OH
+OHC141,Ross,OH
+OHC143,Sandusky,OH
+OHC145,Scioto,OH
+OHC147,Seneca,OH
+OHC149,Shelby,OH
+OHC151,Stark,OH
+OHC153,Summit,OH
+OHC155,Trumbull,OH
+OHC157,Tuscarawas,OH
+OHC159,Union,OH
+OHC161,Van Wert,OH
+OHC163,Vinton,OH
+OHC165,Warren,OH
+OHC167,Washington,OH
+OHC169,Wayne,OH
+OHC171,Williams,OH
+OHC173,Wood,OH
+OHC175,Wyandot,OH
+PAC001,Adams,PA
+PAC003,Allegheny,PA
+PAC005,Armstrong,PA
+PAC007,Beaver,PA
+PAC009,Bedford,PA
+PAC011,Berks,PA
+PAC013,Blair,PA
+PAC015,Bradford,PA
+PAC017,Bucks,PA
+PAC019,Butler,PA
+PAC021,Cambria,PA
+PAC023,Cameron,PA
+PAC025,Carbon,PA
+PAC027,Centre,PA
+PAC029,Chester,PA
+PAC031,Clarion,PA
+PAC033,Clearfield,PA
+PAC035,Clinton,PA
+PAC037,Columbia,PA
+PAC039,Crawford,PA
+PAC041,Cumberland,PA
+PAC043,Dauphin,PA
+PAC045,Delaware,PA
+PAC047,Elk,PA
+PAC049,Erie,PA
+PAC051,Fayette,PA
+PAC053,Forest,PA
+PAC055,Franklin,PA
+PAC057,Fulton,PA
+PAC059,Greene,PA
+PAC061,Huntingdon,PA
+PAC063,Indiana,PA
+PAC065,Jefferson,PA
+PAC067,Juniata,PA
+PAC069,Lackawanna,PA
+PAC071,Lancaster,PA
+PAC073,Lawrence,PA
+PAC075,Lebanon,PA
+PAC077,Lehigh,PA
+PAC079,Luzerne,PA
+PAC081,Lycoming,PA
+PAC083,McKean,PA
+PAC085,Mercer,PA
+PAC087,Mifflin,PA
+PAC089,Monroe,PA
+PAC091,Montgomery,PA
+PAC093,Montour,PA
+PAC095,Northampton,PA
+PAC097,Northumberland,PA
+PAC099,Perry,PA
+PAC101,Philadelphia,PA
+PAC103,Pike,PA
+PAC105,Potter,PA
+PAC107,Schuylkill,PA
+PAC109,Snyder,PA
+PAC111,Somerset,PA
+PAC113,Sullivan,PA
+PAC115,Susquehanna,PA
+PAC117,Tioga,PA
+PAC119,Union,PA
+PAC121,Venango,PA
+PAC123,Warren,PA
+PAC125,Washington,PA
+PAC127,Wayne,PA
+PAC129,Westmoreland,PA
+PAC131,Wyoming,PA
+PAC133,York,PA
+VAC001,Accomack,VA
+VAC003,Albemarle,VA
+VAC005,Alleghany,VA
+VAC007,Amelia,VA
+VAC009,Amherst,VA
+VAC011,Appomattox,VA
+VAC013,Arlington,VA
+VAC015,Augusta,VA
+VAC017,Bath,VA
+VAC019,Bedford,VA
+VAC021,Bland,VA
+VAC023,Botetourt,VA
+VAC025,Brunswick,VA
+VAC027,Buchanan,VA
+VAC029,Buckingham,VA
+VAC031,Campbell,VA
+VAC033,Caroline,VA
+VAC035,Carroll,VA
+VAC036,Charles City,VA
+VAC037,Charlotte,VA
+VAC041,Chesterfield,VA
+VAC510,City of Alexandria,VA
+VAC520,City of Bristol,VA
+VAC530,City of Buena Vista,VA
+VAC540,City of Charlottesville,VA
+VAC550,City of Chesapeake,VA
+VAC570,City of Colonial Heights,VA
+VAC580,City of Covington,VA
+VAC590,City of Danville,VA
+VAC595,City of Emporia,VA
+VAC600,City of Fairfax,VA
+VAC610,City of Falls Church,VA
+VAC620,City of Franklin,VA
+VAC630,City of Fredericksburg,VA
+VAC640,City of Galax,VA
+VAC650,City of Hampton,VA
+VAC660,City of Harrisonburg,VA
+VAC670,City of Hopewell,VA
+VAC678,City of Lexington,VA
+VAC680,City of Lynchburg,VA
+VAC683,City of Manassas,VA
+VAC685,City of Manassas Park,VA
+VAC690,City of Martinsville,VA
+VAC700,City of Newport News,VA
+VAC710,City of Norfolk,VA
+VAC720,City of Norton,VA
+VAC730,City of Petersburg,VA
+VAC735,City of Poquoson,VA
+VAC740,City of Portsmouth,VA
+VAC750,City of Radford,VA
+VAC760,City of Richmond,VA
+VAC770,City of Roanoke,VA
+VAC775,City of Salem,VA
+VAC790,City of Staunton,VA
+VAC800,City of Suffolk,VA
+VAC810,City of Virginia Beach,VA
+VAC820,City of Waynesboro,VA
+VAC830,City of Williamsburg,VA
+VAC840,City of Winchester,VA
+VAC043,Clarke,VA
+VAC045,Craig,VA
+VAC047,Culpeper,VA
+VAC049,Cumberland,VA
+VAC051,Dickenson,VA
+VAC053,Dinwiddie,VA
+VAC057,Essex,VA
+VAC059,Fairfax,VA
+VAC061,Fauquier,VA
+VAC063,Floyd,VA
+VAC065,Fluvanna,VA
+VAC067,Franklin,VA
+VAC069,Frederick,VA
+VAC071,Giles,VA
+VAC073,Gloucester,VA
+VAC075,Goochland,VA
+VAC077,Grayson,VA
+VAC079,Greene,VA
+VAC081,Greensville,VA
+VAC083,Halifax,VA
+VAC085,Hanover,VA
+VAC087,Henrico,VA
+VAC089,Henry,VA
+VAC091,Highland,VA
+VAC093,Isle of Wight,VA
+VAC095,James City,VA
+VAC099,King George,VA
+VAC101,King William,VA
+VAC097,King and Queen,VA
+VAC103,Lancaster,VA
+VAC105,Lee,VA
+VAC107,Loudoun,VA
+VAC109,Louisa,VA
+VAC111,Lunenburg,VA
+VAC113,Madison,VA
+VAC115,Mathews,VA
+VAC117,Mecklenburg,VA
+VAC119,Middlesex,VA
+VAC121,Montgomery,VA
+VAC125,Nelson,VA
+VAC127,New Kent,VA
+VAC131,Northampton,VA
+VAC133,Northumberland,VA
+VAC135,Nottoway,VA
+VAC137,Orange,VA
+VAC139,Page,VA
+VAC141,Patrick,VA
+VAC143,Pittsylvania,VA
+VAC145,Powhatan,VA
+VAC147,Prince Edward,VA
+VAC149,Prince George,VA
+VAC153,Prince William,VA
+VAC155,Pulaski,VA
+VAC157,Rappahannock,VA
+VAC159,Richmond,VA
+VAC161,Roanoke,VA
+VAC163,Rockbridge,VA
+VAC165,Rockingham,VA
+VAC167,Russell,VA
+VAC169,Scott,VA
+VAC171,Shenandoah,VA
+VAC173,Smyth,VA
+VAC175,Southampton,VA
+VAC177,Spotsylvania,VA
+VAC179,Stafford,VA
+VAC181,Surry,VA
+VAC183,Sussex,VA
+VAC185,Tazewell,VA
+VAC187,Warren,VA
+VAC191,Washington,VA
+VAC193,Westmoreland,VA
+VAC195,Wise,VA
+VAC197,Wythe,VA
+VAC199,York,VA
+WVC001,Barbour,WV
+WVC003,Berkeley,WV
+WVC005,Boone,WV
+WVC007,Braxton,WV
+WVC009,Brooke,WV
+WVC011,Cabell,WV
+WVC013,Calhoun,WV
+WVC015,Clay,WV
+WVC017,Doddridge,WV
+WVC019,Fayette,WV
+WVC021,Gilmer,WV
+WVC023,Grant,WV
+WVC025,Greenbrier,WV
+WVC027,Hampshire,WV
+WVC029,Hancock,WV
+WVC031,Hardy,WV
+WVC033,Harrison,WV
+WVC035,Jackson,WV
+WVC037,Jefferson,WV
+WVC039,Kanawha,WV
+WVC041,Lewis,WV
+WVC043,Lincoln,WV
+WVC045,Logan,WV
+WVC049,Marion,WV
+WVC051,Marshall,WV
+WVC053,Mason,WV
+WVC047,McDowell,WV
+WVC055,Mercer,WV
+WVC057,Mineral,WV
+WVC059,Mingo,WV
+WVC061,Monongalia,WV
+WVC063,Monroe,WV
+WVC065,Morgan,WV
+WVC067,Nicholas,WV
+WVC069,Ohio,WV
+WVC071,Pendleton,WV
+WVC073,Pleasants,WV
+WVC075,Pocahontas,WV
+WVC077,Preston,WV
+WVC079,Putnam,WV
+WVC081,Raleigh,WV
+WVC083,Randolph,WV
+WVC085,Ritchie,WV
+WVC087,Roane,WV
+WVC089,Summers,WV
+WVC091,Taylor,WV
+WVC093,Tucker,WV
+WVC095,Tyler,WV
+WVC097,Upshur,WV
+WVC099,Wayne,WV
+WVC101,Webster,WV
+WVC103,Wetzel,WV
+WVC105,Wirt,WV
+WVC107,Wood,WV
+WVC109,Wyoming,WV
