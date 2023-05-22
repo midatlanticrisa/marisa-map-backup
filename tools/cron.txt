@@ -6,3 +6,6 @@
 
 # NWS alerts are time sensitive. Ping the server every 2 minutes to get the latest data.
 */2 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/nws_alerts.R
+
+# NWS river gauges updated every 15 minutes. Ping the server every 15 minutes to get the latest data. Figures will update every 1 hrs.
+*/15 * * * * cd /home/staff/mdl5548/map_data/; Rscript /home/staff/mdl5548/map_data/nws_ahps_river_obs.R

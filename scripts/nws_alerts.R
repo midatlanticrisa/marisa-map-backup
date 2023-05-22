@@ -41,7 +41,7 @@ enableJIT(3)
 enableJIT(3)
 
 inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
-dataDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/data/"
+dataDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/resources/"
 outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist

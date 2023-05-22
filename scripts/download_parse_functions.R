@@ -15,6 +15,20 @@ library(sf)
 library(geojsonsf)
 # Weather observations
 # Stream gauges
+library(geojsonio)
+
+##########################################################################
+##########################################################################
+# Transparent Color Function 
+makeTransparent <- function(someColor, alpha=100){
+  newColor<-col2rgb(someColor)
+  apply(newColor,2 ,
+        function(curcoldata)
+        {rgb(red=curcoldata[1],
+             green=curcoldata[2],
+             blue=curcoldata[3], alpha=alpha,
+             maxColorValue=255)})
+}
 
 ##########################################################################
 ##########################################################################
@@ -627,6 +641,344 @@ collectWarningsAlerts = function(area = NULL, colorfile, cntyShp, coastalShp,
   
 }
 
+##########################################################################
+##########################################################################
+#' Download NWS Advanced Hydrologic Prediction Service (AHPS) River Gauge 
+#'   Observations
+#' 
+#' @param bbox Boundary extent for river gauges to return. 
+#'   Format = c('xmin','ymin','xmax','ymax'). Default: NULL; all river gauges
+#' @param downDir path name of directory for the data to download to.
+#' @param outfile path/file name of geojson file of current observations
+#' @return sf object of current observations for the region of interest.
+#
+# The most recent observation from all river gauges hosted on the NWS web site 
+# are updated approximately every 15 minutes.
+# https://water.weather.gov/ahps/download.php
+# ------------------------------------------------------------------------
+collectRiverData = function(bbox=NULL, downDir, outfile){
+  
+  # Download the current observed AHPS river gauge observations and flood stages
+  # The resulting shapefile is zipped.
+  # https://water.weather.gov/ahps/download.php
+  download.file("https://water.weather.gov/ahps/download.php?data=tgz_obs", 
+                destfile=paste0(downDir, "ahps_shp.tgz"))
+  
+  # Create a directory to save the zipped contents into, if the directory doesn't
+  # already exist.
+  zipDir = paste0(downDir, "ahps_shp/")
+  if (!file.exists(zipDir)){
+    dir.create(zipDir, recursive=T)
+  }
+  
+  # Unzip the contents
+  system(paste0("tar -zxvf ", downDir, "ahps_shp.tgz -C ", zipDir))
+  
+  # Read in the shapefile and convert the coordinate system to 
+  # WGS84 for consistency with web mapping 
+  ahps <- vect(paste0(zipDir, "national_shapefile_obs.shp"))
+  crs(ahps) <- "EPSG:4326"
+  
+  # Return a subset of gauges or all gauges?
+  if(is.null(bbox)){
+    streams <- ahps
+    
+  } else {
+    # bbox: c('xmin','ymin','xmax','ymax')
+    streams <- ahps[ahps$Longitude >= bbox[1] & 
+                      ahps$Longitude <= bbox[2] & 
+                      ahps$Latitude >= bbox[3] & 
+                      ahps$Latitude <= bbox[4], ]
+  }
+  
+  # Convert SpatVec object to an sf object and save as a geojson file.
+  # SpatVec objects cannot be directly converted to geojson.
+  spatVect_sf <- st_as_sf(streams)
+  cat(as.character(geojson_json(spatVect_sf)), file = outfile)
+  
+  return(spatVect_sf)
+}
+
+##########################################################################
+##########################################################################
+#' Download NWS Advanced Hydrologic Prediction Service (AHPS) River Gauge 
+#'   Observations
+#' 
+#' @param bbox Boundary extent for river gauges to return. 
+#'   Format = c('xmin','ymin','xmax','ymax'). Default: NULL; all river gauges
+#' @param downDir path name of directory for the data to download to.
+#' @param outfile path/file name of geojson file of current observations
+#' @return sf object of current observations for the region of interest.
+#
+# The most recent observation from all river gauges hosted on the NWS web site 
+# are updated approximately every 15 minutes.
+# https://water.weather.gov/ahps/download.php
+# ------------------------------------------------------------------------
+# days [1:14]
+collectRiverForecast = function(bbox=NULL, days=2, downDir){
+  
+  hours = days*24
+  hours = ifelse(nchar(hours) < 3, paste0(0, hours), hours)
+
+  # Download the current observed AHPS river gauge observations and flood stages
+  # The resulting shapefile is zipped.
+  # https://water.weather.gov/ahps/download.php
+  download.file(paste0("https://water.weather.gov/ahps/download.php?data=tgz_fcst_f", hours), 
+                destfile=paste0(downDir, "forecast_shp.tgz"))
+  
+  # Create a directory to save the zipped contents into, if the directory doesn't
+  # already exist.
+  zipDir = paste0(downDir, "forecast_shp/")
+  if (!file.exists(zipDir)){
+    dir.create(zipDir, recursive=T)
+  }
+  
+  # Unzip the contents
+  system(paste0("tar -zxvf ", downDir, "forecast_shp.tgz -C ", zipDir))
+  
+  # Read in the shapefile and convert the coordinate system to 
+  # WGS84 for consistency with web mapping 
+  ahps <- vect(paste0(zipDir, "national_shapefile_fcst_f", hours, ".shp"))
+  crs(ahps) <- "EPSG:4326"
+  
+  # Return a subset of gauges or all gauges?
+  if(is.null(bbox)){
+    streams <- ahps
+    
+  } else {
+    # bbox: c('xmin','ymin','xmax','ymax')
+    streams <- ahps[ahps$Longitude >= bbox[1] & 
+                      ahps$Longitude <= bbox[2] & 
+                      ahps$Latitude >= bbox[3] & 
+                      ahps$Latitude <= bbox[4], ]
+  }
+  
+  # Convert SpatVec object to an sf object and save as a geojson file.
+  # SpatVec objects cannot be directly converted to geojson.
+  spatVect_sf <- st_as_sf(streams)
+  
+  # Create a list of the current observations for each river gauge to keep a 
+  # record of observations on file. This will be used for plots.
+  riverFor = lapply(X = 1:nrow(spatVect_sf), 
+                    function(X){
+                      list(ID = spatVect_sf$GaugeLID[X], 
+                           loc = spatVect_sf$Location[X], 
+                           lat = spatVect_sf$Latitude[X], 
+                           lon = spatVect_sf$Longitude[X], 
+                           forecast = data.frame(time = spatVect_sf$FcstTime[X], 
+                                            height = spatVect_sf$Forecast[X], 
+                                            discharge = spatVect_sf$SecValue[X]))
+                    })
+  names(riverFor) = spatVect_sf$GaugeLID
+  return(riverFor)
+}
+
+##########################################################################
+##########################################################################
+#' Create a record of observations
+#' 
+#' @param currentObs List of current observations. Observations and observation 
+#'   times must follow the format: ObsRecord[[i]]$obs and ObsRecord[[i]]$obs$time.
+#' @param recordFile String of Rdata file path/name to save records to.
+#' @param keep number of days to record in the past. Default: 7; keeps the past 
+#'   7 days of observations.
+#' @param end_date POSIXct or POSIXt date time object to determine the last time 
+#'   in the range with \code{keep} to record. Default: Sys.time(); the current 
+#'   date time.
+#' @param tz String designating timezone.
+#' @return List of station/gauge observations for the past \code{keep} number of 
+#'   days saved as \code{recordFile}.
+#'   
+# ------------------------------------------------------------------------
+recordData = function(currentObs, recordFile, keep = 7, end_date = Sys.time(), 
+                      tz, return.val=FALSE){
+  
+  # Convert number of days to keep to seconds
+  keepSec = keep*86400 # 60 secs * 60 mins * 24 hrs
+  start_date = end_date - keepSec
+  
+  # Check if a record file already exists. If it does not, create one
+  if(file.exists(recordFile)){
+    
+    # Load the records
+    load(recordFile)
+    
+    # Loop through each gauge or station
+    for(i in names(ObsRecord)){
+      
+      # Convert observation time to R time and evaluate if any dates are older
+      # than the time we want to record.
+      obstime = as.POSIXlt(ObsRecord[[i]]$obs$time, tz = tz, 
+                           format = "%Y-%m-%d %H:%M:%S")
+      ind = which(obstime < start_date)
+      
+      # Remove any old records 
+      if(length(ind) >  0){
+        ObsRecord[[i]]$obs = ObsRecord[[i]]$obs[-ind, ]
+      }
+      
+      # Append new records
+      ObsRecord[[i]]$obs = rbind(ObsRecord[[i]]$obs, currentObs[[i]]$obs)
+    }
+    
+    # Save changes to the Rdata file
+    save("ObsRecord", file = recordFile)
+    
+  }else{
+    
+    # Create a file with current observation records
+    ObsRecord = currentObs
+    save("ObsRecord", file = recordFile)
+  }
+  if(return.val){
+    return(ObsRecord)
+  }
+}
+
+##########################################################################
+##########################################################################
+#' Download and Plot recent and forecast NOAA Tide Station water levels
+#' 
+#' @param metaList List of metadata and observation record from one river gauge.
+#' @param p.width Plot width in inches. Default: 4
+#' @param p.height Plot height in inches. Default: 2.5
+#' @param p.dir Output directory for plots to be saved in.
+#' @return plot saved in p.dir as Fig_<station ID>.png
+#
+# Additional information on inputs can be found on the CO-OP API at:
+# https://api.tidesandcurrents.noaa.gov/api/prod/
+# ------------------------------------------------------------------------
+
+river_plot <- function(metaList, keep = 7, end_date = Sys.time(), tz, 
+                       p.tz="America/New_York",
+                       p.width = 4, p.height = 2.5, p.dir){
+  
+  # Set flood stage colors
+  act.col = makeTransparent("#FEFF72", 150)
+  min.col = makeTransparent("#FFC672", 150)
+  mod.col = makeTransparent("#FF7272", 150)
+  maj.col = makeTransparent("#E28EFF", 150)
+  
+  # Determine midnight and noon for the record period
+  day_midnight <- as.POSIXct(paste0(Sys.Date() - keep:1, "00:00:00"), 
+                             format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
+  day_noon <- as.POSIXct(paste0(Sys.Date() - keep:1, "12:00:00"), 
+                         format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
+  
+  # Convert number of days to keep to seconds
+  keepSec = keep*86400 # 60 secs * 60 mins * 24 hrs
+  start_date = end_date - keepSec
+  
+  # Convert observation time to R time and evaluate if any dates are older
+  # than the time we want to record.
+  obstime = as.POSIXct(metaList$obs$time, format = "%Y-%m-%d %H:%M:%S", tz = tz)
+  obstime = format(obstime, tz=p.tz)
+  metaList$obs$time = obstime
+  ind = which(obstime < start_date)
+  
+  # Remove any old records 
+  if(length(ind) >  0){
+    metaList$obs = metaList$obs[-ind, ]
+  }
+  
+  # Convert any missing values to NA
+  metaList$obs[metaList$obs == "-999.00"]=NA
+
+  # Create plot
+  png(file=paste0(p.dir, "Fig_", metaList$ID, ".png"), family="Helvetica", units="in", 
+      width=p.width, height=p.height, pointsize=12, res=300)
+  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(1.75,2.5,0.25,3))
+  
+  if(all(is.na(as.numeric(metaList$obs$height))) && 
+     all(is.na(as.numeric(metaList$obs$discharge)))){ # If no data
+    plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
+    legend("center", "No data available", bg="white")
+    
+  } else if(!all(is.na(as.numeric(metaList$obs$height))) && 
+            all(is.na(as.numeric(metaList$obs$discharge)))){ # if height but no discharge
+    
+    # Add gage height data
+    plot(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$height), typ="n",
+         ylab="", xlab="", xaxt="n", las=2)
+    mtext(2, text="Gage height (ft)", line=1.5)
+    
+    # Add some nice gridding
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+    axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
+    axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
+    # grid(NA, NULL, lty = 6, col = "gray")
+    abline(v = day_midnight, lty = 6, col = "gray")
+    
+    # Add flood stage information
+    rect(par("usr")[1], metaList$action, par("usr")[2], metaList$minor, col = act.col)
+    rect(par("usr")[1], metaList$minor, par("usr")[2], metaList$mod, col = min.col)
+    rect(par("usr")[1], metaList$mod, par("usr")[2], metaList$major, col = mod.col)
+    rect(par("usr")[1], metaList$major, par("usr")[2], par("usr")[4], col = maj.col)
+    
+    text(par("usr")[1], metaList$action, "Action", adj = c(0,0))
+    text(par("usr")[1], metaList$minor, "Minor", adj = c(0,0))
+    text(par("usr")[1], metaList$mod, "Moderate", adj = c(0,0))
+    text(par("usr")[1], metaList$major, "Major", adj = c(0,0))
+    
+    lines(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$height), 
+          lwd=2)
+    
+    } else if(all(is.na(as.numeric(metaList$obs$height))) && 
+              !all(is.na(as.numeric(metaList$obs$discharge)))){ # if discharge but no height
+      
+      plot(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$discharge), 
+           type = "n", ylab = "", xlab="", xaxt="n", yaxt="n")
+      axis(4, col="#018571", col.ticks="#018571", col.axis="#018571", las=2)
+      mtext(4, text=expression("Discharge"~(ft^3/s)), line=2, col="#018571")
+      
+      # Add some nice gridding
+      rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+      axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
+      axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
+      # grid(NA, NULL, lty = 6, col = "gray")
+      abline(v = day_midnight, lty = 6, col = "gray")
+      
+      lines(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$discharge), 
+            lwd=2, col="#018571")
+      
+      } else { # Create discharge and gage height plot.
+    # Add gage height data
+    plot(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$height), typ="n",
+         ylab="", xlab="", xaxt="n", las=2)
+    mtext(2, text="Gage height (ft)", line=1.5)
+    
+    # Add some nice gridding
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
+    axis(1, at = day_midnight, labels = FALSE, tick = TRUE)
+    axis(1, at = day_noon, labels = gsub("0(\\d)", "\\1", format(day_noon, "%m/%d")), tick = FALSE)
+    # grid(NA, NULL, lty = 6, col = "gray")
+    abline(v = day_midnight, lty = 6, col = "gray")
+    
+    # Add flood stage information
+    rect(par("usr")[1], metaList$action, par("usr")[2], metaList$minor, col = act.col)
+    rect(par("usr")[1], metaList$minor, par("usr")[2], metaList$mod, col = min.col)
+    rect(par("usr")[1], metaList$mod, par("usr")[2], metaList$major, col = mod.col)
+    rect(par("usr")[1], metaList$major, par("usr")[2], par("usr")[4], col = maj.col)
+    
+    text(par("usr")[1], metaList$action, "Action", adj = c(0,0))
+    text(par("usr")[1], metaList$minor, "Minor", adj = c(0,0))
+    text(par("usr")[1], metaList$mod, "Moderate", adj = c(0,0))
+    text(par("usr")[1], metaList$major, "Major", adj = c(0,0))
+    
+    lines(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$height), 
+          lwd=2)
+    
+    # Add the discharge data
+    par(new=TRUE)
+    plot(as.POSIXct(metaList$obs$time), as.numeric(metaList$obs$discharge), 
+         type = "l", lwd=2, col="#018571", ylab = "", xlab="", xaxt="n", yaxt="n")
+    axis(4, col="#018571", col.ticks="#018571", col.axis="#018571", las=2)
+    mtext(4, text=expression("Discharge"~(ft^3/s)), line=2, col="#018571")
+    
+  }
+  dev.off()
+}
 ##########################################################################
 ##########################################################################
 ##a function to retry running a function if there is an error
