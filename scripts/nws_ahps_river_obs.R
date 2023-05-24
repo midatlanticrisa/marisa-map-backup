@@ -42,9 +42,13 @@ enableJIT(3)
 enableJIT(3)
 
 inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
-downDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/resources/"
+downDir <- "/Users/klr324/Documents/Github/marisa-map-backup/resources/"
 outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
+outDir <- getwd()
 plotDir <- paste0(outDir, "River_figs/")
+
+# Should you record the current observations
+recordObservations <- FALSE
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 if (!file.exists(outDir)){
@@ -65,66 +69,42 @@ bbox = c(-82.0, -73.0, 36.46, 43.75)
 river_sf = collectRiverData(bbox, downDir, 
                             outfile=paste0(outDir, "NWSRiverGauges.geojson"))
 
-# # Get forecasts TO DO
-# read.table("https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=parp1&output=tabular", 
-#            skip=10)
-# 
-# download.file("https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=parp1&output=tabular", 
-#               destfile="for.txt")
-# 
-# file = readLines("https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=parp1&output=tabular")
-# 
-# riverFor = lapply(1:14, function(day){collectRiverForecast(bbox, days=day, downDir)})
-# 
-# # Combine forecasts
-# forecast = riverFor[[1]]
-# for(i in names(forecast)){
-#   forecast[[i]]$forecast = do.call(rbind.data.frame, 
-#                                    lapply(X=1:length(riverFor), 
-#                                           function(X){riverFor[[X]][[i]]$forecast}))
-#   
-# }
-
-# Create a list of the current observations for each river gauge to keep a 
-# record of observations on file. This will be used for plots.
-riverObs = lapply(X = 1:nrow(river_sf), 
-                   function(X){
-                     list(ID = river_sf$GaugeLID[X], 
-                          loc = river_sf$Location[X], 
-                          lat = river_sf$Latitude[X], 
-                          lon = river_sf$Longitude[X], 
-                          action = river_sf$Action[X], 
-                          minor = river_sf$Flood[X], 
-                          mod = river_sf$Moderate[X], 
-                          major = river_sf$Major[X], 
-                          obs = data.frame(time = river_sf$ObsTime[X], 
-                                           height = river_sf$Observed[X], 
-                                           discharge = river_sf$SecValue[X]))
-                   })
-names(riverObs) = river_sf$GaugeLID
-
-# Save the current observations to a file recording the past 7 days of observations
-recordedObs = recordData(currentObs = riverObs, 
-           recordFile = paste0(outDir, "riverObsRecord.RData"), tz = "GMT", 
-           return.val=TRUE)
-
 # --------------------------------------------------------------------------------------------------------------------
-# Create plots every hour
-
-# Time differences in mins
-if(all((Sys.time() - file.info(paste0(plotDir, list.files(plotDir)))$ctime) >= (1*60))){
+if(recordObservations){
+  # Create a list of the current observations for each river gauge to keep a 
+  # record of observations on file. This will be used for plots.
+  riverObs = lapply(X = 1:nrow(river_sf), 
+                    function(X){
+                      list(ID = river_sf$GaugeLID[X], 
+                           loc = river_sf$Location[X], 
+                           lat = river_sf$Latitude[X], 
+                           lon = river_sf$Longitude[X], 
+                           action = river_sf$Action[X], 
+                           minor = river_sf$Flood[X], 
+                           mod = river_sf$Moderate[X], 
+                           major = river_sf$Major[X], 
+                           obs = data.frame(time = river_sf$ObsTime[X], 
+                                            height = river_sf$Observed[X], 
+                                            discharge = river_sf$SecValue[X]))
+                    })
+  names(riverObs) = river_sf$GaugeLID
   
-  load(paste0(outDir, "riverObsRecord.RData"))
-  
-  # Create the tidal plots with operational forecasts where available
-  lapply(X=1:length(recordedObs), function(X){
-    river_plot(recordedObs[[X]], keep = 7, end_date = Sys.time(), tz="GMT", 
-               p.tz="America/New_York",
-               p.width = 4, p.height = 2.5, p.dir = plotDir)
-  })
-  
+  # Save the current observations to a file recording the past 7 days of observations
+  recordedObs = recordData(currentObs = riverObs, 
+                           recordFile = paste0(outDir, "riverObsRecord.RData"), tz = "GMT", 
+                           return.val=TRUE)
 }
 
+# --------------------------------------------------------------------------------------------------------------------
+# Download forecasts and past observations
+plotData = lapply(X = river_sf$GaugeLID, function(X){collectRiverForecast(X)})
+
+# Create the plots with operational forecasts where available
+lapply(X=1:length(plotData), function(X){
+  river_plot(plotData[[X]], tz="UTC", 
+             p.tz="America/New_York",
+             p.width = 4, p.height = 2.5, p.dir = plotDir)
+})
 
 # --------------------------------------------------------------------------------------------------------------------
 ptmEnd <- proc.time() - ptm

@@ -1,3 +1,7 @@
+plots/
+resources/ahps_shp/
+resources/ahps_shp.tgz
+
 .DS_Store
 
 # History files

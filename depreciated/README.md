@@ -1,40 +1,11 @@
-*updated: 22 May, 2023*
+*updated: 16 Aug., 2019*
 
-# The MARISA RealTime Data Map
+# Managing the MARISA Web-map
 The [Climate Data Portal](https://www.marisa.psu.edu) for the NOAA Mid-Atlantic Regional Integrated Sciences and Assessments ([MARISA](https://www.midatlanticrisa.org)) provides users with a common entry point for accessing and visualizing a selection of Earth system and natural hazard data sources curated for their relevance to the Mid-Atlantic region, with a particular focus on the Chesapeake Bay watershed.
 
-A key feature of the portal is an interactive, web-based map ([https://www.marisa.psu.edu/rtdatamap/](https://www.marisa.psu.edu/rtdatamap/)) containing real-time observations to provide a picture of meteorological and hydrological conditions in the Mid-Atlantic region. The map was developed for public engagement and also to help more advanced users in the region by simplifying access to information from multiple data sources. The map is also designed to help support evidence-based decisionmaking for a variety of contexts ranging from outdoor recreation to municipal and business planning, science, and education.
+A key feature of the portal is an interactive, web-based map ([www.marisa.psu.edu/map](www.marisa.psu.edu/map)) containing real-time observations to provide a picture of meteorological and hydrological conditions in the Mid-Atlantic region. The map is being developed for public engagement and also to help more advanced users in the region by simplifying access to information and delivering data in an understandable way. The map will also be designed to help support evidence-based decisionmaking for a variety of contexts ranging from outdoor recreation to municipal and business planning, science, and education.
 
-## Requirements
 The web-map is written using the [Leaflet JavaScript library](https://leafletjs.com), which is an open-source library for building interactive web mapping applications. It is both mobile and desktop friendly. The real-time observations are stored in JS, JSON, and GeoJSON files and loaded to the website in the _includes/leaflet.html file within the marisa-cdp GitHub repository. These files include static and dynamic data.
-
-The backend is written in R and are automated to run on a schedule using cron jobs. The scripts are located in ~/map_data/ of idocrase.geosc.psu.edu and the output is sent to ~/marisa.psu.edu/mapdata where the output is loaded to the website via URLs.
-
-R libraries:
-
-* RCurl
-* measurements
-* xml2
-* httr
-* XML
-* data.table
-* jsonlite
-* terra
-* sf
-* geojsonsf
-* geojsonio
-
-## Organization
-
-* scripts Folder: The backend source code folder! Contains all the files and functions to download and parse the source data.
-* test Folder: Test files for development.
-* dep Folder: This is the directory where all your dependencies should be stored.
-* doc Folder: The documentation folder
-* resources Folder: Static resources in your project. For example, icon images, shapefiles, climate division files.
-* output_examples Folder: Providing “Hello World” & Co code that supports the documentation.
-* tools Folder: Cron file which automates the downloading of data.
-
-
 
 | Data | File (~/marisa.psu.edu/mapdata/) | Script (~/map\_data) | Extent | Source | Notes |
 | ---- | ---- | ------ | ------ | ------ | ----- |
@@ -90,4 +61,4 @@ Kelsey Ruckert (klr324@psu.edu)
 Rob Nicholas (ren10@psu.edu)
 
 # marisa-map-backup
-Backup scripts and static data for the interactive web-map at https://www.marisa.psu.edu/rtdatamap/
+Backup scripts and static data for the interactive web-map at www.marisa.psu.edu/map
