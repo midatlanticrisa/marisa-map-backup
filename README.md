@@ -26,23 +26,29 @@ R libraries:
 
 ## Organization
 
-* scripts Folder: The backend source code folder! Contains all the files and functions to download and parse the source data.
-* test Folder: Test files for development.
-* dep Folder: This is the directory where all your dependencies should be stored.
-* doc Folder: The documentation folder
-* resources Folder: Static resources in your project. For example, icon images, shapefiles, climate division files.
-* output_examples Folder: Providing “Hello World” & Co code that supports the documentation.
-* tools Folder: Cron file which automates the downloading of data.
+* **scripts Folder**: The backend source code folder! Contains all the files and functions to download and parse the source data.
+* **test Folder**: Test files for development.
+* **dependencies Folder**: Directory of dependencies.
+* **depreciated Folder**: Old, unused scripts and files.
+* **doc Folder**: The documentation folder
+* **resources Folder**: Static resources in your project. For example, icon images, shapefiles, climate division files.
+* **output_examples Folder**: Provides examples of the outputs from the scripts in the scripts Folder.
+* **tools Folder**: Cron file which automates the downloading of data.
 
+## Data Sources
 
+| Data | Source | Temporal resolution | Spatial Resolution | Script | Output | Notes |
+| ---- | ---- | ------ | ------ | ------ | ----- | ----- |
+| Tide stations | [NOAA Tides & Currents](https://tidesandcurrents.noaa.gov) | 6 mins | -82.0, -73.0, 36.46, 43.75 | noaa\_tide\_obs.R | NOAAtideIDs.txt NOAATideStations.js Tide_figs/ | IDs updated once a day |
+| Bouys | [NOAA's National Data Buoy Center](https://www.ndbc.noaa.gov) | 5 mins | -82.0, -73.0, 36.46, 43.75 | ndbc\_buoy\_obs.R | NDBCbuoys.js | IDs updated once a day |
+| River Gauges | [NOAA's National Weather Service Advanced Hydrologic Prediction Service (AHPS)](https://water.weather.gov/ahps/index.php) | 15 mins | -82.0, -73.0, 36.46, 43.75 | nws\_ahps\_river\_obs.R | NWSRiverGauges.geojson River_figs/ | Forecast download takes 36mins |
+| Watches, warnings, & advisories | [NOAA's National Weather Service](https://www.weather.gov/documentation/services-web-api) | 2 mins | VA, PA, MD, DE, DC, WV, OH | nws_alerts.R | NWSalerts.geojson | Update to push service (NOAAPORT or NOAA Weather Wire Service (NWWS)) in the future to reduce update time to 45 seconds |
+
+### TO Update
 
 | Data | File (~/marisa.psu.edu/mapdata/) | Script (~/map\_data) | Extent | Source | Notes |
 | ---- | ---- | ------ | ------ | ------ | ----- |
-| Tide stations | tide\_station\_obs\_extend.js <br> Tide\_figs/Fig\_[*station ID*].png | tide\_obs\_US.R <br> tide\_gage\_plots\_US.R | National | [NOAA Tides & Currents](https://tidesandcurrents.noaa.gov) | Plots are updated every 10 minutes; observations every 20 minutes (real-time water observations update every 6 minutes) |
-| Buoys | buoys_extend.js | buoy\_obs\_US.R | National | [NOAA's National Data Buoy Center](https://www.ndbc.noaa.gov) | Updated every 15 minutes (real-time obs. updated every 5 mins). In future use [guidelines](https://www.ndbc.noaa.gov/docs/ndbc_web_data_guide.pdf) to update code processing (https://www.ndbc.noaa.gov/data/latest\_obs/latest\_obs.txt) |
-| Stream gauges | NJMD\_stream\_obs.js <br> NY\_stream\_obs.js <br> OHDEDCWVTNNCCTMA\_stream\_obs.js <br> PA\_stream\_obs.js <br> VA\_stream\_obs.js <br> Stream\_figs/Fig\_[station ID*].png | stream\_gage\_scripts/NJMD\_stream\_plots.R <br> stream\_gage\_scripts/NY\_stream\_plots.R <br> stream\_gage\_scripts/OHDEDCWVTNNCCTMA\_stream\_plots.R <br> stream\_gage\_scripts/PA\_stream\_plots.R <br> stream\_gage\_scripts/VA\_stream\_plots.R <br> stream\_gage\_scripts/NJMD\_stream\_gage\_obs.R <br> stream\_gage\_scripts/NY\_stream\_gage\_obs.R <br> stream\_gage\_scripts/OHDEDCWVTNNCCTMA\_stream\_gage\_obs.R <br> stream\_gage\_scripts/PA\_stream\_gage\_obs.R <br> stream\_gage\_scripts/VA\_stream\_gage\_obs.R | Mid-Atlantic | [United States Geological Survey](https://waterdata.usgs.gov/nwis/rt)| Plots updated every 8 hours; observations every 2 hours (real-time streamflow data are typically recorded at 15-minute intervals, stored onsite, and then transmitted to USGS offices once every hour) |
 | Weather stations | weather\_observations\_extend.json | weather\_obs\_US.R | National | [NOAA's National Weather Service](https://w1.weather.gov/xml/current_obs/) | updated hourly (new job at 10 mins of every hour: 1:10, 2:10, 3:10) |
-| Watches, warnings, & advisories | DEtoNYcounty\_alerts.json <br> OHPAcounty\_alerts.json <br> VAWVcounty\_alerts.json <br> greatlakes\_alerts.json <br> atlantic\_p1\_alerts.json <br> atlantic\_p2\_alerts.json <br> atlantic\_p3\_alerts.json <br> atlantic\_p4\_alerts.json | warnings\_watches\_advisories/DEtoNYwarnings\_watches\_advisories.R <br> warnings\_watches\_advisories/OHPAwarnings\_watches\_advisories.R <br> warnings\_watches\_advisories/VAWVwarnings\_watches\_advisories.R <br> warnings\_watches\_advisories/greatlakes\_warnings\_watches\_advisories.R <br> warnings\_watches\_advisories/atlantic\_warnings\_watches\_advisories\_p1.R <br> warnings\_watches\_advisories/atlantic\_warnings\_watches\_advisories\_p2.R <br> warnings\_watches\_advisories/atlantic\_warnings\_watches\_advisories\_p3.R <br> warnings\_watches\_advisories/atlantic\_warnings\_watches\_advisories\_p4.R | Mid-Atlantic | [NOAA's National Weather Service](https://alerts.weather.gov) | Updated every 6 minutes (updates approximately every 5 minutes with all warnings, watches, advisories, and statements in effect) |
 | U.S. climate divisions | clim\_div\_fig\_6prec\_nodup.geojson | Clim\_Div\_Clim\_Data/climate\_div\_plotting.R | National | https://www.ncdc.noaa.gov/monitoring-references/maps/us-climate-divisions.php | Static |
 | U.S. drought monitor | [web map service layer](http://ndmc-001.unl.edu:8080/cgi-bin/mapserv.exe?map=/ms4w/apps/usdm/service/usdm\_current\_wms.map&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap) | Web map service | National | [National Drought Mitigation Center, the U.S. Department of Agriculture, and the National Oceanic and Atmospheric Association](https://droughtmonitor.unl.edu) | Updated every Thursday at 8:30 a.m. Eastern time |
 | Weather Radar | [web map service layer](https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0q.cgi) | Web map service | National | [Iowa Environmental Mesonet (IEM) generated NEXRAD (Next-Generation Radar) composite](https://mesonet.agron.iastate.edu/docs/nexrad_mosaic/) | Layer: NEXRAD Base Reflectivity current (nexrad-n0q-900913); (Data updated every 5 minutes) |
