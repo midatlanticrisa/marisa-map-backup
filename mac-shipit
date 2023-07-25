@@ -1,0 +1,13 @@
+#!/bin/bash
+# Last modified 20 July 2023 by Kelsey Ruckert <klr324@psu.edu>.
+
+DEST_DIR="/clima/rtdatamap"
+DEST_HOST="eesi-clima-downloads.ems.psu.edu"
+
+
+# This requires rsync 3.1.0 or newer:
+# rsync -avz --chown=${USER}:clima --chmod=ug=rwX --chmod=o=rX ${SRC_DIR}/ ${DEST_HOST}:${DEST_DIR}/
+
+# Unfortunately, macOS 10.14 Mojave ships with a very old rsync, so you'll need to do this instead:
+rsync -avz -e 'ssh -p 1855' --chmod=ug=rwX --chmod=o=rX --exclude depreciated --exclude output_examples --exclude plots --exclude test --exclude .git ${PWD}/ ${DEST_HOST}:${DEST_DIR}/
+ssh -P 1855 ${DEST_HOST} chown -R ${USER}:clima ${DEST_DIR}/

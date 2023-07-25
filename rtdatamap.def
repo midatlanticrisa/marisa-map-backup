@@ -1,0 +1,46 @@
+Bootstrap: docker
+OSVersion: xenial
+MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+From: ubuntu:16.04
+
+%environment
+    SINGULARITYENV_PS1='\n\[\033[01;33m\][`basename ${SINGULARITY_CONTAINER} .simg`]\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \$ '
+
+
+%runscript
+    exec /bin/bash "$@"
+
+%post
+    # setting up environmental variables for the installation process
+    DEBIAN_FRONTEND=noninteractive
+
+    # fix package sources
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse" > /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse" >> /etc/apt/sources.list
+
+    # upgrade packages in base image
+    apt-get -q update
+    apt-get -qy dist-upgrade
+    apt-get -y install mc htop joe wget less git r-base gdal-bin gdal-data
+    #cdo netcdf-doc gdal-bin gdal-data
+
+    # dependencies for curl, s2, xml2, protolite, jqr, units
+    apt-get -y install libcurl4-openssl-dev libssl-dev libxml2-dev protobuf-compiler libprotobuf-dev libjq-dev libudunits2-dev libgdal-dev
+
+    # install dependencies that we know we'll need for building R packages
+    # apt-get -y install mpi-default-dev libproj-dev libnetcdf-dev libgdal-dev libudunits2-dev libprotobuf-dev libv8-dev libjq-dev protobuf-compiler libfontconfig1-dev libharfbuzz-dev libfribidi-dev
+
+    # get locales working properly when running on Roar
+    apt-get install -y locales
+    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+    dpkg-reconfigure --frontend=noninteractive locales
+    update-locale LANG=en_US.UTF-8
+    
+    # clean up orphaned packages and delete installed .deb files
+    apt-get -y autoremove
+    apt-get -y clean
+
+    # install most recent version of some R packages
+    Rscript -e 'install.packages( c("data.table", "geojsonio", "geojsonsf", "httr", "jsonlite", "measurements", "RCurl", "sf", "terra", "XML", "xml2"), repos="http://cran.us.r-project.org" )'

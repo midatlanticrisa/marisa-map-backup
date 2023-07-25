@@ -715,7 +715,8 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
 # https://water.weather.gov/ahps/download.php
 # ------------------------------------------------------------------------
 collectRiverForecast = function(GID){
-  # print(GID)
+  # ptm <- proc.time()
+  print(GID)
   # Read the xml file
   riverURL <- paste0("https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=", 
                      tolower(GID), "&output=xml")
@@ -725,17 +726,29 @@ collectRiverForecast = function(GID){
   riverXml <- xmlParse(riverData)
   
   # Convert the parsed XML to a dataframe of flood stages
-  stages_df = xmlToDataFrame(nodes=getNodeSet(riverXml, "//sigstages"))
-  stages_df[stages_df == ""] = NA
+  stages_df = xmlToDF(riverXml, xpath = "/site/sigstages", verbose = FALSE)
+  # stages_df = xmlToDataFrame(nodes=getNodeSet(riverXml, "//sigstages"))
+  stage_exist <- is.null(stages_df)
   
+  if(stage_exist){
+    stages_df <- data.frame(action=NA, flood=NA, moderate=NA, major=NA)
+  } else {
+    stages_df[stages_df == ""] = NA
+  }
+
   # Convert the parsed XML to a dataframe of observations
-  obs_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//observed//datum"))
+  obs_df <- xmlToDF(riverXml, xpath = "/site/observed/datum", verbose = FALSE)
+  # obs_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//observed//datum"))
+  
+  # Condition check outside the if/else
+  obs_exist <- is.null(obs_df) # == 0
+  obs_secondary <- any(colnames(obs_df) == "secondary")
   
   # Update the column names if data exists, otherwise set data to NA
-  if(length(obs_df) == 0){
+  if(obs_exist){
     obs_df <- data.frame(time = NA, height = NA, discharge = NA)
   } else {
-    if(any(colnames(obs_df) == "secondary")){
+    if(obs_secondary){
       colnames(obs_df) <- c("time", "height", "discharge", "pedts")
     } else {
       colnames(obs_df) <- c("time", "height", "pedts")
@@ -743,25 +756,33 @@ collectRiverForecast = function(GID){
   }
   
   # Convert the parsed XML to a dataframe of forecasts
-  for_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//forecast//datum"))
+  for_df <- xmlToDF(riverXml, xpath = "/site/forecast/datum", verbose = FALSE)
+  # for_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//forecast//datum"))
+  
+  # Condition check outside the if/else
+  for_exist <- is.null(for_df) # == 0
+  for_secondary <- any(colnames(for_df) == "secondary")
   
   # Update the column names if data exists, otherwise set data to NA
-  if(length(for_df) == 0){
+  if(for_exist){
     for_df <- data.frame(time = NA, height = NA, discharge = NA)
   } else {
-    if(any(colnames(for_df) == "secondary")){
+    if(for_secondary){
       colnames(for_df) <- c("time", "height", "discharge", "pedts")
     } else {
       colnames(for_df) <- c("time", "height", "pedts")
     }
   }
   
-  return(list(ID = GID, 
-              action = stages_df$action, 
-              minor = stages_df$flood, 
-              mod = stages_df$moderate, 
-              major = stages_df$major, 
-              obs = obs_df, forecast = for_df))
+  output <- list(ID = GID, 
+                 action = stages_df$action, 
+                 minor = stages_df$flood, 
+                 mod = stages_df$moderate, 
+                 major = stages_df$major, 
+                 obs = obs_df, forecast = for_df)
+  proc.time() - ptm
+  
+  return(output)
 }
 
 ##########################################################################
