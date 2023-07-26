@@ -172,10 +172,11 @@ collectBuoyData = function(bbox=NULL){
       
     } else {
       # bbox: c('xmin','ymin','xmax','ymax')
-      buoys <- mergedBuoy[as.numeric(mergedBuoy$LON) >= bbox[1] & 
-                            as.numeric(mergedBuoy$LON) <= bbox[2] & 
-                            as.numeric(mergedBuoy$LAT) >= bbox[3] & 
-                            as.numeric(mergedBuoy$LAT) <= bbox[4], ]
+      # mergedBuoy is a factor. The values must be converted to a character than numeric before evaluating
+      buoys <- mergedBuoy[as.numeric(as.character(mergedBuoy$LON)) >= bbox[1] & 
+                            as.numeric(as.character(mergedBuoy$LON)) <= bbox[2] & 
+                            as.numeric(as.character(mergedBuoy$LAT)) >= bbox[3] & 
+                            as.numeric(as.character(mergedBuoy$LAT)) <= bbox[4], ]
     }
     
   } else {
@@ -195,34 +196,34 @@ collectBuoyData = function(bbox=NULL){
 parseBuoyData = function(dat){
   # Format the observations
   obs = paste0(
-    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(dat$LAT)), 
-    " ", coordinate_hemi(as.numeric(dat$LON), "lon"), "<br />",
-    "<strong>Wind direction:</strong> from ", cardinal_direction(as.numeric(dat$WDIR)), " (",
+    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(dat$LAT))), 
+    " ", coordinate_hemi(as.numeric(as.character(dat$LON)), "lon"), "<br />",
+    "<strong>Wind direction:</strong> from ", cardinal_direction(as.numeric(as.character(dat$WDIR))), " (",
     dat$WDIR, " &deg;)<br />", 
-    "<strong>Wind speed:</strong> ", round(conv_unit(as.numeric(dat$WSPD), from="m_per_sec", to="mph"),1),
+    "<strong>Wind speed:</strong> ", round(conv_unit(as.numeric(as.character(dat$WSPD)), from="m_per_sec", to="mph"),1),
     " mph (", dat$WSPD, " m/s)<br />",
-    "<strong>Peak 5 or 8 second gust speed:</strong> ", round(conv_unit(as.numeric(dat$GST), from="m_per_sec", to="mph"),1),
+    "<strong>Peak 5 or 8 second gust speed:</strong> ", round(conv_unit(as.numeric(as.character(dat$GST)), from="m_per_sec", to="mph"),1),
     " mph (", dat$GST, " m/s)<br />",
-    "<strong>Significant wave height:</strong> ", round(conv_unit(as.numeric(dat$WVHT), from="m", to="ft"),1),
+    "<strong>Significant wave height:</strong> ", round(conv_unit(as.numeric(as.character(dat$WVHT)), from="m", to="ft"),1),
     " ft (", dat$WVHT, " m)<br />",
     "<strong>Dominant wave period:</strong> ", dat$DPD, " s<br />",
     "<strong>Average Wave Period:</strong> ", dat$APD, " s<br />",
-    "<strong>Mean Wave Direction:</strong> from ", cardinal_direction(as.numeric(dat$MWD[748])), " (",
-    dat$MWD[748], " &deg;)<br />",
-    "<strong>Sea level pressure:</strong> ", round(conv_unit(as.numeric(dat$PRES), from="hPa", to="mbar"),1),
+    "<strong>Mean Wave Direction:</strong> from ", cardinal_direction(as.numeric(as.character(dat$MWD))), " (",
+    dat$MWD, " &deg;)<br />",
+    "<strong>Sea level pressure:</strong> ", round(conv_unit(as.numeric(as.character(dat$PRES)), from="hPa", to="mbar"),1),
     " mbar (", dat$PRES, " hPa)<br />",
-    "<strong>Pressure Tendency:</strong> ", round(conv_unit(as.numeric(dat$PTDY), from="hPa", to="mbar"),1),
+    "<strong>Pressure Tendency:</strong> ", round(conv_unit(as.numeric(as.character(dat$PTDY)), from="hPa", to="mbar"),1),
     " mbar (", dat$PTDY, " hPa)<br />",
-    "<strong>Air temperature:</strong> ", round(conv_unit(as.numeric(dat$ATMP), from="C", to="F"),1),
+    "<strong>Air temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$ATMP)), from="C", to="F"),1),
     " F (", dat$ATMP, " C)<br />",
-    "<strong>Sea surface temperature:</strong> ", round(conv_unit(as.numeric(dat$WTMP), from="C", to="F"),1),
+    "<strong>Sea surface temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$WTMP)), from="C", to="F"),1),
     " F (", dat$WTMP, " C)<br />",
-    "<strong>Dewpoint temperature:</strong> ", round(conv_unit(as.numeric(dat$DEWP), from="C", to="F"),1),
+    "<strong>Dewpoint temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$DEWP)), from="C", to="F"),1),
     " F (", dat$DEWP, " C)<br />",
     "<strong>Station visibility:</strong> ", dat$VIS, " nmi (", 
-    round(conv_unit(as.numeric(dat$VIS), from="naut_mi", to="km"),1), " km)<br />",
+    round(conv_unit(as.numeric(as.character(dat$VIS)), from="naut_mi", to="km"),1), " km)<br />",
     "<strong>Water level:</strong> ", dat$TIDE, " ft (", 
-    round(conv_unit(as.numeric(dat$TIDE), from="ft", to="m"),1), " m) MLLW<br />")
+    round(conv_unit(as.numeric(as.character(dat$TIDE)), from="ft", to="m"),1), " m) MLLW<br />")
   
   # Convert date and time to an R object
   datetime = as.POSIXlt(paste0(dat$MM, " ", dat$DD, ", ", dat$YYYY, " ", dat$hh, ":", dat$mm),
@@ -239,8 +240,8 @@ parseBuoyData = function(dat){
   jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', name, '", "id": "', dat$STN, 
                     '", "url": "https://www.ndbc.noaa.gov/station_page.php?station=', dat$STN,
                     '", "obs": "', obs, '", "time": "Last updated on', format(datetime, "%b %d, %Y %I:%M %p"), '"},',
-                    ' "geometry": {"type": "Point", "coordinates": [', as.numeric(dat$LON), ',', 
-                    as.numeric(dat$LAT), ']}}')
+                    ' "geometry": {"type": "Point", "coordinates": [', as.numeric(as.character(dat$LON)), ',', 
+                    as.numeric(as.character(dat$LAT)), ']}}')
   
   return(jsFormat)
 }
