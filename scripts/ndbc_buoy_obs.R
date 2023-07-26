@@ -59,7 +59,7 @@ enableJIT(3)
 #   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 # }
 
-inDir <- "/clima/scripts/"
+inDir <- "/clima/rtdatamap/scripts/"
 outDir <- "/var/www/html/rtdatamap/"
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
