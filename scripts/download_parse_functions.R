@@ -482,19 +482,6 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
                              begin_date=format(Sys.Date(), "%Y%m%d"), 
                              range=72)
   
-  # Format the date/time into an R object
-  watLev$Date = as.POSIXct(watLev$t, format="%Y-%m-%d %H:%M", tz="")
-  forecast$Date = as.POSIXct(forecast$t, format="%Y-%m-%d %H:%M", tz="")
-  
-  # Remove all forecast values prior to the present time frame
-  lastObsTime <- watLev$Date[length(watLev$Date)]
-  forecast <- forecast[-which(forecast$t < lastObsTime), ]
-  
-  # Find the range of both the time and values for plotting axis limits
-  timernge = range(c(watLev$Date, forecast$Date), na.rm = TRUE)
-  valrnge = range(c(as.numeric(as.character(watLev$v)), 
-                    as.numeric(as.character(forecast$v))), na.rm = TRUE) 
-  
   ##create plot
   png(file=paste0(p.dir, "Fig_", metaDat$id, ".png"), family="Helvetica", units="in", 
       width=p.width, height=p.height, pointsize=12, res=300)
@@ -506,6 +493,19 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
     legend("center", "No data available", bg="white")
     
   } else { # if data
+    # Format the date/time into an R object
+    watLev$Date = as.POSIXct(watLev$t, format="%Y-%m-%d %H:%M", tz="")
+    forecast$Date = as.POSIXct(forecast$t, format="%Y-%m-%d %H:%M", tz="")
+    
+    # Remove all forecast values prior to the present time frame
+    lastObsTime <- watLev$Date[length(watLev$Date)]
+    forecast <- forecast[-which(as.POSIXct(as.character(forecast$t)) < lastObsTime), ]
+    
+    # Find the range of both the time and values for plotting axis limits
+    timernge = range(c(watLev$Date, forecast$Date), na.rm = TRUE)
+    valrnge = range(c(as.numeric(as.character(watLev$v)), 
+                      as.numeric(as.character(forecast$v))), na.rm = TRUE) 
+    
     plot(0, type="n", ylab=paste0("Height (ft ", unique(watLev$datum), ")"), 
          xlab="Local standard time", xaxt="n", xlim = timernge, ylim = valrnge) #klr changed m to ft
     
