@@ -291,10 +291,10 @@ collectTideIDs = function(filenm="NOAAtideIDs.txt", bbox=NULL, returnIDs=FALSE){
     
   } else {
     # bbox: c('xmin','ymin','xmax','ymax')
-    tideStations <- tideStation_df[as.numeric(tideStation_df$lon) >= bbox[1] & 
-                                     as.numeric(tideStation_df$lon) <= bbox[2] & 
-                                     as.numeric(tideStation_df$lat) >= bbox[3] & 
-                                     as.numeric(tideStation_df$lat) <= bbox[4], ]
+    tideStations <- tideStation_df[as.numeric(as.character(tideStation_df$lon)) >= bbox[1] & 
+                                     as.numeric(as.character(tideStation_df$lon)) <= bbox[2] & 
+                                     as.numeric(as.character(tideStation_df$lat)) >= bbox[3] & 
+                                     as.numeric(as.character(tideStation_df$lat)) <= bbox[4], ]
   }
   
   # Export data to geojson.
@@ -343,8 +343,9 @@ collectTideData = function(metaDat, vars = c("air_temperature", "air_pressure",
                            datum=NULL, begin_date=NULL, range=48){
   
   # Datum is mandatory for all water level products to correct the data to the reference point desired.
+  is.greatlakes <- noquote(as.character(metaDat$greatlakes))
   if(is.null(datum)){
-    if(noquote(metaDat$greatlakes)){
+    if(is.greatlakes){
       datum <- "IGLD" # International Great Lakes Datum.
     } else {
       datum <- "MLLW" # Mean Lower Low Water (Nautical Chart Datum for all U.S. coastal waters)
@@ -413,25 +414,25 @@ collectTideData = function(metaDat, vars = c("air_temperature", "air_pressure",
 parseTideData = function(tide_df){
   # Format the observations
   obs = paste0(
-    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(tide_df$lat[1])), 
-    " ", coordinate_hemi(as.numeric(tide_df$lon[1]), "lon"), "<br />",
+    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(tide_df$lat[1]))), 
+    " ", coordinate_hemi(as.numeric(as.character(tide_df$lon[1])), "lon"), "<br />",
     "<strong>Air temperature:</strong> ", tide_df$v[tide_df$var == "air_temperature"],
-    " F (", round(conv_unit(as.numeric(tide_df$v[tide_df$var == "air_temperature"]), from="F", to="C"),1), " C)<br />",
+    " F (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "air_temperature"])), from="F", to="C"),1), " C)<br />",
     "<strong>Barometric pressure:</strong> ", tide_df$v[tide_df$var == "air_pressure"],
-    " mbar (", round(conv_unit(as.numeric(tide_df$v[tide_df$var == "air_pressure"]), from="mbar", to="hPa"),1), " hPa)<br />",
+    " mbar (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "air_pressure"])), from="mbar", to="hPa"),1), " hPa)<br />",
     "<strong>Visibility:</strong> ", tide_df$v[tide_df$var == "visibility"], " nmi (", 
-    round(conv_unit(as.numeric(tide_df$v[tide_df$var == "visibility"]), from="naut_mi", to="km"),1), " km)<br />",
+    round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "visibility"])), from="naut_mi", to="km"),1), " km)<br />",
     "<strong>Relative humidity:</strong> ", tide_df$v[tide_df$var == "humidity"], " % <br />",
     "<strong>Wind:</strong> from ", tide_df$dr[tide_df$var == "wind"], " (",
     tide_df$d[tide_df$var == "wind"], " &deg;) at ", 
-    round(conv_unit(as.numeric(tide_df$s[tide_df$var == "wind"]), from="knot", to="mph"),1), "mph (",
-    round(conv_unit(as.numeric(tide_df$s[tide_df$var == "wind"]), from="knot", to="m_per_sec"),1), " m/s)<br />",
-    "<strong>Gusting to:</strong> ", round(conv_unit(as.numeric(tide_df$g[tide_df$var == "wind"]), from="knot", to="mph"),1), "mph (",
-    round(conv_unit(as.numeric(tide_df$g[tide_df$var == "wind"]), from="knot", to="m_per_sec"),1), " m/s)<br />",
+    round(conv_unit(as.numeric(as.character(tide_df$s[tide_df$var == "wind"])), from="knot", to="mph"),1), "mph (",
+    round(conv_unit(as.numeric(as.character(tide_df$s[tide_df$var == "wind"])), from="knot", to="m_per_sec"),1), " m/s)<br />",
+    "<strong>Gusting to:</strong> ", round(conv_unit(as.numeric(as.character(tide_df$g[tide_df$var == "wind"])), from="knot", to="mph"),1), "mph (",
+    round(conv_unit(as.numeric(as.character(tide_df$g[tide_df$var == "wind"])), from="knot", to="m_per_sec"),1), " m/s)<br />",
     "<strong>Water level:</strong> ", tide_df$v[tide_df$var == "water_level"], " ft (", 
-    round(conv_unit(as.numeric(tide_df$v[tide_df$var == "water_level"]), from="ft", to="m"),1), " m) ", tide_df$datum, "<br />",
+    round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "water_level"])), from="ft", to="m"),1), " m) ", tide_df$datum, "<br />",
     "<strong>Water temperature:</strong> ", tide_df$v[tide_df$var == "water_temperature"],
-    " F (", round(conv_unit(as.numeric(tide_df$v[tide_df$var == "water_temperature"]), from="F", to="C"),1), " C)<br />",
+    " F (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "water_temperature"])), from="F", to="C"),1), " C)<br />",
     "<strong>Conductivity:</strong> ", tide_df$v[tide_df$var == "conductivity"], " mS/cm <br />",
     "<strong>Salinity:</strong> ", tide_df$v[tide_df$var == "salinity"], " PSU <br />"
   )
@@ -446,8 +447,8 @@ parseTideData = function(tide_df){
                     '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', unique(tide_df$id),
                     '", "obs": "', obs, '", "time": "Last updated on ', formatTime, 
                     ' LST", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_"', unique(tide_df$id), '.png"},',
-                    ' "geometry": {"type": "Point", "coordinates": [', as.numeric(unique(tide_df$lon)), ',', 
-                    as.numeric(unique(tide_df$lat)), ']}}')
+                    ' "geometry": {"type": "Point", "coordinates": [', as.numeric(as.character(unique(tide_df$lon))), ',', 
+                    as.numeric(as.character(unique(tide_df$lat))), ']}}')
   
   return(jsFormat)
 }
@@ -485,13 +486,18 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
   watLev$Date = as.POSIXct(watLev$t, format="%Y-%m-%d %H:%M", tz="")
   forecast$Date = as.POSIXct(forecast$t, format="%Y-%m-%d %H:%M", tz="")
   
+  # Remove all forecast values prior to the present time frame
+  lastObsTime <- watLev$Date[length(watLev$Date)]
+  forecast <- forecast[-which(forecast$t < lastObsTime), ]
+  
   # Find the range of both the time and values for plotting axis limits
   timernge = range(c(watLev$Date, forecast$Date), na.rm = TRUE)
-  valrnge = range(c(as.numeric(watLev$v), as.numeric(forecast$v)), na.rm = TRUE) 
+  valrnge = range(c(as.numeric(as.character(watLev$v)), 
+                    as.numeric(as.character(forecast$v))), na.rm = TRUE) 
   
   ##create plot
   png(file=paste0(p.dir, "Fig_", metaDat$id, ".png"), family="Helvetica", units="in", 
-      width=p.width, height=p.height, pointsize=14, res=300)
+      width=p.width, height=p.height, pointsize=12, res=300)
   par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
   
   if(length(watLev$v) == 1 && is.na(watLev$v)){ # If no data
@@ -511,8 +517,8 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
     abline(v=day_midnight, lty=6, col="gray")
     
     # Add the water level values and forecast line
-    lines(watLev$Date, as.numeric(watLev$v), lwd=2, col="steelblue")
-    lines(forecast$Date, as.numeric(forecast$v), lwd=2, lty=2, col="red")
+    lines(watLev$Date, as.numeric(as.character(watLev$v)), lwd=2, col="steelblue")
+    lines(forecast$Date, as.numeric(as.character(forecast$v)), lwd=2, lty=2, col="steelblue")
     abline(v=watLev$Date[length(watLev$Date)], lwd=2, col="black")
     
   }

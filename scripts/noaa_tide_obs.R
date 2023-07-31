@@ -63,8 +63,8 @@ enableJIT(3)
 #   outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
 # }
 
-inDir <- "/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
-outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
+inDir <- "/clima/rtdatamap/scripts/"
+outDir <- "/var/www/html/rtdatamap/"
 plotDir <- paste0(outDir, "Tide_figs/")
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
@@ -100,12 +100,13 @@ if(file.exists(filenm) & (Sys.time() - file.info(filenm)$ctime) < (24*60)){
 # Coastal areas experience two high and two low tides every 24 hours and 50 mins. 
 # High tides occur 12 hours and 25 minutes apart. It takes six hours and 12.5 mins
 # for the water at the shore to go from high to low, or from low to high.
-# To account for tidal changes, we should only need to regenerate the plots every
-# 3 hours.
+# To account for tidal changes, we will only regenerate the plots every
+# 1 hour.
 # https://oceanservice.noaa.gov/education/tutorial_tides/tides05_lunarday.html
 
 # Time differences in mins
-if(all((Sys.time() - file.info(paste0(plotDir, list.files(plotDir)))$ctime) >= (3*60))){
+if(all(difftime(Sys.time(), file.info(paste0(plotDir, list.files(plotDir)))$ctime, 
+                units="mins") >= 60)){
   
   # Create the tidal plots with operational forecasts where available
   lapply(X=1:nrow(tideStations), function(X){
