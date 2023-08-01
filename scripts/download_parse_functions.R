@@ -446,7 +446,7 @@ parseTideData = function(tide_df){
   jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', unique(tide_df$name), '", "id": "', unique(tide_df$id), 
                     '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', unique(tide_df$id),
                     '", "obs": "', obs, '", "time": "Last updated on ', formatTime, 
-                    ' LST", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_"', unique(tide_df$id), '.png"},',
+                    ' LST", "image": "https://download.clima.psu.edu/rtdatamap/Tide_figs/Fig_"', unique(tide_df$id), '.png"},',
                     ' "geometry": {"type": "Point", "coordinates": [', as.numeric(as.character(unique(tide_df$lon))), ',', 
                     as.numeric(as.character(unique(tide_df$lat))), ']}}')
   
