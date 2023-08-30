@@ -1,6 +1,10 @@
 # Apptainer/singularity built containers
 *.simg
 
+# Any saved files for backup scratch testing
+*.save
+
+scripts/NOAAtideIDs.txt
 plots/
 resources/ahps_shp/
 resources/ahps_shp.tgz

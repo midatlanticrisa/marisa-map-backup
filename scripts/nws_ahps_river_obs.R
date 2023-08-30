@@ -41,10 +41,9 @@ library(compiler)
 enableJIT(3)
 enableJIT(3)
 
-inDir <- getwd() #"/home/staff/mdl5548/githubRepos/marisa-map-backup/scripts/"
-downDir <- "/Users/klr324/Documents/Github/marisa-map-backup/resources/"
-outDir <- "/net/www/www.marisa.psu.edu/htdocs/mapdata/"
-outDir <- getwd()
+inDir <- "/clima/rtdatamap/scripts/"
+downDir <- "/clima/rtdatamap/resources/"
+outDir <- "/var/www/html/rtdatamap/"
 plotDir <- paste0(outDir, "River_figs/")
 
 # Should you record the current observations
@@ -60,16 +59,15 @@ if (!dir.exists(plotDir)){
 }
 
 # Source functions
-source(paste0(inDir, "/download_parse_functions.R"))
+source(paste0(inDir, "download_parse_functions.R"))
 
 # --------------------------------------------------------------------------------------------------------------------
 # Download only the river gauges for the MARISA region exporting the information
 # into a geojson file.
-ptm <- proc.time()
 bbox = c(-82.0, -73.0, 36.46, 43.75)
 river_sf = collectRiverData(bbox, downDir, 
                             outfile=paste0(outDir, "NWSRiverGauges.geojson"))
-ptmEnd <- proc.time() - ptm
+
 # --------------------------------------------------------------------------------------------------------------------
 if(recordObservations){
   # Create a list of the current observations for each river gauge to keep a 
@@ -97,29 +95,29 @@ if(recordObservations){
 }
 
 # --------------------------------------------------------------------------------------------------------------------
-
-# Download forecasts and past observations
-ptm <- proc.time()
-plotData = lapply(X = river_sf$GaugeLID[1:10], function(X){collectRiverForecast(X)})
-proc.time() - ptm
-
-library(compiler)
-RiverFuncCmp <- cmpfun(collectRiverForecast)
-
-ptm <- proc.time()
-timetest = RiverFuncCmp(river_sf$GaugeLID[1])
-proc.time() - ptm
-
-ptm <- proc.time()
-# Create the plots with operational forecasts where available
-lapply(X=1:length(plotData), function(X){
-  river_plot(plotData[[X]], tz="UTC", 
-             p.tz="America/New_York",
-             p.width = 4, p.height = 2.5, p.dir = plotDir)
-})
+# 
+# # Download forecasts and past observations
+# ptm <- proc.time()
+# plotData = lapply(X = river_sf$GaugeLID[1:10], function(X){collectRiverForecast(X)})
+# proc.time() - ptm
+# 
+# library(compiler)
+# RiverFuncCmp <- cmpfun(collectRiverForecast)
+# 
+# ptm <- proc.time()
+# timetest = RiverFuncCmp(river_sf$GaugeLID[1])
+# proc.time() - ptm
+# 
+# ptm <- proc.time()
+# # Create the plots with operational forecasts where available
+# lapply(X=1:length(plotData), function(X){
+#   river_plot(plotData[[X]], tz="UTC", 
+#              p.tz="America/New_York",
+#              p.width = 4, p.height = 2.5, p.dir = plotDir)
+# })
 
 # --------------------------------------------------------------------------------------------------------------------
-ptmEnd <- proc.time() - ptm
+# ptmEnd <- proc.time() - ptm
 ##########################################################################
 # END
 ##########################################################################

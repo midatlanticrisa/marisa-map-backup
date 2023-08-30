@@ -129,7 +129,7 @@ tideString = paste(tideDF[,1], collapse=",")
 # Create a geojson object with the observation and statement info and merge into a
 # specific file format with tideStations as the variable name.
 json_merge = paste0('tideStations = {"type": "FeatureCollection","features": [', 
-                    tideString, ']};')
+                    tideString, ']}')
 
 # Export data to geojson.
 cat(json_merge, file=paste0(outDir, "NOAATideStations.js"))

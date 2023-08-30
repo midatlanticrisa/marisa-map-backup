@@ -32,7 +32,7 @@ From: ubuntu:16.04
     # install dependencies that we know we'll need for building R packages
     # apt-get -y install mpi-default-dev libproj-dev libnetcdf-dev libgdal-dev libudunits2-dev libprotobuf-dev libv8-dev libjq-dev protobuf-compiler libfontconfig1-dev libharfbuzz-dev libfribidi-dev
 
-    # get locales working properly when running on Roar
+    # get locales working properly when running
     apt-get install -y locales
     sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
     dpkg-reconfigure --frontend=noninteractive locales
@@ -43,4 +43,9 @@ From: ubuntu:16.04
     apt-get -y clean
 
     # install most recent version of some R packages
-    Rscript -e 'install.packages( c("data.table", "geojsonio", "geojsonsf", "httr", "jsonlite", "measurements", "RCurl", "sf", "terra", "XML", "xml2"), repos="http://cran.us.r-project.org" )'
+    Rscript -e 'install.packages( c("data.table", "geojsonio", "geojsonsf", "httr", "jsonlite", "measurements", "RCurl", "sf", "terra", "XML", "xml2", "stringi", "geojsonlint", "stringr"), repos="http://cran.us.r-project.org" )'
+
+    # Set up some nice directories relevant to the Download server. -p setting must be specified
+    #mkdir -p /clima/*
+    #mkdir -p /d1/*
+    #mkdir -p /var/www/html/*

@@ -16,6 +16,7 @@ library(geojsonsf)
 # Weather observations
 # Stream gauges
 library(geojsonio)
+library(stringr)
 
 ##########################################################################
 ##########################################################################
@@ -195,39 +196,106 @@ collectBuoyData = function(bbox=NULL){
 # ------------------------------------------------------------------------
 parseBuoyData = function(dat){
   # Format the observations
-  obs = paste0(
+#  obs = paste0(
+#    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(dat$LAT))), 
+#    " ", coordinate_hemi(as.numeric(as.character(dat$LON)), "lon"), "<br />",
+ #   "<strong>Wind direction:</strong> from ", cardinal_direction(as.numeric(as.character(dat$WDIR))), " (",
+ #   dat$WDIR, "&deg;)<br />", 
+ #   "<strong>Wind speed:</strong> ", round(conv_unit(as.numeric(as.character(dat$WSPD)), from="m_per_sec", to="mph"),1),
+ #   " mph (", dat$WSPD, " m/s)<br />",
+ #   "<strong>Peak 5 or 8 second gust speed:</strong> ", round(conv_unit(as.numeric(as.character(dat$GST)), from="m_per_sec", to="mph"),1),
+ #   " mph (", dat$GST, " m/s)<br />",
+ #   "<strong>Significant wave height:</strong> ", round(conv_unit(as.numeric(as.character(dat$WVHT)), from="m", to="ft"),1),
+ #   " ft (", dat$WVHT, " m)<br />",
+ #   "<strong>Dominant wave period:</strong> ", dat$DPD, " s<br />",
+ #   "<strong>Average Wave Period:</strong> ", dat$APD, " s<br />",
+ #   "<strong>Mean Wave Direction:</strong> from ", cardinal_direction(as.numeric(as.character(dat$MWD))), " (",
+ #   dat$MWD, "&deg;)<br />",
+ #   "<strong>Sea level pressure:</strong> ", round(conv_unit(as.numeric(as.character(dat$PRES)), from="hPa", to="mbar"),1),
+ #   " mbar (", dat$PRES, " hPa)<br />",
+ #   "<strong>Pressure Tendency:</strong> ", round(conv_unit(as.numeric(as.character(dat$PTDY)), from="hPa", to="mbar"),1),
+ #   " mbar (", dat$PTDY, " hPa)<br />",
+ #   "<strong>Air temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$ATMP)), from="C", to="F"),1),
+ #   " F (", dat$ATMP, " C)<br />",
+ #   "<strong>Sea surface temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$WTMP)), from="C", to="F"),1),
+ #   " F (", dat$WTMP, " C)<br />",
+ #   "<strong>Dewpoint temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$DEWP)), from="C", to="F"),1),
+ #   " F (", dat$DEWP, " C)<br />",
+ #   "<strong>Station visibility:</strong> ", dat$VIS, " nmi (", 
+ #   round(conv_unit(as.numeric(as.character(dat$VIS)), from="naut_mi", to="km"),1), " km)<br />",
+ #   "<strong>Water level:</strong> ", dat$TIDE, " ft (", 
+ #   round(conv_unit(as.numeric(as.character(dat$TIDE)), from="ft", to="m"),1), " m) MLLW<br />")
+  
+ws = dat$WSPD
+ws_str = ifelse(is.na(ws), "", paste0("<strong>Wind:</strong> from ", 
+                                      cardinal_direction(as.numeric(as.character(dat$WDIR))), " (",
+                                      dat$WDIR, "&deg;) at ", 
+                                      round(conv_unit(as.numeric(as.character(ws)), from="m_per_sec", to="mph"),1),
+                                      " mph (", ws, " m/s)<br />"))
+gs = dat$GST
+gs_str = ifelse(is.na(gs), "", paste0("<strong>Peak 5 or 8 second gust speed:</strong> ", 
+                                      round(conv_unit(as.numeric(as.character(gs)), 
+                                                      from="m_per_sec", to="mph"),1),
+  " mph (", gs, " m/s)<br />"))
+
+wh = dat$WVHT
+wh_str = ifelse(is.na(wh), "", paste0("<strong>Significant wave height:</strong> ", 
+                                      round(conv_unit(as.numeric(as.character(wh)), from="m", to="ft"),1),
+  " ft (", wh, " m)<br />"))
+
+dp = dat$DPD
+dp_str = ifelse(is.na(dp), "", paste0("<strong>Dominant wave period:</strong> ", dp, " s<br />"))
+
+ap = dat$APD
+ap_str = ifelse(is.na(ap), "", paste0("<strong>Average Wave Period:</strong> ", ap, " s<br />"))
+
+mw = dat$MWD
+mw_str = ifelse(is.na(mw), "", paste0("<strong>Mean Wave Direction:</strong> from ", 
+                                      cardinal_direction(as.numeric(as.character(mw))), " (",
+  mw, " &deg;)<br />"))
+
+sp = dat$PRES
+sp_str = ifelse(is.na(sp), "", paste0("<strong>Sea level pressure:</strong> ", 
+                                      round(conv_unit(as.numeric(as.character(sp)), from="hPa", to="mbar"),1),
+  " mbar (", sp, " hPa)<br />"))
+
+pt = dat$PTDY
+pt_str = ifelse(is.na(pt), "", paste0("<strong>Pressure Tendency:</strong> ", 
+                                      round(conv_unit(as.numeric(as.character(pt)), from="hPa", to="mbar"),1),
+  " mbar (", pt, " hPa)<br />"))
+
+at = dat$ATMP
+at_str = ifelse(is.na(at), "", paste0("<strong>Air temperature:</strong> ", 
+                                      round(conv_unit(as.numeric(as.character(at)), from="C", to="F"),1),
+  " F (", at, " C)<br />"))
+
+st = dat$WTMP
+st_str = ifelse(is.na(st), "", paste0("<strong>Sea surface temperature:</strong> ", 
+                                      round(conv_unit(as.numeric(as.character(st)), from="C", to="F"),1),
+  " F (", st, " C)<br />"))
+
+dew = dat$DEWP
+dew_str = ifelse(is.na(dew), "", paste0("<strong>Dewpoint temperature:</strong> ", 
+                                        round(conv_unit(as.numeric(as.character(dew)), from="C", to="F"),1),
+  " F (", dew, " C)<br />"))
+
+vis = dat$VIS
+vis_str = ifelse(is.na(vis), "", paste0("<strong>Station visibility:</strong> ", vis, " nmi (", 
+  round(conv_unit(as.numeric(as.character(vis)), from="naut_mi", to="km"),1), " km)<br />"))
+
+wl = dat$TIDE
+wl_str = ifelse(is.na(wl), "", paste0("<strong>Water level:</strong> ", wl, " ft (", 
+  round(conv_unit(as.numeric(as.character(wl)), from="ft", to="m"),1), " m) MLLW<br />"))
+
+obs = paste0(
     "<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(dat$LAT))), 
     " ", coordinate_hemi(as.numeric(as.character(dat$LON)), "lon"), "<br />",
-    "<strong>Wind direction:</strong> from ", cardinal_direction(as.numeric(as.character(dat$WDIR))), " (",
-    dat$WDIR, " &deg;)<br />", 
-    "<strong>Wind speed:</strong> ", round(conv_unit(as.numeric(as.character(dat$WSPD)), from="m_per_sec", to="mph"),1),
-    " mph (", dat$WSPD, " m/s)<br />",
-    "<strong>Peak 5 or 8 second gust speed:</strong> ", round(conv_unit(as.numeric(as.character(dat$GST)), from="m_per_sec", to="mph"),1),
-    " mph (", dat$GST, " m/s)<br />",
-    "<strong>Significant wave height:</strong> ", round(conv_unit(as.numeric(as.character(dat$WVHT)), from="m", to="ft"),1),
-    " ft (", dat$WVHT, " m)<br />",
-    "<strong>Dominant wave period:</strong> ", dat$DPD, " s<br />",
-    "<strong>Average Wave Period:</strong> ", dat$APD, " s<br />",
-    "<strong>Mean Wave Direction:</strong> from ", cardinal_direction(as.numeric(as.character(dat$MWD))), " (",
-    dat$MWD, " &deg;)<br />",
-    "<strong>Sea level pressure:</strong> ", round(conv_unit(as.numeric(as.character(dat$PRES)), from="hPa", to="mbar"),1),
-    " mbar (", dat$PRES, " hPa)<br />",
-    "<strong>Pressure Tendency:</strong> ", round(conv_unit(as.numeric(as.character(dat$PTDY)), from="hPa", to="mbar"),1),
-    " mbar (", dat$PTDY, " hPa)<br />",
-    "<strong>Air temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$ATMP)), from="C", to="F"),1),
-    " F (", dat$ATMP, " C)<br />",
-    "<strong>Sea surface temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$WTMP)), from="C", to="F"),1),
-    " F (", dat$WTMP, " C)<br />",
-    "<strong>Dewpoint temperature:</strong> ", round(conv_unit(as.numeric(as.character(dat$DEWP)), from="C", to="F"),1),
-    " F (", dat$DEWP, " C)<br />",
-    "<strong>Station visibility:</strong> ", dat$VIS, " nmi (", 
-    round(conv_unit(as.numeric(as.character(dat$VIS)), from="naut_mi", to="km"),1), " km)<br />",
-    "<strong>Water level:</strong> ", dat$TIDE, " ft (", 
-    round(conv_unit(as.numeric(as.character(dat$TIDE)), from="ft", to="m"),1), " m) MLLW<br />")
-  
+    ws_str, gs_str, wh_str, dp_str, ap_str, mw_str, sp_str, pt_str, at_str, 
+    st_str, dew_str, vis_str, wl_str)
+
   # Convert date and time to an R object
-  datetime = as.POSIXlt(paste0(dat$MM, " ", dat$DD, ", ", dat$YYYY, " ", dat$hh, ":", dat$mm),
-                        format="%M %d, %Y %H:%M")
+  datetime = as.POSIXct(paste0(dat$MM, " ", dat$DD, ", ", dat$YYYY, " ", dat$hh, ":", dat$mm),
+                        format="%M %d, %Y %H:%M", tz="GMT")
   
   # Ensure all stations have a name even if it is the station ID
   if(is.na(dat$NAME)){
@@ -239,7 +307,7 @@ parseBuoyData = function(dat){
   # Combine all buoy info into one string in geojson format
   jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', name, '", "id": "', dat$STN, 
                     '", "url": "https://www.ndbc.noaa.gov/station_page.php?station=', dat$STN,
-                    '", "obs": "', obs, '", "time": "Last updated on', format(datetime, "%b %d, %Y %I:%M %p"), '"},',
+                    '", "obs": "', obs, '", "time": "Last updated on ', format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE), ' LST"},',
                     ' "geometry": {"type": "Point", "coordinates": [', as.numeric(as.character(dat$LON)), ',', 
                     as.numeric(as.character(dat$LAT)), ']}}')
   
@@ -413,40 +481,88 @@ collectTideData = function(metaDat, vars = c("air_temperature", "air_pressure",
 # ------------------------------------------------------------------------
 parseTideData = function(tide_df){
   # Format the observations
-  obs = paste0(
-    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(tide_df$lat[1]))), 
-    " ", coordinate_hemi(as.numeric(as.character(tide_df$lon[1])), "lon"), "<br />",
-    "<strong>Air temperature:</strong> ", tide_df$v[tide_df$var == "air_temperature"],
-    " F (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "air_temperature"])), from="F", to="C"),1), " C)<br />",
-    "<strong>Barometric pressure:</strong> ", tide_df$v[tide_df$var == "air_pressure"],
-    " mbar (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "air_pressure"])), from="mbar", to="hPa"),1), " hPa)<br />",
-    "<strong>Visibility:</strong> ", tide_df$v[tide_df$var == "visibility"], " nmi (", 
-    round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "visibility"])), from="naut_mi", to="km"),1), " km)<br />",
-    "<strong>Relative humidity:</strong> ", tide_df$v[tide_df$var == "humidity"], " % <br />",
-    "<strong>Wind:</strong> from ", tide_df$dr[tide_df$var == "wind"], " (",
-    tide_df$d[tide_df$var == "wind"], " &deg;) at ", 
-    round(conv_unit(as.numeric(as.character(tide_df$s[tide_df$var == "wind"])), from="knot", to="mph"),1), "mph (",
-    round(conv_unit(as.numeric(as.character(tide_df$s[tide_df$var == "wind"])), from="knot", to="m_per_sec"),1), " m/s)<br />",
-    "<strong>Gusting to:</strong> ", round(conv_unit(as.numeric(as.character(tide_df$g[tide_df$var == "wind"])), from="knot", to="mph"),1), "mph (",
-    round(conv_unit(as.numeric(as.character(tide_df$g[tide_df$var == "wind"])), from="knot", to="m_per_sec"),1), " m/s)<br />",
-    "<strong>Water level:</strong> ", tide_df$v[tide_df$var == "water_level"], " ft (", 
-    round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "water_level"])), from="ft", to="m"),1), " m) ", tide_df$datum, "<br />",
-    "<strong>Water temperature:</strong> ", tide_df$v[tide_df$var == "water_temperature"],
-    " F (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "water_temperature"])), from="F", to="C"),1), " C)<br />",
-    "<strong>Conductivity:</strong> ", tide_df$v[tide_df$var == "conductivity"], " mS/cm <br />",
-    "<strong>Salinity:</strong> ", tide_df$v[tide_df$var == "salinity"], " PSU <br />"
-  )
+#  obs = paste0(
+#    "<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(tide_df$lat[1]))), 
+#    " ", coordinate_hemi(as.numeric(as.character(tide_df$lon[1])), "lon"), "<br />",
+#    "<strong>Air temperature:</strong> ", tide_df$v[tide_df$var == "air_temperature"],
+#    " F (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "air_temperature"])), from="F", to="C"),1), " C)<br />",
+#    "<strong>Barometric pressure:</strong> ", tide_df$v[tide_df$var == "air_pressure"],
+#    " mbar (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "air_pressure"])), from="mbar", to="hPa"),1), " hPa)<br />",
+#    "<strong>Visibility:</strong> ", tide_df$v[tide_df$var == "visibility"], " nmi (", 
+#    round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "visibility"])), from="naut_mi", to="km"),1), " km)<br />",
+#    "<strong>Relative humidity:</strong> ", tide_df$v[tide_df$var == "humidity"], " % <br />",
+#    "<strong>Wind:</strong> from ", tide_df$dr[tide_df$var == "wind"], " (",
+#    tide_df$d[tide_df$var == "wind"], "&deg;) at ", 
+#    round(conv_unit(as.numeric(as.character(tide_df$s[tide_df$var == "wind"])), from="knot", to="mph"),1), " mph (",
+#    round(conv_unit(as.numeric(as.character(tide_df$s[tide_df$var == "wind"])), from="knot", to="m_per_sec"),1), " m/s)<br />",
+#    "<strong>Gusting to:</strong> ", round(conv_unit(as.numeric(as.character(tide_df$g[tide_df$var == "wind"])), from="knot", to="mph"),1), " mph (",
+#    round(conv_unit(as.numeric(as.character(tide_df$g[tide_df$var == "wind"])), from="knot", to="m_per_sec"),1), " m/s)<br />",
+#    "<strong>Water level:</strong> ", tide_df$v[tide_df$var == "water_level"], " ft (", 
+#    round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "water_level"])), from="ft", to="m"),1), " m) ", tide_df$datum, "<br />",
+#    "<strong>Water temperature:</strong> ", tide_df$v[tide_df$var == "water_temperature"],
+#    " F (", round(conv_unit(as.numeric(as.character(tide_df$v[tide_df$var == "water_temperature"])), from="F", to="C"),1), " C)<br />",
+#    "<strong>Conductivity:</strong> ", tide_df$v[tide_df$var == "conductivity"], " mS/cm <br />",
+#    "<strong>Salinity:</strong> ", tide_df$v[tide_df$var == "salinity"], " PSU <br />"
+#  )
+ 
+at = tide_df$v[tide_df$var == "air_temperature"]
+at_str = ifelse(is.na(at), "", paste0("<strong>Air temperature:</strong> ", at,
+       " F (", round(conv_unit(as.numeric(as.character(at)), from="F", to="C"),1), " C)<br />"))
+
+bp = tide_df$v[tide_df$var == "air_pressure"]
+bp_str = ifelse(is.na(bp), "", 
+                paste0("<strong>Barometric pressure:</strong> ", bp,
+                       " mbar (", round(conv_unit(as.numeric(as.character(bp)), 
+                                                  from="mbar", to="hPa"),1), " hPa)<br />"))
+                                      
+vis = tide_df$v[tide_df$var == "visibility"]
+vis_str = ifelse(is.na(vis), "", paste0("<strong>Visibility:</strong> ", vis, " nmi (", 
+  round(conv_unit(as.numeric(as.character(vis)), from="naut_mi", to="km"),1), " km)<br />"))
   
+rh = tide_df$v[tide_df$var == "humidity"]
+rh_str = ifelse(is.na(rh), "", paste0("<strong>Relative humidity:</strong> ", rh, " % <br />"))
+  
+ws = tide_df$s[tide_df$var == "wind"]
+ws_str = ifelse(is.na(ws), "", paste0("<strong>Wind:</strong> from ", tide_df$dr[tide_df$var == "wind"], " (",
+  tide_df$d[tide_df$var == "wind"], "&deg;) at ", 
+  round(conv_unit(as.numeric(as.character(ws)), from="knot", to="mph"),1), " mph (",
+  round(conv_unit(as.numeric(as.character(ws)), from="knot", to="m_per_sec"),1), " m/s)<br />"))
+  
+gt = tide_df$g[tide_df$var == "wind"]
+gt_str = ifelse(is.na(gt), "", 
+                paste0("<strong>Gusting to:</strong> ", 
+                       round(conv_unit(as.numeric(as.character(gt)), from="knot", to="mph"),1), " mph (",
+  round(conv_unit(as.numeric(as.character(gt)), from="knot", to="m_per_sec"),1), " m/s)<br />"))
+
+wl = tide_df$v[tide_df$var == "water_level"]
+wl_str = ifelse(is.na(wl), "", paste0("<strong>Water level:</strong> ", wl, " ft (", 
+  round(conv_unit(as.numeric(as.character(wl)), from="ft", to="m"),1), " m) ", 
+  tide_df$datum, "<br />"))
+  
+wt = tide_df$v[tide_df$var == "water_temperature"]
+wt_str = ifelse(is.na(wt), "", paste0("<strong>Water temperature:</strong> ", wt,
+  " F (", round(conv_unit(as.numeric(as.character(wt)), from="F", to="C"),1), " C)<br />"))
+
+cd = tide_df$v[tide_df$var == "conductivity"]
+cd_str = ifelse(is.na(cd), "", paste0("<strong>Conductivity:</strong> ", cd, " mS/cm <br />"))
+  
+sal = tide_df$v[tide_df$var == "salinity"]
+sal_str = ifelse(is.na(sal), "", paste0("<strong>Salinity:</strong> ", sal, " PSU <br />"))
+
+obs = paste0("<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.character(tide_df$lat[1]))), 
+             " ", coordinate_hemi(as.numeric(as.character(tide_df$lon[1])), "lon"), "<br />",
+             at_str, bp_str, vis_str, rh_str, ws_str, gt_str, wl_str, wt_str, cd_str, sal_str)
+ 
   # Convert date and time to an R object
   times = unique(tide_df$t)
   datetime = as.POSIXlt(times[!is.na(times)], format="%Y-%M-%d %H:%M")
-  formatTime = format(datetime, "%b %d, %Y %I:%M")
+  formatTime = format(datetime, "%b %d, %Y %I:%M %p")
   
   # Combine all tide info into one string in geojson format
   jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', unique(tide_df$name), '", "id": "', unique(tide_df$id), 
                     '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', unique(tide_df$id),
                     '", "obs": "', obs, '", "time": "Last updated on ', formatTime, 
-                    ' LST", "image": "https://download.clima.psu.edu/rtdatamap/Tide_figs/Fig_"', unique(tide_df$id), '.png"},',
+                    ' LST", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_', unique(tide_df$id), '.png"},',
                     ' "geometry": {"type": "Point", "coordinates": [', as.numeric(as.character(unique(tide_df$lon))), ',', 
                     as.numeric(as.character(unique(tide_df$lat))), ']}}')
   
@@ -629,6 +745,16 @@ collectWarningsAlerts = function(area = NULL, colorfile, cntyShp, coastalShp,
     features$geometry$coordinates[null_geom_id[i]][[1]] <- mul$coordinates #dim3mat
     features$geometry$type[null_geom_id[i]] = mul$type #"Polygon"
   }
+  # Remove the test alert
+  features = features[-which(features$properties$event == "Test Message"), ]
+
+  # Make some nice formatting for the description: Line breaks between bullet points.
+  features$properties$description = gsub("\\* ", "<br/>* ", features$properties$description)
+  features$properties$description = gsub("\n", " ", features$properties$description)
+
+  # Add any instructions to the description
+  features$properties$description = ifelse(!is.na(features$properties$instruction), paste0(features$properties$description, "<br/><br/>PRECAUTIONARY/PREPAREDNESS ACTIONS...<br/><br/>",
+           features$properties$instruction), features$properties$description)
   
   # Look up the map colors for each event
   event_colors <- sapply(features$properties$event, 
@@ -643,7 +769,7 @@ collectWarningsAlerts = function(area = NULL, colorfile, cntyShp, coastalShp,
   
   textLines = readLines(outfile)
   # alerts = 
-  appendLines = c('{"type": "FeatureCollection","features": ', textLines, '}')
+  appendLines = c('NWSalerts = {"type": "FeatureCollection","features": ', textLines, '}')
   cat(appendLines, file = outfile)
   
 }
@@ -697,11 +823,64 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
                       ahps$Latitude >= bbox[3] & 
                       ahps$Latitude <= bbox[4], ]
   }
+
+  # Do some formatting to standardize across multiple datasets
+#  streams$Status <- str_to_sentence(gsub("_", " ", streams$Status))
+#  streams$Observed[streams$Observed == "-999.00"] = "NA"
+#  streams$SecValue[streams$SecValue == "-999.00"] = "NA"
+#  streams$Action[streams$Action == ""] = '"NA"'
+#  streams$Flood[streams$Flood == ""] = '"NA"'
+#  streams$Moderate[streams$Moderate == ""] = '"NA"'
+#  streams$Major[streams$Major == ""] = '"NA"'
+
+  streams$Status <- str_to_sentence(gsub("_", " ", streams$Status))
+#  streams$Observed[streams$Observed == "-999.00"] = "NA"
+#  streams$Observed[streams$Observed == ""] = "NA"
+#  streams$SecValue[streams$SecValue == "-999.00"] = "NA"
+#  streams$SecValue[streams$SecValue == ""] = "NA"
+  streams$Observed = as.numeric(streams$Observed)
+  streams$Observed[streams$Observed == -999.00] = NA
+  streams$SecValue = as.numeric(streams$SecValue)
+  streams$SecValue[streams$SecValue == -999.00] = NA
+ 
+  streams$Action = as.numeric(streams$Action)
+  streams$Flood = as.numeric(streams$Flood)
+  streams$Moderate = as.numeric(streams$Moderate)
+  streams$Major = as.numeric(streams$Major)
+
+  info_str = lapply(X=1:dim(streams)[1], function(X){
+    ht_str = ifelse(is.na(streams$Observed[X]), "", 
+                    paste0("<strong>Height:</strong> ", streams$Observed[X], " ", 
+                           streams$Units[X], "<br />"))
+    
+    dis_str = ifelse(is.na(streams$SecValue[X]), "", 
+                     paste0("<strong>Discharge:</strong> ", streams$SecValue[X], " ", 
+                            streams$SecUnit[X], "<br />"))
+    
+    act_str = ifelse(is.na(streams$Action[X]), "", paste0("<b>Action:</b> ", streams$Action[X], " ft<br/>"))
+    fl_str = ifelse(is.na(streams$Flood[X]), "", paste0("<b>Flood:</b> ", streams$Flood[X], " ft<br/>"))
+    mod_str = ifelse(is.na(streams$Moderate[X]), "", paste0("<b>Moderate:</b> ", streams$Moderate[X], " ft<br/>"))
+    maj_str = ifelse(is.na(streams$Major[X]), "", paste0("<b>Major:</b> ", streams$Major[X], " ft<br/>"))
+    
+    fh_str = ifelse(all(c(act_str, fl_str, mod_str, maj_str)==""), "", 
+                    paste0("<br/><b>Flood Heights</b><br/>", act_str, fl_str, 
+                           mod_str, maj_str))
+    
+    info = paste0(ht_str, dis_str, fh_str)
+  
+  })
+  streams$info = do.call(rbind.data.frame, info_str)
+
+  # Convert date and time to an R object with a standard format across datasets
+  datetime = as.POSIXct(streams$ObsTime, format="%Y-%M-%d %H:%M:%S", tz="GMT")
+  formatTime = format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE)
+  streams$ObsTime = paste0('Last updated on ', formatTime,
+                    ' LST')
   
   # Convert SpatVec object to an sf object and save as a geojson file.
   # SpatVec objects cannot be directly converted to geojson.
   spatVect_sf <- st_as_sf(streams)
-  cat(as.character(geojson_json(spatVect_sf)), file = outfile)
+  cat(paste0('streams = ', as.character(geojson_json(spatVect_sf))), file = outfile)
   
   return(spatVect_sf)
 }
