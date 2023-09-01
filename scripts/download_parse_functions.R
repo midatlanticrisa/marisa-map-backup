@@ -871,6 +871,20 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
   })
   streams$info = do.call(rbind.data.frame, info_str)
 
+  # Determine status color
+  color_df = as.data.frame(matrix(c('Major' , "#CC32FF",
+                         'Moderate'  , "#FF0000",
+                         'Minor'  , "#FF9900",
+                         'Action'  , "#FEFF00",
+                         'No flooding'   , '#00FF00',
+                         'Not defined'   , '#73AEE9',
+                         'Low threshold'   , '#8F6321',
+                         'Obs not current'   , '#BDC2BB',
+                         'Out of service'   , '#666666'),
+                       ncol = 2, byrow = TRUE))
+  streams$col = '#000000'
+  streams$col = color_df$V2[match(streams$Status, color_df$V1)]
+
   # Convert date and time to an R object with a standard format across datasets
   datetime = as.POSIXct(streams$ObsTime, format="%Y-%M-%d %H:%M:%S", tz="GMT")
   formatTime = format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE)
