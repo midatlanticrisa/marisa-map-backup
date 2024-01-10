@@ -39,7 +39,10 @@ makeTransparent <- function(someColor, alpha=100){
 #' @return string of cardinal direction
 # ------------------------------------------------------------------------
 cardinal_direction = function(direction){
-  if(is.na(direction)){
+  # Direction should be in numeric format
+  direction = ifelse(typeof(direction) == "character", as.numeric(direction), direction)
+
+  if(is.na(direction) | direction == ""){
     cardDir <- "NA"
   }else if(direction>=0 & direction<=11.24){
     cardDir <- "N"
@@ -562,7 +565,7 @@ obs = paste0("<strong>Location:</strong> ", coordinate_hemi(as.numeric(as.charac
   jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', unique(tide_df$name), '", "id": "', unique(tide_df$id), 
                     '", "url": "https://tidesandcurrents.noaa.gov/stationhome.html?id=', unique(tide_df$id),
                     '", "obs": "', obs, '", "time": "Last updated on ', formatTime, 
-                    ' LST", "image": "https://www.marisa.psu.edu/mapdata/Tide_figs/Fig_', unique(tide_df$id), '.png"},',
+                    ' LST", "image": "https://download.clima.psu.edu/rtdatamap/Tide_figs/Fig_', unique(tide_df$id), '.png"},',
                     ' "geometry": {"type": "Point", "coordinates": [', as.numeric(as.character(unique(tide_df$lon))), ',', 
                     as.numeric(as.character(unique(tide_df$lat))), ']}}')
   
@@ -601,8 +604,14 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
   ##create plot
   png(file=paste0(p.dir, "Fig_", metaDat$id, ".png"), family="Helvetica", units="in", 
       width=p.width, height=p.height, pointsize=12, res=300)
-  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
-  
+#  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(2.25,2.5,0.5,0.25))
+ 
+  if(unique(watLev$datum) == "IGLD"){
+    par(mfrow=c(1,1), mgp=c(1.25,0.25,0), mar=c(2.25,4,0.5,0.25), tck=-0.02)
+  } else {
+    par(mfrow=c(1,1), mgp=c(1.25,0.25,0), mar=c(2.25,2.5,0.5,0.25), tck=-0.02)
+  }
+ 
   if(length(watLev$v) == 1 && is.na(watLev$v)){ # If no data
     plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
@@ -622,9 +631,15 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
     valrnge = range(c(as.numeric(as.character(watLev$v)), 
                       as.numeric(as.character(forecast$v))), na.rm = TRUE) 
     
-    plot(0, type="n", ylab=paste0("Height (ft ", unique(watLev$datum), ")"), 
-         xlab="Local standard time", xaxt="n", xlim = timernge, ylim = valrnge) #klr changed m to ft
+    plot(0, type="n", ylab="", 
+         xlab="Local standard time", xaxt="n", xlim = timernge, ylim = valrnge, las=2) #klr changed m to ft
     
+    if(unique(watLev$datum) == "IGLD"){
+      mtext(paste0("Height (ft ", unique(watLev$datum), ")"), side = 2, line = 3)
+    } else {
+      mtext(paste0("Height (ft ", unique(watLev$datum), ")"), side = 2, line = 1.5)
+    }
+
     # Add some nice gridding
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
     axis(1, at=day_midnight, labels=FALSE, tick=TRUE)
@@ -679,7 +694,12 @@ collectWarningsAlerts = function(area = NULL, colorfile, cntyShp, coastalShp,
   alerts <- fromJSON(weatherURL)
   features <- alerts$features
   
-  ## TO DO - ADD OPTION IF THERE ARE NO ALERTS ##
+  # IF THERE ARE NO ALERTS
+  if(length(features$id) <= 1 && features$properties$status == "Test"){
+    appendLines = 'NWSalerts = {"type": "FeatureCollection","features":  [] }'
+
+  # If there are alerts
+  } else {
   
   ## Read and extract the US state
   # "cb_2018_us_state_500k" is the 2018 spatial census data 
@@ -770,6 +790,7 @@ collectWarningsAlerts = function(area = NULL, colorfile, cntyShp, coastalShp,
   textLines = readLines(outfile)
   # alerts = 
   appendLines = c('NWSalerts = {"type": "FeatureCollection","features": ', textLines, '}')
+  }
   cat(appendLines, file = outfile)
   
 }
@@ -890,7 +911,11 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
   formatTime = format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE)
   streams$ObsTime = paste0('Last updated on ', formatTime,
                     ' LST')
+  streams$datetime = datetime
   
+  # Set plot info
+  streams$plot = paste0("https://download.clima.psu.edu/rtdatamap/River_figs/Fig_", streams$GaugeLID, ".png")
+
   # Convert SpatVec object to an sf object and save as a geojson file.
   # SpatVec objects cannot be directly converted to geojson.
   spatVect_sf <- st_as_sf(streams)
@@ -986,6 +1011,37 @@ collectRiverForecast = function(GID){
 }
 
 ##########################################################################
+# https://stackoverflow.com/questions/37610056/how-to-treat-nas-like-values-when-comparing-elementwise-in-r
+`%!=na%` <- function(e1, e2) (e1 != e2 | (is.na(e1) & !is.na(e2)) | (is.na(e2) & !is.na(e1))) & !(is.na(e1) & is.na(e2))
+
+# From cran rlist
+# Remove members from a list by index or name
+list.remove = function(.data, range = integer()) {
+  if (is.logical(range)) {
+    .data[!range]
+  }
+  else if (is.numeric(range)) {
+    .data[-range]
+  }
+  else if (is.character(range)) {
+    names <- names(.data)
+    m <- vapply(range, "==", logical(length(.data)), names)
+    selector <- apply(m, 1L, any)
+    .data[!selector]
+  }
+}
+
+# Append elements to a list
+list.append = function (.data, ...) {
+  if (is.list(.data)) {
+    c(.data, list(...))
+  }
+  else {
+    c(.data, ..., recursive = FALSE)
+  }
+}
+
+##########################################################################
 ##########################################################################
 #' Create a record of observations
 #' 
@@ -1002,7 +1058,7 @@ collectRiverForecast = function(GID){
 #'   days saved as \code{recordFile}.
 #'   
 # ------------------------------------------------------------------------
-recordData = function(currentObs, recordFile, keep = 7, end_date = Sys.time(), 
+recordData = function(currentObs, recordFile, keep = 4, end_date = Sys.time(), 
                       tz, return.val=FALSE){
   
   # Convert number of days to keep to seconds
@@ -1014,14 +1070,32 @@ recordData = function(currentObs, recordFile, keep = 7, end_date = Sys.time(),
     
     # Load the records
     load(recordFile)
-    
+ 
+    # Determine if there are any new stations or stations removed
+    namesOld = names(ObsRecord)
+    namesNew = names(currentObs)
+    newStations = setdiff(namesNew, namesOld)
+    rmStations = setdiff(namesOld, namesNew)
+
+    # Remove any old stations
+    if(any(is.na(rmStations))){
+      naind = which(is.na(namesOld))
+      rmStations = rmStations[-which(is.na(rmStations))]
+      ObsRecord = list.remove(ObsRecord, naind)
+    }
+
+    if(length(rmStations) != 0){
+      ObsRecord = list.remove(ObsRecord, rmStations)
+    }
+   
     # Loop through each gauge or station
     for(i in names(ObsRecord)){
       
       # Convert observation time to R time and evaluate if any dates are older
       # than the time we want to record.
-      obstime = as.POSIXlt(ObsRecord[[i]]$obs$time, tz = tz, 
-                           format = "%Y-%m-%d %H:%M:%S")
+      #obstime = as.POSIXlt(ObsRecord[[i]]$obs$time, tz = tz, 
+      #                     format = "%Y-%m-%d %H:%M:%S")
+      obstime = format(ObsRecord[[i]]$obs$time, tz = tz, usetz=TRUE)
       ind = which(obstime < start_date)
       
       # Remove any old records 
@@ -1029,10 +1103,28 @@ recordData = function(currentObs, recordFile, keep = 7, end_date = Sys.time(),
         ObsRecord[[i]]$obs = ObsRecord[[i]]$obs[-ind, ]
       }
       
+      # Ensure times are in the same format to evaluate whether the information is new
+      oldtime = format(as.POSIXct(obstime[length(obstime)]), '%Y-%m-%d %H:%M:%S')
+      newtime = format(currentObs[[i]]$obs$time, tz = tz)
+
+      # Convert any character(0) to NA
+      oldtime = ifelse(identical(oldtime, character(0)), NA_character_, oldtime)
+      newtime = ifelse(identical(newtime, character(0)), NA_character_, newtime)
+
       # Append new records
-      ObsRecord[[i]]$obs = rbind(ObsRecord[[i]]$obs, currentObs[[i]]$obs)
+      if(!is.na(newtime) && (oldtime %!=na% newtime)){
+        ObsRecord[[i]]$obs = rbind(ObsRecord[[i]]$obs, currentObs[[i]]$obs)
+      }
     }
     
+    # Append any new stations
+    if(length(newStations) != 0){
+      for(x in newStations){
+        ObsRecord = list.append(ObsRecord, currentObs[[newStations[x]]])
+        names(ObsRecord)[length(ObsRecord)] = newStations[x]
+      }
+    }
+
     # Save changes to the Rdata file
     save("ObsRecord", file = recordFile)
     
@@ -1049,21 +1141,26 @@ recordData = function(currentObs, recordFile, keep = 7, end_date = Sys.time(),
 
 ##########################################################################
 ##########################################################################
-#' Download and Plot recent and forecast NOAA Tide Station water levels
+#' Plot recorded river observations from AHPS Stream Gages.
 #' 
-#' @param metaList List of metadata and observation record from one river gauge.
+#' @param metaList List of metadata and observation record from one river gauge. 
+#'   See \code{recordFile}
+#' @param tz String designating timezone.
+#' @param p.tz Plot width in inches. Default: America/New_York
 #' @param p.width Plot width in inches. Default: 4
 #' @param p.height Plot height in inches. Default: 2.5
 #' @param p.dir Output directory for plots to be saved in.
+#' @param keep number of days to record in the past. Default: 7; keeps the past 
+#'   7 days of observations.
+#' @param end_date POSIXct or POSIXt date time object to determine the last time 
+#'   in the range with \code{keep} to record. Default: Sys.time(); the current 
+#'   date time.
 #' @return plot saved in p.dir as Fig_<station ID>.png
-#
-# Additional information on inputs can be found on the CO-OP API at:
-# https://api.tidesandcurrents.noaa.gov/api/prod/
+#' 
 # ------------------------------------------------------------------------
 
 river_plot <- function(metaList, tz, p.tz="America/New_York",
                        p.width = 4, p.height = 2.5, p.dir,
-                       use.recorded = FALSE,
                        keep = 7, end_date = Sys.time()){
   # print(metaList$ID)
   # Set flood stage colors
@@ -1072,65 +1169,46 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
   mod.col = makeTransparent("#FF7272", 150)
   maj.col = makeTransparent("#E28EFF", 150)
   
-  if(use.recorded){
-    # Determine midnight and noon for the record period
-    day_midnight <- as.POSIXct(paste0(Sys.Date() - keep:1, "00:00:00"), 
-                               format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
-    day_noon <- as.POSIXct(paste0(Sys.Date() - keep:1, "12:00:00"), 
-                           format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
-    
-    # Convert number of days to keep to seconds
-    keepSec = keep*86400 # 60 secs * 60 mins * 24 hrs
-    start_date = end_date - keepSec
-    
-    # Convert observation time to R time and evaluate if any dates are older
-    # than the time we want to record.
-    obstime = as.POSIXct(metaList$obs$time, format = "%Y-%m-%d %H:%M:%S", tz = tz)
-    obstime = format(obstime, tz=p.tz)
-    metaList$obs$time = obstime
-    ind = which(obstime < start_date)
-    
-    # Remove any old records 
-    if(length(ind) > 0){
-      metaList$obs = metaList$obs[-ind, ]
-      obstime = obstime[-ind]
-    }
-    
-    # Convert any missing values to NA
-    metaList$obs[metaList$obs == "-999.00"]=NA
-    metaList$forecast = NA
-    fortime = NA
-    
-  } else {
-    if(!all(is.na(metaList$obs))){ # If they are NOT all NA
-      # Convert observation time to R time
-      obstime = as.POSIXct(metaList$obs$time, format = "%Y-%m-%dT%H:%M:%S-00:00", tz = tz)
-      obstime = as.POSIXct(format(obstime, tz=p.tz))
-      
-      fortime = as.POSIXct(metaList$forecast$time, format = "%Y-%m-%dT%H:%M:%S-00:00", tz = tz)
-      fortime = as.POSIXct(format(fortime, tz=p.tz))
-      
-      # Determine midnight and noon for the record period
-      timeRange = range(c(obstime, fortime), na.rm = TRUE)
-      dateRange = as.Date(timeRange)
-      day_midnight <- as.POSIXct(paste0(seq(dateRange[1], dateRange[2], by="days"), "00:00:00"), 
-                                 format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
-      day_noon <- as.POSIXct(paste0(seq(dateRange[1], dateRange[2], by="days"), "12:00:00"), 
+  # Determine midnight and noon for the record period
+  day_midnight <- as.POSIXct(paste0(Sys.Date() - keep:0, "00:00:00"), 
                              format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
-      
-      # Convert any missing values to NA
-      metaList$obs[metaList$obs == "-999" | metaList$obs == "-999.00"]=NA
-      metaList$forecast[metaList$forecast == "-999" | metaList$forecast == "-999.00"]=NA
-    } 
+  day_noon <- as.POSIXct(paste0(Sys.Date() - keep:0, "12:00:00"), 
+                         format = "%Y-%m-%d %H:%M:%S", tz = p.tz)
+  
+  # Convert number of days to keep to seconds
+  keepSec = keep*86400 # 60 secs * 60 mins * 24 hrs
+  start_date = end_date - keepSec
+  
+  # Convert observation time to R time and evaluate if any dates are older
+  # or more recent than the time we want to record. Any time more recent are erroneous
+  obstime = as.POSIXct(metaList$obs$time, format = "%Y-%m-%d %H:%M:%S", tz = tz)
+  obstime = format(obstime, tz=p.tz)
+  metaList$obs$time = obstime
+  ind = which(obstime < start_date | obstime > end_date)
+  
+  # Remove any old records 
+  if(length(ind) > 0){
+    metaList$obs = metaList$obs[-ind, ]
+    obstime = obstime[-ind]
   }
+  # Create a time range if values exist and are not all NA
+  if(length(obstime) > 0 && !all(is.na(obstime))){
+    timeRange = range(as.POSIXct(obstime), na.rm = TRUE)
+  }
+  
+  # Convert any missing values to NA
+  metaList$obs[metaList$obs == "-999.00"]=NA
+  metaList$forecast = NA
+  fortime = NA
   
   # Create plot
   png(file=paste0(p.dir, "Fig_", metaList$ID, ".png"), family="Helvetica", units="in", 
       width=p.width, height=p.height, pointsize=12, res=300)
-  par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(1.75,2.5,0.25,3))
+  # par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(1.75,2.5,0.25,3))
   
   if(all(is.na(as.numeric(metaList$obs$height))) && 
      all(is.na(as.numeric(metaList$obs$discharge)))){ # If no data
+    par(mfrow=c(1,1), mgp=c(1.25,0.5,0), mar=c(1.75,2.5,0.25,3))
     plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
     
@@ -1147,12 +1225,19 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
     
   } else if(!all(is.na(as.numeric(metaList$obs$height))) && 
             all(is.na(as.numeric(metaList$obs$discharge)))){ # if height but no discharge
-    
+    par(mfrow=c(1,1), mgp=c(1.25,0.25,0), mar=c(1.75,3,0.25,0.5), tck=-0.02)
     # Add gage height data
-    hRange = range(c(as.numeric(metaList$forecast$height), as.numeric(metaList$obs$height)), na.rm = TRUE)
-    plot(obstime, as.numeric(metaList$obs$height), type="n", xaxs="i",
-         ylab="", xlab="", xaxt="n", las=2, xlim=timeRange, ylim=hRange)
-    mtext(2, text="Gage height (ft)", line=1.5)
+    if(all(abs(diff(as.numeric(metaList$obs$height))) < 8, na.rm=TRUE)){
+      md = range(as.numeric(metaList$obs$height), na.rm=TRUE)
+      hRange = c(md[1]-2, md[2]+8)
+    } else {
+      hRange = range(as.numeric(metaList$obs$height), na.rm = TRUE)
+    }
+    
+#hRange = range(as.numeric(metaList$obs$height), na.rm = TRUE)
+    plot(as.POSIXct(obstime), as.numeric(metaList$obs$height), type="n", xaxs="i",
+         ylab="", xlab="", xaxt="n", las=2, xlim=timeRange, ylim=hRange, cex.axis=0.9)
+    mtext(2, text="Gage height (ft)", line=2)
     
     # Add some nice gridding
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
@@ -1162,9 +1247,12 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
     abline(v = day_midnight, lty = 6, col = "gray")
     
     # Add flood stage information
-    rect(par("usr")[1], metaList$action, par("usr")[2], metaList$minor, col = act.col)
-    rect(par("usr")[1], metaList$minor, par("usr")[2], metaList$mod, col = min.col)
-    rect(par("usr")[1], metaList$mod, par("usr")[2], metaList$major, col = mod.col)
+    rect(par("usr")[1], metaList$action, par("usr")[2], 
+         min(c(metaList$minor, par("usr")[4]), na.rm = TRUE), col = act.col)
+    rect(par("usr")[1], metaList$minor, par("usr")[2], 
+         min(c(metaList$mod, par("usr")[4]), na.rm = TRUE), col = min.col)
+    rect(par("usr")[1], metaList$mod, par("usr")[2], 
+         min(c(metaList$major, par("usr")[4]), na.rm = TRUE), col = mod.col)
     rect(par("usr")[1], metaList$major, par("usr")[2], par("usr")[4], col = maj.col)
     
     text(par("usr")[1], metaList$action, "Action", adj = c(0,0))
@@ -1172,18 +1260,26 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
     text(par("usr")[1], metaList$mod, "Moderate", adj = c(0,0))
     text(par("usr")[1], metaList$major, "Major", adj = c(0,0))
     
-    lines(obstime, as.numeric(metaList$obs$height), lwd=2)
-    lines(fortime, as.numeric(metaList$forecast$height), lwd=2, lty=2)
-    abline(v = max(obstime), lwd=2, col="black")
+    lines(as.POSIXct(obstime), as.numeric(metaList$obs$height), lwd=2)
+    # lines(fortime, as.numeric(metaList$forecast$height), lwd=2, lty=2)
+    abline(v = max(as.POSIXct(obstime)), lwd=2, col="black")
     
     } else if(all(is.na(as.numeric(metaList$obs$height))) && 
               !all(is.na(as.numeric(metaList$obs$discharge)))){ # if discharge but no height
+      par(mfrow=c(1,1), mgp=c(1.25,0.25,0), mar=c(1.75,0.5,0.25,3), tck=-0.02)
+
+if(all(abs(diff(as.numeric(metaList$obs$discharge))) < 8, na.rm=TRUE)){
+        md = range(as.numeric(metaList$obs$discharge), na.rm=TRUE)
+        dRange = c(md[1]-2, md[2]+8)
+      } else {
+        dRange = range(as.numeric(metaList$obs$discharge), na.rm = TRUE)
+      }
       
-      dRange = range(c(as.numeric(metaList$forecast$discharge), as.numeric(metaList$obs$discharge)), na.rm = TRUE)
-      plot(obstime, as.numeric(metaList$obs$discharge), xaxs="i",
+      #dRange = range(as.numeric(metaList$obs$discharge), na.rm = TRUE)
+      plot(as.POSIXct(obstime), as.numeric(metaList$obs$discharge), xaxs="i",
            type = "n", ylab = "", xlab="", xaxt="n", yaxt="n",
            xlim=timeRange, ylim=dRange)
-      axis(4, col="#018571", col.ticks="#018571", col.axis="#018571", las=2)
+      axis(4, col="#018571", col.ticks="#018571", col.axis="#018571", las=2, cex.axis=0.9)
       mtext(4, text=expression("Discharge"~(ft^3/s)), line=2, col="#018571")
       
       # Add some nice gridding
@@ -1193,17 +1289,26 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
       # grid(NA, NULL, lty = 6, col = "gray")
       abline(v = day_midnight, lty = 6, col = "gray")
       
-      lines(obstime, as.numeric(metaList$obs$discharge), lwd=2, col="#018571")
-      lines(fortime, as.numeric(metaList$forecast$discharge), lwd=2, lty=2,
-            col="#018571")
-      abline(v = max(obstime), lwd=2, col="black")
+      lines(as.POSIXct(obstime), as.numeric(metaList$obs$discharge), lwd=2, col="#018571")
+      # lines(fortime, as.numeric(metaList$forecast$discharge), lwd=2, lty=2,
+      #       col="#018571")
+      abline(v = max(as.POSIXct(obstime)), lwd=2, col="black")
       
       } else { # Create discharge and gage height plot.
+        par(mfrow=c(1,1), mgp=c(1.25,0.25,0), mar=c(1.75,3,0.25,3), tck=-0.02)
+
+if(all(abs(diff(as.numeric(metaList$obs$height))) < 8, na.rm=TRUE)){
+          md = range(as.numeric(metaList$obs$height), na.rm=TRUE)
+          hRange = c(md[1]-2, md[2]+8)
+        } else {
+          hRange = range(as.numeric(metaList$obs$height), na.rm = TRUE)
+        }
+
     # Add gage height data
-    hRange = range(c(as.numeric(metaList$forecast$height), as.numeric(metaList$obs$height)), na.rm = TRUE)
-    plot(obstime, as.numeric(metaList$obs$height), type="n", xaxs="i",
-         ylab="", xlab="", xaxt="n", las=2, xlim=timeRange, ylim=hRange)
-    mtext(2, text="Gage height (ft)", line=1.5)
+    #hRange = range(as.numeric(metaList$obs$height), na.rm = TRUE)
+    plot(as.POSIXct(obstime), as.numeric(metaList$obs$height), type="n", xaxs="i",
+         ylab="", xlab="", xaxt="n", las=2, xlim=timeRange, ylim=hRange, cex.axis=0.9)
+    mtext(2, text="Gage height (ft)", line=2)
     
     # Add some nice gridding
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col = "snow")
@@ -1213,9 +1318,12 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
     abline(v = day_midnight, lty = 6, col = "gray")
     
     # Add flood stage information
-    rect(par("usr")[1], metaList$action, par("usr")[2], metaList$minor, col = act.col)
-    rect(par("usr")[1], metaList$minor, par("usr")[2], metaList$mod, col = min.col)
-    rect(par("usr")[1], metaList$mod, par("usr")[2], metaList$major, col = mod.col)
+    rect(par("usr")[1], metaList$action, par("usr")[2], 
+         min(c(metaList$minor, par("usr")[4]), na.rm = TRUE), col = act.col)
+    rect(par("usr")[1], metaList$minor, par("usr")[2], 
+         min(c(metaList$mod, par("usr")[4]), na.rm = TRUE), col = min.col)
+    rect(par("usr")[1], metaList$mod, par("usr")[2], 
+         min(c(metaList$major, par("usr")[4]), na.rm = TRUE), col = mod.col)
     rect(par("usr")[1], metaList$major, par("usr")[2], par("usr")[4], col = maj.col)
     
     text(par("usr")[1], metaList$action, "Action", adj = c(0,0))
@@ -1223,26 +1331,972 @@ river_plot <- function(metaList, tz, p.tz="America/New_York",
     text(par("usr")[1], metaList$mod, "Moderate", adj = c(0,0))
     text(par("usr")[1], metaList$major, "Major", adj = c(0,0))
     
-    lines(obstime, as.numeric(metaList$obs$height), lwd=2)
-    lines(fortime, as.numeric(metaList$forecast$height), lwd=2, lty=2)
+    lines(as.POSIXct(obstime), as.numeric(metaList$obs$height), lwd=2)
+    # lines(fortime, as.numeric(metaList$forecast$height), lwd=2, lty=2)
     
     # Add the discharge data
     par(new=TRUE)
-    dRange = range(c(as.numeric(metaList$forecast$discharge), as.numeric(metaList$obs$discharge)), na.rm = TRUE)
-    plot(obstime, as.numeric(metaList$obs$discharge), 
+
+    if(all(abs(diff(as.numeric(metaList$obs$discharge))) < 8, na.rm=TRUE)){
+      md = range(as.numeric(metaList$obs$discharge), na.rm=TRUE)
+      dRange = c(md[1]-2, md[2]+8)
+    } else {
+      dRange = range(as.numeric(metaList$obs$discharge), na.rm = TRUE)
+    }
+    
+#dRange = range(as.numeric(metaList$obs$discharge), na.rm = TRUE)
+    plot(as.POSIXct(obstime), as.numeric(metaList$obs$discharge), 
          type = "l", lwd=2, col="#018571", ylab = "", xlab="", xaxt="n", yaxt="n",
          xlim=timeRange, ylim=dRange, xaxs="i")
-    axis(4, col="#018571", col.ticks="#018571", col.axis="#018571", las=2)
+    axis(4, col="#018571", col.ticks="#018571", col.axis="#018571", las=2, cex.axis=0.9)
     mtext(4, text=expression("Discharge"~(ft^3/s)), line=2, col="#018571")
     
-    lines(fortime, as.numeric(metaList$forecast$discharge), lwd=2, lty=2,
-          col="#018571")
+    # lines(fortime, as.numeric(metaList$forecast$discharge), lwd=2, lty=2,
+    #       col="#018571")
     
-    abline(v = max(obstime), lwd=2, col="black")
+    abline(v = max(as.POSIXct(obstime)), lwd=2, col="black")
     
   }
   dev.off()
+} 
+##########################################################################
+##########################################################################
+#' Decode METAR sky conditions
+#' 
+#' @param skyVal value of sky conditions from METAR observations
+#' @param cldbase value of cloud base height from METAR observations
+#' @return string of decoded sky conditions
+#' 
+#' # https://www.aviationweather.gov/dataserver/fields?datatype=metar
+# ------------------------------------------------------------------------
+convertSky = function(skyVal, cldbase){
+  
+  skyConditions = data.frame(val = c("SKC", "CLR", "CAVOK", "FEW", "SCT", "BKN", "OVC", "OVX"), 
+                             cond = c("Clear sky", "Sky clear of clouds below the range of the sensor", 
+                                      "Cloud and visibility OK", "Few clouds", "Scattered clouds",
+                                      "Broken clouds", "Overcast sky", "Sky is obscured"))
+  
+  cond = skyConditions$cond[which(skyVal == skyConditions$val)]
+  
+  if(skyVal == 'FEW' | skyVal == 'SCT' | skyVal == 'BKN' | skyVal == 'OVC'){
+    str = paste0("<b>Sky condition:</b> ", cond, " with a cloud base of ", cldbase, 
+                 " ft AGL (", round(conv_unit(cldbase, from="ft", to="m"),1), 
+                 " m AGL)<br />")
+  } else {
+    str = paste0("<b>Sky condition:</b> ", cond,"<br />")
+  }
+  return(str)
 }
+##########################################################################
+##########################################################################
+#' Decode METAR flight categories
+#' 
+#' @param flightVal value of flight categories
+#' @return string of decoded flight categories
+#' 
+#' # https://www.aviationweather.gov/dataserver/fields?datatype=metar
+# ------------------------------------------------------------------------
+flightCat = function(flightVal){
+  
+  if(flightVal == 'LIFR'){
+    str = paste0("<b>Flight category:</b> Low Instrument Flight Rules with a ceiling", 
+                 " below 500 feet AGL and/or visibility less than 1 mile<br />")
+    
+  } else if(flightVal == 'IFR'){
+    str = paste0("<b>Flight category:</b> Instrument Flight Rules with a ceiling", 
+                 " 500 to below 1,000 feet AGL and/or visibility 1 mile to less than 3 miles<br />")
+    
+  } else if(flightVal == 'MVFR'){
+    str = paste0("<b>Flight category:</b> Marginal Visual Flight Rules with a ceiling", 
+                 " 1,000 to 3,000 feet AGL and/or visibility 3 to 5 miles<br />")
+    
+  } else if(flightVal == 'SCT'){
+    str = paste0("<b>Flight category:</b> Visual Flight Rules with a ceiling", 
+                 " greater than 3,000 feet AGL and/or visibility greater than 5 miles<br />")
+    
+  } else{
+    str = ""
+  }
+  return(str)
+}
+##########################################################################
+##########################################################################
+#' Parse and format realtime NOAA METAR stations into a geojson format
+#' 
+#' @param awsData data.frame of observations from one METAR station
+#' @param metar_stations data.frame of METAR station metadata
+#' @return string of formatted METAR observations
+#' 
+#' # https://www.aviationweather.gov/dataserver/fields?datatype=metar
+# ------------------------------------------------------------------------
+parseMETARdata = function(awsData, metar_stations){
+  # print(awsData$station_id)
+  
+  scov = as.character(awsData$sky_cover)
+  cldbase = awsData$cloud_base_ft_agl
+  scov_str = ifelse(nchar(scov)==0 | is.na(scov), "", convertSky(scov, cldbase))
+  
+  scov_1 = as.character(awsData$sky_cover.1)
+  cldbase_1 = awsData$cloud_base_ft_agl.1
+  scov_str_1 = ifelse(nchar(scov_1)==0 | is.na(scov_1), "", convertSky(scov_1, cldbase_1))
+  
+  scov_2 = as.character(awsData$sky_cover.2)
+  cldbase_2 = awsData$cloud_base_ft_agl.2
+  scov_str_2 = ifelse(nchar(scov_2)==0 | is.na(scov_2), "", convertSky(scov_2, cldbase_2))
+  
+  scov_3 = as.character(awsData$sky_cover.3)
+  cldbase_3 = awsData$cloud_base_ft_agl.3
+  scov_str_3 = ifelse(nchar(scov_3)==0 | is.na(scov_3), "", convertSky(scov_3, cldbase_3))
+  
+  flight = as.character(awsData$flight_category)
+  flight_str = ifelse(nchar(flight)==0 | is.na(flight), "", flightCat(flight))
+  
+  at = awsData$temp_c
+  at_str = ifelse(is.na(at), "", paste0("<b>Air temperature:</b> ", round(conv_unit(at, from="C", to="F"),1),
+                                        " F (", at, " C)<br />"))
+  
+  dp = awsData$dewpoint_c
+  dp_str = ifelse(is.na(dp), "", paste0("<b>Dew point:</b> ", round(conv_unit(dp, from="C", to="F"),1),
+                                        " F (", dp, " C)<br />"))
+
+  ws = awsData$wind_speed_kt
+    if(awsData$wind_dir_degrees %in% "VRB"){
+    ws_str = paste0("<b>Wind:</b> variable direction at ", 
+                    round(conv_unit(ws, from="knot", to="mph"),1), " mph (",
+                    round(conv_unit(ws, from="knot", to="m_per_sec"),1), " m/s)<br />")
+  } else {
+    awsData$wind_dir_degrees = ifelse(awsData$wind_dir_degrees == "NA", NA, 
+                                      awsData$wind_dir_degrees)
+    ws_str = ifelse(is.na(ws), "", paste0("<b>Wind:</b> from ", 
+                                          cardinal_direction(awsData$wind_dir_degrees), " (",
+                                          awsData$wind_dir_degrees, "&deg;) at ", 
+                                          round(conv_unit(ws, from="knot", to="mph"),1), " mph (",
+                                          round(conv_unit(ws, from="knot", to="m_per_sec"),1), " m/s)<br />"))
+    
+  }
+  
+  gt = awsData$wind_gust_kt
+  gt_str = ifelse(is.na(gt), "", paste0("<b>Gusting to:</b> ", 
+                                        round(conv_unit(gt, from="knot", to="mph"),1), " mph (",
+                                        round(conv_unit(gt, from="knot", to="m_per_sec"),1), " m/s)<br />"))
+  
+  vis = awsData$visibility_statute_mi
+    if(grepl("+", vis, fixed=TRUE)){
+    vis = as.numeric(gsub("+", "", vis, fixed=TRUE))
+    vis_str = paste0("<b>Visibility:</b> ", vis, "+ mi (", 
+                     round(conv_unit(vis, from="mi", to="km"),1), "+ km)<br />")
+  } else {
+    vis = as.numeric(vis)
+    vis_str = ifelse(is.na(vis), "", paste0("<b>Visibility:</b> ", vis, " mi (", 
+                                            round(conv_unit(vis, from="mi", to="km"),1), " km)<br />"))
+  }
+  
+  vertvis = awsData$vert_vis_ft
+  vertvis_str = ifelse(is.na(vertvis), "", paste0("<b>Vertical visibility:</b> ", vertvis, " ft (", 
+                                                  round(conv_unit(vertvis, from="ft", to="km"),1), " km)<br />"))
+  
+  alt = awsData$altim_in_hg
+  alt_str = ifelse(is.na(alt), "", paste0("<b>Altimeter:</b> ", round(alt,1), " inches of Hg<br />"))
+  
+  bp = awsData$sea_level_pressure_mb
+  bp_str = ifelse(is.na(bp), "", paste0("<b>Barometric pressure:</b> ", bp, " mbar (", 
+                                        round(conv_unit(bp, from="mbar", to="hPa"),1), " hPa)<br />"))
+  
+  bp3 = awsData$three_hr_pressure_tendency_mb
+  bp3hr_str = ifelse(is.na(bp3), "", paste0("<b>Pressure change in the past 3hrs:</b> ", bp3, " mbar (", 
+                                            round(conv_unit(bp3, from="mbar", to="hPa"),1), " hPa)<br />"))
+  
+  min6 = awsData$minT_c
+  max6 = awsData$maxT_c
+  at6hr_str = ifelse(is.na(min6), "", paste0("<b>Min to max air temperature from the past 6hrs:</b> ", 
+                                             round(conv_unit(min6, from="C", to="F"),1), " to ",
+                                             round(conv_unit(max6, from="C", to="F"),1),
+                                             " F (", min6, " to ", max6, " C)<br />"))
+  
+  min24 = awsData$minT24hr_c
+  max24 = awsData$maxT24hr_c
+  at24hr_str = ifelse(is.na(min24), "", paste0("<b>Min to max air temperature from the past 24hrs:</b> ", 
+                                              round(conv_unit(min24, from="C", to="F"),1), " to ",
+                                              round(conv_unit(max24, from="C", to="F"),1),
+                                              " F (", min24, " to ", max24, " C)<br />"))
+  
+  pr = awsData$precip_in
+  pr_str = ifelse(is.na(pr), "", paste0("<b>Precipitation since last update:</b> ", pr, " in (", 
+                                        round(conv_unit(pr, from="inch", to="cm"),1), " cm)<br />"))
+  
+  pr3 = awsData$pcp3hr_in
+  pr3_str = ifelse(is.na(pr3), "", paste0("<b>Precipitation 3 hr:</b> ", pr3, " in (", 
+                                          round(conv_unit(pr3, from="inch", to="cm"),1), " cm)<br />"))
+  
+  pr6 = awsData$pcp6hr_in
+  pr6_str = ifelse(is.na(pr6), "", paste0("<b>Precipitation 6 hr:</b> ", pr6, " in (", 
+                                          round(conv_unit(pr6, from="inch", to="cm"),1), " cm)<br />"))
+  
+  pr24 = awsData$pcp24hr_in
+  pr24_str = ifelse(is.na(pr24), "", paste0("<b>Precipitation 24 hr:</b> ", pr24, " in (", 
+                                            round(conv_unit(pr24, from="inch", to="cm"),1), " cm)<br />"))
+  
+  snow = awsData$snow_in
+  snow_str = ifelse(is.na(snow), "", paste0("<b>Snow depth on the ground:</b> ", snow, " in (", 
+                                            round(conv_unit(snow, from="inch", to="cm"),1), " cm)<br />"))
+  
+  el = awsData$elevation_m
+  el_str = ifelse(is.na(el), "", paste0("<b>Elevation:</b> ", 
+                                        round(conv_unit(el, from="m", to="ft"),1), 
+                                        " ft (", el, " m)<br />"))
+  
+  obs = paste0("<b>Location:</b> ", coordinate_hemi(awsData$latitude), 
+               " ", coordinate_hemi(awsData$longitude, "lon"), "<br />",
+               el_str, at_str, at6hr_str, at24hr_str, dp_str, pr_str, pr3_str, 
+               pr6_str, pr24_str, snow_str, ws_str, gt_str, scov_str, scov_str_1,
+               scov_str_2, scov_str_3, flight_str, vis_str, vertvis_str, alt_str, 
+               bp_str, bp3hr_str)
+  
+  # Convert date and time to an R object
+  times = awsData$observation_time
+  datetime = as.POSIXct(times[!is.na(times)], format="%Y-%M-%dT%H:%M:%SZ", tz="gmt")
+  formatTime = format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE)
+  
+  # Find the station name
+  name = str_to_title(metar_stations$site[which(awsData$station_id == metar_stations$station_id)])
+  
+  decodedURL = paste0("https://aviationweather.gov/data/metar/?id=", 
+                      awsData$station_id, "&hours=0&decoded=yes&include_taf=yes")
+  
+  # Combine all tide info into one string in geojson format
+  jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', name, 
+                    '", "id": "', awsData$station_id, 
+                    '", "url": "', decodedURL, 
+                    '", "obs": "', obs, '", "temp": "', round(conv_unit(at, from="C", to="F"),1), '", "time": "Last updated on ', formatTime, 
+                    ' LST"},',
+                    ' "geometry": {"type": "Point", "coordinates": [', awsData$longitude, ',', 
+                    awsData$latitude, ']}}')
+  
+  return(jsFormat)
+}
+##########################################################################
+##########################################################################
+#' Update column names and apply conversions to Keystone Mesonet station data
+#' The Keystone Mesonet covers Pennslyvania
+#' 
+#' @param dataset data.frame of stations observations from one Keystone Mesonet Network.
+#' @return data.frame of station observations
+# ------------------------------------------------------------------------
+updatePaMesonetColnames = function(dataset){
+  colnames(dataset)[which(colnames(dataset) == "latitude")] = "lat"
+  colnames(dataset)[which(colnames(dataset) == "longitude")] = "lon"
+  colnames(dataset)[which(colnames(dataset) == "elevation")] = "elev"
+  
+  if(any(colnames(dataset) == 't_5cm')){
+    dataset$t_5cm[dataset$t_5cm == -99.99] = NA
+    dataset$t_5cm = round((dataset$t_5cm*1.8)+32, 1)
+    colnames(dataset)[which(colnames(dataset) == 't_5cm')] = 'soiltemp'
+  }
+  
+  if(any(colnames(dataset) == 'vwc_5cm')){
+    dataset$vwc_5cm[dataset$vwc_5cm == -99.99] = NA
+    dataset$vwc_5cm = round(dataset$vwc_5cm*100, 1)
+    colnames(dataset)[which(colnames(dataset) == 'vwc_5cm')] = 'soilmoist'
+  }
+  
+  if(any(colnames(dataset) == 'snow_ac_total')){
+    dataset$snow_ac_total[dataset$snow_ac_total == -99.99] = NA
+    dataset$snow_ac_total = round(dataset$snow_ac_total/2.53, 1)
+  }
+  
+  return(dataset)
+}
+##########################################################################
+##########################################################################
+#' Parse and format realtime Keystone Mesonet station data into a geojson format
+#' The Keystone Mesonet covers Pennslyvania
+#' 
+#' @param paMesonet data.frame of observations from one Keystone Mesonet station.
+#' @return string of formatted station observations
+# ------------------------------------------------------------------------
+parsePaMesonetData = function(paMesonet){
+  at = paMesonet$t
+  at_str = ifelse(is.na(at), "", paste0("<b>Air temperature:</b> ", at," F (", 
+                                        round(conv_unit(at, from="F", to="C"),1), " C)<br />"))
+  
+  rh = paMesonet$rh
+  rh_str = ifelse(is.na(rh), "", paste0("<b>Relative humidity:</b> ", rh, " % <br />"))
+  
+  ws = paMesonet$ws
+  ws_str = ifelse(is.na(ws), "", paste0("<b>Wind:</b> from ", paMesonet$wc, " (",
+                                        paMesonet$wd, "&deg;) at ", ws, " mph (",
+                                        round(conv_unit(ws, from="mph", to="m_per_sec"),1), " m/s)<br />"))
+  
+  gt = paMesonet$wsm
+  gt_str = ifelse(is.na(gt), "", paste0("<b>Gusting to:</b> ", gt, " mph (",
+                                        round(conv_unit(gt, from="mph", to="m_per_sec"),1), " m/s)<br />"))
+  
+  bp = paMesonet$mslp
+  bp_str = ifelse(is.na(bp), "", paste0("<b>Barometric pressure:</b> ", bp, " mbar (", 
+                                        round(conv_unit(bp, from="mbar", to="hPa"),1), " hPa)<br />"))
+  
+  vis = paMesonet$vi
+  vis_str = ifelse(is.na(vis), "", paste0("<b>Visibility:</b> ", vis, " mi (", 
+                                          round(conv_unit(vis, from="mi", to="km"),1), " km)<br />"))
+  
+  dp = paMesonet$dp
+  dp_str = ifelse(is.na(dp), "", paste0("<b>Dew point:</b> ", dp, " F (", 
+                                        round(conv_unit(dp, from="F", to="C"),1), " C)<br />"))
+  
+  ts = paMesonet$ts
+  ts_str = ifelse(is.na(ts), "", paste0("<b>Road surface temperature:</b> ", ts, " F (", 
+                                        round(conv_unit(ts, from="F", to="C"),1), " C)<br />"))
+  
+  ra = paMesonet$ra
+  ra_str = ifelse(is.na(ra), "", paste0("<b>Solar radiation:</b> ", ra, " W/m<sup>2</sup><br />"))
+  
+  st = paMesonet$soiltemp
+  st_str = ifelse(is.na(st), "", paste0("<b>Soil temperature (5 cm):</b> ", st, " F (", 
+                                        round(conv_unit(st, from="F", to="C"),1), " C)<br />"))
+  
+  sm = paMesonet$soilmoist
+  sm_str = ifelse(is.na(sm), "", paste0("<b>Soil moisture (5 cm):</b> ", sm, " % <br />"))
+  
+  sat = paMesonet$snow_ac_total
+  sat_str = ifelse(is.na(sat), "", paste0("<b>Snow event total:</b> ", sat, " in (", 
+                                          round(conv_unit(sat, from="inch", to="cm"),1), " cm)<br />"))
+  
+  pr = paMesonet$pr1h
+  pr_str = ifelse(is.na(pr), "", paste0("<b>Precipitation 1 hr:</b> ", pr, " in (", 
+                                        round(conv_unit(pr, from="inch", to="cm"),1), " cm)<br />"))
+  
+  ft = paMesonet$fueltemp
+  ft_str = ifelse(is.na(ft), "", paste0("<b>Fuel temperature (5 cm):</b> ", ft, " F (", 
+                                        round(conv_unit(ft, from="F", to="C"),1), " C)<br />"))
+  
+  fm = paMesonet$fuelmoist
+  fm_str = ifelse(is.na(fm), "", paste0("<b>Fuel moisture (5 cm):</b> ", fm, " % <br />"))
+  
+  el = paMesonet$elev
+  el_str = ifelse(is.na(el), "", paste0("<b>Elevation:</b> ", el, " ft (", 
+                                        round(conv_unit(el, from="ft", to="m"),1), " m)<br />"))
+  
+  obs = paste0("<b>Location:</b> ", coordinate_hemi(paMesonet$lat), 
+               " ", coordinate_hemi(paMesonet$lon, "lon"), "<br />",
+               el_str, at_str, bp_str, vis_str, rh_str, ws_str, gt_str, dp_str, 
+               ts_str, ra_str, st_str, sm_str, sat_str, pr_str, ft_str, fm_str)
+  
+  # Convert date and time to an R object
+  times = paMesonet$datetime
+  datetime = as.POSIXct(times[!is.na(times)], format="%Y-%M-%dT%H:%M:%S", tz="gmt")
+  formatTime = format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE)
+  
+  # Combine all tide info into one string in geojson format
+  jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', unique(paMesonet$name), 
+                    '", "id": "', paMesonet$site_id, 
+                    '", "obs": "', obs, '", "temp": "', at, '", "time": "Last updated on ', formatTime, 
+                    ' LST"},',
+                    ' "geometry": {"type": "Point", "coordinates": [', paMesonet$lon, ',', 
+                    paMesonet$lat, ']}}')
+  
+  return(jsFormat)
+}
+##########################################################################
+##########################################################################
+#' Parse and format realtime Delaware Mesonet stations into a geojson format
+#' 
+#' @param ID string or value of list Delaware Mesonet station ID
+#' @param network name of the Delaware Mesonet network
+#' @return list object of observations from one Delaware Mesonet station
+#' 
+#' # http://www.deos.udel.edu
+# ------------------------------------------------------------------------
+collectDEMesonetData = function(ID, network){
+  # Run through each station
+  stationURL = paste0("http://services.deos.udel.edu/ws/REST/V1/getStationData?", 
+                      "key=a437d9133a41f47555e5d60c4f7e4154&network=", network, "&span=0&station=",
+                      ID)
+  
+  # Read the xml file
+  stat_data = read_xml(stationURL)
+  
+  # Parse into an R structure representing XML tree
+  stat_xml <- xmlParse(stat_data)
+  
+  # Convert the parsed XML to a dataframe
+  meta <- xmlToDataFrame(nodes=getNodeSet(stat_xml, "//deos:stationMetadata"))
+  val <- xmlToDataFrame(nodes=getNodeSet(stat_xml, "//deos:dataItem"))
+  
+  if(length(val)==0){
+    stat_list = NA
+    
+  } else {
+    # Check if the latest observation is current (within the past day)
+    obstime = as.POSIXct(val$time[1], tz = "GMT", format = "%Y/%m/%d %H:%M:%S")
+    obstime = format(obstime, tz = "America/New_York")
+    
+    today = Sys.Date()
+    
+    if(obstime < today){
+      stat_list = NA
+    } else {
+      stat_list = list(ID = ID, meta = meta, obs = val)
+    }
+    
+  }
+  # Return the station list
+  return(stat_list)
+}
+##########################################################################
+##########################################################################
+#' Parse and format realtime Delaware Mesonet stations into a geojson format
+#' 
+#' @param dat list object of observations from one Delaware Mesonet station
+#' @param string name of the Delaware Mesonet station
+#' @return string of formatted Delaware Mesonet observations
+#' 
+#' # http://www.deos.udel.edu
+# ------------------------------------------------------------------------
+parseDEMesonetData = function(dat, name){
+  
+  if(length(dat) == 1 & is.na(dat[1])){
+    # Do nothing
+    print(paste("No data for", name))
+    return(NA)
+  } else {
+  
+  # Convert date and time to an R object
+  times = unique(dat$obs$time)
+  datetime = as.POSIXlt(times[!is.na(times)], format="%Y/%M/%d %H:%M")
+  formatTime = format(datetime, "%b %d, %Y %I:%M %p")
+  
+  # Air
+  at = as.numeric(as.character(dat$obs$value[dat$obs == "Air Temperature"]))
+  at_str = ifelse(is.na(at), "", paste0("<strong>Air temperature:</strong> ", 
+                                        round(conv_unit(at, from="C", to="F"),1),
+                                        " F (", at, " C)<br />"))
+  at_temp = ifelse(length(at)==0, "ATT", round(conv_unit(at, from="C", to="F"),1))
+#  at_temp = round(conv_unit(at, from="C", to="F"),1)
+#  at_temp = ifelse(at_temp=="", "ATT", at_temp)
+
+  at30 = as.numeric(as.character(dat$obs$value[dat$obs == "Air Temperature (30 ft.)"]))
+  at30_str = ifelse(is.na(at30), "", paste0("<strong>Air temperature (30 ft.):</strong> ", 
+                                            round(conv_unit(at30, from="K", to="F"),1),
+                                            " F (", 
+                                            round(conv_unit(at30, from="K", to="C"),1), 
+                                            " C)<br />"))
+  
+  chill = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Chill"]))
+  chill_str = ifelse(is.na(chill), "", paste0("<strong>Wind chill:</strong> ", 
+                                              round(conv_unit(chill, from="C", to="F"),1),
+                                              " F (", chill, " C)<br />"))
+  
+  hi = as.numeric(as.character(dat$obs$value[dat$obs == "Heat Index"]))
+  hi_str = ifelse(is.na(hi), "", paste0("<strong>Heat index:</strong> ", 
+                                        round(conv_unit(hi, from="C", to="F"),1),
+                                        " F (", hi, " C)<br />"))
+  
+  ath = as.numeric(as.character(dat$obs$value[dat$obs == "Mean Hourly Temp."]))
+  ath_str = ifelse(is.na(ath), "", paste0("<strong>Mean hourly temp.:</strong> ", 
+                                          round(conv_unit(ath, from="C", to="F"),1),
+                                          " F (", ath, " C)<br />"))
+  
+  dp = as.numeric(as.character(dat$obs$value[dat$obs == "Dew Point Temperature"]))
+  dp_str = ifelse(is.na(dp), "", paste0("<strong>Dew point:</strong> ", 
+                                        round(conv_unit(dp, from="C", to="F"),1),
+                                        " F (", dp, " C)<br />"))
+  
+  mdp = as.numeric(as.character(dat$obs$value[dat$obs == "Minimum Dew Point Temperature(Daily)"]))
+  mdp_str = ifelse(is.na(mdp), "", paste0("<strong>Minimum dew point (daily):</strong> ", 
+                                          round(conv_unit(mdp, from="K", to="F"),1),
+                                          " F (", 
+                                          round(conv_unit(mdp, from="K", to="C"),1), 
+                                          " C)<br />"))
+  
+  ws = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Speed"]))
+  wdir = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Direction"]))
+  
+  ws_str = ifelse(is.na(ws), "", 
+                  if(length(wdir) != 0){
+                    paste0("<b>Wind:</b> from ", cardinal_direction(wdir), " (",
+                           wdir, "&deg;) at ", 
+                           round(conv_unit(ws, from="m_per_sec", to="mph"),1), 
+                           " mph (", ws, " m/s)<br />")
+                  } else {
+                    paste0("<b>Wind speed:</b> ", 
+                           round(conv_unit(ws, from="m_per_sec", to="mph"),1), 
+                           " mph (", ws, " m/s)<br />")
+                  }
+                  )
+  
+  mhws = as.numeric(as.character(dat$obs$value[dat$obs == "Mean Hourly Wind Speed"]))
+  mhws_str = ifelse(is.na(mhws), "", paste0("<b>Mean hourly wind speed:</b> ", 
+                                            round(conv_unit(mhws, from="m_per_sec", to="mph"),1), 
+                                            " mph (", mhws, " m/s)<br />"))
+  
+  ws30 = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Speed (30 ft.)"]))
+  ws30_str = ifelse(is.na(ws30), "", paste0("<b>Wind speed (30 ft.):</b> ", 
+                                            round(conv_unit(ws30, from="m_per_sec", to="mph"),1), 
+                                            " mph (", ws30, " m/s)<br />"))
+  
+  gtdir = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Gust Direction"]))
+  gtdir_str = ifelse(is.na(gtdir), "", paste0("<b>Gusting:</b> from ", cardinal_direction(gtdir), " (",
+                                              gtdir, "&deg;)<br />"))
+  
+  gs5 = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Gust Speed (5)"]))
+  gs5_str = ifelse(is.na(gs5), "", paste0("<b>Gust speed (5):</b> ", 
+                                          round(conv_unit(gs5, from="m_per_sec", to="mph"),1), 
+                                          " mph (", gs5, " m/s)<br />"))
+  
+  gs10 = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Gust Speed (10)"]))
+  gs10_str = ifelse(is.na(gs10), "", paste0("<b>Gust speed (10):</b> ", 
+                                            round(conv_unit(gs10, from="m_per_sec", to="mph"),1), 
+                                            " mph (", gs10, " m/s)<br />"))
+  
+  gs60 = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Gust Speed (60)"]))
+  gs60_str = ifelse(is.na(gs60), "", paste0("<b>Gust speed (60):</b> ", 
+                                            round(conv_unit(gs60, from="m_per_sec", to="mph"),1), 
+                                            " mph (", gs60, " m/s)<br />"))
+  
+  gs30 = as.numeric(as.character(dat$obs$value[dat$obs == "Wind Gust Speed (30 ft.)"]))
+  gs30_str = ifelse(is.na(gs30), "", paste0("<b>Gust speed (30 ft.):</b> ", 
+                                            round(conv_unit(gs30, from="m_per_sec", to="mph"),1), 
+                                            " mph (", gs30, " m/s)<br />"))
+  
+  vis = as.numeric(as.character(dat$obs$value[dat$obs == "Visibility"]))
+  vis_str = ifelse(is.na(vis), "", paste0("<b>Visibility:</b> ", 
+                                          round(conv_unit(vis, from="km", to="mi"),1), 
+                                          " mi (", vis, " km)<br />"))
+  
+  bp = as.numeric(as.character(dat$obs$value[dat$obs == "Barometric Pressure"]))
+  bp_str = ifelse(is.na(bp), "", paste0("<b>Barometric pressure:</b> ", bp, " mbar (", 
+                                        round(conv_unit(bp, from="mbar", to="hPa"),1), " hPa)<br />"))
+  
+  bpt = as.numeric(as.character(dat$obs$value[dat$obs == "Barometric Pressure Trend"]))
+  bpt_str = ifelse(is.na(bpt), "", paste0("<b>Barometric pressure trend:</b> ", bpt, 
+                                          " mbar/hr<br />"))
+  
+  ra = as.numeric(as.character(dat$obs$value[dat$obs == "Solar Radiation"]))
+  ra_str = ifelse(is.na(ra), "", paste0("<b>Solar radiation:</b> ", ra, " W/m<sup>2</sup><br />"))
+  
+  mhra = as.numeric(as.character(dat$obs$value[dat$obs == "Mean Hourly Solar Rad."]))
+  mhra_str = ifelse(is.na(mhra), "", paste0("<b>Mean hourly solar rad.:</b> ", mhra, 
+                                            " W/m<sup>2</sup><br />"))
+  
+  dra = as.numeric(as.character(dat$obs$value[dat$obs == "Daily Solar"]))
+  dra_str = ifelse(is.na(dra), "", paste0("<b>Daily solar radiation:</b> ", dra, 
+                                          " J/m<sup>2</sup><br />"))
+  
+  par = as.numeric(as.character(dat$obs$value[dat$obs == "PAR"]))
+  par_str = ifelse(is.na(par), "", paste0("<b>Photosynthetically active radiation (PAR):</b> ", 
+                                          par, " mMol/m<sup>2</sup><br />"))
+  
+  rh = as.numeric(as.character(dat$obs$value[dat$obs == "Relative humidity"]))
+  rh_str = ifelse(is.na(rh), "", paste0("<b>Relative humidity:</b> ", rh, " % <br />"))
+  
+  mrh = as.numeric(as.character(dat$obs$value[dat$obs == "Mean Hourly RH"]))
+  mrh_str = ifelse(is.na(mrh), "", paste0("<b>Mean hourly relative humidity:</b> ", 
+                                          mrh, " % <br />"))
+  
+  vol = as.numeric(as.character(dat$obs$value[dat$obs == "Voltage"]))
+  vol_str = ifelse(is.na(vol), "", paste0("<b>Voltage:</b> ", vol, " V <br />"))
+  
+  # Precip
+  pr5 = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Precipitation (5)"]))
+  pr5_str = ifelse(is.na(pr5), "", paste0("<b>Precipitation (5):</b> ", 
+                                          round(conv_unit(pr5, from="mm", to="inch"),1), " in (", 
+                                          round(conv_unit(pr5, from="mm", to="cm"),1), " cm)<br />"))
+  
+  pr10 = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Precipitation (10)"]))
+  pr10_str = ifelse(is.na(pr10), "", paste0("<b>Precipitation (10):</b> ", 
+                                            round(conv_unit(pr10, from="mm", to="inch"),1), " in (", 
+                                            round(conv_unit(pr10, from="mm", to="cm"),1), " cm)<br />"))
+  
+  pr15 = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Precipitation (15)"]))
+  pr15_str = ifelse(is.na(pr15), "", paste0("<b>Precipitation (15):</b> ", 
+                                            round(conv_unit(pr15, from="mm", to="inch"),1), " in (", 
+                                            round(conv_unit(pr15, from="mm", to="cm"),1), " cm)<br />"))
+  
+  pr60 = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Precipitation (60)"]))
+  pr60_str = ifelse(is.na(pr60), "", paste0("<b>Precipitation (60):</b> ", 
+                                            round(conv_unit(pr60, from="mm", to="inch"),1), " in (", 
+                                            round(conv_unit(pr60, from="mm", to="cm"),1), " cm)<br />"))
+  
+  prd = as.numeric(as.character(dat$obs$value[dat$obs == "Precip (daily)"]))
+  prd_str = ifelse(is.na(prd), "", paste0("<b>Precip (daily):</b> ", 
+                                          round(conv_unit(prd, from="mm", to="inch"),1), " in (", 
+                                          round(conv_unit(prd, from="mm", to="cm"),1), " cm)<br />"))
+  
+  snow = as.numeric(as.character(dat$obs$value[dat$obs == "Snow Depth"]))
+  snow_str = ifelse(is.na(snow), "", paste0("<b>Snow depth:</b> ", 
+                                            round(conv_unit(snow, from="cm", to="inch"),1), 
+                                            " in (", snow, " cm)<br />"))
+  
+  # Water
+  wt = as.numeric(as.character(dat$obs$value[dat$obs == "Water Temperature"]))
+  wt_str = ifelse(is.na(wt), "", paste0("<strong>Water Temperature:</strong> ", 
+                                        round(conv_unit(wt, from="C", to="F"),1),
+                                        " F (", wt, " C)<br />"))
+  
+  wavedir = as.numeric(as.character(dat$obs$value[dat$obs == "Wave Direction (Average)"]))
+  wavedir_str = ifelse(is.na(wavedir), "", paste0("<b>Wave direction (Average):</b> towards ", 
+                                                  cardinal_direction(wavedir), " (",
+                                                  wavedir, "&deg;) <br />"))
+  
+  wsh = as.numeric(as.character(dat$obs$value[dat$obs == "Wave Spread"]))
+  wsh_str = ifelse(is.na(wsh), "", paste0("<b>Wave spread:</b> ", wsh, "&deg;<br />"))
+  
+  wh = as.numeric(as.character(dat$obs$value[dat$obs == "Significant Wave Height"]))
+  wh_str = ifelse(is.na(wh), "", paste0("<b>Significant wave height:</b> ", 
+                                        round(conv_unit(wh, from="m", to="ft"),1), 
+                                        " ft (", wh, " m)<br />"))
+  
+  swh = as.numeric(as.character(dat$obs$value[dat$obs == "Avg Hourly Wave Ht"]))
+  swh_str = ifelse(is.na(swh), "", paste0("<b>Avg hourly wave height:</b> ", 
+                                          round(conv_unit(swh, from="m", to="ft"),1), 
+                                          " ft (", swh, " m)<br />"))
+  
+  mwh = as.numeric(as.character(dat$obs$value[dat$obs == "Max Hourly Wave Ht"]))
+  mwh_str = ifelse(is.na(mwh), "", paste0("<b>Max hourly wave height:</b> ", 
+                                          round(conv_unit(mwh, from="m", to="ft"),1), 
+                                          " ft (", mwh, " m)<br />"))
+  
+  wps = as.numeric(as.character(dat$obs$value[dat$obs == "Sig Hourly Wave Per"]))
+  wps_str = ifelse(is.na(wps), "", paste0("<b>Wave period (Sig. hourly):</b> ", wps, "s<br />"))
+  
+  wpd = as.numeric(as.character(dat$obs$value[dat$obs == "Wave Period (Dominant)"]))
+  wpd_str = ifelse(is.na(wpd), "", paste0("<b>Wave period (Dominant):</b> ", wpd, "s<br />"))
+  
+  wpa = as.numeric(as.character(dat$obs$value[dat$obs == "Wave Period (Average)"]))
+  wpa_str = ifelse(is.na(wpa), "", paste0("<b>Wave period (Average):</b> ", wpa, "s<br />"))
+  
+  td = as.numeric(as.character(dat$obs$value[dat$obs == "Tide (Deviation)"]))
+  td_str = ifelse(is.na(td), "", paste0("<b>Tide (Deviation):</b> ", 
+                                        round(conv_unit(td, from="m", to="ft"),1), 
+                                        " ft (", td, " m)<br />"))
+  
+  vwc = as.numeric(as.character(dat$obs$value[dat$obs == "Volumetric Water Content (2 in.)"]))
+  vwc_str = ifelse(is.na(vwc), "", paste0("<b>Volumetric water content (2 in.):</b> ", vwc, "<br />"))
+  
+  vwc4 = as.numeric(as.character(dat$obs$value[dat$obs == "Volumetric Water Content (4 in.)"]))
+  vwc4_str = ifelse(is.na(vwc4), "", paste0("<b>Volumetric water content (4 in.):</b> ", vwc4, "<br />"))
+  
+  vwc8 = as.numeric(as.character(dat$obs$value[dat$obs == "Volumetric Water Content (8 in.)"]))
+  vwc8_str = ifelse(is.na(vwc8), "", paste0("<b>Volumetric water content (8 in.):</b> ", vwc8, "<br />"))
+  
+  vwc20 = as.numeric(as.character(dat$obs$value[dat$obs == "Volumetric Water Content (20 in.)"]))
+  vwc20_str = ifelse(is.na(vwc20), "", paste0("<b>Volumetric water content (20 in.):</b> ", vwc20, "<br />"))
+  
+  gh = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Height [Station]"]))
+  gh_str = ifelse(is.na(gh), "", paste0("<b>Gage height (Station):</b> ", 
+                                        round(conv_unit(gh, from="m", to="ft"),1), 
+                                        " ft (", gh, " m)<br />"))
+  
+  gh88 = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Height [NAVD88]"]))
+  gh88_str = ifelse(is.na(gh88), "", paste0("<b>Gage height (NAVD88):</b> ", 
+                                            round(conv_unit(gh88, from="m", to="ft"),1), 
+                                            " ft (", gh88, " m)<br />"))
+  
+  gh29 = as.numeric(as.character(dat$obs$value[dat$obs == "Gage Height [NGVD29]"]))
+  gh29_str = ifelse(is.na(gh29), "", paste0("<b>Gage height (NGVD29):</b> ", 
+                                            round(conv_unit(gh29, from="m", to="ft"),1), 
+                                            " ft (", gh29, " m)<br />"))
+  
+  wl = as.numeric(as.character(dat$obs$value[dat$obs == "Water Level"]))
+  wl_str = ifelse(is.na(wl), "", paste0("<b>Water level:</b> ", 
+                                        round(conv_unit(wl, from="m", to="ft"),1), 
+                                        " ft (", wl, " m)<br />"))
+  
+  dw = as.numeric(as.character(dat$obs$value[dat$obs == "Depth to Water"]))
+  dw_str = ifelse(is.na(dw), "", paste0("<b>Depth to water:</b> ", 
+                                        round(conv_unit(dw, from="m", to="ft"),1), 
+                                        " ft (", dw, " m)<br />"))
+  
+  hdw = as.numeric(as.character(dat$obs$value[dat$obs == "Avg Hourly Water Depth"]))
+  hdw_str = ifelse(is.na(hdw), "", paste0("<b>Avg hourly water depth:</b> ", 
+                                          round(conv_unit(hdw, from="m", to="ft"),1), 
+                                          " ft (", hdw, " m)<br />"))
+  
+  well = as.numeric(as.character(dat$obs$value[dat$obs == "Mean Daily Well Level"]))
+  well_str = ifelse(is.na(well), "", paste0("<b>Mean daily well level:</b> ", 
+                                            round(conv_unit(well, from="m", to="ft"),1), 
+                                            " ft (", well, " m)<br />"))
+  
+  dis = as.numeric(as.character(dat$obs$value[dat$obs == "Discharge"]))
+  dis_str = ifelse(is.na(dis), "", paste0("<b>Discharge:</b> ", 
+                                          round(conv_unit(dis, from="m3_per_sec", to="ft3_per_sec"),1), 
+                                          " cfs<br />"))
+  
+  sv = as.numeric(as.character(dat$obs$value[dat$obs == "Stream Velocity"]))
+  sv_str = ifelse(is.na(sv), "", paste0("<b>Stream velocity:</b> ", sv, " m/s<br />"))
+  
+  sal = as.numeric(as.character(dat$obs$value[dat$obs == "Dissolved Salt Conc."]))
+  sal_str = ifelse(is.na(sal), "", paste0("<b>Dissolved salt conc.:</b> ", sal, " PSU<br />"))
+  
+  ph = as.numeric(as.character(dat$obs$value[dat$obs == "pH"]))
+  ph_str = ifelse(is.na(ph), "", paste0("<b>pH:</b> ", ph, "<br />"))
+  
+  con = as.numeric(as.character(dat$obs$value[dat$obs == "Conductance"]))
+  con_str = ifelse(is.na(con), "", paste0("<b>Conductance:</b> ", con, " microS/cm<br />"))
+  
+  dos = as.numeric(as.character(dat$obs$value[dat$obs == "Dissolved Oxygen %saturation"]))
+  dos_str = ifelse(is.na(dos), "", paste0("<b>Dissolved oxygen saturation:</b> ", dos, " %<br />"))
+  
+  do = as.numeric(as.character(dat$obs$value[dat$obs == "Dissolved Oxygen"]))
+  do_str = ifelse(is.na(do), "", paste0("<b>Dissolved oxygen:</b> ", do, " mg/l<br />"))
+  
+  tbb = as.numeric(as.character(dat$obs$value[dat$obs == "Turbidity (BB)"]))
+  tbb_str = ifelse(is.na(tbb), "", paste0("<b>Turbidity (BB):</b> ", tbb, " NTU<br />"))
+  
+  tmc = as.numeric(as.character(dat$obs$value[dat$obs == "Turbidity (MC)"]))
+  tmc_str = ifelse(is.na(tmc), "", paste0("<b>Turbidity (MC):</b> ", tmc, " FNU<br />"))
+  
+  # Soil
+  ep = as.numeric(as.character(dat$obs$value[dat$obs == "Reference Evapotrans."]))
+  ep_mmps = ep/86400
+  ep_str = ifelse(is.na(ep), "", paste0("<strong>Reference evapotranspiration:</strong> ", 
+                                        round(conv_unit(ep_mmps, from="mm_per_sec", to="inch_per_sec")*86400,1),
+                                        " inch/day (", ep, " mm/day)<br />"))
+  
+  st = as.numeric(as.character(dat$obs$value[dat$obs == "Soil Temperature (2 in.)"]))
+  st_str = ifelse(is.na(st), "", paste0("<strong>Soil temperature (2 in.):</strong> ", 
+                                        round(conv_unit(as.numeric(as.character(st)), from="C", to="F"),1),
+                                        " F (", st, " C)<br />"))
+  
+  st4 = as.numeric(as.character(dat$obs$value[dat$obs == "Soil Temperature (4 in.)"]))
+  st4_str = ifelse(is.na(st4), "", paste0("<strong>Soil temperature (4 in.):</strong> ", 
+                                          round(conv_unit(as.numeric(as.character(st4)), from="C", to="F"),1),
+                                          " F (", st4, " C)<br />"))
+  
+  st8 = as.numeric(as.character(dat$obs$value[dat$obs == "Soil Temperature (8 in.)"]))
+  st8_str = ifelse(is.na(st8), "", paste0("<strong>Soil temperature (8 in.):</strong> ", 
+                                          round(conv_unit(as.numeric(as.character(st8)), from="C", to="F"),1),
+                                          " F (", st8, " C)<br />"))
+  
+  st20 = as.numeric(as.character(dat$obs$value[dat$obs == "Soil Temperature (20 in.)"]))
+  st20_str = ifelse(is.na(st20), "", paste0("<strong>Soil temperature (20 in.):</strong> ", 
+                                            round(conv_unit(as.numeric(as.character(st20)), from="C", to="F"),1),
+                                            " F (", st20, " C)<br />"))
+  
+  el = as.numeric(as.character(dat$meta$elevation))
+  el_str = ifelse(is.na(el), "", paste0("<b>Elevation:</b> ", 
+                                        round(conv_unit(el, from="m", to="ft"),1), 
+                                        " ft (", el, " m)<br />"))
+  
+  obs = paste0("<b>Location:</b> ", 
+               coordinate_hemi(as.numeric(as.character(dat$meta$latitude))), 
+               " ", coordinate_hemi(as.numeric(as.character(dat$meta$longitude)), "lon"), 
+               "<br />",
+               el_str, at_str, at30_str, chill_str, hi_str, ath_str, dp_str, mdp_str,
+               ws_str, mhws_str, ws30_str, gtdir_str, gs5_str, gs10_str, gs60_str, 
+               gs30_str, vis_str, bp_str, bpt_str, ra_str, mhra_str, dra_str, 
+               par_str, rh_str, mrh_str, vol_str, pr5_str, pr10_str, pr15_str, 
+               pr60_str, prd_str, snow_str, wt_str, wavedir_str, wsh_str, wh_str, 
+               swh_str, mwh_str, wps_str, wpd_str, wpa_str, td_str, vwc_str, vwc4_str,
+               vwc8_str, vwc20_str, gh_str, gh88_str, gh29_str, wl_str, dw_str, 
+               hdw_str, well_str, dis_str, sv_str, sal_str, ph_str, con_str, dos_str, 
+               do_str, tbb_str, tmc_str, ep_str, st_str, st4_str, st8_str, st20_str)
+  
+  # Combine all info into one string in geojson format
+  jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', name, 
+                    '", "id": "', dat$ID, 
+                    '", "obs": "', obs, '", "temp": "', at_temp, '", "time": "Last updated on ', formatTime, 
+                    ' LST"},',
+                    ' "geometry": {"type": "Point", "coordinates": [', dat$meta$longitude, 
+                    ',', dat$meta$latitude, ']}}')
+  
+  return(jsFormat)
+  }
+}
+##########################################################################
+##########################################################################
+#' Parse and format realtime WeatherStem stations into a geojson format
+#' 
+#' @param stationID data.frame of one weatherStem station metadata
+#' @return string of formatted weatherStem observations
+#' 
+#' # https://www.weatherstem.com/dashboard?public_access_token=e75cd9ae5f91981fbdab9e7abbde8866
+# ------------------------------------------------------------------------
+parseWeatherStem = function(stationID){
+  # JSON feed updated approximately every 60 seconds
+  midAtlURL = paste0("https://cdn.weatherstem.com/dashboard/data/dynamic/model/",
+                      stationID$location, "/", stationID$station, "/latest.json")
+  
+  # Station META data
+  metaURL = paste0("https://cdn.weatherstem.com/dashboard/data/dynamic/model/",
+                    stationID$location, "/", stationID$station, "/station.json")
+  
+  jsondata = fromJSON(midAtlURL)
+  jsonmeta = fromJSON(metaURL)
+  meta = data.frame(name = jsonmeta$name, lat = jsonmeta$geo$lat, lon = jsonmeta$geo$lng, 
+                    elev = jsonmeta$geo$elevation, time = jsondata$time)
+  obs = cbind(meta, jsondata$records)
+  
+  # Ignore all observations that are to be ignored according to the json file
+  # ignored observations are those where ignore_db == 1
+  whichkeep = !(obs$ignore_db %in% 1)
+  
+  if(length(whichkeep) > 0){
+    obs = obs[whichkeep, ]
+  } 
+
+  # obs = obs[!(obs$ignore_db %in% 1), ]
+  
+  val2 = rep("", nrow(obs))
+  
+  degFind = which(obs$units == "&deg;F")
+  val2[degFind] = paste0("(", round(conv_unit(as.numeric(obs$value[degFind]), 
+                                              from="F", to="C"),1), " C)")
+  
+  mphind = which(obs$units == "mph")
+  val2[mphind] = paste0("(", round(conv_unit(as.numeric(obs$value[mphind]), 
+                                             from="mph", to="m_per_sec"),1), " m/s)")
+  
+  inind = which(obs$units == "in.")
+  val2[inind] = paste0("(", round(conv_unit(as.numeric(obs$value[inind]), 
+                                            from="inch", to="cm"),1), " cm)")
+  
+  inhrind = which(obs$units == "in/hr")
+  val2[inhrind] = paste0("(", round(conv_unit(as.numeric(obs$value[inhrind]), 
+                                              from="inch", to="cm"),1), " cm/hr)")
+  
+  inhgind = which(obs$unit_symbol == "in. Hg")
+  val2[inhgind] = paste0("(", round(conv_unit(as.numeric(obs$value[inhgind]), 
+                                              from="inHg", to="hPa"),1), " hPa)")
+  obs$value[inhgind] = round(conv_unit(as.numeric(obs$value[inhgind]), 
+                                                                 from="inHg", to="mbar"),1)
+  obs$units[inhgind] = "mbar"
+  
+  numind = which(grepl("[0-9]", obs$value))
+  obs$value[numind] = round(as.numeric(obs$value[numind]),1)
+  
+  dirind = which(obs$sensor_name == "Wind Vane")
+  direction = paste0("From ", cardinal_direction(as.numeric(obs$value[dirind])))
+  val2[dirind] = paste0("(", obs$value[dirind], " ", obs$units[dirind], ")")
+  obs$units[dirind] = ""
+  obs$value[dirind] = direction
+  
+  # Ensure inches are spelled out and not in quote
+  obs$sensor_name = gsub('\"', " in.",  obs$sensor_name)
+  
+  meas = paste0("<b>", str_to_sentence(obs$sensor_name), "</b>: ", obs$value, 
+                " ", obs$units, " ", val2, "<br>", collapse=",")
+  
+  meas = gsub("Thermometer", "Air temperature", meas)
+  meas = gsub("Anemometer", "Wind speed", meas)
+  meas = gsub("Wind vane", "Wind direction", meas)
+  meas = gsub("10 minute wind gust", "Gust speed (10)", meas)
+  meas = gsub("Uv radiation sensor", "UV radiation", meas)
+  meas = gsub("Solar radiation sensor", "Solar radiation", meas)
+  meas = gsub("Rain rate", "Precipitation rate", meas)
+  meas = gsub("Rain gauge", "Precipitation", meas)
+  meas = gsub("Dewpoint", "Dew point", meas)
+  meas = gsub("Wet bulb globe temperature", "Wet bulb temperature", meas)
+  meas = gsub("Hygrometer", "Relative humidity", meas)
+  meas = gsub("Barometer", "Barometric pressure", meas)
+  
+  meas = paste0("<b>Location:</b> ", coordinate_hemi(as.numeric(obs$lat[1])), 
+               " ", coordinate_hemi(as.numeric(obs$lon[1]), "lon"), "<br /> ", meas)
+  
+  # Convert date and time to an R object
+  datetime = as.POSIXlt(obs$time[1], format="%Y-%M-%d %H:%M:%S")
+  formatTime = format(datetime, "%b %d, %Y %I:%M %p")
+  
+  elev = paste0(round(conv_unit(as.numeric(obs$elev[1]), from="m", to="ft"), 1),
+                " ft (", obs$elev[1], " m)")
+  url = paste0("https://", stationID$location, ".weatherstem.com/", 
+               stationID$station)
+  
+  # Combine all info into one string in geojson format
+  jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', obs$name[1], 
+                    '", "id": "', stationID$station, 
+                    '", "url": "', url,
+                    '", "elev": "', elev,
+                    '", "obs": "', meas, '", "time": "Last updated on ', formatTime, 
+                    ' LST"},',
+                    ' "geometry": {"type": "Point", "coordinates": [', 
+                    as.numeric(obs$lon[1]), ',', 
+                    as.numeric(obs$lat[1]), ']}}')
+  
+  return(jsFormat)
+}
+# ##########################################################################
+# ##########################################################################
+##########################################################################
+##########################################################################
+#' Parse and format realtime WeatherStem stations into a geojson format
+#' 
+#' @param jsondata list object of observations from one weatherStem station
+#' @return string of formatted weatherStem observations
+#' 
+#' # https://www.weatherstem.com/dashboard?public_access_token=e75cd9ae5f91981fbdab9e7abbde8866
+# ------------------------------------------------------------------------
+#parseWeatherStem = function(jsondata){
+#  val2 = rep("", length(jsondata$record$readings[[1]]$value))
+#  
+#  degFind = which(jsondata$record$readings[[1]]$unit_symbol == "&deg;F")
+#  val2[degFind] = paste0("(", round(conv_unit(as.numeric(jsondata$record$readings[[1]]$value[degFind]), 
+#                                              from="F", to="C"),1), " C)")
+#  
+#  mphind = which(jsondata$record$readings[[1]]$unit_symbol == "mph")
+#  val2[mphind] = paste0("(", round(conv_unit(as.numeric(jsondata$record$readings[[1]]$value[mphind]), 
+#                                             from="mph", to="m_per_sec"),1), " m/s)")
+#  
+#  inind = which(jsondata$record$readings[[1]]$unit_symbol == "in.")
+#  val2[inind] = paste0("(", round(conv_unit(as.numeric(jsondata$record$readings[[1]]$value[inind]), 
+#                                            from="inch", to="cm"),1), " cm)")
+#  
+#  inhrind = which(jsondata$record$readings[[1]]$unit_symbol == "in/hr")
+#  val2[inhrind] = paste0("(", round(conv_unit(as.numeric(jsondata$record$readings[[1]]$value[inhrind]), 
+#                                              from="inch", to="cm"),1), " cm/hr)")
+#  
+#  inhgind = which(jsondata$record$readings[[1]]$unit_symbol == "in. Hg")
+#  val2[inhgind] = paste0("(", round(conv_unit(as.numeric(jsondata$record$readings[[1]]$value[inhgind]), 
+#                                              from="inHg", to="hPa"),1), " hPa)")
+#  jsondata$record$readings[[1]]$value[inhgind] = round(conv_unit(as.numeric(jsondata$record$readings[[1]]$value[inhgind]), 
+#                                                                 from="inHg", to="mbar"),1)
+#  jsondata$record$readings[[1]]$unit_symbol[inhgind] = "mbar"
+#  
+#  dirind = which(jsondata$record$readings[[1]]$sensor_type == "Wind Vane")
+#  direction = paste0("From ", cardinal_direction(as.numeric(jsondata$record$readings[[1]]$value[dirind])))
+#  val2[dirind] = paste0("(", jsondata$record$readings[[1]]$value[dirind], " ", 
+#                        jsondata$record$readings[[1]]$unit_symbol[dirind], ")")
+#  jsondata$record$readings[[1]]$unit_symbol[dirind] = ""
+#  jsondata$record$readings[[1]]$value[dirind] = direction
+#  
+#  obs = paste0("<b>", str_to_sentence(jsondata$record$readings[[1]]$sensor_type), "</b>: ", 
+#               jsondata$record$readings[[1]]$value, " ", 
+#               jsondata$record$readings[[1]]$unit_symbol, " ", val2, "<br>", collapse=",")
+#  
+#  obs = gsub("Thermometer", "Air temperature", obs)
+#  obs = gsub("Anemometer", "Wind speed", obs)
+#  obs = gsub("Wind vane", "Wind direction", obs)
+#  obs = gsub("10 minute wind gust", "Gust speed (10)", obs)
+#  obs = gsub("Uv radiation sensor", "UV radiation", obs)
+#  obs = gsub("Solar radiation sensor", "Solar radiation", obs)
+#  obs = gsub("Rain rate", "Precipitation rate", obs)
+#  obs = gsub("Rain gauge", "Precipitation", obs)
+#  obs = gsub("Dewpoint", "Dew point", obs)
+#  obs = gsub("Wet bulb globe temperature", "Wet bulb temperature", obs)
+#  obs = gsub("Hygrometer", "Humidity", obs)
+#  obs = gsub("Barometer", "Barometric pressure", obs)
+#  
+#  obs = paste0("<b>Location:</b> ", coordinate_hemi(as.numeric(jsondata$station$lat[1])), 
+#               " ", coordinate_hemi(as.numeric(jsondata$station$lon[1]), "lon"), "<br /> ", obs)
+#  
+#  # Convert date and time to an R object
+#  datetime = as.POSIXlt(jsondata$record$time[1], format="%Y-%M-%d %H:%M:%S")
+#  formatTime = format(datetime, "%b %d, %Y %I:%M %p")
+#  
+#  url = paste0("https://", jsondata$station$domain$handle[1], ".weatherstem.com/", 
+#               jsondata$station$handle[1])
+#  
+#  # Combine all info into one string in geojson format
+#  jsFormat = paste0('{"type": "Feature", "properties": {', '"name": "', jsondata$station$name[1], 
+#                    '", "id": "', jsondata$station$handle[1], 
+#                    '", "url": "', url,
+#                    '", "obs": "', obs, '", "time": "Last updated on ', formatTime, 
+#                    ' LST"},',
+#                    ' "geometry": {"type": "Point", "coordinates": [', as.numeric(jsondata$station$lon[1]), ',', 
+#                    as.numeric(jsondata$station$lat[1]), ']}}')
+#  
+#  return(jsFormat)
+#}
 # ##########################################################################
 # ##########################################################################
 # ##a function to retry running a function if there is an error

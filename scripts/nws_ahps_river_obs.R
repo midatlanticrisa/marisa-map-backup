@@ -47,7 +47,7 @@ outDir <- "/var/www/html/rtdatamap/"
 plotDir <- paste0(outDir, "River_figs/")
 
 # Should you record the current observations
-recordObservations <- FALSE
+recordObservations <- TRUE #FALSE
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 if (!file.exists(outDir)){
@@ -82,7 +82,7 @@ if(recordObservations){
                            minor = river_sf$Flood[X], 
                            mod = river_sf$Moderate[X], 
                            major = river_sf$Major[X], 
-                           obs = data.frame(time = river_sf$ObsTime[X], 
+                           obs = data.frame(time = river_sf$datetime[X], 
                                             height = river_sf$Observed[X], 
                                             discharge = river_sf$SecValue[X]))
                     })
@@ -90,12 +90,17 @@ if(recordObservations){
   
   # Save the current observations to a file recording the past 7 days of observations
   recordedObs = recordData(currentObs = riverObs, 
-                           recordFile = paste0(outDir, "riverObsRecord.RData"), tz = "GMT", 
+                           recordFile = paste0(outDir, "riverObsRecord.RData"), tz = "America/New_York", #"GMT", 
                            return.val=TRUE)
 }
 
 # --------------------------------------------------------------------------------------------------------------------
-# 
+# Create plots of recorded observations
+lapply(X=1:length(recordedObs), function(X){
+  river_plot(recordedObs[[X]], tz="UTC",
+             p.tz="America/New_York",
+             p.width = 4, p.height = 2.5, p.dir = plotDir)
+}) 
 # # Download forecasts and past observations
 # ptm <- proc.time()
 # plotData = lapply(X = river_sf$GaugeLID[1:10], function(X){collectRiverForecast(X)})
