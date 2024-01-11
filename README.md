@@ -5,7 +5,6 @@ The [Climate Data Portal](https://www.marisa.psu.edu) for the NOAA Mid-Atlantic 
 
 A key feature of the portal is an interactive, web-based map ([https://www.marisa.psu.edu/rtdatamap/](https://www.marisa.psu.edu/rtdatamap/)) containing real-time observations to provide a picture of meteorological and hydrological conditions in the Mid-Atlantic region. The map was developed for public engagement and also to help more advanced users in the region by simplifying access to information from multiple data sources. The map is also designed to help support evidence-based decisionmaking for a variety of contexts ranging from outdoor recreation to municipal and business planning, science, and education.
 
-# marisa-map-backup
 This repository contains the backup scripts and static data for the realtime data map.
 
 ## Requirements
