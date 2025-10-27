@@ -91,7 +91,8 @@ if(file.exists(filenm) & (Sys.time() - file.info(filenm)$ctime) < (24*60)){
   tideStations = read.table(filenm, header=TRUE)
   
 } else {
-  bbox = c(-82.0, -73.0, 36.46, 43.75)
+  # bbox = c(-82.0, -73.0, 36.46, 43.75)
+  bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
   tideStations = collectTideIDs(filenm=filenm, bbox, returnIDs=TRUE)
   
 }

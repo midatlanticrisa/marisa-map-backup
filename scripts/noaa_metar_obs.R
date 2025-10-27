@@ -53,13 +53,15 @@ awsURL <- "https://aviationweather.gov/data/cache/metars.cache.csv.gz"
 
 temp <- tempfile()
 download.file(awsURL,temp)
-awsData <- read.csv(gzfile(temp, "metars.cache.csv"), skip=5)
+# awsData <- read.csv(gzfile(temp, "metars.cache.csv"), skip=5)
+awsData <- read.csv(gzfile(temp, "metars.cache.csv"))
 unlink(temp)
 
 # --------------------------------------------------------------------------------------------------------------------
 # Subset NOAA METAR stations to only those in the MARISA region
 # bbox: c(Min LON, Max LON, Min LAT, Max LAT)
-bbox = c(-82.0, -73.0, 36.46, 43.75)
+# bbox = c(-82.0, -73.0, 36.46, 43.75)
+bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
 awsData <- awsData[awsData$longitude >= bbox[1] & 
                      awsData$longitude <= bbox[2] & 
                      awsData$latitude >= bbox[3] & 

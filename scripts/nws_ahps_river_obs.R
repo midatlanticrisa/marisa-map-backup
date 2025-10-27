@@ -1,4 +1,4 @@
-# --------------------------------------------------------------------------------------------------------------------
+n# --------------------------------------------------------------------------------------------------------------------
 # Copyright 2023 The Pennsylvania State University
 #
 # Kelsey Ruckert (klr324@psu.edu)
@@ -64,7 +64,8 @@ source(paste0(inDir, "download_parse_functions.R"))
 # --------------------------------------------------------------------------------------------------------------------
 # Download only the river gauges for the MARISA region exporting the information
 # into a geojson file.
-bbox = c(-82.0, -73.0, 36.46, 43.75)
+# bbox = c(-82.0, -73.0, 36.46, 43.75)
+bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
 river_sf = collectRiverData(bbox, downDir, 
                             outfile=paste0(outDir, "NWSRiverGauges.geojson"))
 

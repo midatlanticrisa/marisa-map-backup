@@ -611,25 +611,58 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
   } else {
     par(mfrow=c(1,1), mgp=c(1.25,0.25,0), mar=c(2.25,2.5,0.5,0.25), tck=-0.02)
   }
- 
+  
   if(length(watLev$v) == 1 && is.na(watLev$v)){ # If no data
     plot(0, xaxt="n", yaxt="n", bty="n", pch="", ylab="", xlab="")
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col="snow")
     legend("center", "No data available", bg="white")
     
   } else { # if data
+    
+    if(is.list(watLev$t)){
+      watLev_time = unlist(watLev$t)
+      textid = grep("[a-z]", watLev_time)
+      watLev_time = watLev_time[-textid]
+    } else {
+      watLev_time = watLev$t
+    }
+    
+    if(is.list(watLev$v)){
+      watLev_val = unlist(watLev$v)
+      textid = grep("[a-z]", watLev_val)
+      watLev_val = watLev_val[-textid]
+    } else {
+      watLev_val = watLev$v
+    }
+    
+    if(is.list(forecast$t)){
+      forecast_time = unlist(forecast$t)
+      textid = grep("[a-z]", forecast_time)
+      forecast_time = forecast_time[-textid]
+    } else {
+      forecast_time = forecast$t
+    }
+    
+    if(is.list(forecast$v)){
+      forecast_val = unlist(forecast$v)
+      textid = grep("[a-z]", forecast_val)
+      forecast_val = forecast_val[-textid]
+    } else {
+      forecast_val = forecast$v
+    }
+    
     # Format the date/time into an R object
-    watLev$Date = as.POSIXct(watLev$t, format="%Y-%m-%d %H:%M", tz="")
-    forecast$Date = as.POSIXct(forecast$t, format="%Y-%m-%d %H:%M", tz="")
+    watLev_Date = as.POSIXct(watLev_time, format="%Y-%m-%d %H:%M", tz="")
+    forecast_Date = as.POSIXct(forecast_time, format="%Y-%m-%d %H:%M", tz="")
     
     # Remove all forecast values prior to the present time frame
-    lastObsTime <- watLev$Date[length(watLev$Date)]
-    forecast <- forecast[-which(as.POSIXct(as.character(forecast$t)) < lastObsTime), ]
+    lastObsTime <- watLev_Date[length(watLev_Date)]
+    forecast <- forecast[-which(as.POSIXct(as.character(forecast_time)) < lastObsTime), ]
     
     # Find the range of both the time and values for plotting axis limits
     timernge = range(c(watLev$Date, forecast$Date), na.rm = TRUE)
-    valrnge = range(c(as.numeric(as.character(watLev$v)), 
-                      as.numeric(as.character(forecast$v))), na.rm = TRUE) 
+    valrnge = range(c(as.numeric(as.character(watLev_val)), 
+                      as.numeric(as.character(forecast_val))), na.rm = TRUE) 
     
     plot(0, type="n", ylab="", 
          xlab="Local standard time", xaxt="n", xlim = timernge, ylim = valrnge, las=2) #klr changed m to ft
@@ -648,9 +681,9 @@ tides_plot <- function(metaDat, p.width = 4, p.height = 2.5, p.dir, datum=NULL){
     abline(v=day_midnight, lty=6, col="gray")
     
     # Add the water level values and forecast line
-    lines(watLev$Date, as.numeric(as.character(watLev$v)), lwd=2, col="steelblue")
-    lines(forecast$Date, as.numeric(as.character(forecast$v)), lwd=2, lty=2, col="steelblue")
-    abline(v=watLev$Date[length(watLev$Date)], lwd=2, col="black")
+    lines(watLev_Date, as.numeric(as.character(watLev_val)), lwd=2, col="steelblue")
+    lines(forecast_Date, as.numeric(as.character(forecast_val)), lwd=2, lty=2, col="steelblue")
+    abline(v=watLev_Date[length(watLev_Date)], lwd=2, col="black")
     
   }
   dev.off()
@@ -815,9 +848,9 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
   # Download the current observed AHPS river gauge observations and flood stages
   # The resulting shapefile is zipped.
   # https://water.weather.gov/ahps/download.php
-  download.file("https://water.weather.gov/ahps/download.php?data=tgz_obs", 
+  download.file("https://water.noaa.gov/resources/downloads/shapefiles/national_shapefile_obs.tgz", 
                 destfile=paste0(downDir, "ahps_shp.tgz"))
-  
+
   # Create a directory to save the zipped contents into, if the directory doesn't
   # already exist.
   zipDir = paste0(downDir, "ahps_shp/")
@@ -923,6 +956,14 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
   
   return(spatVect_sf)
 }
+# https://stackoverflow.com/questions/34005423/is-if-faster-than-ifelse
+ifelse3 <- function(test, yes, no){
+  result <- rep(NA, length(test))
+  logic <- test
+  result[logic] <- yes[logic]
+  result[!logic] <- no[!logic]
+  result
+}
 
 ##########################################################################
 ##########################################################################
@@ -939,7 +980,7 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
 # are updated approximately every 15 minutes.
 # https://water.weather.gov/ahps/download.php
 # ------------------------------------------------------------------------
-collectRiverForecast = function(GID){
+collectRiverForecast = function(GID, forecasting = FALSE){
   # ptm <- proc.time()
   print(GID)
   # Read the xml file
@@ -951,61 +992,107 @@ collectRiverForecast = function(GID){
   riverXml <- xmlParse(riverData)
   
   # Convert the parsed XML to a dataframe of flood stages
-  stages_df = xmlToDF(riverXml, xpath = "/site/sigstages", verbose = FALSE)
-  # stages_df = xmlToDataFrame(nodes=getNodeSet(riverXml, "//sigstages"))
-  stage_exist <- is.null(stages_df)
+  d <- getNodeSet(riverXml,  "//sigstages")
+  size <- xmlSize(d)
+  stage_not_exist <- size == 0
+
   
-  if(stage_exist){
+  # stages_df = xmlToDF(riverXml, xpath = "/site/sigstages", verbose = FALSE)
+  # stages_df = xmlToDataFrame(nodes=getNodeSet(riverXml, "//sigstages"))
+  # stage_not_exist <- length(stages_df) == 0
+  # stage_exist <- is.null(stages_df)
+  
+  # blankstage = data.frame(action=NA, flood=NA, moderate=NA, major=NA)
+  # stages_df = ifelse(stage_not_exist, blankstage, stages_df)
+  # stages_df[stages_df == ""] = NA
+  
+  if(stage_not_exist){
     stages_df <- data.frame(action=NA, flood=NA, moderate=NA, major=NA)
   } else {
+    stages_df <- rbindlist(lapply(1:size, function(i) {
+      as.list(getChildrenStrings(d[[i]]))
+    }))
+    
     stages_df[stages_df == ""] = NA
   }
 
   # Convert the parsed XML to a dataframe of observations
-  obs_df <- xmlToDF(riverXml, xpath = "/site/observed/datum", verbose = FALSE)
+  # obs_df <- xmlToDF(riverXml, xpath = "/site/observed/datum", verbose = FALSE)
   # obs_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//observed//datum"))
+  d <- getNodeSet(riverXml,  "//observed//datum")
+  size <- xmlSize(d)
+  obs_not_exist <- size == 0
+
   
   # Condition check outside the if/else
-  obs_exist <- is.null(obs_df) # == 0
-  obs_secondary <- any(colnames(obs_df) == "secondary")
+  # obs_exist <- is.null(obs_df)
+  # obs_exist <- length(obs_df) == 0
+  # obs_secondary <- any(colnames(obs_df) == "secondary")
+  
+  # blankobs = data.frame(time = NA, height = NA, discharge = NA)
+  # obs_df = ifelse(obs_secondary, blankobs, obs_df)
+  # obs_colnames = ifelse(obs_secondary, c("time", "height", "discharge", "pedts"), 
+  #                       c("time", "height", "pedts"))
+  # 
+  # colnames(obs_df) <- obs_colnames
+  # obstime = as.POSIXct(obs_df$time, tz = "gmt", format = "%Y-%m-%dT%H:%M:%S-00:00")
+  # obs_df$time = format(obstime, tz="America/New_York", usetz=TRUE) 
   
   # Update the column names if data exists, otherwise set data to NA
-  if(obs_exist){
+  if(obs_not_exist){
     obs_df <- data.frame(time = NA, height = NA, discharge = NA)
   } else {
+    obs_df <- rbindlist(lapply(1:size, function(i) {
+      as.list(getChildrenStrings(d[[i]]))
+    }))
+    
+    obs_secondary <- any(colnames(obs_df) == "secondary")
     if(obs_secondary){
       colnames(obs_df) <- c("time", "height", "discharge", "pedts")
     } else {
       colnames(obs_df) <- c("time", "height", "pedts")
     }
+    obstime = as.POSIXct(obs_df$time, tz = "gmt", format = "%Y-%m-%dT%H:%M:%S-00:00")
+    formatTime = format(obstime, tz="America/New_York", usetz=TRUE)
   }
   
-  # Convert the parsed XML to a dataframe of forecasts
-  for_df <- xmlToDF(riverXml, xpath = "/site/forecast/datum", verbose = FALSE)
-  # for_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//forecast//datum"))
-  
-  # Condition check outside the if/else
-  for_exist <- is.null(for_df) # == 0
-  for_secondary <- any(colnames(for_df) == "secondary")
-  
-  # Update the column names if data exists, otherwise set data to NA
-  if(for_exist){
-    for_df <- data.frame(time = NA, height = NA, discharge = NA)
-  } else {
-    if(for_secondary){
-      colnames(for_df) <- c("time", "height", "discharge", "pedts")
+  if(forecasting){
+    # Convert the parsed XML to a dataframe of forecasts
+    # for_df <- xmlToDF(riverXml, xpath = "/site/forecast/datum", verbose = FALSE)
+    for_df <- xmlToDataFrame(nodes=getNodeSet(riverXml, "//forecast//datum"))
+    
+    # Condition check outside the if/else
+    # for_exist <- is.null(for_df) # == 0
+    for_exist <- length(for_df) == 0
+    for_secondary <- any(colnames(for_df) == "secondary")
+    
+    # Update the column names if data exists, otherwise set data to NA
+    if(for_exist){
+      for_df <- data.frame(time = NA, height = NA, discharge = NA)
     } else {
-      colnames(for_df) <- c("time", "height", "pedts")
+      if(for_secondary){
+        colnames(for_df) <- c("time", "height", "discharge", "pedts")
+      } else {
+        colnames(for_df) <- c("time", "height", "pedts")
+      }
     }
+    
+    output <- list(ID = GID, 
+                   action = stages_df$action, 
+                   minor = stages_df$flood, 
+                   mod = stages_df$moderate, 
+                   major = stages_df$major, 
+                   obs = obs_df, forecast = for_df)
+  } else {
+    output <- list(ID = GID, 
+                   action = stages_df$action, 
+                   minor = stages_df$flood, 
+                   mod = stages_df$moderate, 
+                   major = stages_df$major, 
+                   obs = obs_df)
   }
-  
-  output <- list(ID = GID, 
-                 action = stages_df$action, 
-                 minor = stages_df$flood, 
-                 mod = stages_df$moderate, 
-                 major = stages_df$major, 
-                 obs = obs_df, forecast = for_df)
-  proc.time() - ptm
+
+  # proc.time() - ptm
   
   return(output)
 }
@@ -1430,7 +1517,7 @@ flightCat = function(flightVal){
 #' # https://www.aviationweather.gov/dataserver/fields?datatype=metar
 # ------------------------------------------------------------------------
 parseMETARdata = function(awsData, metar_stations){
-  # print(awsData$station_id)
+  #print(awsData$station_id)
   
   scov = as.character(awsData$sky_cover)
   cldbase = awsData$cloud_base_ft_agl
@@ -1554,7 +1641,7 @@ parseMETARdata = function(awsData, metar_stations){
   
   # Convert date and time to an R object
   times = awsData$observation_time
-  datetime = as.POSIXct(times[!is.na(times)], format="%Y-%M-%dT%H:%M:%SZ", tz="gmt")
+  datetime = as.POSIXct(times[!is.na(times)], format="%Y-%M-%dT%H:%M:%S.000Z", tz="gmt")
   formatTime = format(datetime, "%b %d, %Y %I:%M %p", tz="America/New_York", usetz=TRUE)
   
   # Find the station name
@@ -1639,7 +1726,7 @@ parsePaMesonetData = function(paMesonet){
   vis_str = ifelse(is.na(vis), "", paste0("<b>Visibility:</b> ", vis, " mi (", 
                                           round(conv_unit(vis, from="mi", to="km"),1), " km)<br />"))
   
-  dp = paMesonet$dp
+  dp = as.numeric(paMesonet$dp)
   dp_str = ifelse(is.na(dp), "", paste0("<b>Dew point:</b> ", dp, " F (", 
                                         round(conv_unit(dp, from="F", to="C"),1), " C)<br />"))
   
@@ -1661,7 +1748,7 @@ parsePaMesonetData = function(paMesonet){
   sat_str = ifelse(is.na(sat), "", paste0("<b>Snow event total:</b> ", sat, " in (", 
                                           round(conv_unit(sat, from="inch", to="cm"),1), " cm)<br />"))
   
-  pr = paMesonet$pr1h
+  pr = as.numeric(paMesonet$pr1h)
   pr_str = ifelse(is.na(pr), "", paste0("<b>Precipitation 1 hr:</b> ", pr, " in (", 
                                         round(conv_unit(pr, from="inch", to="cm"),1), " cm)<br />"))
   

@@ -73,7 +73,8 @@ source(paste0(inDir, "download_parse_functions.R"))
 # --------------------------------------------------------------------------------------------------------------------
 # Download NDBC buoys and keep only those in the MARISA region
 # bbox: c(Min LON, Max LON, Min LAT, Max LAT)
-bbox = c(-82.0, -73.0, 36.46, 43.75)
+# bbox = c(-82.0, -73.0, 36.46, 43.75)
+bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
 buoy_data = collectBuoyData(bbox)
 
 # Parse and format buoy information for each buoy downloaded
