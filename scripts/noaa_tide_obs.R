@@ -37,6 +37,7 @@ if (!require("xml2")) { install.packages("xml2") }
 if (!require("XML")) { install.packages("XML") }
 if (!require("httr")) { install.packages("httr") }
 
+library(terra)
 library(data.table)
 library(xml2)
 library(XML)
@@ -66,6 +67,7 @@ enableJIT(3)
 inDir <- "/clima/rtdatamap/scripts/"
 outDir <- "/var/www/html/rtdatamap/"
 plotDir <- paste0(outDir, "Tide_figs/")
+dataDir <- "/clima/rtdatamap/resources/"
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 if (!file.exists(outDir)){
@@ -92,8 +94,18 @@ if(file.exists(filenm) & (Sys.time() - file.info(filenm)$ctime) < (24*60)){
   
 } else {
   # bbox = c(-82.0, -73.0, 36.46, 43.75)
-  bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
-  tideStations = collectTideIDs(filenm=filenm, bbox, returnIDs=TRUE)
+  #bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
+  #tideStations = collectTideIDs(filenm=filenm, bbox=bbox, returnIDs=TRUE)
+  
+  # Read MARISA region shapefile
+  pathshp <- paste0(dataDir, "tl_2025_us_state/2025_MidAtlantic.shp")
+  maStates <- vect(pathshp)
+  
+  # Convert the coordinate system to WGS84 for consistency
+  wgs84 <- "EPSG:4326"
+  maStates <- project(maStates, wgs84)
+  
+  tideStations = collectTideIDs(filenm=filenm, shp=maStates, returnIDs=TRUE)
   
 }
 

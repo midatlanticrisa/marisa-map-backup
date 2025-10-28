@@ -36,6 +36,7 @@ if (!require("RCurl")) { install.packages("RCurl") }
 if (!require("measurements")) { install.packages("measurements") }
 
 library(RCurl)
+library(terra)
 library(measurements)
 library(compiler)
 enableJIT(3)
@@ -61,6 +62,7 @@ enableJIT(3)
 
 inDir <- "/clima/rtdatamap/scripts/"
 outDir <- "/var/www/html/rtdatamap/"
+dataDir <- "/clima/rtdatamap/resources/"
 
 # Files are saved to a directory called mapdata. Create this directory if it doesn't exist
 if (!dir.exists(outDir)){
@@ -74,8 +76,20 @@ source(paste0(inDir, "download_parse_functions.R"))
 # Download NDBC buoys and keep only those in the MARISA region
 # bbox: c(Min LON, Max LON, Min LAT, Max LAT)
 # bbox = c(-82.0, -73.0, 36.46, 43.75)
-bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
-buoy_data = collectBuoyData(bbox)
+# bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
+
+# Read MARISA region shapefile
+pathshp <- paste0(dataDir, "tl_2025_us_state/2025_MidAtlantic.shp")
+maStates <- vect(pathshp)
+
+# Convert the coordinate system to WGS84 for consistency
+wgs84 <- "EPSG:4326"
+maStates <- project(maStates, wgs84)
+
+# buoy_data = collectBuoyData(bbox=bbox)
+buoy_data = collectBuoyData(shp=maStates)
+
+# --------------------------------------------------------------------------------------------------------------------
 
 # Parse and format buoy information for each buoy downloaded
 formatBuoys = lapply(X=1:nrow(buoy_data), function(X){parseBuoyData(buoy_data[X,])})

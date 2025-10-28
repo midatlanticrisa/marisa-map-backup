@@ -28,6 +28,7 @@
 # --------------------------------------------------------------------------------------------------------------------
 # Ensure necessary packages are installed and loaded
 ptm <- proc.time()
+library(terra)
 library(measurements)
 library(compiler)
 enableJIT(3)
@@ -61,17 +62,35 @@ unlink(temp)
 # Subset NOAA METAR stations to only those in the MARISA region
 # bbox: c(Min LON, Max LON, Min LAT, Max LAT)
 # bbox = c(-82.0, -73.0, 36.46, 43.75)
-bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
-awsData <- awsData[awsData$longitude >= bbox[1] & 
-                     awsData$longitude <= bbox[2] & 
-                     awsData$latitude >= bbox[3] & 
-                     awsData$latitude <= bbox[4], ]
+# bbox = c(-84.95,-71.24,36.42,45.15) # Includes all of NY, NJ, WV, and OH
+# awsData <- awsData[awsData$longitude >= bbox[1] & 
+#                      awsData$longitude <= bbox[2] & 
+#                      awsData$latitude >= bbox[3] & 
+#                      awsData$latitude <= bbox[4], ]
+
+# Read MARISA region shapefile
+pathshp <- paste0(dataDir, "tl_2025_us_state/2025_MidAtlantic.shp")
+maStates <- vect(pathshp)
+
+# Convert the coordinate system to WGS84 for consistency
+wgs84 <- "EPSG:4326"
+maStates <- project(maStates, wgs84)
+
+# Convert aws data into a spatial vector
+awsCoords = data.frame(id=awsData$station_id, lon = awsData$longitude, lat = awsData$latitude)
+awsVec = vect(awsCoords, geom=c("lon", "lat"), crs=wgs84)
+
+# Crop/ subset stations to only those in the MARISA region
+cropStat <- crop(awsVec, maStates)
+id_loc = match(cropStat$id, awsData$station_id)
+awsData = awsData[id_loc, ]
 
 # Remove any stations with no data
 if(any(is.na(awsData$raw_text))){
   awsData = awsData[!is.na(awsData$raw_text), ]
 }
 
+# --------------------------------------------------------------------------------------------------------------------
 # Parse and format METAR information for each station downloaded
 formatMetar = lapply(X=1:nrow(awsData), function(X){parseMETARdata(awsData[X,], 
                                                                    metar_stations)})

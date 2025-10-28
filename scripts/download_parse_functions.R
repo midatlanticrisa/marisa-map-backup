@@ -114,7 +114,7 @@ coordinate_hemi = function(val, coord = "lat"){
 # Measurement descriptions and units:
 # https://www.ndbc.noaa.gov/faq/measdes.shtml
 # ------------------------------------------------------------------------
-collectBuoyData = function(bbox=NULL){
+collectBuoyData = function(bbox=NULL, shp=NULL){
   
   buoyURL <- 'https://www.ndbc.noaa.gov/data/latest_obs/latest_obs.txt'
   metaURL <- 'https://www.ndbc.noaa.gov/data/stations/station_table.txt'
@@ -171,16 +171,27 @@ collectBuoyData = function(bbox=NULL){
     mergedBuoy = merge(buoyObs, subMeta, by.x = "STN", by.y = "STATION_ID")
     
     # Return a subset of buoys or all buoys?
-    if(is.null(bbox)){
+    if(is.null(bbox) && is.null(shp)){
       buoys <- mergedBuoy
       
-    } else {
+    } else if (is.null(shp)){
       # bbox: c('xmin','ymin','xmax','ymax')
       # mergedBuoy is a factor. The values must be converted to a character than numeric before evaluating
       buoys <- mergedBuoy[as.numeric(as.character(mergedBuoy$LON)) >= bbox[1] & 
                             as.numeric(as.character(mergedBuoy$LON)) <= bbox[2] & 
                             as.numeric(as.character(mergedBuoy$LAT)) >= bbox[3] & 
                             as.numeric(as.character(mergedBuoy$LAT)) <= bbox[4], ]
+    } else {
+
+      # Convert buoy data into a spatial vector
+      buoyCoords = data.frame(id=mergedBuoy$STN, lon = as.numeric(as.character(mergedBuoy$LON)), 
+                              lat = as.numeric(as.character(mergedBuoy$LAT)))
+      buoyVec = vect(buoyCoords, geom=c("lon", "lat"), crs="EPSG:4326")
+      
+      # Crop/ subset stations to only those in the MARISA region
+      cropStat <- crop(buoyVec, shp)
+      id_loc = match(cropStat$id, mergedBuoy$STN)
+      buoys = mergedBuoy[id_loc, ]
     }
     
   } else {
@@ -337,7 +348,7 @@ obs = paste0(
 # Example of parsing XML data:
 # https://medium.com/geekculture/reading-xml-files-in-r-3122c3a2a8d9
 # ------------------------------------------------------------------------
-collectTideIDs = function(filenm="NOAAtideIDs.txt", bbox=NULL, returnIDs=FALSE){
+collectTideIDs = function(filenm="NOAAtideIDs.txt", bbox=NULL, shp=NULL, returnIDs=FALSE){
   
   # Active water level stations
   tideStationURL <- "https://api.tidesandcurrents.noaa.gov/mdapi/prod/webapi/stations.xml?type=waterlevels"
@@ -357,15 +368,25 @@ collectTideIDs = function(filenm="NOAAtideIDs.txt", bbox=NULL, returnIDs=FALSE){
                                greatlakes = tideStation_df$greatlakes)
   
   # Return a subset of tide stations or all tide stations?
-  if(is.null(bbox)){
+  if(is.null(bbox) && is.null(shp)){
     tideStations <- tideStation_df
     
-  } else {
+  } else if(is.null(shp)){
     # bbox: c('xmin','ymin','xmax','ymax')
     tideStations <- tideStation_df[as.numeric(as.character(tideStation_df$lon)) >= bbox[1] & 
                                      as.numeric(as.character(tideStation_df$lon)) <= bbox[2] & 
                                      as.numeric(as.character(tideStation_df$lat)) >= bbox[3] & 
                                      as.numeric(as.character(tideStation_df$lat)) <= bbox[4], ]
+  } else {
+    # Convert buoy data into a spatial vector
+    tideCoords = data.frame(id=tideStation_df$id, lon = as.numeric(as.character(tideStation_df$lon)), 
+                            lat = as.numeric(as.character(tideStation_df$lat)))
+    tideVec = vect(tideCoords, geom=c("lon", "lat"), crs="EPSG:4326")
+    
+    # Crop/ subset stations to only those in the MARISA region
+    cropStat <- crop(tideVec, shp)
+    id_loc = match(cropStat$id, tideStation_df$id)
+    tideStations = tideStation_df[id_loc, ]
   }
   
   # Export data to geojson.
@@ -843,7 +864,7 @@ collectWarningsAlerts = function(area = NULL, colorfile, cntyShp, coastalShp,
 # are updated approximately every 15 minutes.
 # https://water.weather.gov/ahps/download.php
 # ------------------------------------------------------------------------
-collectRiverData = function(bbox=NULL, downDir, outfile){
+collectRiverData = function(bbox=NULL, shp=NULL, downDir, outfile){
   
   # Download the current observed AHPS river gauge observations and flood stages
   # The resulting shapefile is zipped.
@@ -867,15 +888,18 @@ collectRiverData = function(bbox=NULL, downDir, outfile){
   crs(ahps) <- "EPSG:4326"
   
   # Return a subset of gauges or all gauges?
-  if(is.null(bbox)){
+  if(is.null(bbox) && is.null(shp)){
     streams <- ahps
     
-  } else {
+  } else if(is.null(shp)){
     # bbox: c('xmin','ymin','xmax','ymax')
     streams <- ahps[ahps$Longitude >= bbox[1] & 
                       ahps$Longitude <= bbox[2] & 
                       ahps$Latitude >= bbox[3] & 
                       ahps$Latitude <= bbox[4], ]
+  } else {
+    # Crop/ subset stations to only those in the MARISA region
+    streams <- crop(ahps, shp)
   }
 
   # Do some formatting to standardize across multiple datasets

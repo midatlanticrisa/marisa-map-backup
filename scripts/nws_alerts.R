@@ -55,7 +55,7 @@ source(paste0(inDir, "download_parse_functions.R"))
 # --------------------------------------------------------------------------------------------------------------------
 # Download only the NWS alerts for the MARISA region exporting the information
 # into a geojson file.
-collectWarningsAlerts(area=c("VA", "PA", "MD", "DE", "DC", "WV", "OH", "NJ", "NY"), 
+collectWarningsAlerts(area=c("VA", "PA", "MD", "DE", "DC", "WV", "NJ", "NY"), 
                       colorfile = paste0(dataDir, "WeatherEventColors.csv"),
                       cntyShp = paste0(dataDir, "cb_2018_us_county_500k/cb_2018_us_county_500k.shp"),
                       coastalShp = paste0(dataDir, "mz08mr23/mz08mr23.shp"),
